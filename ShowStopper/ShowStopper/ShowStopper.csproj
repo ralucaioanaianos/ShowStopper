@@ -54,10 +54,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="ViewModels\" />
-	</ItemGroup>
-
-	<ItemGroup>
 	  <MauiXaml Update="CustomComponents\ColoredMarginButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

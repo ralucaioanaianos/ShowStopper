@@ -14,21 +14,7 @@
                HorizontalOptions="Center"
                VerticalOptions="Center">
         </Label>
-    <customComponents:ColoredMarginButton
-        Text="SignIn"
-        TextColor="Pink"
-        GradientColor1="Blue"
-        GradientColor2="Yellow">
-            <!--<customComponents:ColoredMarginButton.ButtonBackgroundColor>
-                <LinearGradientBrush EndPoint="1,0">
-                    <GradientStop Color="Blue"
-                                  Offset="0.1"></GradientStop>
-                    <GradientStop Color="Purple"
-                                  Offset="1.0"></GradientStop>
-                </LinearGradientBrush>
-            </customComponents:ColoredMarginButton.ButtonBackgroundColor>-->
         
-    </customComponents:ColoredMarginButton>
         <Label Text="Create an account now and join us for all the fun you can have!"
                FontSize="15"
                Margin="30,70,0,0"
@@ -37,12 +23,26 @@
                >
             
         </Label>
+        <customComponents:ColoredMarginButton
+            Text="Sign Up"
+            TextColor="#1A2C6C"
+            GradientColor1="White"
+            GradientColor2="White"
+            BorderColor="#1A2C6C">
+            
+        </customComponents:ColoredMarginButton>
         <Label Text="Already have an account? Sign in and enjoy experiences of a lifetime!"
                FontSize="15"
                Margin="30,70,0,0"
                TextColor="White"
                FontAttributes="Bold">
         </Label>
-
+        <customComponents:ColoredMarginButton
+            Text="Log In"
+            TextColor="White"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#5D1B7D"
+            BorderColor="Transparent">
+        </customComponents:ColoredMarginButton>
     </StackLayout>
 </ContentPage>

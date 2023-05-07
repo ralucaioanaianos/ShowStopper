@@ -7,6 +7,7 @@
              x:Name="This">
     <ContentView.Content>
         <Frame
+        BorderColor="{Binding Source={x:Reference This}, Path=BorderColor}"
         x:Name="MyFrame"
         IsClippedToBounds="True"
         HorizontalOptions="Center"
@@ -18,7 +19,9 @@
         Padding="0"
         CornerRadius="48">
             <Frame.Background>
-                <LinearGradientBrush EndPoint="1,0">
+                <LinearGradientBrush 
+                    StartPoint="0,0"
+                    EndPoint="1,1">
                     <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor1}"
                           Offset="0.1" />
                     <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor2}"

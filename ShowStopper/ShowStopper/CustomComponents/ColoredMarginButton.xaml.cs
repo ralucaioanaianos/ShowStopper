@@ -5,8 +5,20 @@ namespace ShowStopper.CustomComponents;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class ColoredMarginButton
 {
-	private static readonly BindableProperty TextProperty
+    private static readonly BindableProperty BorderColorProperty
+           = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(ColoredMarginButton));
+
+    public Color BorderColor
+    {
+        get => (Color)GetValue(BorderColorProperty);
+        set => SetValue(BorderColorProperty, value);
+    }
+
+
+    private static readonly BindableProperty TextProperty
 		= BindableProperty.Create(nameof(Text), typeof(string), typeof(ColoredMarginButton));
+
+
 
 	public string Text
 	{
