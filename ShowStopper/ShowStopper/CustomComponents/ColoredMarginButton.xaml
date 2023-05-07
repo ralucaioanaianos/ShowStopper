@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.CustomComponents.ColoredMarginButton"
-             x:DataType="customControls:ColoredMarginButton">
+             x:DataType="customControls:ColoredMarginButton"
+             x:Name="This">
     <ContentView.Content>
         <Frame
         x:Name="MyFrame"
@@ -15,16 +16,23 @@
         HeightRequest="48"
         Margin="0"
         Padding="0"
-        BackgroundColor="Yellow"
         CornerRadius="48">
-            <!--<Label
+            <Frame.Background>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor1}"
+                          Offset="0.1" />
+                    <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor2}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <Label
                 x:Name="BtnText"
                 HorizontalOptions="CenterAndExpand"
                 VerticalOptions="Center"
                 HorizontalTextAlignment="Center"
                 FontSize="16"
                 TextColor="{Binding Source={x:Reference This}, Path=TextColor}"
-                Text="{Binding Source={x:Reference This}, Path=Text}"></Label>-->
+                Text="{Binding Source={x:Reference This}, Path=Text}"></Label>
         </Frame>
     </ContentView.Content>
     

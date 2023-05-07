@@ -16,8 +16,17 @@
         </Label>
     <customComponents:ColoredMarginButton
         Text="SignIn"
-        BackgroundColor="Blue"
-        TextColor="Purple">
+        TextColor="Pink"
+        GradientColor1="Blue"
+        GradientColor2="Yellow">
+            <!--<customComponents:ColoredMarginButton.ButtonBackgroundColor>
+                <LinearGradientBrush EndPoint="1,0">
+                    <GradientStop Color="Blue"
+                                  Offset="0.1"></GradientStop>
+                    <GradientStop Color="Purple"
+                                  Offset="1.0"></GradientStop>
+                </LinearGradientBrush>
+            </customComponents:ColoredMarginButton.ButtonBackgroundColor>-->
         
     </customComponents:ColoredMarginButton>
         <Label Text="Create an account now and join us for all the fun you can have!"
