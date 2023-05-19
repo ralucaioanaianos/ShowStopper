@@ -2,11 +2,10 @@ using System.Windows.Input;
 
 namespace ShowStopper.CustomComponents;
 
-[XamlCompilation(XamlCompilationOptions.Compile)]
-public partial class ColoredMarginButton
+public partial class GradientFilledButton : ContentView
 {
     private static readonly BindableProperty BorderColorProperty
-           = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(ColoredMarginButton));
+           = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(GradientFilledButton));
 
     public Color BorderColor
     {
@@ -16,19 +15,19 @@ public partial class ColoredMarginButton
 
 
     private static readonly BindableProperty TextProperty
-		= BindableProperty.Create(nameof(Text), typeof(string), typeof(ColoredMarginButton));
+        = BindableProperty.Create(nameof(Text), typeof(string), typeof(GradientFilledButton));
 
 
 
-	public string Text
-	{
-		get => (string)GetValue(TextProperty);
-		set => SetValue(TextProperty, value);
-	}
+    public string Text
+    {
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
+    }
 
     private static readonly BindableProperty ButtonBackgroundColorProperty
             = BindableProperty.Create(nameof(ButtonBackgroundColor), typeof(GradientBrush),
-                typeof(ColoredMarginButton));
+                typeof(GradientFilledButton));
 
     public GradientBrush ButtonBackgroundColor
     {
@@ -37,8 +36,8 @@ public partial class ColoredMarginButton
     }
 
     private static readonly BindableProperty GradientColor1Property
-           = BindableProperty.Create(nameof(GradientColor1), typeof(Color), typeof(ColoredMarginButton));
-
+           = BindableProperty.Create(nameof(GradientColor1), typeof(Color), typeof(GradientFilledButton));
+        
     public Color GradientColor1
     {
         get => (Color)GetValue(GradientColor1Property);
@@ -46,7 +45,7 @@ public partial class ColoredMarginButton
     }
 
     private static readonly BindableProperty GradientColor2Property
-           = BindableProperty.Create(nameof(GradientColor2), typeof(Color), typeof(ColoredMarginButton));
+           = BindableProperty.Create(nameof(GradientColor2), typeof(Color), typeof(GradientFilledButton));
 
     public Color GradientColor2
     {
@@ -55,7 +54,7 @@ public partial class ColoredMarginButton
     }
 
     private static readonly BindableProperty TextColorProperty
-            = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(ColoredMarginButton), Colors.YellowGreen);
+            = BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(GradientFilledButton), Colors.YellowGreen);
 
     public Color TextColor
     {
@@ -66,7 +65,7 @@ public partial class ColoredMarginButton
     public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(
             nameof(TapCommand),
             typeof(ICommand),
-            typeof(ColoredMarginButton));
+            typeof(GradientFilledButton));
 
     public ICommand TapCommand
     {
@@ -77,7 +76,7 @@ public partial class ColoredMarginButton
     public static readonly BindableProperty TapCommandParameterProperty = BindableProperty.Create(
         nameof(TapCommandParameter),
         typeof(object),
-        typeof(ColoredMarginButton));
+        typeof(GradientFilledButton));
 
     public object TapCommandParameter
     {
@@ -85,7 +84,7 @@ public partial class ColoredMarginButton
         set => SetValue(TapCommandParameterProperty, value);
     }
 
-    public ColoredMarginButton()
+    public GradientFilledButton()
 	{
 		InitializeComponent();
 	}

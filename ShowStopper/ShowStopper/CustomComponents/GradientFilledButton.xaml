@@ -2,9 +2,9 @@
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
-             x:Class="ShowStopper.CustomComponents.ColoredMarginButton"
-             x:DataType="customControls:ColoredMarginButton"
-             x:Name="This">
+             x:Class="ShowStopper.CustomComponents.GradientFilledButton"
+             x:Name="This"
+             x:DataType="customControls:GradientFilledButton">
     <ContentView.Content>
         <Frame
         BorderColor="{Binding Source={x:Reference This}, Path=BorderColor}"
@@ -38,5 +38,4 @@
                 Text="{Binding Source={x:Reference This}, Path=Text}"></Label>
         </Frame>
     </ContentView.Content>
-    
 </ContentView>
