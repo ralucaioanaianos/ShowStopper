@@ -2,7 +2,8 @@ using System.Windows.Input;
 
 namespace ShowStopper.CustomComponents;
 
-public partial class GradientFilledButton : ContentView
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class GradientFilledButton
 {
     private static readonly BindableProperty BorderColorProperty
            = BindableProperty.Create(nameof(BorderColor), typeof(Color), typeof(GradientFilledButton));
@@ -13,11 +14,8 @@ public partial class GradientFilledButton : ContentView
         set => SetValue(BorderColorProperty, value);
     }
 
-
     private static readonly BindableProperty TextProperty
         = BindableProperty.Create(nameof(Text), typeof(string), typeof(GradientFilledButton));
-
-
 
     public string Text
     {
@@ -85,7 +83,7 @@ public partial class GradientFilledButton : ContentView
     }
 
     public GradientFilledButton()
-	{
-		InitializeComponent();
-	}
+    {
+        InitializeComponent();
+    }
 }

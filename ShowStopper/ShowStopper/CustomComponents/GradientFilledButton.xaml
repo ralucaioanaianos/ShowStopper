@@ -6,7 +6,7 @@
              x:Name="This"
              x:DataType="customControls:GradientFilledButton">
     <ContentView.Content>
-        <Frame
+        <!--<Frame
         BorderColor="{Binding Source={x:Reference This}, Path=BorderColor}"
         x:Name="MyFrame"
         IsClippedToBounds="True"
@@ -36,6 +36,30 @@
                 FontSize="16"
                 TextColor="{Binding Source={x:Reference This}, Path=TextColor}"
                 Text="{Binding Source={x:Reference This}, Path=Text}"></Label>
-        </Frame>
+        </Frame>-->
+        <Button
+            BorderColor="{Binding Source={x:Reference This}, Path=BorderColor}"
+            x:Name="myButton"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            WidthRequest="366"
+            HeightRequest="48"
+            Margin="0"
+            Padding="0"
+            CornerRadius="48"
+            Text="{Binding Source={x:Reference This}, Path=Text}"
+            TextColor="{Binding Source={x:Reference This}, Path=TextColor}"
+            Command="{Binding Source={x:Reference This}, Path=TapCommand}">
+            <Button.Background>
+                <LinearGradientBrush 
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+                    <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor1}"
+                          Offset="0.1" />
+                    <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor2}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </ContentView.Content>
 </ContentView>
