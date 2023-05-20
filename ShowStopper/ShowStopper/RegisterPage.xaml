@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.RegisterPage"
-             Title="RegisterPage">
+             Title="RegisterPage"
+             NavigationPage.HasNavigationBar="True">
     <!--<Grid
         BackgroundColor="#1C375C"
         HorizontalOptions="FillAndExpand"
@@ -66,12 +68,20 @@
             Placeholder="Password"
             Text="{Binding Password}"
             VerticalOptions="FillAndExpand" />
-            <Button
+            <!--<Button
             Grid.Row="4"
             BackgroundColor="#1C375C"
             Command="{Binding RegisterUser}"
             CornerRadius="20"
-            Text="Register" />
+            Text="Register" />-->
+        <customControls:GradientFilledButton
+                Grid.Row="4"
+                GradientColor1="#1A2C6C"
+                GradientColor2="#5D1B7D"
+                TextColor="White"
+                TapCommand="{Binding RegisterUser}"
+                BorderColor="Transparent"
+                Text="Create Account"></customControls:GradientFilledButton>
         </Grid>
         <!--</Frame>
     </Grid>-->
