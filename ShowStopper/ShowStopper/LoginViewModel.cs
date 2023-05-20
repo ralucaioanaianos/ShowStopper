@@ -1,5 +1,7 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
+using Firebase.Auth.Repository;
+using Firebase.Auth.Requests;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -51,26 +53,29 @@ namespace ShowStopper
         {
             FirebaseAuthConfig authConfig = new FirebaseAuthConfig
             {
-                ApiKey = webApiKey, 
+                ApiKey = webApiKey,
+                AuthDomain = "showstopper-71398.firebaseapp.com",
                 Providers = new FirebaseAuthProvider[]
                 {
                     new GoogleProvider().AddScopes("email"),
                     new EmailProvider()
                 },
+                UserRepository = new FileUserRepository("FirebaseSample"),
+
             };
-            //FirebaseAuthProvider authProvider = FirebaseAuthProvider(authConfig);
-            //var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
             try
             {
                 var client = new FirebaseAuthClient(authConfig);
-                //var authProvider = new FirebaseAuthProvider(authConfig);
-                var auth = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
+                var userCredential = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
+                var user = userCredential.User;
+                var uid = user.Uid;
                 //var content = await auth.AuthCredential();
                 //var content = await auth.GetFreshAuthAsync();
                 //var content = await auth.
+                //var content = await GetAccountInfo(auth);
                 //var serializedContent = JsonConvert.SerializeObject(content);
                 //Preferences.Set("FreshFirebaseToken", serializedContent);
-                await this._navigation.PushAsync(new Dashboard());
+                //await this._navigation.PushAsync(new Dashboard());
             }
             catch (Exception ex)
             {
