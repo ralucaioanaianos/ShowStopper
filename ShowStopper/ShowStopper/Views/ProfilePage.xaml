@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.ProfilePage"
+             Title="My Profile"
+             NavigationPage.HasNavigationBar="True">
+    <ContentPage.Content>
+        <customControls:RoundedImage
+            RadiusX ="100"
+            RadiusY="100"
+            ImageSource="party_background.jpg"></customControls:RoundedImage>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,4 +1,6 @@
-﻿namespace ShowStopper;
+﻿using ShowStopper.Views;
+
+namespace ShowStopper;
 
 public partial class App : Application
 {
@@ -6,6 +8,6 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-		MainPage = new NavigationPage(new LoginPage());
+		MainPage = new NavigationPage(new ProfilePage());
 	}
 }
