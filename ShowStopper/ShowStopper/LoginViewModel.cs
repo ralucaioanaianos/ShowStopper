@@ -1,4 +1,5 @@
-﻿using Firebase.Auth.Providers;
+﻿using Firebase.Auth;
+using Firebase.Auth.Providers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -11,7 +12,7 @@ namespace ShowStopper
 {
     internal class LoginViewModel : INotifyPropertyChanged
     {
-        public string webApiKey = "AIzaSyCr4cimN4UVgJ90g1WD99XguCBCMMqS0uk";
+        public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
         private INavigation _navigation;
         private string userName;
         private string userPassword;
@@ -48,22 +49,34 @@ namespace ShowStopper
 
         private async void LoginBtnTappedAsync(object obj)
         {
+            FirebaseAuthConfig authConfig = new FirebaseAuthConfig
+            {
+                ApiKey = webApiKey, 
+                Providers = new FirebaseAuthProvider[]
+                {
+                    new GoogleProvider().AddScopes("email"),
+                    new EmailProvider()
+                },
+            };
+            //FirebaseAuthProvider authProvider = FirebaseAuthProvider(authConfig);
             //var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
-            //try
-            //{
-            //    var auth = await authProvider.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
-            //    var content = await auth.GetFreshAuthAsync();
-            //    var serializedContent = JsonConvert.SerializeObject(content);
-            //    Preferences.Set("FreshFirebaseToken", serializedContent);
-            //    await this._navigation.PushAsync(new Dashboard());
-            //}
-            //catch (Exception ex)
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
-            //    throw;
-            //}
-            await this._navigation.PushAsync(new RegisterPage());
-
+            try
+            {
+                var client = new FirebaseAuthClient(authConfig);
+                //var authProvider = new FirebaseAuthProvider(authConfig);
+                var auth = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
+                //var content = await auth.AuthCredential();
+                //var content = await auth.GetFreshAuthAsync();
+                //var content = await auth.
+                //var serializedContent = JsonConvert.SerializeObject(content);
+                //Preferences.Set("FreshFirebaseToken", serializedContent);
+                await this._navigation.PushAsync(new Dashboard());
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                throw;
+            }
         }
 
         private async void RegisterBtnTappedAsync(object obj)

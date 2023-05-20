@@ -16,7 +16,7 @@
                 <Image
                     HeightRequest="250"
                     Aspect="AspectFill"
-                    Source="party_background" />
+                    Source="party_background_1" />
 
             <Frame
                 Grid.Row="1"

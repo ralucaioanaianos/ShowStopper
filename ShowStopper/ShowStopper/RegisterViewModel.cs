@@ -1,4 +1,5 @@
-﻿using Firebase.Auth.Providers;
+﻿using Firebase.Auth;
+using Firebase.Auth.Providers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,7 +11,7 @@ namespace ShowStopper
 {
     internal class RegisterViewModel
     {
-        public string webApiKey = "AIzaSyCr4cimN4UVgJ90g1WD99XguCBCMMqS0uk";
+        public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
 
         private INavigation _navigation;
         private string email;
@@ -53,20 +54,32 @@ namespace ShowStopper
 
         private async void RegisterUserTappedAsync(object obj)
         {
-            //try
-            //{
-            //    var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
-            //    var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
-            //    string token = auth.FirebaseToken;
-            //    if (token != null)
-            //        await App.Current.MainPage.DisplayAlert("Alert", "User Registered successfully", "OK");
-            //    await this._navigation.PopAsync();
-            //}
-            //catch (Exception ex)
-            //{
-            //    await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
-            //    throw;
-            //}
+            try
+            {
+                FirebaseAuthConfig authConfig = new FirebaseAuthConfig
+                {
+                    ApiKey = webApiKey,
+                    AuthDomain = "showstopper-71398.firebaseapp.com",
+                    Providers = new FirebaseAuthProvider[]
+                    {
+                        new GoogleProvider().AddScopes("email"),
+                        new EmailProvider(),
+                    }
+                };
+                var client = new FirebaseAuthClient(authConfig);
+                var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
+                //var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
+                //var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
+               // string token = auth.FirebaseToken;
+                //if (token != null)
+                  //  await App.Current.MainPage.DisplayAlert("Alert", "User Registered successfully", "OK");
+                await this._navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                throw;
+            }
             await this._navigation.PushAsync(new RegisterPage());
         }
     }
