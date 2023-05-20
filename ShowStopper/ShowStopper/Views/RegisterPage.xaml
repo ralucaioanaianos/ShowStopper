@@ -5,6 +5,9 @@
              x:Class="ShowStopper.RegisterPage"
              Title="RegisterPage"
              NavigationPage.HasNavigationBar="True">
+    <!--<NavigationPage>
+        <Grid BackgroundColor="Yellow"></Grid>
+    </NavigationPage>-->
     <Grid
         Padding="20,50,20,0"
         HorizontalOptions="FillAndExpand"

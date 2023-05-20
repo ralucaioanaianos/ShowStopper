@@ -31,6 +31,15 @@
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
 
+    <LinearGradientBrush x:Key="BluePurpleGradient"
+                         StartPoint="0,0"
+                         EndPoint="1,1">
+        <GradientStop Color="#1A2C6C"
+                      Offset="0.1"></GradientStop>
+        <GradientStop Color="#5D1B7D"
+                      Offset="1.0"></GradientStop>
+    </LinearGradientBrush>
+
     <Color x:Key="Yellow100Accent">#F7B548</Color>
     <Color x:Key="Yellow200Accent">#FFD590</Color>
     <Color x:Key="Yellow300Accent">#FFE5B9</Color>
