@@ -10,9 +10,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShowStopper
+namespace ShowStopper.ViewModels
 {
-    internal class LoginViewModel : INotifyPropertyChanged
+    internal class LoginPageViewModel : INotifyPropertyChanged
     {
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
         private INavigation _navigation;
@@ -42,9 +42,9 @@ namespace ShowStopper
             }
         }
 
-        public LoginViewModel(INavigation navigation)
+        public LoginPageViewModel(INavigation navigation)
         {
-            this._navigation = navigation;
+            _navigation = navigation;
             RegisterBtn = new Command(RegisterBtnTappedAsync);
             LoginBtn = new Command(LoginBtnTappedAsync);
         }
@@ -69,24 +69,17 @@ namespace ShowStopper
                 var userCredential = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
                 var user = userCredential.User;
                 var uid = user.Uid;
-                //var content = await auth.AuthCredential();
-                //var content = await auth.GetFreshAuthAsync();
-                //var content = await auth.
-                //var content = await GetAccountInfo(auth);
-                //var serializedContent = JsonConvert.SerializeObject(content);
-                //Preferences.Set("FreshFirebaseToken", serializedContent);
-                //await this._navigation.PushAsync(new Dashboard());
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
                 throw;
             }
         }
 
         private async void RegisterBtnTappedAsync(object obj)
         {
-            await this._navigation.PushAsync(new RegisterPage());
+            await _navigation.PushAsync(new RegisterPage());
         }
 
         private void RaisePropertyChanged(string v)

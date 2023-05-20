@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ShowStopper
+namespace ShowStopper.ViewModels
 {
-    internal class RegisterViewModel
+    internal class RegisterPageViewModel
     {
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
 
@@ -45,9 +45,9 @@ namespace ShowStopper
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
 
-        public RegisterViewModel(INavigation navigation)
+        public RegisterPageViewModel(INavigation navigation)
         {
-            this._navigation = navigation;
+            _navigation = navigation;
 
             RegisterUser = new Command(RegisterUserTappedAsync);
         }
@@ -68,19 +68,14 @@ namespace ShowStopper
                 };
                 var client = new FirebaseAuthClient(authConfig);
                 var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
-                //var authProvider = new FirebaseAuthProvider(new FirebaseConfig(webApiKey));
-                //var auth = await authProvider.CreateUserWithEmailAndPasswordAsync(Email, Password);
-               // string token = auth.FirebaseToken;
-                //if (token != null)
-                  //  await App.Current.MainPage.DisplayAlert("Alert", "User Registered successfully", "OK");
-                await this._navigation.PopAsync();
+                await _navigation.PopAsync();
             }
             catch (Exception ex)
             {
-                await App.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                await Application.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
                 throw;
             }
-            await this._navigation.PushAsync(new RegisterPage());
+            await _navigation.PushAsync(new RegisterPage());
         }
     }
 }

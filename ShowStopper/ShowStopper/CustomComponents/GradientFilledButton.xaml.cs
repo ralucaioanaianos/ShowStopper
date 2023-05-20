@@ -35,7 +35,7 @@ public partial class GradientFilledButton
 
     private static readonly BindableProperty GradientColor1Property
            = BindableProperty.Create(nameof(GradientColor1), typeof(Color), typeof(GradientFilledButton));
-        
+
     public Color GradientColor1
     {
         get => (Color)GetValue(GradientColor1Property);

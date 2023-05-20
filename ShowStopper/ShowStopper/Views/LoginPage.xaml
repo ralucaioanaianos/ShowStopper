@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
-             x:Class="ShowStopper.MainPage"
+             x:Class="ShowStopper.LoginPage"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Content>
@@ -14,7 +14,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-                <Image
+            <Image
                     HeightRequest="250"
                     Aspect="AspectFill"
                     Source="party_background_1" />
@@ -88,21 +88,6 @@
                         BorderColor="#1A2C6C"
                         TapCommand="{Binding RegisterBtn}">
                     </customControls:GradientFilledButton>
-
-                    <!--<Button
-                        Grid.Row="4"
-                        BackgroundColor="#1C375C"
-                        Command="{Binding LoginBtn}"
-                        CornerRadius="20"
-                        Text="Login" />
-        
-                    <Button
-                        Grid.Row="5"
-                        BackgroundColor="#1C375C"
-                        Command="{Binding RegisterBtn}"
-                        CornerRadius="20"
-                        Text="Register using Email" />-->
-
                     <StackLayout
                         Grid.Row="6"
                         HorizontalOptions="CenterAndExpand"
