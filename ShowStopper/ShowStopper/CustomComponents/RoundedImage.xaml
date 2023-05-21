@@ -6,14 +6,12 @@
              x:Name="This"
              x:DataType="customControls:RoundedImage">
     <ContentView.Content>
-        
+        <Border>
             <Image
                 Source="{Binding Source={x:Reference This}, Path=ImageSource}">
-                <Image.Clip>
-                    <EllipseGeometry RadiusX="{Binding Source={x:Reference This}, Path=RadiusX}"
-                                     RadiusY="{Binding Source={x:Reference This}, Path=RadiusY}"
-                                     Center="180,180"></EllipseGeometry>
-                </Image.Clip>
+
             </Image>
+        </Border>
+            
     </ContentView.Content>
 </ContentView>

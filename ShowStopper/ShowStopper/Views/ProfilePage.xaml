@@ -7,8 +7,6 @@
              NavigationPage.HasNavigationBar="True">
     <ContentPage.Content>
         <customControls:RoundedImage
-            RadiusX ="100"
-            RadiusY="100"
-            ImageSource="party_background.jpg"></customControls:RoundedImage>
+            ImageSource="cat_user.jpg"></customControls:RoundedImage>
     </ContentPage.Content>
 </ContentPage>
