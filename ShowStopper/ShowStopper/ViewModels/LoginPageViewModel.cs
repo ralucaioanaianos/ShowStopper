@@ -2,7 +2,11 @@
 using Firebase.Auth.Providers;
 using Firebase.Auth.Repository;
 using Firebase.Auth.Requests;
+using Firebase.Database;
+using Firebase.Database.Query;
 using Newtonsoft.Json;
+using ShowStopper.Models;
+using ShowStopper.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +28,8 @@ namespace ShowStopper.ViewModels
         public Command RegisterBtn { get; }
         public Command LoginBtn { get; }
 
+        public string IsVisible { get; set; }
+        
         public string UserName
         {
             get => userName; set
@@ -42,8 +48,9 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        public LoginPageViewModel(INavigation navigation)
+        public LoginPageViewModel(INavigation navigation, string isVisible)
         {
+            IsVisible = isVisible;
             _navigation = navigation;
             RegisterBtn = new Command(RegisterBtnTappedAsync);
             LoginBtn = new Command(LoginBtnTappedAsync);
@@ -66,9 +73,40 @@ namespace ShowStopper.ViewModels
             try
             {
                 var client = new FirebaseAuthClient(authConfig);
-                var userCredential = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
-                var user = userCredential.User;
-                var uid = user.Uid;
+                var result = await client.FetchSignInMethodsForEmailAsync(UserName);
+                if (result == null || !result.UserExists)
+                {
+                    await _navigation.PushAsync(new LoginPage("True"));
+
+                }
+                else
+                {
+                    var userCredential = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
+                    User user = userCredential.User;
+                    var uid = user.Uid;
+                    var databaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
+                    //AppUser firebaseObject = await databaseClient.Child("Users").OrderByChild("");
+                    //var query = await databaseClient.Child("Users").OrderByChild("ddd@gmail.com")
+                    var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
+                    var filteredElements = firebaseObjects
+                        .Where(obj => obj.Object.Email == user.Info.Email).ToList();
+                    var firstElement = filteredElements.FirstOrDefault();
+                    if (firstElement != null) 
+                    {
+                        AppUser retrievedUser = firstElement.Object;
+                        user.Info.FirstName = retrievedUser.FirstName;
+                        user.Info.LastName = retrievedUser.LastName;
+                        await Application.Current.MainPage.DisplayAlert("aa", retrievedUser.FirstName, "ok");
+
+                        await _navigation.PushAsync(new ProfilePage(user, retrievedUser));
+                    }
+                    else
+                    {
+                        await Application.Current.MainPage.DisplayAlert("aa", "element not retrieed", "ok");
+                    }
+                    
+                }
+                
             }
             catch (Exception ex)
             {

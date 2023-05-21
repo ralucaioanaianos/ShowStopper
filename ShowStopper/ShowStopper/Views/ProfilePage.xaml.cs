@@ -1,13 +1,16 @@
+using Firebase.Auth;
+using Firebase.Database;
+using ShowStopper.Models;
 using ShowStopper.ViewModels;
 
 namespace ShowStopper.Views;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage()
+	public ProfilePage(User user, AppUser databaseUser)
 	{
 		InitializeComponent();
-        BindingContext = new ProfilePageViewModel(Navigation);
+        BindingContext = new ProfilePageViewModel(Navigation, user, databaseUser);
     }
 
 }

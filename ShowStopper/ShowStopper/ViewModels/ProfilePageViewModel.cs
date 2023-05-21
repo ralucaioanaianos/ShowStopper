@@ -1,4 +1,7 @@
-﻿using Android.App;
+﻿using Firebase.Auth;
+using Firebase.Database;
+using Firebase.Database.Query;
+using ShowStopper.Models;
 using ShowStopper.Views;
 using System;
 using System.Collections.Generic;
@@ -12,11 +15,22 @@ namespace ShowStopper.ViewModels
     {
         private INavigation _navigation;
 
+        private User _user;
+
+        //private FirebaseClient _firebaseClient;
+
+        public string Name { get; set; }
+
         public Command EditProfileBtn { get; }
 
-        public ProfilePageViewModel(INavigation navigation)
+        public ProfilePageViewModel(INavigation navigation, User user, AppUser databaseUser)
         {
             _navigation = navigation;
+            _user = user;
+            //_firebaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
+            //FirebaseObject<AppUser> firebaseObject = await _firebaseClient.Child("Users").Child("ddd@gmail.com").OnceSingleAsync<AppUser>();
+
+            Name = databaseUser.FirstName + " " + databaseUser.LastName;
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
         }
 
@@ -29,5 +43,14 @@ namespace ShowStopper.ViewModels
         {
             await _navigation.PushAsync(new EditProfilePage());
         }
+
+        //private static readonly BindableProperty NameProperty
+        //  = BindableProperty.Create(nameof(Name), typeof(string), typeof(ProfilePageViewModel));
+
+        //public string Name
+        //{
+        //    get => (string)GetValue(NameProperty);
+        //    set => SetValue(NameProperty, value);
+        //}
     }
 }

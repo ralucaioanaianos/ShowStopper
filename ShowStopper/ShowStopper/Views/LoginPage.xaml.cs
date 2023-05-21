@@ -3,10 +3,10 @@ namespace ShowStopper;
 
 public partial class LoginPage : ContentPage
 {
-	public LoginPage()
+	public LoginPage(string isVisible)
 	{
 		InitializeComponent();
-		BindingContext = new LoginPageViewModel(Navigation);
+		BindingContext = new LoginPageViewModel(Navigation, isVisible);
 	}
 }
 

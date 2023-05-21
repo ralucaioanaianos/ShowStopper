@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShowStopper.Models
 {
-    internal class User : Entity
+    public class AppUser 
     {
         public string FirstName { get; set; }   
         public string LastName { get; set; }

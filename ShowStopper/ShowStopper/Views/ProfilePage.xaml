@@ -10,7 +10,7 @@
             <customControls:RoundedImage
                 Margin="0,20,0,0"
                 ImageSource="cat_user.jpg"></customControls:RoundedImage>
-            <Label Text="Firstname Lastname"
+            <Label Text="{Binding Name}"
                    FontSize="20"
                    FontAttributes="Bold"
                    HorizontalTextAlignment="Center"

@@ -1,11 +1,14 @@
 ﻿using Firebase.Auth;
 using Firebase.Auth.Providers;
+using Firebase.Database;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ShowStopper.Models;
+using Firebase.Database.Query;
 
 namespace ShowStopper.ViewModels
 {
@@ -68,6 +71,15 @@ namespace ShowStopper.ViewModels
                 };
                 var client = new FirebaseAuthClient(authConfig);
                 var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
+                FirebaseClient firebaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
+                await firebaseClient.Child("Users").PostAsync(new AppUser
+                {
+                    FirstName = "firstname",
+                    LastName = "lastname",
+                    Email = email,
+                    ProfileImage = "cat_user.jpg",
+
+                });
                 await _navigation.PopAsync();
             }
             catch (Exception ex)
