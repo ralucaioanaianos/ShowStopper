@@ -6,8 +6,13 @@
              x:Name="This"
              x:DataType="customControls:RoundedImage">
     <ContentView.Content>
-        <Border>
+        <Border
+            StrokeShape="RoundRectangle 80,80,80,80"
+            HeightRequest="150"
+            WidthRequest="150"
+>
             <Image
+                Aspect="AspectFit"
                 Source="{Binding Source={x:Reference This}, Path=ImageSource}">
 
             </Image>

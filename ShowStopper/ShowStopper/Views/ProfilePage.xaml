@@ -6,7 +6,23 @@
              Title="My Profile"
              NavigationPage.HasNavigationBar="True">
     <ContentPage.Content>
-        <customControls:RoundedImage
-            ImageSource="cat_user.jpg"></customControls:RoundedImage>
+        <StackLayout>
+            <customControls:RoundedImage
+                Margin="0,20,0,0"
+                ImageSource="cat_user.jpg"></customControls:RoundedImage>
+            <Label Text="Firstname Lastname"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,20,0,0"></Label>
+            <Label Text="Account"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="20,30,0,0"></Label>
+            <HorizontalStackLayout>
+                
+            </HorizontalStackLayout>
+        </StackLayout>
+        
     </ContentPage.Content>
 </ContentPage>
