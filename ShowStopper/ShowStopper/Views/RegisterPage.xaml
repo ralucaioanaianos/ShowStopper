@@ -19,6 +19,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
@@ -47,8 +49,22 @@
             Placeholder="Password"
             Text="{Binding Password}"
             VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="4"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="First Name"
+            Text="{Binding FirstName}"
+            VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="5"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Last Name"
+            Text="{Binding LastName}"
+            VerticalOptions="FillAndExpand" />
         <customControls:GradientFilledButton
-                Grid.Row="4"
+                Grid.Row="6"
                 GradientColor1="#1A2C6C"
                 GradientColor2="#5D1B7D"
                 TextColor="White"

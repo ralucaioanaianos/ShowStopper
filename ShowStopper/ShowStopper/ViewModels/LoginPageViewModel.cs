@@ -96,15 +96,12 @@ namespace ShowStopper.ViewModels
                         AppUser retrievedUser = firstElement.Object;
                         user.Info.FirstName = retrievedUser.FirstName;
                         user.Info.LastName = retrievedUser.LastName;
-                        await Application.Current.MainPage.DisplayAlert("aa", retrievedUser.FirstName, "ok");
-
                         await _navigation.PushAsync(new ProfilePage(user, retrievedUser));
                     }
                     else
                     {
                         await Application.Current.MainPage.DisplayAlert("aa", "element not retrieed", "ok");
                     }
-                    
                 }
                 
             }
