@@ -19,6 +19,8 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
         private string email;
         private string password;
+        private string firstName;
+        private string lastName;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -29,6 +31,26 @@ namespace ShowStopper.ViewModels
             {
                 email = value;
                 RaisePropertyChanged("Email");
+            }
+        }
+
+        public string FirstName
+        {
+            get => firstName;
+            set
+            {
+                firstName = value;
+                RaisePropertyChanged("FirstName");
+            }
+        }
+
+        public string LastName
+        {
+            get => lastName;
+            set
+            {
+                lastName = value;
+                RaisePropertyChanged("LastName");
             }
         }
 
@@ -74,8 +96,8 @@ namespace ShowStopper.ViewModels
                 FirebaseClient firebaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
                 await firebaseClient.Child("Users").PostAsync(new AppUser
                 {
-                    FirstName = "firstname",
-                    LastName = "lastname",
+                    FirstName = firstName,
+                    LastName = lastName,
                     Email = email,
                     ProfileImage = "cat_user.jpg",
 
