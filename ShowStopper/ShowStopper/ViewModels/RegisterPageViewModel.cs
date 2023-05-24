@@ -17,7 +17,7 @@ namespace ShowStopper.ViewModels
 {
     internal class RegisterPageViewModel
     {
-        public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
+
 
         private string storageUrl = "showstopper-71398.appspot.com";
         private string authDomain = "showstopper-71398.firebaseapp.com";
@@ -90,13 +90,13 @@ namespace ShowStopper.ViewModels
         {
             try
             {
-                await FirebaseAuhenticationService.CreateUserFirebase(webApiKey, authDomain, email, password);
+                await FirebaseAuhenticationService.CreateUserFirebase(email, password);
                 if (photo != null)
                 {
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(storageUrl, photo);
-                    await FirebaseDatabaseService.SavePhotoToDatabase(databaseUrl, photoUrl);
+                    await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
                     //TODO: userType instead of "User"
-                    await FirebaseDatabaseService.AddUserToDatabase(databaseUrl, firstName, lastName, email, photoUrl, "User");
+                    await FirebaseDatabaseService.AddUserToDatabase(firstName, lastName, email, photoUrl, "User");
                 }
                 else
                 {

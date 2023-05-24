@@ -11,7 +11,11 @@ namespace ShowStopper.Services
 {
     class FirebaseAuhenticationService
     {
-        public static async Task CreateUserFirebase(string webApiKey, string authDomain, string email, string password)
+        public static string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
+
+        public static string authDomain = "showstopper-71398.firebaseapp.com";
+
+        public static async Task CreateUserFirebase(string email, string password)
         {
             FirebaseAuthConfig authConfig = new FirebaseAuthConfig
             {

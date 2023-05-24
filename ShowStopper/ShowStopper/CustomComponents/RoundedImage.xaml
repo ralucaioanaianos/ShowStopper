@@ -11,6 +11,11 @@
             HeightRequest="150"
             WidthRequest="150"
 >
+            <!--<Image
+                Aspect="AspectFit"
+                Source="{Binding Source={x:Reference This}, Path=ImageSource}">
+
+            </Image>-->
             <Image
                 Aspect="AspectFit"
                 Source="{Binding Source={x:Reference This}, Path=ImageSource}">

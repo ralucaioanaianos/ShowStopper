@@ -23,7 +23,7 @@ namespace ShowStopper.ViewModels
 
         public Command EditProfileBtn { get; }
 
-        private string ProfileImageSource { get; set; } 
+        public ImageSource ProfileImageSource { get; set; } 
 
         public ProfilePageViewModel(INavigation navigation, User user, AppUser databaseUser)
         {
@@ -33,6 +33,11 @@ namespace ShowStopper.ViewModels
             //FirebaseObject<AppUser> firebaseObject = await _firebaseClient.Child("Users").Child("ddd@gmail.com").OnceSingleAsync<AppUser>();
 
             Name = databaseUser.FirstName + " " + databaseUser.LastName;
+            string profileImageUrl = databaseUser.ProfileImage;
+            // ProfileImageSource = profileImageUrl;
+            //ProfileImageSource = new UriImageSource { Uri = new Uri(profileImageUrl)};
+            //ProfileImageSource = profileImageUrl;
+            //ProfileImageSource = ImageSource.FromFile("cat.jpg");
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
         }
 

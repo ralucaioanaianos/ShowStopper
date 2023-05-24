@@ -12,7 +12,13 @@ namespace ShowStopper.Services
 {
     class FirebaseDatabaseService
     {
-        public static async Task AddUserToDatabase(string databaseUrl, string firstName, string lastName, string email, string photoUrl, string userType)
+        public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
+
+        private string authDomain = "showstopper-71398.firebaseapp.com";
+        private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
+        private INavigation _navigation;
+
+        public static async Task AddUserToDatabase(string firstName, string lastName, string email, string photoUrl, string userType)
         {
             FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
             await firebaseClient.Child("Users").PostAsync(new AppUser
@@ -24,7 +30,7 @@ namespace ShowStopper.Services
                 UserType = userType,
             });
         }
-        public static async Task SavePhotoToDatabase(string databaseUrl, string photoUrl)
+        public static async Task SavePhotoToDatabase(string photoUrl)
         {
             // Save the photo URL to Firebase Realtime Database
             var database = new FirebaseClient(databaseUrl);
