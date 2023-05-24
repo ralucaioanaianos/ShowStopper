@@ -16,6 +16,7 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
 
         private User _user;
+        private AppUser _databaseUser;
 
         //private FirebaseClient _firebaseClient;
 
@@ -29,6 +30,7 @@ namespace ShowStopper.ViewModels
         {
             _navigation = navigation;
             _user = user;
+            _databaseUser = databaseUser;
             //_firebaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
             //FirebaseObject<AppUser> firebaseObject = await _firebaseClient.Child("Users").Child("ddd@gmail.com").OnceSingleAsync<AppUser>();
 
@@ -43,12 +45,12 @@ namespace ShowStopper.ViewModels
 
         private async void EditProfileBtnTappedAsync(object parameter)
         {
-            await _navigation.PushAsync(new EditProfilePage());
+            await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser));
         }
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await _navigation.PushAsync(new EditProfilePage());
+            await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser));
         }
 
         //private static readonly BindableProperty NameProperty

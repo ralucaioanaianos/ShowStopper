@@ -9,7 +9,9 @@ namespace ShowStopper.Services
 {
     class FirebaseStorageService
     {
-        public static async Task<string> UploadPhotoToStorage(string storageUrl, FileResult photo)
+        private static string storageUrl = "showstopper-71398.appspot.com";
+
+        public static async Task<string> UploadPhotoToStorage(FileResult photo)
         {
             // Upload the photo to Firebase Storage
             string fileName = Path.GetFileName(photo.FullPath);

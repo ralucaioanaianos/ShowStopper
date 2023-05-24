@@ -19,9 +19,6 @@ namespace ShowStopper.ViewModels
     {
 
 
-        private string storageUrl = "showstopper-71398.appspot.com";
-        private string authDomain = "showstopper-71398.firebaseapp.com";
-        private string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
         private INavigation _navigation;
         private string email;
         private string password;
@@ -90,10 +87,10 @@ namespace ShowStopper.ViewModels
         {
             try
             {
-                await FirebaseAuhenticationService.CreateUserFirebase(email, password);
+                await FirebaseAuthenticationService.CreateUserFirebase(email, password);
                 if (photo != null)
                 {
-                    string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(storageUrl, photo);
+                    string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
                     await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
                     //TODO: userType instead of "User"
                     await FirebaseDatabaseService.AddUserToDatabase(firstName, lastName, email, photoUrl, "User");

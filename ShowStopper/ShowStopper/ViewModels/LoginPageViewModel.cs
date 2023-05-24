@@ -7,6 +7,7 @@ using Firebase.Database.Query;
 using Firebase.Storage;
 using Newtonsoft.Json;
 using ShowStopper.Models;
+using ShowStopper.Services;
 using ShowStopper.Views;
 using System;
 using System.Collections.Generic;
@@ -19,10 +20,6 @@ namespace ShowStopper.ViewModels
 {
     internal class LoginPageViewModel : INotifyPropertyChanged
     {
-        public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
-
-        private string authDomain = "showstopper-71398.firebaseapp.com";
-        private string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
         private INavigation _navigation;
         private string userName;
         private string userPassword;
@@ -60,57 +57,17 @@ namespace ShowStopper.ViewModels
             LoginBtn = new Command(LoginBtnTappedAsync);
         }
 
-        private async Task<User> LoginUserFirebase()
-        {
-            User user = null;
-            FirebaseAuthConfig authConfig = new FirebaseAuthConfig
-            {
-                ApiKey = webApiKey,
-                AuthDomain = authDomain,
-                Providers = new FirebaseAuthProvider[]
-                {
-                    new GoogleProvider().AddScopes("email"),
-                    new EmailProvider()
-                },
-                UserRepository = new FileUserRepository("FirebaseSample"),
-
-            };
-            var client = new FirebaseAuthClient(authConfig);
-            var result = await client.FetchSignInMethodsForEmailAsync(UserName);
-            if (result == null || !result.UserExists)
-            {
-                await _navigation.PushAsync(new LoginPage("True"));
-
-            }
-            else
-            {
-                var userCredential = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
-                user = userCredential.User;
-            }
-            return user;
-        }
-
-        private async Task<AppUser> LookForUserInDatabase(User loggedUser)
-        {
-            var databaseClient = new FirebaseClient(databaseUrl);
-            var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
-            var foundElements = firebaseObjects
-                .Where(obj => obj.Object.Email == loggedUser.Info.Email).ToList();
-            var foundUser = foundElements.FirstOrDefault();
-            return foundUser.Object;
-        }
+       
 
         private async void LoginBtnTappedAsync(object obj)
         {
             try
             {
-                    User loggedUser = await LoginUserFirebase();
-                    AppUser foundUser = await LookForUserInDatabase(loggedUser);
+                User loggedUser = await FirebaseAuthenticationService.LoginUserFirebase(UserName, UserPassword, _navigation);
+                AppUser foundUser = await FirebaseDatabaseService.LookForUserInDatabase(loggedUser);
                    
                     if (foundUser != null) 
                     {
-                        //user.Info.FirstName = retrievedUser.FirstName;
-                        //user.Info.LastName = retrievedUser.LastName;
                         await _navigation.PushAsync(new ProfilePage(loggedUser, foundUser));
                     }
                     else
@@ -135,32 +92,5 @@ namespace ShowStopper.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
-
-        //private async void OnSelectPhotoClicked(object sender, EventArgs e)
-        //{
-        //    try
-        //    {
-        //        FileResult photo = await MediaPicker.PickPhotoAsync();
-        //        if (photo != null)
-        //        {
-        //            string fileName = Path.GetFileName(photo.FullPath);
-        //            string storagePath = "photos/" + fileName;
-
-        //            var storage = new FirebaseStorage("<your-firebase-stor);
-        //            var photoStream = await photo.OpenReadAsync();
-        //            var photoUrl = await storage.Child(storagePath).PutAsync(photoStream);
-
-        //            // Save the photo URL to Firebase Realtime Database
-        //            var database = new FirebaseClient("<your-firebase-database-url>");
-        //            var photosNode = database.Child("photos");
-        //            await photosNode.PostAsync(new { Url = photoUrl });
-
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        await Application.Current.MainPage.DisplayAlert("aaa", ex.Message, "aaa");
-        //    }
-        //}
     }
 }
