@@ -4,6 +4,7 @@ using Firebase.Auth.Repository;
 using Firebase.Auth.Requests;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Firebase.Storage;
 using Newtonsoft.Json;
 using ShowStopper.Models;
 using ShowStopper.Views;
@@ -134,5 +135,32 @@ namespace ShowStopper.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
+
+        //private async void OnSelectPhotoClicked(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        FileResult photo = await MediaPicker.PickPhotoAsync();
+        //        if (photo != null)
+        //        {
+        //            string fileName = Path.GetFileName(photo.FullPath);
+        //            string storagePath = "photos/" + fileName;
+
+        //            var storage = new FirebaseStorage("<your-firebase-stor);
+        //            var photoStream = await photo.OpenReadAsync();
+        //            var photoUrl = await storage.Child(storagePath).PutAsync(photoStream);
+
+        //            // Save the photo URL to Firebase Realtime Database
+        //            var database = new FirebaseClient("<your-firebase-database-url>");
+        //            var photosNode = database.Child("photos");
+        //            await photosNode.PostAsync(new { Url = photoUrl });
+
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        await Application.Current.MainPage.DisplayAlert("aaa", ex.Message, "aaa");
+        //    }
+        //}
     }
 }

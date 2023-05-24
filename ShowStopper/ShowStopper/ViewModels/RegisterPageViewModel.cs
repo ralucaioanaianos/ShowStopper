@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using ShowStopper.Models;
 using Firebase.Database.Query;
+using Firebase.Storage;
+using System.Runtime.CompilerServices;
 
 namespace ShowStopper.ViewModels
 {
@@ -16,6 +18,7 @@ namespace ShowStopper.ViewModels
     {
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
 
+        private string storageUrl = "showstopper-71398.appspot.com";
         private string authDomain = "showstopper-71398.firebaseapp.com";
         private string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
         private INavigation _navigation;
@@ -23,6 +26,7 @@ namespace ShowStopper.ViewModels
         private string password;
         private string firstName;
         private string lastName;
+        private FileResult photo;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -67,6 +71,8 @@ namespace ShowStopper.ViewModels
 
         public Command RegisterUser { get; }
 
+        public Command SelectPhoto { get; }
+
         private void RaisePropertyChanged(string v)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
@@ -75,7 +81,7 @@ namespace ShowStopper.ViewModels
         public RegisterPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
-
+            SelectPhoto = new Command(SelectPhotoTappedAsync);
             RegisterUser = new Command(RegisterUserTappedAsync);
         }
 
@@ -95,7 +101,7 @@ namespace ShowStopper.ViewModels
             var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
         }
 
-        private async Task  AddUserToDatabase()
+        private async Task  AddUserToDatabase(string photoUrl)
         {
             FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
             await firebaseClient.Child("Users").PostAsync(new AppUser
@@ -103,7 +109,7 @@ namespace ShowStopper.ViewModels
                 FirstName = firstName,
                 LastName = lastName,
                 Email = email,
-                ProfileImage = "cat_user.jpg",
+                ProfileImage = photoUrl,
                 UserType = "User",
             });
         }
@@ -113,7 +119,17 @@ namespace ShowStopper.ViewModels
             try
             {
                 await CreateUserFirebase();
-                await AddUserToDatabase();
+                if (photo != null)
+                {
+                    string photoUrl = await UploadPhotoToStorage(photo);
+                    //await SavePhotoToDatabase(photoUrl);
+                    await AddUserToDatabase(photoUrl);
+                }
+                else
+                {
+                    await Application.Current.MainPage.DisplayAlert("error", "please upload photo", "ok");
+                }
+                
                 await _navigation.PopAsync();
             }
             catch (Exception ex)
@@ -123,5 +139,38 @@ namespace ShowStopper.ViewModels
             }
             await _navigation.PushAsync(new RegisterPage());
         }
+
+        private async Task<string> UploadPhotoToStorage(FileResult photo)
+        {
+            // Upload the photo to Firebase Storage
+            string fileName = Path.GetFileName(photo.FullPath);
+            string storagePath = "photos/" + fileName;
+
+            var storage = new FirebaseStorage(storageUrl);
+            var photoStream = await photo.OpenReadAsync();
+            var photoUrl = await storage.Child(storagePath).PutAsync(photoStream);
+            return photoUrl;
+        }
+
+        private async Task SavePhotoToDatabase(string photoUrl)
+        {
+            // Save the photo URL to Firebase Realtime Database
+            var database = new FirebaseClient(databaseUrl);
+            var photosNode = database.Child("photos");
+            await photosNode.PostAsync(new { Url = photoUrl });
+        }
+
+        private async void SelectPhotoTappedAsync(object sender)
+        {
+            try
+            {
+                photo = await MediaPicker.PickPhotoAsync();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("error", ex.Message, "ok");
+            }
+        }
+
     }
 }

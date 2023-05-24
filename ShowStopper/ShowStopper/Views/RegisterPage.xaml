@@ -21,6 +21,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label
             Grid.Row="0"
@@ -63,8 +65,11 @@
             Placeholder="Last Name"
             Text="{Binding LastName}"
             VerticalOptions="FillAndExpand" />
+        <Button Text="pick image" Grid.Row="6"
+                Command="{Binding SelectPhoto}"></Button>
+        <Button Text="take picture" Grid.Row="7"></Button>
         <customControls:GradientFilledButton
-                Grid.Row="6"
+                Grid.Row="8"
                 GradientColor1="#1A2C6C"
                 GradientColor2="#5D1B7D"
                 TextColor="White"

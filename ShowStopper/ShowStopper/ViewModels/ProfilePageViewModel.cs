@@ -23,6 +23,8 @@ namespace ShowStopper.ViewModels
 
         public Command EditProfileBtn { get; }
 
+        private string ProfileImageSource { get; set; } 
+
         public ProfilePageViewModel(INavigation navigation, User user, AppUser databaseUser)
         {
             _navigation = navigation;
