@@ -9,7 +9,7 @@
         <StackLayout>
             <customControls:RoundedImage
                 Margin="0,20,0,0"
-                ImageSource="{Binding ProfileImageSource}"></customControls:RoundedImage>
+                ImageSource="cat_user.jpg"></customControls:RoundedImage>
             <Label Text="{Binding Name}"
                    FontSize="20"
                    FontAttributes="Bold"

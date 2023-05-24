@@ -11,6 +11,7 @@ using ShowStopper.Models;
 using Firebase.Database.Query;
 using Firebase.Storage;
 using System.Runtime.CompilerServices;
+using ShowStopper.Services;
 
 namespace ShowStopper.ViewModels
 {
@@ -85,51 +86,23 @@ namespace ShowStopper.ViewModels
             RegisterUser = new Command(RegisterUserTappedAsync);
         }
 
-        private async Task CreateUserFirebase()
-        {
-            FirebaseAuthConfig authConfig = new FirebaseAuthConfig
-            {
-                ApiKey = webApiKey,
-                AuthDomain = authDomain,
-                Providers = new FirebaseAuthProvider[]
-                   {
-                        new GoogleProvider().AddScopes("email"),
-                        new EmailProvider(),
-                   }
-            };
-            var client = new FirebaseAuthClient(authConfig);
-            var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
-        }
-
-        private async Task  AddUserToDatabase(string photoUrl)
-        {
-            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-            await firebaseClient.Child("Users").PostAsync(new AppUser
-            {
-                FirstName = firstName,
-                LastName = lastName,
-                Email = email,
-                ProfileImage = photoUrl,
-                UserType = "User",
-            });
-        }
-
         private async void RegisterUserTappedAsync(object obj)
         {
             try
             {
-                await CreateUserFirebase();
+                await FirebaseAuhenticationService.CreateUserFirebase(webApiKey, authDomain, email, password);
                 if (photo != null)
                 {
-                    string photoUrl = await UploadPhotoToStorage(photo);
-                    //await SavePhotoToDatabase(photoUrl);
-                    await AddUserToDatabase(photoUrl);
+                    string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(storageUrl, photo);
+                    await FirebaseDatabaseService.SavePhotoToDatabase(databaseUrl, photoUrl);
+                    //TODO: userType instead of "User"
+                    await FirebaseDatabaseService.AddUserToDatabase(databaseUrl, firstName, lastName, email, photoUrl, "User");
                 }
                 else
                 {
                     await Application.Current.MainPage.DisplayAlert("error", "please upload photo", "ok");
                 }
-                
+
                 await _navigation.PopAsync();
             }
             catch (Exception ex)
@@ -139,27 +112,7 @@ namespace ShowStopper.ViewModels
             }
             await _navigation.PushAsync(new RegisterPage());
         }
-
-        private async Task<string> UploadPhotoToStorage(FileResult photo)
-        {
-            // Upload the photo to Firebase Storage
-            string fileName = Path.GetFileName(photo.FullPath);
-            string storagePath = "photos/" + fileName;
-
-            var storage = new FirebaseStorage(storageUrl);
-            var photoStream = await photo.OpenReadAsync();
-            var photoUrl = await storage.Child(storagePath).PutAsync(photoStream);
-            return photoUrl;
-        }
-
-        private async Task SavePhotoToDatabase(string photoUrl)
-        {
-            // Save the photo URL to Firebase Realtime Database
-            var database = new FirebaseClient(databaseUrl);
-            var photosNode = database.Child("photos");
-            await photosNode.PostAsync(new { Url = photoUrl });
-        }
-
+        
         private async void SelectPhotoTappedAsync(object sender)
         {
             try
