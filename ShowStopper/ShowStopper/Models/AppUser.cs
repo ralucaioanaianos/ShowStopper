@@ -20,6 +20,8 @@ namespace ShowStopper.Models
         public string Email { get; set; }
         public string ProfileImage { get; set; }
 
+        public string UserType { get; set; }
+
         //public string ConnectionId { get; set; }
     }
 }

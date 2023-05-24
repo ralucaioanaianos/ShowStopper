@@ -79,7 +79,7 @@ namespace ShowStopper.ViewModels
             RegisterUser = new Command(RegisterUserTappedAsync);
         }
 
-        private async Task CreateFirebaseUser()
+        private async Task CreateUserFirebase()
         {
             FirebaseAuthConfig authConfig = new FirebaseAuthConfig
             {
@@ -104,7 +104,7 @@ namespace ShowStopper.ViewModels
                 LastName = lastName,
                 Email = email,
                 ProfileImage = "cat_user.jpg",
-
+                UserType = "User",
             });
         }
 
@@ -112,7 +112,7 @@ namespace ShowStopper.ViewModels
         {
             try
             {
-                await CreateFirebaseUser();
+                await CreateUserFirebase();
                 await AddUserToDatabase();
                 await _navigation.PopAsync();
             }

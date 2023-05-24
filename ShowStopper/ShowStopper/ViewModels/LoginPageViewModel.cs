@@ -19,6 +19,9 @@ namespace ShowStopper.ViewModels
     internal class LoginPageViewModel : INotifyPropertyChanged
     {
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
+
+        private string authDomain = "showstopper-71398.firebaseapp.com";
+        private string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
         private INavigation _navigation;
         private string userName;
         private string userPassword;
@@ -56,12 +59,13 @@ namespace ShowStopper.ViewModels
             LoginBtn = new Command(LoginBtnTappedAsync);
         }
 
-        private async void LoginBtnTappedAsync(object obj)
+        private async Task<User> LoginUserFirebase()
         {
+            User user = null;
             FirebaseAuthConfig authConfig = new FirebaseAuthConfig
             {
                 ApiKey = webApiKey,
-                AuthDomain = "showstopper-71398.firebaseapp.com",
+                AuthDomain = authDomain,
                 Providers = new FirebaseAuthProvider[]
                 {
                     new GoogleProvider().AddScopes("email"),
@@ -70,39 +74,48 @@ namespace ShowStopper.ViewModels
                 UserRepository = new FileUserRepository("FirebaseSample"),
 
             };
+            var client = new FirebaseAuthClient(authConfig);
+            var result = await client.FetchSignInMethodsForEmailAsync(UserName);
+            if (result == null || !result.UserExists)
+            {
+                await _navigation.PushAsync(new LoginPage("True"));
+
+            }
+            else
+            {
+                var userCredential = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
+                user = userCredential.User;
+            }
+            return user;
+        }
+
+        private async Task<AppUser> LookForUserInDatabase(User loggedUser)
+        {
+            var databaseClient = new FirebaseClient(databaseUrl);
+            var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
+            var foundElements = firebaseObjects
+                .Where(obj => obj.Object.Email == loggedUser.Info.Email).ToList();
+            var foundUser = foundElements.FirstOrDefault();
+            return foundUser.Object;
+        }
+
+        private async void LoginBtnTappedAsync(object obj)
+        {
             try
             {
-                var client = new FirebaseAuthClient(authConfig);
-                var result = await client.FetchSignInMethodsForEmailAsync(UserName);
-                if (result == null || !result.UserExists)
-                {
-                    await _navigation.PushAsync(new LoginPage("True"));
-
-                }
-                else
-                {
-                    var userCredential = await client.SignInWithEmailAndPasswordAsync(UserName, UserPassword);
-                    User user = userCredential.User;
-                    var uid = user.Uid;
-                    var databaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
-                    //AppUser firebaseObject = await databaseClient.Child("Users").OrderByChild("");
-                    //var query = await databaseClient.Child("Users").OrderByChild("ddd@gmail.com")
-                    var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
-                    var filteredElements = firebaseObjects
-                        .Where(obj => obj.Object.Email == user.Info.Email).ToList();
-                    var firstElement = filteredElements.FirstOrDefault();
-                    if (firstElement != null) 
+                    User loggedUser = await LoginUserFirebase();
+                    AppUser foundUser = await LookForUserInDatabase(loggedUser);
+                   
+                    if (foundUser != null) 
                     {
-                        AppUser retrievedUser = firstElement.Object;
-                        user.Info.FirstName = retrievedUser.FirstName;
-                        user.Info.LastName = retrievedUser.LastName;
-                        await _navigation.PushAsync(new ProfilePage(user, retrievedUser));
+                        //user.Info.FirstName = retrievedUser.FirstName;
+                        //user.Info.LastName = retrievedUser.LastName;
+                        await _navigation.PushAsync(new ProfilePage(loggedUser, foundUser));
                     }
                     else
                     {
                         await Application.Current.MainPage.DisplayAlert("aa", "element not retrieed", "ok");
                     }
-                }
                 
             }
             catch (Exception ex)
