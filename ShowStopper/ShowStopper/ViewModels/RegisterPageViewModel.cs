@@ -16,6 +16,8 @@ namespace ShowStopper.ViewModels
     {
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
 
+        private string authDomain = "showstopper-71398.firebaseapp.com";
+        private string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
         private INavigation _navigation;
         private string email;
         private string password;
@@ -77,31 +79,41 @@ namespace ShowStopper.ViewModels
             RegisterUser = new Command(RegisterUserTappedAsync);
         }
 
+        private async Task CreateFirebaseUser()
+        {
+            FirebaseAuthConfig authConfig = new FirebaseAuthConfig
+            {
+                ApiKey = webApiKey,
+                AuthDomain = authDomain,
+                Providers = new FirebaseAuthProvider[]
+                   {
+                        new GoogleProvider().AddScopes("email"),
+                        new EmailProvider(),
+                   }
+            };
+            var client = new FirebaseAuthClient(authConfig);
+            var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
+        }
+
+        private async Task  AddUserToDatabase()
+        {
+            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+            await firebaseClient.Child("Users").PostAsync(new AppUser
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                ProfileImage = "cat_user.jpg",
+
+            });
+        }
+
         private async void RegisterUserTappedAsync(object obj)
         {
             try
             {
-                FirebaseAuthConfig authConfig = new FirebaseAuthConfig
-                {
-                    ApiKey = webApiKey,
-                    AuthDomain = "showstopper-71398.firebaseapp.com",
-                    Providers = new FirebaseAuthProvider[]
-                    {
-                        new GoogleProvider().AddScopes("email"),
-                        new EmailProvider(),
-                    }
-                };
-                var client = new FirebaseAuthClient(authConfig);
-                var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
-                FirebaseClient firebaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
-                await firebaseClient.Child("Users").PostAsync(new AppUser
-                {
-                    FirstName = firstName,
-                    LastName = lastName,
-                    Email = email,
-                    ProfileImage = "cat_user.jpg",
-
-                });
+                await CreateFirebaseUser();
+                await AddUserToDatabase();
                 await _navigation.PopAsync();
             }
             catch (Exception ex)
