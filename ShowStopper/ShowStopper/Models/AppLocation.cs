@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShowStopper.Models
 {
-    internal class Event
+    internal class AppLocation
     {
     }
 }

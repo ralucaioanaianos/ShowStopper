@@ -16,9 +16,13 @@ namespace ShowStopper.Services
     {
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
 
-        private string authDomain = "showstopper-71398.firebaseapp.com";
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
-        private INavigation _navigation;
+
+        //public static async Task addEventToDatabase(string name, string location, string date, string organizer, string Type, string Description)
+        //{
+        //    FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+        //    var response = await firebaseClient.Child("Events").PostAsync(new Event())
+        //}
 
         public static async Task AddUserToDatabase(string firstName, string lastName, string email, string photoUrl, string userType)
         {
