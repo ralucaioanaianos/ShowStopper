@@ -18,7 +18,7 @@
             GradientColor2="#5D1B7D"
             IsBackButtonVisible="False"
             IsPlusButtonVisible="True"
-            TapCommand="{Binding BackBtn}">
+            BackBtnTapCommand="{Binding BackBtn}">
             </customControls:CustomNavigationBar>
         <Grid VerticalOptions="Center"
               Grid.Row="1"

@@ -18,8 +18,7 @@ namespace ShowStopper.ViewModels
 
         private async void BackButtonTappedAsync(object parameter)
         {
-            await Application.Current.MainPage.DisplayAlert("aaa", "aaaa", "ok");
-            //await _navigation.PushAsync(new MyLocationsPage());
+            await _navigation.PopAsync();
         }
 
         public MyEventsPageViewModel(INavigation navigation)

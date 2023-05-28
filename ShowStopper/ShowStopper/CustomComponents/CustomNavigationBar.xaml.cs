@@ -72,25 +72,25 @@ public partial class CustomNavigationBar : ContentView
         PlusBtn = new Command(PlusBtnTappedAsync);
     }
 
-    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(
-            nameof(TapCommand),
+    public static readonly BindableProperty BackBtnTapCommandProperty = BindableProperty.Create(
+            nameof(BackBtnTapCommand),
             typeof(ICommand),
             typeof(CustomNavigationBar));
 
-    public ICommand TapCommand
+    public ICommand BackBtnTapCommand
     {
-        get => (ICommand)GetValue(TapCommandProperty);
-        set => SetValue(TapCommandProperty, value);
+        get => (ICommand)GetValue(BackBtnTapCommandProperty);
+        set => SetValue(BackBtnTapCommandProperty, value);
     }
 
-    public static readonly BindableProperty TapCommandParameterProperty = BindableProperty.Create(
-        nameof(TapCommandParameter),
+    public static readonly BindableProperty BackBtnTapCommandParameterProperty = BindableProperty.Create(
+        nameof(BackBtnTapCommandParameter),
         typeof(object),
         typeof(CustomNavigationBar));
 
-    public object TapCommandParameter
+    public object BackBtnTapCommandParameter
     {
-        get => GetValue(TapCommandParameterProperty);
-        set => SetValue(TapCommandParameterProperty, value);
+        get => GetValue(BackBtnTapCommandParameterProperty);
+        set => SetValue(BackBtnTapCommandParameterProperty, value);
     }
 }

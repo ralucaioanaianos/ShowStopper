@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <ImageButton Source="back_icon.png"
-                             Command="{Binding Source={x:Reference This}, Path=TapCommand}"
+                             Command="{Binding Source={x:Reference This}, Path=BackBtnTapCommand}"
                              Grid.Column="0"
                              HeightRequest="30"
                              Margin="0,0,0,45"
