@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ShowStopper.Views.MyEventsPage"
+             Title="MyEventsPage"
+             IconImageSource="cat_user.png">
+    <VerticalStackLayout>
+        <Image Source="no_events_image.png"></Image>
+        <Label Text="No events added yet"
+               FontAttributes="Bold"
+               FontSize="15"></Label>
+        <Label Text="Add your first events and it will appear here as soon as your request is reviewed and accepted!"
+               FontSize="10"></Label>
+    </VerticalStackLayout>
+</ContentPage>

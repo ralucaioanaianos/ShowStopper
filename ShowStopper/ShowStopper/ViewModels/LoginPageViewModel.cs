@@ -68,7 +68,8 @@ namespace ShowStopper.ViewModels
                    
                     if (foundUser != null) 
                     {
-                        await _navigation.PushAsync(new ProfilePage(loggedUser, foundUser));
+                    //await _navigation.PushAsync(new ProfilePage(loggedUser, foundUser));
+                    await _navigation.PushAsync(new TabbarPage());
                     }
                     else
                     {
