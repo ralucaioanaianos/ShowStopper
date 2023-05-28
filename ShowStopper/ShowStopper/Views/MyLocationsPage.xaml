@@ -4,10 +4,29 @@
              x:Class="ShowStopper.Views.MyLocationsPage"
              Title="MyLocationsPage"
              IconImageSource="heart_icon.png">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <Grid VerticalOptions="Center"
+          HorizontalOptions="Center"
+          Margin="20,0,20,0">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Image Source="no_locations_image.png"
+               HeightRequest="150"
+               Grid.Row="0"></Image>
+        <Label Text="No locations added yet"
+                   Grid.Row="1"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"
+               FontSize="20"
+               Margin="0,20,0,0"></Label>
+        <Label Text="Add your first location and it will appear here as soon as your request is reviewed and accepted!"
+               FontSize="15"
+               Margin="0,20,0,0"
+               Grid.Row="2"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"></Label>
+    </Grid>
 </ContentPage>

@@ -49,8 +49,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="Resources\Images\back_icon.png" />
 	  <None Remove="Resources\Images\no_events_image.png" />
 	  <None Remove="Resources\Images\no_locations_image.png" />
+	  <None Remove="Resources\Images\plus_icon.png" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,6 +64,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="CustomComponents\CustomNavigationBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomComponents\GradientFilledButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
