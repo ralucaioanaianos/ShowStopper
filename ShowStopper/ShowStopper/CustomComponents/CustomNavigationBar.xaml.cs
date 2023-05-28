@@ -1,3 +1,5 @@
+using System.Windows.Input;
+
 namespace ShowStopper.CustomComponents;
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
@@ -11,6 +13,15 @@ public partial class CustomNavigationBar : ContentView
         get => (string)GetValue(IsBackButtonVisibleProperty);
         set => SetValue(IsBackButtonVisibleProperty, value);
     }
+
+    //private static readonly BindableProperty CommandProperty
+    //       = BindableProperty.Create(nameof(Command), typeof(string), typeof(CustomNavigationBar));
+
+    //public ICommand Command
+    //{
+    //    get => (ICommand)GetValue(CommandProperty);
+    //    set => SetValue(CommandProperty, value);
+    //}
 
     private static readonly BindableProperty IsPlusButtonVisibleProperty
           = BindableProperty.Create(nameof(IsPlusButtonVisible), typeof(string), typeof(CustomNavigationBar));
@@ -40,12 +51,12 @@ public partial class CustomNavigationBar : ContentView
         set => SetValue(GradientColor2Property, value);
     }
 
-    public Command BackBtn { get; }
+    //public Command BackBtn { get; }
 
-    private async void BackBtnTappedAsync(object parameter)
-    {
-        //await _navigation.PopAsync();
-    }
+    //private async void BackBtnTappedAsync(object parameter)
+    //{
+    //    //await _navigation.PopAsync();
+    //}
 
     public Command PlusBtn { get; }
 
@@ -57,7 +68,29 @@ public partial class CustomNavigationBar : ContentView
     public CustomNavigationBar()
     {
         InitializeComponent();
-        BackBtn = new Command(BackBtnTappedAsync);
+        //BackBtn = new Command(BackBtnTappedAsync);
         PlusBtn = new Command(PlusBtnTappedAsync);
+    }
+
+    public static readonly BindableProperty TapCommandProperty = BindableProperty.Create(
+            nameof(TapCommand),
+            typeof(ICommand),
+            typeof(CustomNavigationBar));
+
+    public ICommand TapCommand
+    {
+        get => (ICommand)GetValue(TapCommandProperty);
+        set => SetValue(TapCommandProperty, value);
+    }
+
+    public static readonly BindableProperty TapCommandParameterProperty = BindableProperty.Create(
+        nameof(TapCommandParameter),
+        typeof(object),
+        typeof(CustomNavigationBar));
+
+    public object TapCommandParameter
+    {
+        get => GetValue(TapCommandParameterProperty);
+        set => SetValue(TapCommandParameterProperty, value);
     }
 }

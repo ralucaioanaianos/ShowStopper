@@ -25,7 +25,7 @@
                     <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
                 <ImageButton Source="back_icon.png"
-                             Command="{Binding BackBtn}"
+                             Command="{Binding Source={x:Reference This}, Path=TapCommand}"
                              Grid.Column="0"
                              HeightRequest="30"
                              Margin="0,0,0,45"
@@ -35,12 +35,12 @@
                    TextColor="White"
                    FontSize="20"
                    FontAttributes="Bold"></Label>
-                <ImageButton Source="plus_icon.png"
+                <!--<ImageButton Source="plus_icon.png"
                              Grid.Column="2"
                              Command="{Binding PlusBtn}"
                              HeightRequest="50"
                              HorizontalOptions="EndAndExpand"
-                             IsVisible="{Binding IsPlusButtonVisible}"></ImageButton>
+                             IsVisible="{Binding IsPlusButtonVisible}"></ImageButton>-->
             </Grid>
             
         </Frame>
