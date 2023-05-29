@@ -16,9 +16,11 @@
             Grid.Row="0"
             GradientColor1="#1A2C6C"
             GradientColor2="#5D1B7D"
-            IsBackButtonVisible="False"
+            IsBackButtonVisible="True"
             IsPlusButtonVisible="True"
-            BackBtnTapCommand="{Binding BackBtn}">
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="My Events">
             </customControls:CustomNavigationBar>
         <Grid VerticalOptions="Center"
               Grid.Row="1"

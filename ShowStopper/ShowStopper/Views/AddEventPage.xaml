@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.AddEventPage"
+             Title="AddEventPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Entry Placeholder="Name"
+                   Text="{Binding Name}"></Entry>
+            <Entry Placeholder="Description"
+                   Text="{Binding Description}"></Entry>
+            <Entry Placeholder="Type"
+                   Text="{Binding Type}"></Entry>
+            <Entry Placeholder="Date"
+                   Text="{Binding Date}"></Entry>
+            <Entry Placeholder="Organizer"
+                   Text="{Binding Organizer}"></Entry>
+            <Entry Placeholder="Location"
+                   Text="{Binding Location}"></Entry>
+            <customControls:GradientFilledButton GradientColor1="Blue"
+                                                 GradientColor2="Purple"
+                                                 TextColor="White"
+                                                 BorderColor="Transparent"
+                                                 TapCommand="{Binding SaveBtn}"
+                                                 Text="Add">
+                
+            </customControls:GradientFilledButton>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

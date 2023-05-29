@@ -5,6 +5,15 @@ namespace ShowStopper.CustomComponents;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class CustomNavigationBar : ContentView
 {
+    private static readonly BindableProperty PageNameProperty
+           = BindableProperty.Create(nameof(PageName), typeof(string), typeof(CustomNavigationBar));
+
+    public string PageName
+    {
+        get => (string)GetValue(PageNameProperty);
+        set => SetValue(PageNameProperty, value);
+    }
+
     private static readonly BindableProperty IsBackButtonVisibleProperty
            = BindableProperty.Create(nameof(IsBackButtonVisible), typeof(string), typeof(CustomNavigationBar));
 
@@ -13,15 +22,6 @@ public partial class CustomNavigationBar : ContentView
         get => (string)GetValue(IsBackButtonVisibleProperty);
         set => SetValue(IsBackButtonVisibleProperty, value);
     }
-
-    //private static readonly BindableProperty CommandProperty
-    //       = BindableProperty.Create(nameof(Command), typeof(string), typeof(CustomNavigationBar));
-
-    //public ICommand Command
-    //{
-    //    get => (ICommand)GetValue(CommandProperty);
-    //    set => SetValue(CommandProperty, value);
-    //}
 
     private static readonly BindableProperty IsPlusButtonVisibleProperty
           = BindableProperty.Create(nameof(IsPlusButtonVisible), typeof(string), typeof(CustomNavigationBar));
@@ -51,25 +51,11 @@ public partial class CustomNavigationBar : ContentView
         set => SetValue(GradientColor2Property, value);
     }
 
-    //public Command BackBtn { get; }
-
-    //private async void BackBtnTappedAsync(object parameter)
-    //{
-    //    //await _navigation.PopAsync();
-    //}
-
     public Command PlusBtn { get; }
-
-    private async void PlusBtnTappedAsync(object parameter)
-    {
-        //await _navigation.PopAsync();
-    }
 
     public CustomNavigationBar()
     {
         InitializeComponent();
-        //BackBtn = new Command(BackBtnTappedAsync);
-        PlusBtn = new Command(PlusBtnTappedAsync);
     }
 
     public static readonly BindableProperty BackBtnTapCommandProperty = BindableProperty.Create(
@@ -92,5 +78,27 @@ public partial class CustomNavigationBar : ContentView
     {
         get => GetValue(BackBtnTapCommandParameterProperty);
         set => SetValue(BackBtnTapCommandParameterProperty, value);
+    }
+
+    public static readonly BindableProperty PlusBtnTapCommandProperty = BindableProperty.Create(
+           nameof(PlusBtnTapCommand),
+           typeof(ICommand),
+           typeof(CustomNavigationBar));
+
+    public ICommand PlusBtnTapCommand
+    {
+        get => (ICommand)GetValue(PlusBtnTapCommandProperty);
+        set => SetValue(PlusBtnTapCommandProperty, value);
+    }
+
+    public static readonly BindableProperty PlusBtnTapCommandParameterProperty = BindableProperty.Create(
+        nameof(PlusBtnTapCommandParameter),
+        typeof(object),
+        typeof(CustomNavigationBar));
+
+    public object PlusBtnTapCommandParameter
+    {
+        get => GetValue(PlusBtnTapCommandParameterProperty);
+        set => SetValue(PlusBtnTapCommandParameterProperty, value);
     }
 }

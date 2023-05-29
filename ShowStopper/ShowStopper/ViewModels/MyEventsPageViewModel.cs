@@ -14,6 +14,7 @@ namespace ShowStopper.ViewModels
     internal class MyEventsPageViewModel
     {
         public Command BackBtn { get; }
+        public Command PlusBtn { get; }
         private INavigation _navigation;
 
         private async void BackButtonTappedAsync(object parameter)
@@ -21,10 +22,16 @@ namespace ShowStopper.ViewModels
             await _navigation.PopAsync();
         }
 
+        private async void PlusButtonTappedAsync(object parameter)
+        {
+            await _navigation.PushAsync(new AddEventPage());
+        }
+
         public MyEventsPageViewModel(INavigation navigation)
         {
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
+            PlusBtn = new Command(PlusButtonTappedAsync);
         }
     }
 }

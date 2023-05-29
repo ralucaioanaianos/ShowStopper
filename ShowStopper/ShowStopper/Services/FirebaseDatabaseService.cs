@@ -18,10 +18,54 @@ namespace ShowStopper.Services
 
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        //public static async Task addEventToDatabase(string name, string location, string date, string organizer, string Type, string Description)
+        public static async Task addEventToDatabase(string name, string location, string date, string organizer, string type, string description)
+        {
+            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+            var response = await firebaseClient.Child("Events").PostAsync(new AppEvent
+            {
+                Name = name,
+                Location = location,
+                Date = date,    
+                Organizer = organizer,
+                Type = type,
+                Description = description
+            });
+            await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + organizer +' ' + location, "ok");
+            string eventId = response.Key;
+        }
+
+        public static async Task addLocationToDatabase(string name, string address, string description, string owner)
+        {
+            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+            var response = await firebaseClient.Child("Locations").PostAsync(new AppLocation
+            {
+                Name = name,
+                Address = address,  
+                Description = description,
+                Owner = owner
+            });
+            string locationId = response.Key;
+        }
+
+        //public static async Task<List<AppEvent>> getEventsFromLocation(string locationName)
         //{
         //    FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-        //    var response = await firebaseClient.Child("Events").PostAsync(new Event())
+        //    List<AppEvent> events = new List<AppEvent>();
+
+        //    // Query the database to find the user with the specified email
+        //    var eventsQuery = firebaseClient
+        //        .Child("Events")
+        //        .OrderBy("Location")
+        //        .EqualTo(locationName)
+        //        .OnceAsync<AppEvent>;
+
+        //    foreach (var eventSnapshot in eventsQuery)
+        //    {
+        //        var event = eventsSna
+        //    }
+            
+        //    return events;
+
         //}
 
         public static async Task AddUserToDatabase(string firstName, string lastName, string email, string photoUrl, string userType)
@@ -55,7 +99,7 @@ namespace ShowStopper.Services
             return foundUser.Object;
         }
 
-        private static async Task<string> GetUserIdByEmail(string firstName)
+        private static async Task<string> GetUserIdByFirstName(string firstName)
         {
             // Get a reference to the Firebase Realtime Database
             var firebaseClient = new FirebaseClient(databaseUrl);
@@ -91,7 +135,7 @@ namespace ShowStopper.Services
         public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
-            var userId = await GetUserIdByEmail(user.FirstName);
+            var userId = await GetUserIdByFirstName(user.FirstName);
             var toUpdateUser = (await firebaseClient
             .Child("Users")
             .OnceAsync<AppUser>()).Where(a => a.Object.FirstName == user.FirstName).FirstOrDefault();

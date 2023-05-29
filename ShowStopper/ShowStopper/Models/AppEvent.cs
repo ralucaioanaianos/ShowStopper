@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShowStopper.Models
 {
-    public class Event
+    public class AppEvent
     {
         public string Id { get; set; }  
         public string Name { get; set; }

@@ -1,5 +1,6 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
+using Firebase.Database.Query;
 using ShowStopper.Models;
 using ShowStopper.Services;
 using System;
@@ -18,11 +19,8 @@ namespace ShowStopper.ViewModels
         private User _user;
 
         public string FirstName { get; set; }
-
         public string LastName { get; set; }
-
         public string EmailAddress { get; set; }
-
         AppUser DatabaseUser { get; set; }
 
         public Command SaveBtn { get; }
