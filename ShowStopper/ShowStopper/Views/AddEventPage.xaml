@@ -3,9 +3,27 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.Views.AddEventPage"
-             Title="AddEventPage">
+             Title="AddEventPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
-        <StackLayout>
+        <Grid Padding="0"
+          HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <customControls:CustomNavigationBar
+            Grid.Row="0"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#A782B9"
+            IsBackButtonVisible="True"
+            IsPlusButtonVisible="False"
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="Add Event">
+            </customControls:CustomNavigationBar>
+            <StackLayout Grid.Row="1"
+                         Margin="20,20,20,20">
             <Entry Placeholder="Name"
                    Text="{Binding Name}"></Entry>
             <Entry Placeholder="Description"
@@ -18,14 +36,20 @@
                    Text="{Binding Organizer}"></Entry>
             <Entry Placeholder="Location"
                    Text="{Binding Location}"></Entry>
-            <customControls:GradientFilledButton GradientColor1="Blue"
-                                                 GradientColor2="Purple"
+            
+        </StackLayout>
+            <customControls:GradientFilledButton GradientColor1="#1A2C6C"
+                                                 GradientColor2="#A782B9"
                                                  TextColor="White"
                                                  BorderColor="Transparent"
                                                  TapCommand="{Binding SaveBtn}"
-                                                 Text="Add">
-                
+                                                 Text="Add"
+                                                 Grid.Row="1"
+                                                 VerticalOptions="End"
+                                                 Margin="0,0,0,20">
+
             </customControls:GradientFilledButton>
-        </StackLayout>
+        </Grid>
+
     </ContentPage.Content>
 </ContentPage>

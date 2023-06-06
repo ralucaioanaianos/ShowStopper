@@ -73,7 +73,7 @@
                     <customControls:GradientFilledButton
                         Grid.Row="4"
                         GradientColor1="#1A2C6C"
-                        GradientColor2="#5D1B7D"
+                        GradientColor2="#A782B9"
                         TextColor="White"
                         Text="Login"
                         BorderColor="#1A2C6C"
@@ -83,7 +83,7 @@
                     <customControls:GradientFilledButton
                         Grid.Row="5"
                         GradientColor1="#1A2C6C"
-                        GradientColor2="#5D1B7D"
+                        GradientColor2="#A782B9"
                         TextColor="White"
                         Text="Register using email"
                         BorderColor="#1A2C6C"

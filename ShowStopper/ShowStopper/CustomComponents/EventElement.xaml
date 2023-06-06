@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.CustomComponents.EventElement"
+             x:Name="This"
+             x:DataType="customControls:EventElement">
+    <ContentView.Content>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Image Source="cat_user.jpg"
+                   Grid.Column="0"
+                   HeightRequest="80"></Image>
+            <Grid Grid.Column="1"
+                  HeightRequest="80">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <VerticalStackLayout Grid.Row="0">
+                    <Label Text="CFR 1907 Cluj - U Cluj"
+                           FontSize="16"
+                           FontAttributes="Bold"></Label>
+                    <Label Text="13 March 2023"
+                           FontSize="13"></Label>
+                    <Label Text="Cluj Arena"
+                           FontSize="13"></Label>
+                </VerticalStackLayout>
+                <Label Grid.Row="1"
+                       Text="1000 tickets sold"
+                       FontAttributes="Bold"
+                       FontSize="14"></Label>
+            </Grid>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

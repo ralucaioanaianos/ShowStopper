@@ -11,7 +11,7 @@
             x:Name="myButton"
             HorizontalOptions="Center"
             VerticalOptions="Start"
-            WidthRequest="366"
+            WidthRequest="330"
             HeightRequest="48"
             Margin="0"
             Padding="0"

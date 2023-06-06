@@ -15,14 +15,17 @@
         <customControls:CustomNavigationBar
             Grid.Row="0"
             GradientColor1="#1A2C6C"
-            GradientColor2="#5D1B7D"
+            GradientColor2="#A782B9"
             IsBackButtonVisible="True"
             IsPlusButtonVisible="True"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Events">
-            </customControls:CustomNavigationBar>
-        <Grid VerticalOptions="Center"
+        </customControls:CustomNavigationBar>
+        <customControls:EventElement Grid.Row="1"
+                                     VerticalOptions="Start"
+                                     Margin="10,10,10,10"></customControls:EventElement>
+        <!--<Grid VerticalOptions="Center"
               Grid.Row="1"
           HorizontalOptions="Center"
           Margin="20,0,20,0">
@@ -48,6 +51,6 @@
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"></Label>
-        </Grid>
+        </Grid>-->
     </Grid>
 </ContentPage>
