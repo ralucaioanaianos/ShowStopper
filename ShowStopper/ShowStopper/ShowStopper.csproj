@@ -73,6 +73,9 @@
 	  <MauiXaml Update="CustomComponents\GradientFilledButton.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="CustomComponents\LocationElement.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomComponents\RoundedImage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
