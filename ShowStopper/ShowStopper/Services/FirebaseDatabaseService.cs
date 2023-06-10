@@ -18,22 +18,24 @@ namespace ShowStopper.Services
 
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public static async Task addEventToDatabase(string name, string description, string date, string organizer, string type, string location)
+        public static async Task addEventToDatabase(string name, string description, string date, string type, string location)
         {
 
             try
             {
                 FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                //AppUser currentUser = await getUserByEmail(email);
                 var response = await firebaseClient.Child("Events").PostAsync(new AppEvent
                 {
                     Name = name,
                     Location = location,
                     Date = date,
-                    Organizer = organizer,
+                    Organizer = email,
                     Type = type,
                     Description = description
                 });
-                await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + organizer + ' ' + location, "ok");
+                await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + email + ' ' + location, "ok");
                 string eventId = response.Key;
             }catch(Exception ex)
             {
@@ -122,6 +124,23 @@ namespace ShowStopper.Services
                 });
             await Task.Delay(500);
             return events;
+
+        }
+
+        public static async Task<AppUser> getUserByEmail(string email)
+        {
+            var firebaseClient = new FirebaseClient(databaseUrl);
+            var user = new AppUser();
+            var userQuery = firebaseClient
+                .Child("Users").AsObservable<AppUser>().Subscribe(u =>
+                {
+                    if (u.Object.Email == email)
+                      
+                    user = u.Object;
+                });
+            await Task.Delay(500);
+            return user;
+            
 
         }
 

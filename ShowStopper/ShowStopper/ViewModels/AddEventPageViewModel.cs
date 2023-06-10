@@ -92,11 +92,14 @@ namespace ShowStopper.ViewModels
         {
             _navigation = navigation;
             SaveBtn = new Command(SaveBtnTappedAsync);
+            string org = "";
+            string userEmail = FirebaseAuthenticationService.GetLoggedUserEmail();
+             
         }
 
         private async void SaveBtnTappedAsync(object parameter)
         {
-            await FirebaseDatabaseService.addEventToDatabase(Name, Description, Type, Date, Organizer, Location);
+            await FirebaseDatabaseService.addEventToDatabase(Name, Description, Type, Date, Location);
             await _navigation.PopAsync();
         }
     }

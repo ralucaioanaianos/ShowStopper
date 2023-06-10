@@ -33,7 +33,7 @@
                     <ViewCell Height="100">
                         <ContentView VerticalOptions="FillAndExpand">
                             <customControls:EventElement Name="Name"
-                                                         Date="10 iunie 2023"
+                                                         Date="Date"
                                                          Location="Location"></customControls:EventElement>
                         </ContentView>
                     </ViewCell>
