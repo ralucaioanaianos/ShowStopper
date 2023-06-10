@@ -110,6 +110,21 @@ namespace ShowStopper.Services
             return userId;
         }
 
+        public static async Task<List<AppEvent>> getEventsByEmail(string email)
+        {
+            var firebaseClient = new FirebaseClient(databaseUrl);
+            var events = new List<AppEvent>();
+            var eventQuery = firebaseClient
+                .Child("Events").AsObservable<AppEvent>().Subscribe(e =>
+                {
+                    if (e.Object.Organizer == email)
+                        events.Add(e.Object);
+                });
+            await Task.Delay(500);
+            return events;
+
+        }
+
         public static async Task<List<AppEvent>> getAllEvents()
         {
             var firebaseClient = new FirebaseClient(databaseUrl);

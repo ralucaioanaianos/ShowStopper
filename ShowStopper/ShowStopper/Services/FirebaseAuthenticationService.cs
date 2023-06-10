@@ -37,11 +37,11 @@ namespace ShowStopper.Services
             var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
         }
 
-        public static async Task GetLoggedUser()
+        public static string GetLoggedUserEmail()
         {
             
-            var u = client.User.Info.Email;
-            await Application.Current.MainPage.DisplayAlert("abb", u, "ok");
+            var userEmail = client.User.Info.Email;
+            return userEmail;
         }
 
         public static async Task<User> LoginUserFirebase(string userName, string userPassword, INavigation navigation)

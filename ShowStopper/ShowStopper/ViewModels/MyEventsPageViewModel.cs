@@ -73,9 +73,9 @@ namespace ShowStopper.ViewModels
 
         private async void LoadEvents()
         {
-            List<AppEvent> list = await FirebaseDatabaseService.getAllEvents();
+            string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+            List<AppEvent> list = await FirebaseDatabaseService.getEventsByEmail(email);
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
-            await FirebaseAuthenticationService.GetLoggedUser();
             Events = collection;
         }
 
