@@ -25,11 +25,15 @@
         <!--<customControls:EventElement Grid.Row="1"
                                      VerticalOptions="Start"
                                      Margin="10,10,10,10"></customControls:EventElement>-->
-        <ListView ItemsSource="{Binding Events}">
+        <ListView ItemsSource="{Binding Events}"
+                  Grid.Row="1"
+                  RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
-                        <Label Text="aaaa"></Label>
+                    <ViewCell Height="100">
+                        <ContentView VerticalOptions="FillAndExpand">
+                            <customControls:EventElement></customControls:EventElement>
+                        </ContentView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
