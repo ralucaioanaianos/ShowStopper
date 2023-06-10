@@ -120,7 +120,6 @@ namespace ShowStopper.Services
                     events.Add(e.Object);
                 });
             await Task.Delay(500);
-            await Application.Current.MainPage.DisplayAlert("1", events.Count().ToString(), "ok");
             return events;
 
 

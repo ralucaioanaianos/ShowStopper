@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Firebase.Auth.Repository;
+using Firebase.Auth.Requests;
 
 namespace ShowStopper.Services
 {
@@ -16,38 +17,36 @@ namespace ShowStopper.Services
 
         public static string authDomain = "showstopper-71398.firebaseapp.com";
 
+        public static FirebaseAuthConfig authConfig = new FirebaseAuthConfig
+        {
+            ApiKey = webApiKey,
+            AuthDomain = authDomain,
+            Providers = new FirebaseAuthProvider[]
+                {
+                    new GoogleProvider().AddScopes("email"),
+                    new EmailProvider()
+                },
+            UserRepository = new FileUserRepository("FirebaseSample"),
+
+        };
+        public static FirebaseAuthClient client = new FirebaseAuthClient(authConfig);
+
         public static async Task CreateUserFirebase(string email, string password)
         {
-            FirebaseAuthConfig authConfig = new FirebaseAuthConfig
-            {
-                ApiKey = webApiKey,
-                AuthDomain = authDomain,
-                Providers = new FirebaseAuthProvider[]
-                   {
-                        new GoogleProvider().AddScopes("email"),
-                        new EmailProvider(),
-                   }
-            };
-            var client = new FirebaseAuthClient(authConfig);
+            
             var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
+        }
+
+        public static async Task GetLoggedUser()
+        {
+            
+            var u = client.User.Info.Email;
+            await Application.Current.MainPage.DisplayAlert("abb", u, "ok");
         }
 
         public static async Task<User> LoginUserFirebase(string userName, string userPassword, INavigation navigation)
         {
             User user = null;
-            FirebaseAuthConfig authConfig = new FirebaseAuthConfig
-            {
-                ApiKey = webApiKey,
-                AuthDomain = authDomain,
-                Providers = new FirebaseAuthProvider[]
-                {
-                    new GoogleProvider().AddScopes("email"),
-                    new EmailProvider()
-                },
-                UserRepository = new FileUserRepository("FirebaseSample"),
-
-            };
-            var client = new FirebaseAuthClient(authConfig);
             var result = await client.FetchSignInMethodsForEmailAsync(userName);
             if (result == null || !result.UserExists)
             {

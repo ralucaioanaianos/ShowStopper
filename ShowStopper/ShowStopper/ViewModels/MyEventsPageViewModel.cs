@@ -75,8 +75,8 @@ namespace ShowStopper.ViewModels
         {
             List<AppEvent> list = await FirebaseDatabaseService.getAllEvents();
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
+            await FirebaseAuthenticationService.GetLoggedUser();
             Events = collection;
-            await Application.Current.MainPage.DisplayAlert("a", Events.Count().ToString(), "ok");
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
