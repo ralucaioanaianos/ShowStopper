@@ -55,37 +55,18 @@ namespace ShowStopper.Services
             string locationId = response.Key;
         }
 
-        //public static async Task<List<AppEvent>> getEventsFromLocation(string locationName)
-        //{
-        //    FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-        //    List<AppEvent> events = new List<AppEvent>();
-
-        //    // Query the database to find the user with the specified email
-        //    var eventsQuery = firebaseClient
-        //        .Child("Events")
-        //        .OrderBy("Location")
-        //        .EqualTo(locationName)
-        //        .OnceAsync<AppEvent>;
-
-        //    foreach (var eventSnapshot in eventsQuery)
-        //    {
-        //        var event = eventsSna
-        //    }
-            
-        //    return events;
-
-        //}
-
-        public static async Task AddUserToDatabase(string firstName, string lastName, string email, string photoUrl, string userType)
+        public static async Task AddUserToDatabase(string phoneNumber, string firstName, string lastName, string email, string photoUrl, string userType, string companyName)
         {
             FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
             var response = await firebaseClient.Child("Users").PostAsync(new AppUser
             {
+                PhoneNumber = phoneNumber,
                 FirstName = firstName,
                 LastName = lastName,
                 Email = email,
                 ProfileImage = photoUrl,
                 UserType = userType,
+                CompanyName = companyName
             });
             string userId = response.Key;
         }

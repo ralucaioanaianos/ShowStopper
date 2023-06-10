@@ -24,6 +24,10 @@ namespace ShowStopper.Models
 
         public string UserType { get; set; }
 
+        public string PhoneNumber { get; set; }
+
+        public string CompanyName { get; set; } 
+
         //public string ConnectionId { get; set; }
     }
 }

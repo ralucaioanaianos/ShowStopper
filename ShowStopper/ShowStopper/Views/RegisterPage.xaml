@@ -9,7 +9,7 @@
         <Grid BackgroundColor="Yellow"></Grid>
     </NavigationPage>-->
     <Grid
-        Padding="20,50,20,0"
+        Padding="20,0,20,0"
         HorizontalOptions="FillAndExpand"
         RowSpacing="20"
         VerticalOptions="FillAndExpand">
@@ -22,23 +22,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Label
-            Grid.Row="0"
-            FontAttributes="Bold"
-            FontSize="24"
-            HorizontalOptions="CenterAndExpand"
-            Text="Registration"
-            TextColor="#1C375C" />
-        <Label
-            Grid.Row="1"
-            Margin="0,-15,0,0"
-            HorizontalOptions="CenterAndExpand"
-            Text="Register With Email"
-            TextColor="#1C375C" />
         <Entry
             Grid.Row="2"
-            Margin="0,20,0,0"
+            Margin="0,0,0,0"
             HorizontalOptions="FillAndExpand"
             Placeholder="Email"
             Text="{Binding Email}"
@@ -64,10 +53,24 @@
             Placeholder="Last Name"
             Text="{Binding LastName}"
             VerticalOptions="FillAndExpand" />
-        <Button Text="pick image" Grid.Row="6"
+        <Entry
+            Grid.Row="6"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Phone Number"
+            Text="{Binding PhoneNumber}"
+            VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="7"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Company Name"
+            Text="{Binding CompanyName}"
+            VerticalOptions="FillAndExpand" />
+        <Button Text="pick image" Grid.Row="8"
                 Command="{Binding SelectPhoto}"></Button>
         <customControls:GradientFilledButton
-                Grid.Row="7"
+                Grid.Row="9"
                 GradientColor1="#1A2C6C"
                 GradientColor2="#5D1B7D"
                 TextColor="White"

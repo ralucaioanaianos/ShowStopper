@@ -25,6 +25,8 @@ namespace ShowStopper.ViewModels
         private string firstName;
         private string lastName;
         private FileResult photo;
+        private string phoneNumber;
+        private string companyName;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -35,6 +37,26 @@ namespace ShowStopper.ViewModels
             {
                 email = value;
                 RaisePropertyChanged("Email");
+            }
+        }
+
+        public string PhoneNumber
+        {
+            get => phoneNumber;
+            set
+            {
+                phoneNumber = value;
+                RaisePropertyChanged("PhoneNumber");
+            }
+        }
+
+        public string CompanyName
+        {
+            get => companyName;
+            set
+            {
+                companyName = value;
+                RaisePropertyChanged("CompanyName");
             }
         }
 
@@ -93,7 +115,11 @@ namespace ShowStopper.ViewModels
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
                     await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
                     //TODO: userType instead of "User"
-                    await FirebaseDatabaseService.AddUserToDatabase(firstName, lastName, email, photoUrl, "User");
+                    if (companyName == null)
+                    {
+                        companyName = "null";
+                    }
+                    await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, email, photoUrl, "User", companyName);
                 }
                 else
                 {
