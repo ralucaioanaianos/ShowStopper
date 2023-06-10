@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ShowStopper.Views.MyEventsPage"
              Title="MyEventsPage"
              IconImageSource="cat_user.png"
@@ -26,15 +27,16 @@
                                      VerticalOptions="Start"
                                      Margin="10,10,10,10"></customControls:EventElement>-->
         <ListView ItemsSource="{Binding Events}"
+                  SelectedItem="{Binding SelectedEvent}"
                   Grid.Row="1"
                   RowHeight="100">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell Height="100">
                         <ContentView VerticalOptions="FillAndExpand">
-                            <customControls:EventElement Name="Name"
-                                                         Date="Date"
-                                                         Location="Location"></customControls:EventElement>
+                            <customControls:EventElement Name="name"
+                                                         Date="date"
+                                                         Location="loca"></customControls:EventElement>
                         </ContentView>
                     </ViewCell>
                 </DataTemplate>

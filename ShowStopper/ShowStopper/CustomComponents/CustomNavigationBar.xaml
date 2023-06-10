@@ -29,8 +29,8 @@
                              Grid.Column="0"
                              HeightRequest="30"
                              Margin="0,0,0,45"
-                             IsVisible="{Binding IsBackButtonVisible}"></ImageButton>
-                <Label Text="{Binding PageName}"
+                             IsVisible="{Binding Source={x:Reference This}, Path=IsBackButtonVisible}"></ImageButton>
+                <Label Text="{Binding Source={x:Reference This}, Path=PageName}"
                        Grid.Column="1"
                    TextColor="White"
                    FontSize="20"
@@ -40,7 +40,7 @@
                              Command="{Binding Source={x:Reference This}, Path=PlusBtnTapCommand}"
                              HeightRequest="50"
                              HorizontalOptions="EndAndExpand"
-                             IsVisible="{Binding IsPlusButtonVisible}"></ImageButton>
+                             IsVisible="{Binding Source={x:Reference This}, Path=IsPlusButtonVisible}"></ImageButton>
             </Grid>
             
         </Frame>

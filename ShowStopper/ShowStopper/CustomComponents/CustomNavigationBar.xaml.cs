@@ -5,8 +5,8 @@ namespace ShowStopper.CustomComponents;
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class CustomNavigationBar : ContentView
 {
-    private static readonly BindableProperty PageNameProperty
-           = BindableProperty.Create(nameof(PageName), typeof(string), typeof(CustomNavigationBar));
+    public static readonly BindableProperty PageNameProperty =
+    BindableProperty.Create(nameof(PageName), typeof(string), typeof(CustomNavigationBar));
 
     public string PageName
     {

@@ -9,4 +9,6 @@ public partial class MyEventsPage : ContentPage
 		InitializeComponent();
         BindingContext = new MyEventsPageViewModel(Navigation);
     }
+
+    
 }

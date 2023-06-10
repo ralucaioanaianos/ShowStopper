@@ -18,7 +18,7 @@ namespace ShowStopper.Services
 
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public static async Task addEventToDatabase(string name, string description, string date, string type, string location)
+        public static async Task addEventToDatabase(string name, string description, string type, string date, string location)
         {
 
             try

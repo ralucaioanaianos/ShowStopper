@@ -20,6 +20,7 @@ namespace ShowStopper.ViewModels
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
 
+        public Command EventTapped { get; }
 
         private ObservableCollection<AppEvent> _events;
         public ObservableCollection<AppEvent> Events
@@ -49,7 +50,34 @@ namespace ShowStopper.ViewModels
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
+            EventTapped = new Command(EventTappedAsync);    
             LoadEvents();
+        }
+
+        private AppEvent _selectedEvent;
+        public AppEvent SelectedEvent
+        {
+            get { return _selectedEvent; }
+            set
+            {
+                _selectedEvent = value;
+                OnPropertyChanged(nameof(SelectedEvent));
+                OnEventSelected();
+            }
+        }
+
+        private async void OnEventSelected()
+        {
+            if (SelectedEvent != null)
+            {
+                // Call your custom method with the selected event
+                // Example:
+                // DoSomethingWithSelectedEvent(SelectedEvent);
+                //await Application.Current.MainPage.DisplayAlert("ok", SelectedEvent.Name, "ok");
+                await _navigation.PushAsync(new EventPage(SelectedEvent));
+                // Clear the selected event after processing
+                SelectedEvent = null;
+            }
         }
 
         private async void LoadEvents()
@@ -65,6 +93,18 @@ namespace ShowStopper.ViewModels
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private async void EventTappedAsync(object parameter)
+        {
+            if (parameter is AppEvent selectedEvent)
+            {
+                await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedEvent.Name}", "OK");
+
+                // Call your custom method with the selected event
+                // Example:
+                // DoSomethingWithSelectedEvent(selectedEvent);
+            }
         }
     }
 }

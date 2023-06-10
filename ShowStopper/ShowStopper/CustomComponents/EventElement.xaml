@@ -29,10 +29,7 @@
                     <Label Text="{Binding Source={x:Reference This}, Path=Location}"
                            FontSize="13"></Label>
                 </VerticalStackLayout>
-                <Label Grid.Row="1"
-                       Text="1000 tickets sold"
-                       FontAttributes="Bold"
-                       FontSize="14"></Label>
+                
             </Grid>
         </Grid>
     </ContentView.Content>
