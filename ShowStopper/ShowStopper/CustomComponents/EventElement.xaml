@@ -21,12 +21,12 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <VerticalStackLayout Grid.Row="0">
-                    <Label Text="CFR 1907 Cluj - U Cluj"
+                    <Label Text="{Binding Source={x:Reference This}, Path=Name}"
                            FontSize="16"
                            FontAttributes="Bold"></Label>
-                    <Label Text="13 March 2023"
+                    <Label Text="{Binding Source={x:Reference This}, Path=Date}"
                            FontSize="13"></Label>
-                    <Label Text="Cluj Arena"
+                    <Label Text="{Binding Source={x:Reference This}, Path=Location}"
                            FontSize="13"></Label>
                 </VerticalStackLayout>
                 <Label Grid.Row="1"

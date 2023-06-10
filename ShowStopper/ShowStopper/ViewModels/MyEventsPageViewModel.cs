@@ -50,25 +50,6 @@ namespace ShowStopper.ViewModels
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             LoadEvents();
-            // Step 3: Create a list view
-            //ListView listView = new ListView();
-
-            //// Step 4: Iterate over the event data
-            //foreach (AppEvent eventItem in Events)
-            //{
-            ////    // Step 2: Create a custom component for event data
-            //    EventElement eventComponent = new EventElement();
-
-            ////    // Step 5: Add the custom component to the list view
-            //    listView.Children.Add(eventComponent);
-            //    listView.ch
-            //}
-
-            // Add the list view to your main layout or page
-            //Content = new StackLayout
-            //{
-            //    Children = { listView }
-            //};
         }
 
         private async void LoadEvents()
