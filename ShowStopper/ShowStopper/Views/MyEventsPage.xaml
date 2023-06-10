@@ -22,9 +22,18 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Events">
         </customControls:CustomNavigationBar>
-        <customControls:EventElement Grid.Row="1"
+        <!--<customControls:EventElement Grid.Row="1"
                                      VerticalOptions="Start"
-                                     Margin="10,10,10,10"></customControls:EventElement>
+                                     Margin="10,10,10,10"></customControls:EventElement>-->
+        <ListView ItemsSource="{Binding Events}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Label Text="aaaa"></Label>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         <!--<Grid VerticalOptions="Center"
               Grid.Row="1"
           HorizontalOptions="Center"

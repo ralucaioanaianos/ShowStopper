@@ -18,20 +18,28 @@ namespace ShowStopper.Services
 
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public static async Task addEventToDatabase(string name, string location, string date, string organizer, string type, string description)
+        public static async Task addEventToDatabase(string name, string description, string date, string organizer, string type, string location)
         {
-            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-            var response = await firebaseClient.Child("Events").PostAsync(new AppEvent
+
+            try
             {
-                Name = name,
-                Location = location,
-                Date = date,    
-                Organizer = organizer,
-                Type = type,
-                Description = description
-            });
-            await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + organizer +' ' + location, "ok");
-            string eventId = response.Key;
+                FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+                var response = await firebaseClient.Child("Events").PostAsync(new AppEvent
+                {
+                    Name = name,
+                    Location = location,
+                    Date = date,
+                    Organizer = organizer,
+                    Type = type,
+                    Description = description
+                });
+                await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + organizer + ' ' + location, "ok");
+                string eventId = response.Key;
+            }catch(Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("addEvent", ex.Message, "ok");
+            }
+           
         }
 
         public static async Task addLocationToDatabase(string name, string address, string description, string owner)
@@ -119,6 +127,49 @@ namespace ShowStopper.Services
 
             //return userId;
             return userId;
+        }
+
+        public static async Task<List<AppEvent>> getAllEvents()
+        {
+            var firebaseClient = new FirebaseClient(databaseUrl);
+            var events = new List<AppEvent>();
+            var eventQuery = firebaseClient
+                .Child("Events").AsObservable<AppEvent>().Subscribe(e =>
+                {
+                    events.Add(e.Object);
+                });
+            await Task.Delay(500);
+            await Application.Current.MainPage.DisplayAlert("1", events.Count().ToString(), "ok");
+            return events;
+
+
+            //var appEvent = new List<AppEvent>();
+            //foreach (var firebaseObject in eventSnapshot)
+            //{
+            //    appEvent = firebaseObject.Object;
+            //    await Application.Current.MainPage.DisplayAlert("1", appEvent.First().ToString(), "ok");
+
+            //}
+           // return appEvent;
+            //FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+            //try
+            //{
+            //    var firebaseObjects = await firebaseClient.Child("Events").OnceAsync<AppEvent>();
+            //    var foundElements = firebaseObjects
+            //        .ToList();
+            //    List<AppEvent> events = new List<AppEvent>();
+            //    foreach (var foundElement in foundElements)
+            //    {
+            //        events.Add(foundElement.Object);
+            //    }
+            //    return events;
+            //}
+            //catch (Exception ex)
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("alert getAll", ex.Message, "ok");
+            //    return null;
+            //}
+
         }
 
         //public static async Task UpdateUserData(AppUser user, string firstName, string lastName, string email)

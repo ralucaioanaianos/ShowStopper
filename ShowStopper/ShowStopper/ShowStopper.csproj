@@ -67,6 +67,9 @@
 	  <MauiXaml Update="CustomComponents\CustomNavigationBar.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="CustomComponents\ElementsListView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="CustomComponents\EventElement.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
