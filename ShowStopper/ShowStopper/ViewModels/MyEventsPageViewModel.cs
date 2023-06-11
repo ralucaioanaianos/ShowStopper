@@ -17,6 +17,11 @@ namespace ShowStopper.ViewModels
 {
     internal class MyEventsPageViewModel : INotifyPropertyChanged
     {
+        public bool IsListEmpty { get; set; }
+
+        public string Name { get; set; } = "Name";
+
+        public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
 
@@ -47,11 +52,13 @@ namespace ShowStopper.ViewModels
 
         public MyEventsPageViewModel(INavigation navigation)
         {
+            LoadEvents();
+            
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
-            EventTapped = new Command(EventTappedAsync);    
-            LoadEvents();
+            EventTapped = new Command(EventTappedAsync);
+            
         }
 
         private AppEvent _selectedEvent;
@@ -70,12 +77,7 @@ namespace ShowStopper.ViewModels
         {
             if (SelectedEvent != null)
             {
-                // Call your custom method with the selected event
-                // Example:
-                // DoSomethingWithSelectedEvent(SelectedEvent);
-                //await Application.Current.MainPage.DisplayAlert("ok", SelectedEvent.Name, "ok");
                 await _navigation.PushAsync(new EventPage(SelectedEvent));
-                // Clear the selected event after processing
                 SelectedEvent = null;
             }
         }
@@ -84,19 +86,15 @@ namespace ShowStopper.ViewModels
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
             List<AppEvent> list = await FirebaseDatabaseService.getEventsByEmail(email);
-            //List<AppEvent> list = new List<AppEvent>
-            //{
-            //    new AppEvent
-            //    {
-            //        Name="Event",
-            //        Date="10",
-            //        Location="Loc",
-            //        Organizer="raluca@gmail,com",
-            //        Description="desc"
-            //    }
-            //};
+            if (list.Count == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("list0", email, "ok");
+            }
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
+            
             Events = collection;
+                IsDataLoaded = true;
+            await Task.Delay(1000);
             if (Events.Count == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
@@ -109,6 +107,8 @@ namespace ShowStopper.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        
 
         private async void EventTappedAsync(object parameter)
         {

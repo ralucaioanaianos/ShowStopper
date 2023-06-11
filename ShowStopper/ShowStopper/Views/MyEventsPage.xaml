@@ -23,9 +23,6 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Events">
         </customControls:CustomNavigationBar>
-        <!--<customControls:EventElement Grid.Row="1"
-                                     VerticalOptions="Start"
-                                     Margin="10,10,10,10"></customControls:EventElement>-->
         <ListView ItemsSource="{Binding Events}"
                   SelectedItem="{Binding SelectedEvent}"
                   Grid.Row="1"
@@ -33,16 +30,19 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell Height="100">
-                        <ContentView VerticalOptions="FillAndExpand">
-                            <customControls:EventElement Name="Name"
-                                                         Date="Date"
-                                                         Location="Loc"></customControls:EventElement>
+                        <ContentView VerticalOptions="FillAndExpand"
+                                     IsVisible="{Binding IsDataLoaded}">
+                            <customControls:EventElement Name="inding Name}"
+                                                         Date="data"
+                                                         Location="loc"></customControls:EventElement>
                         </ContentView>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <!--<Grid VerticalOptions="Center"
+        <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
+        <Grid VerticalOptions="Center"
+              
               Grid.Row="1"
           HorizontalOptions="Center"
           Margin="20,0,20,0">
@@ -68,6 +68,6 @@
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"></Label>
-        </Grid>-->
+        </Grid>
     </Grid>
 </ContentPage>
