@@ -20,9 +20,28 @@
             IsPlusButtonVisible="True"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="My Locations">
+            PageName="My Events">
         </customControls:CustomNavigationBar>
+        <ListView ItemsSource="{Binding Locations}"
+                  SelectedItem="{Binding SelectedLocation}"
+                  Grid.Row="1"
+                  RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="100">
+                        <ContentView VerticalOptions="FillAndExpand"
+                                     IsVisible="{Binding IsDataLoaded}">
+                            <customControls:LocationElement Name="inding Name}"
+                                                         Address="data"
+                                                         Owner="loc"></customControls:LocationElement>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
         <Grid VerticalOptions="Center"
+              
               Grid.Row="1"
           HorizontalOptions="Center"
           Margin="20,0,20,0">
