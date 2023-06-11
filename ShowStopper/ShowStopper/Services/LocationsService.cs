@@ -39,22 +39,30 @@ namespace ShowStopper.Services
 
         public static async Task<List<AppLocation>> getLocationsByEmail(string email)
         {
-            var firebaseClient = new FirebaseClient(databaseUrl);
-            var locations = new ConcurrentBag<AppLocation>();
-            var newEmail = email.Replace('.', ',');
-            var locationsQuery = firebaseClient
-                .Child("Locations").AsObservable<AppLocation>().Subscribe(async (e) =>
-                {
-                    Console.WriteLine(e.Object.Owner + ' ' + email);
-                    if (e.Object.Owner == newEmail)
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var locations = new ConcurrentBag<AppLocation>();
+                var newEmail = email.Replace('.', ',');
+                var locationsQuery = firebaseClient
+                    .Child("Locations").AsObservable<AppLocation>().Subscribe(async (e) =>
                     {
-                        locations.Add(e.Object);
-                    }
-                });
-            await Task.Delay(TimeSpan.FromSeconds(2)); 
-            locationsQuery.Dispose();
-            return locations.ToList();
+                        Console.WriteLine(e.Object.Owner + ' ' + email);
+                        if (e.Object.Owner == newEmail)
+                        {
+                            locations.Add(e.Object);
+                        }
+                    });
+                await Task.Delay(TimeSpan.FromSeconds(2));
+                locationsQuery.Dispose();
+                return locations.ToList();
+            } catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("getLocation", ex.Message, "ok");
+                return null;
+            }
         }
+            
 
         public static async Task<List<AppLocation>> getAllLocations()
         {

@@ -1,5 +1,6 @@
 namespace ShowStopper.CustomComponents;
 
+[XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class LocationElement : ContentView
 {
     private static readonly BindableProperty NameProperty

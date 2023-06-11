@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using ShowStopper.Models;
 using ShowStopper.Services;
+using ShowStopper.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,7 +40,7 @@ namespace ShowStopper.ViewModels
 
         private async void PlusButtonTappedAsync(object parameter)
         {
-            //await _navigation.PushAsync(new AddEventPage());
+            await _navigation.PushAsync(new AddLocationPage());
         }
 
         public MyLocationsPageViewModel(INavigation navigation)
@@ -75,21 +76,28 @@ namespace ShowStopper.ViewModels
 
         private async void LoadLocations()
         {
-            string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-            List<AppLocation> list = await LocationsService.getLocationsByEmail(email);
-            if (list.Count == 0)
+            try
             {
-                await Application.Current.MainPage.DisplayAlert("list0", email, "ok");
-            }
-            ObservableCollection<AppLocation> collection = new ObservableCollection<AppLocation>(list);
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                List<AppLocation> list = await LocationsService.getLocationsByEmail(email);
+                if (list.Count == 0)
+                {
+                    await Application.Current.MainPage.DisplayAlert("list0", email, "ok");
+                }
+                ObservableCollection<AppLocation> collection = new ObservableCollection<AppLocation>(list);
 
-            Locations = collection;
-            IsDataLoaded = true;
-            await Task.Delay(1000);
-            if (Locations.Count == 0)
+                Locations = collection;
+                IsDataLoaded = true;
+                await Task.Delay(1000);
+                if (Locations.Count == 0)
+                {
+                    await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
+                }
+            } catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
+                await Application.Current.MainPage.DisplayAlert("LoadLocations", ex.Message, "ok");
             }
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
