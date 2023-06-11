@@ -5,10 +5,11 @@ using Microsoft.Maui.ApplicationModel.Communication;
 using Microsoft.Maui.Storage;
 using ShowStopper.Models;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace ShowStopper.Services
 {
@@ -26,16 +27,17 @@ namespace ShowStopper.Services
                 FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 //AppUser currentUser = await getUserByEmail(email);
+                var newEmail = email.Replace('.', ',');
                 var response = await firebaseClient.Child("Events").PostAsync(new AppEvent
                 {
                     Name = name,
                     Location = location,
                     Date = date,
-                    Organizer = email,
+                    Organizer = newEmail,
                     Type = type,
                     Description = description
                 });
-                await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + email + ' ' + location, "ok");
+                await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + newEmail + ' ' + location, "ok");
                 string eventId = response.Key;
             }catch(Exception ex)
             {
@@ -84,8 +86,9 @@ namespace ShowStopper.Services
         {
             var databaseClient = new FirebaseClient(databaseUrl);
             var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
+            var replacedEmail = loggedUser.Info.Email.Replace('.', ',');
             var foundElements = firebaseObjects
-                .Where(obj => obj.Object.Email == loggedUser.Info.Email).ToList();
+                .Where(obj => obj.Object.Email == replacedEmail).ToList();
             var foundUser = foundElements.FirstOrDefault();
             return foundUser.Object;
         }
@@ -115,15 +118,51 @@ namespace ShowStopper.Services
         public static async Task<List<AppEvent>> getEventsByEmail(string email)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
-            var events = new List<AppEvent>();
+            var events = new ConcurrentBag<AppEvent>();
+            var newEmail= email.Replace('.',',');
             var eventQuery = firebaseClient
-                .Child("Events").AsObservable<AppEvent>().Subscribe(e =>
+                .Child("Events").AsObservable<AppEvent>().Subscribe(async (e) =>
                 {
-                    if (e.Object.Organizer == email)
+                    Console.WriteLine(e.Object.Organizer + ' ' + email);
+                    if (e.Object.Organizer == newEmail)
+                    {
+                        Console.WriteLine("found");
                         events.Add(e.Object);
+
+                    }
                 });
-            await Task.Delay(500);
-            return events;
+            await Application.Current.MainPage.DisplayAlert("geteventsbyemail", events.Count.ToString(), "ok");
+            return events.ToList();
+            // Get a reference to the Firebase Realtime Database
+            //try
+            //{
+            //var firebaseClient = new FirebaseClient(databaseUrl);
+            //var newEmail = email.Replace(".", ",");
+            //var userQuery = firebaseClient
+            //                .Child("Events")
+            //                .OrderBy("Organizer")
+            //                .EqualTo(newEmail);
+
+            //            // Retrieve the query result
+            //var userSnapshot = await userQuery.OnceAsync<List<AppEvent>>();
+
+            //            // Get the user ID from the query result
+            //var events = userSnapshot.FirstOrDefault()?.Object;
+
+            //            //return userId;
+            //if (events.Count == 0)
+            //    {
+            //        await Application.Current.MainPage.DisplayAlert("getevents", "events empty", "ok");
+            //        return null;
+
+            //    }
+            //    return events;
+            //} catch (Exception ex)
+            //{
+            //    await Application.Current.MainPage.DisplayAlert("getevents", ex.Message, "ok");
+            //    return null;
+            //}
+
 
         }
 
@@ -131,10 +170,11 @@ namespace ShowStopper.Services
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
             var user = new AppUser();
+            var newEmail = email.Replace('.', ',');
             var userQuery = firebaseClient
                 .Child("Users").AsObservable<AppUser>().Subscribe(u =>
                 {
-                    if (u.Object.Email == email)
+                    if (u.Object.Email == newEmail)
                       
                     user = u.Object;
                 });
@@ -143,6 +183,31 @@ namespace ShowStopper.Services
             
 
         }
+
+        public static async Task<AppUser> GetUserByEmail(string email)
+        {
+            // Get a reference to the Firebase Realtime Database
+            var firebaseClient = new FirebaseClient(databaseUrl);
+
+            // Query the database to find the user with the specified email
+            var newEmail = email.Replace(".", ",");
+            var userQuery = firebaseClient
+                .Child("Users")
+                .OrderBy("Email")
+                .EqualTo(newEmail)
+                .LimitToFirst(1);
+
+            // Retrieve the query result
+            var userSnapshot = await userQuery.OnceAsync<AppUser>();
+
+            // Get the user ID from the query result
+            var user = userSnapshot.FirstOrDefault()?.Object;
+            await Application.Current.MainPage.DisplayAlert("GetUserByEmai", user.Email, "OK");
+
+            //return userId;
+            return user;
+        }
+
 
         public static async Task<List<AppEvent>> getAllEvents()
         {

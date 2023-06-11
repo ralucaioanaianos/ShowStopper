@@ -2,6 +2,7 @@
 using Firebase.Database;
 using Firebase.Database.Query;
 using ShowStopper.Models;
+using ShowStopper.Services;
 using ShowStopper.Views;
 using System;
 using System.Collections.Generic;
@@ -26,21 +27,29 @@ namespace ShowStopper.ViewModels
 
         public ImageSource ProfileImageSource { get; set; } 
 
-        public ProfilePageViewModel(INavigation navigation, User user, AppUser databaseUser)
+        public ProfilePageViewModel(INavigation navigation)
         {
             _navigation = navigation;
-            _user = user;
-            _databaseUser = databaseUser;
-            //_firebaseClient = new FirebaseClient("https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/");
-            //FirebaseObject<AppUser> firebaseObject = await _firebaseClient.Child("Users").Child("ddd@gmail.com").OnceSingleAsync<AppUser>();
-
-            Name = databaseUser.FirstName + " " + databaseUser.LastName;
-            string profileImageUrl = databaseUser.ProfileImage;
-            // ProfileImageSource = profileImageUrl;
-            //ProfileImageSource = new UriImageSource { Uri = new Uri(profileImageUrl)};
-            //ProfileImageSource = profileImageUrl;
-            //ProfileImageSource = ImageSource.FromFile("cat.jpg");
+            GetUser();
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
+        }
+
+        private async void GetUser()
+        {
+            string currentEmail = FirebaseAuthenticationService.GetLoggedUserEmail();
+            _databaseUser = await FirebaseDatabaseService.GetUserByEmail(currentEmail);
+            if (_databaseUser.FirstName == null) {
+                _databaseUser = new AppUser
+                {
+                    FirstName = "nullfirstname",
+                    LastName = "nulllastname",
+                    Email = currentEmail,
+                    UserType = "User",
+                };
+            }
+            Name = _databaseUser.FirstName + " " + _databaseUser.LastName;
+            await Application.Current.MainPage.DisplayAlert("aa", _databaseUser.Email + ' ' + _databaseUser.FirstName, "ok");
+            string profileImageUrl = _databaseUser.ProfileImage;
         }
 
         private async void EditProfileBtnTappedAsync(object parameter)
@@ -52,14 +61,5 @@ namespace ShowStopper.ViewModels
         {
             await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser));
         }
-
-        //private static readonly BindableProperty NameProperty
-        //  = BindableProperty.Create(nameof(Name), typeof(string), typeof(ProfilePageViewModel));
-
-        //public string Name
-        //{
-        //    get => (string)GetValue(NameProperty);
-        //    set => SetValue(NameProperty, value);
-        //}
     }
 }

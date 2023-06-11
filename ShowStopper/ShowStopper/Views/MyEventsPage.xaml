@@ -34,9 +34,9 @@
                 <DataTemplate>
                     <ViewCell Height="100">
                         <ContentView VerticalOptions="FillAndExpand">
-                            <customControls:EventElement Name="name"
-                                                         Date="date"
-                                                         Location="loca"></customControls:EventElement>
+                            <customControls:EventElement Name="Name"
+                                                         Date="Date"
+                                                         Location="Loc"></customControls:EventElement>
                         </ContentView>
                     </ViewCell>
                 </DataTemplate>

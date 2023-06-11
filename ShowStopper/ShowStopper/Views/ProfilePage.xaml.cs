@@ -7,10 +7,10 @@ namespace ShowStopper.Views;
 
 public partial class ProfilePage : ContentPage
 {
-	public ProfilePage(User user, AppUser databaseUser)
+	public ProfilePage()
 	{
 		InitializeComponent();
-        BindingContext = new ProfilePageViewModel(Navigation, user, databaseUser);
+        BindingContext = new ProfilePageViewModel(Navigation);
     }
 
 }

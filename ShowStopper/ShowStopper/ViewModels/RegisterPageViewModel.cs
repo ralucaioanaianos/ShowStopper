@@ -119,7 +119,8 @@ namespace ShowStopper.ViewModels
                     {
                         companyName = "null";
                     }
-                    await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, email, photoUrl, "User", companyName);
+                    var newEmail = email.Replace('.', ',');
+                    await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName);
                 }
                 else
                 {

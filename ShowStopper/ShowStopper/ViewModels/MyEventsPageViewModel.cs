@@ -84,8 +84,23 @@ namespace ShowStopper.ViewModels
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
             List<AppEvent> list = await FirebaseDatabaseService.getEventsByEmail(email);
+            //List<AppEvent> list = new List<AppEvent>
+            //{
+            //    new AppEvent
+            //    {
+            //        Name="Event",
+            //        Date="10",
+            //        Location="Loc",
+            //        Organizer="raluca@gmail,com",
+            //        Description="desc"
+            //    }
+            //};
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
             Events = collection;
+            if (Events.Count == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
