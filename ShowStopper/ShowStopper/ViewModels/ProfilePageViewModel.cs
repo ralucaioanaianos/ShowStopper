@@ -41,7 +41,6 @@ namespace ShowStopper.ViewModels
         {
             _navigation = navigation;
             Initialize();
-            Application.Current.MainPage.DisplayAlert("bb", Name, "OK");
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
@@ -75,8 +74,6 @@ namespace ShowStopper.ViewModels
                 };
             }
             Name = _databaseUser.FirstName + " " + _databaseUser.LastName;
-            await Application.Current.MainPage.DisplayAlert("aa", Name, "ok");
-            // they are correctly retrieved
             string profileImageUrl = _databaseUser.ProfileImage;
         }
 

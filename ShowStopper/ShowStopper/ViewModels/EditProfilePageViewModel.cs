@@ -17,6 +17,8 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
 
         private User _user;
+        public Command BackBtn { get; }
+        public Command PlusBtn { get; }
 
         public string FirstName { get; set; }
         public string LastName { get; set; }
@@ -37,6 +39,17 @@ namespace ShowStopper.ViewModels
             EmailAddress = databaseUser.Email;
             string profileImageUrl = databaseUser.ProfileImage;
             SaveBtn = new Command(SaveBtnTappedAsync);
+            BackBtn = new Command(BackButtonTappedAsync);
+            PlusBtn = new Command(PlusButtonTappedAsync);
+        }
+
+        private async void BackButtonTappedAsync(object parameter)
+        {
+            await _navigation.PopAsync();
+        }
+
+        private async void PlusButtonTappedAsync(object parameter)
+        {
         }
 
         private async void SaveBtnTappedAsync(object parameter)
