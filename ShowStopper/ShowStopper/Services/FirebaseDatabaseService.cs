@@ -65,27 +65,6 @@ namespace ShowStopper.Services
             return userId;
         }
 
-        public static async Task<List<AppEvent>> getEventsByEmail(string email)
-        {
-            var firebaseClient = new FirebaseClient(databaseUrl);
-            var events = new ConcurrentBag<AppEvent>();
-            var newEmail= email.Replace('.',',');
-            var eventQuery = firebaseClient
-                .Child("Events").AsObservable<AppEvent>().Subscribe(async (e) =>
-                {
-                    Console.WriteLine(e.Object.Organizer + ' ' + email);
-                    if (e.Object.Organizer == newEmail)
-                    {
-                        Console.WriteLine("found");
-                        events.Add(e.Object);
-
-                    }
-                });
-            await Task.Delay(TimeSpan.FromSeconds(2)); // Delay to allow time for events to be populated
-            eventQuery.Dispose();
-            return events.ToList();
-        }
-
         public static async Task<AppUser> getUserByEmail(string email)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
@@ -116,22 +95,6 @@ namespace ShowStopper.Services
             await Application.Current.MainPage.DisplayAlert("GetUserByEmai", user.Email, "OK");
             return user;
         }
-
-
-        public static async Task<List<AppEvent>> getAllEvents()
-        {
-            var firebaseClient = new FirebaseClient(databaseUrl);
-            var events = new List<AppEvent>();
-            var eventQuery = firebaseClient
-                .Child("Events").AsObservable<AppEvent>().Subscribe(e =>
-                {
-                    events.Add(e.Object);
-                });
-            await Task.Delay(500);
-            return events;
-        }
-
-        
 
         public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName, string phoneNumber, string companyName)
         {

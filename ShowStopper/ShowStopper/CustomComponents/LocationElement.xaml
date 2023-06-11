@@ -21,14 +21,14 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <VerticalStackLayout Grid.Row="0">
-                    <Label Text="BT Arena"
+                    <Label Text="{Binding Source={x:Reference This}, Path=Name}"
                            FontSize="16"
                            FontAttributes="Bold"></Label>
-                    <Label Text="Strada Uzinei Electrice, Cluj-Napoca 400375"
+                    <Label Text="{Binding Source={x:Reference This}, Path=Address}"
                            FontSize="13"></Label>
                 </VerticalStackLayout>
                 <Label Grid.Row="1"
-                       Text="places: 10.000"
+                       Text="{Binding Source={x:Reference This}, Path=Owner}"
                        FontAttributes="Bold"
                        FontSize="14"></Label>
             </Grid>
