@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.Views.EditProfilePage"
-             Title="Edit Profile">
+             Title="Edit Profile"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>
             <Grid.RowDefinitions>
@@ -18,9 +19,9 @@
             IsPlusButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="My Profile">
+            PageName="Edit Profile">
             </customControls:CustomNavigationBar>
-            <StackLayout>
+            <StackLayout Grid.Row="1">
                 <customControls:RoundedImage
                 Margin="0,20,0,0"
                 ImageSource="cat_user.jpg"></customControls:RoundedImage>
@@ -46,15 +47,15 @@
                         <Entry Text="{Binding LastName}" Grid.Row="2" Grid.Column="1" Margin="0,5" />
 
                         <Label Text="Phone Number:" FontSize="16" Grid.Row="3" Grid.Column="0" Margin="0,10" />
-                        <Entry Text="{Binding LastName}" Grid.Row="3" Grid.Column="1" Margin="0,5" />
+                        <Entry Text="{Binding PhoneNumber}" Grid.Row="3" Grid.Column="1" Margin="0,5" />
 
                         <Label Text="Company:" FontSize="16" Grid.Row="4" Grid.Column="0" Margin="0,10" />
-                        <Entry Text="{Binding LastName}" Grid.Row="4" Grid.Column="1" Margin="0,5" />
+                        <Entry Text="{Binding CompanyName}" Grid.Row="4" Grid.Column="1" Margin="0,5" />
                     </Grid>
                 </StackLayout>
                 <customControls:GradientFilledButton
                 GradientColor1="#1A2C6C"
-                GradientColor2="#5D1B7D"
+                GradientColor2="#A782B9"
                 TextColor="White"
                 TapCommand="{Binding SaveBtn}"
                 BorderColor="Transparent"
@@ -64,3 +65,4 @@
         
     </ContentPage.Content>
 </ContentPage>
+    

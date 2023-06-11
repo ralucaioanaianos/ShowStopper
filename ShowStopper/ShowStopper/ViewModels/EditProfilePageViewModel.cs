@@ -23,6 +23,8 @@ namespace ShowStopper.ViewModels
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
+        public string PhoneNumber { get; set; }
+        public string CompanyName { get; set; }
         AppUser DatabaseUser { get; set; }
 
         public Command SaveBtn { get; }
@@ -37,6 +39,8 @@ namespace ShowStopper.ViewModels
             FirstName = databaseUser.FirstName;
             LastName = databaseUser.LastName;
             EmailAddress = databaseUser.Email;
+            PhoneNumber = databaseUser.PhoneNumber;
+            CompanyName = databaseUser.CompanyName;
             string profileImageUrl = databaseUser.ProfileImage;
             SaveBtn = new Command(SaveBtnTappedAsync);
             BackBtn = new Command(BackButtonTappedAsync);
@@ -54,7 +58,7 @@ namespace ShowStopper.ViewModels
 
         private async void SaveBtnTappedAsync(object parameter)
         {
-            await FirebaseDatabaseService.UpdateUserData(DatabaseUser, FirstName, LastName);
+            await FirebaseDatabaseService.UpdateUserData(DatabaseUser, FirstName, LastName, PhoneNumber, CompanyName);
             await _navigation.PopAsync();
         }
     }

@@ -20,9 +20,9 @@
             </Frame.Background>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <ImageButton Source="back_icon.png"
                              Command="{Binding Source={x:Reference This}, Path=BackBtnTapCommand}"

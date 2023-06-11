@@ -89,13 +89,14 @@ namespace ShowStopper.Services
             return foundUser.Object;
         }
 
-        private static async Task<string> GetUserIdByFirstName(string firstName)
+        private static async Task<string> GetUserIdByEmail(string email)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
+            var replacedEmail = email.Replace(".", ",");
             var userQuery = firebaseClient
                 .Child("Users")
-                .OrderBy("FirstName")
-                .EqualTo(firstName)
+                .OrderBy("Email")
+                .EqualTo(replacedEmail)
                 .LimitToFirst(1);
             var userSnapshot = await userQuery.OnceAsync<AppUser>();
             var userId = userSnapshot.FirstOrDefault()?.Key;
@@ -168,10 +169,10 @@ namespace ShowStopper.Services
             return events;
         }
 
-        public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName)
+        public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName, string phoneNumber, string companyName)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
-            var userId = await GetUserIdByFirstName(user.FirstName);
+            var userId = await GetUserIdByEmail(user.Email);
             var toUpdateUser = (await firebaseClient
             .Child("Users")
             .OnceAsync<AppUser>()).Where(a => a.Object.FirstName == user.FirstName).FirstOrDefault();
@@ -180,6 +181,8 @@ namespace ShowStopper.Services
             {
                 toUpdateUser.Object.LastName = lastName;
                 toUpdateUser.Object.FirstName = firstName;
+                toUpdateUser.Object.PhoneNumber = phoneNumber;
+                toUpdateUser.Object.CompanyName = companyName;
                 await firebaseClient
                    .Child("Users")
                    .Child(userId)

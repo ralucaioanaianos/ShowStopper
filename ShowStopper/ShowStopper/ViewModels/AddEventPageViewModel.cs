@@ -11,6 +11,8 @@ namespace ShowStopper.ViewModels
     internal class AddEventPageViewModel
     {
         private INavigation _navigation;
+        public Command BackBtn { get; }
+        public Command PlusBtn { get; }
 
         public string name;
         public string description;
@@ -94,13 +96,24 @@ namespace ShowStopper.ViewModels
             SaveBtn = new Command(SaveBtnTappedAsync);
             string org = "";
             string userEmail = FirebaseAuthenticationService.GetLoggedUserEmail();
-             
+            SaveBtn = new Command(SaveBtnTappedAsync);
+            BackBtn = new Command(BackButtonTappedAsync);
+
         }
 
         private async void SaveBtnTappedAsync(object parameter)
         {
             await FirebaseDatabaseService.addEventToDatabase(Name, Description, Type, Date, Location);
             await _navigation.PopAsync();
+        }
+
+        private async void BackButtonTappedAsync(object parameter)
+        {
+            await _navigation.PopAsync();
+        }
+
+        private async void PlusButtonTappedAsync(object parameter)
+        {
         }
     }
 }

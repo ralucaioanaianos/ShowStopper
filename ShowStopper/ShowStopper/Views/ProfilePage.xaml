@@ -15,7 +15,7 @@
             Grid.Row="0"
             GradientColor1="#1A2C6C"
             GradientColor2="#A782B9"
-            IsBackButtonVisible="True"
+            IsBackButtonVisible="False"
             IsPlusButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
