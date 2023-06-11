@@ -16,32 +16,7 @@ namespace ShowStopper.Services
     class FirebaseDatabaseService
     {
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
-
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
-
-        public static async Task addEventToDatabase(string name, string description, string type, string date, string location)
-        {
-            try
-            {
-                FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-                var newEmail = email.Replace('.', ',');
-                var response = await firebaseClient.Child("Events").PostAsync(new AppEvent
-                {
-                    Name = name,
-                    Location = location,
-                    Date = date,
-                    Organizer = newEmail,
-                    Type = type,
-                    Description = description
-                });
-                await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + newEmail + ' ' + location, "ok");
-                string eventId = response.Key;
-            }catch(Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("addEvent", ex.Message, "ok");
-            }
-        }
 
         public static async Task AddUserToDatabase(string phoneNumber, string firstName, string lastName, string email, string photoUrl, string userType, string companyName)
         {

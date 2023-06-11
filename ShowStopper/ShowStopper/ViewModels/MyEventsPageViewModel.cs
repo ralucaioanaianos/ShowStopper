@@ -85,7 +85,7 @@ namespace ShowStopper.ViewModels
         private async void LoadEvents()
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-            List<AppEvent> list = await FirebaseDatabaseService.getEventsByEmail(email);
+            List<AppEvent> list = await EventsService.getEventsByEmail(email);
             if (list.Count == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("list0", email, "ok");

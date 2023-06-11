@@ -103,7 +103,7 @@ namespace ShowStopper.ViewModels
 
         private async void SaveBtnTappedAsync(object parameter)
         {
-            await FirebaseDatabaseService.addEventToDatabase(Name, Description, Type, Date, Location);
+            await EventsService.addEventToDatabase(Name, Description, Type, Date, Location);
             await _navigation.PopAsync();
         }
 
