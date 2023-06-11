@@ -69,7 +69,7 @@ namespace ShowStopper.ViewModels
         {
             if (SelectedLocation != null)
             {
-                //await _navigation.PushAsync(new LocationPage(SelectedLocation));
+                await _navigation.PushAsync(new LocationPage(SelectedLocation));
                 SelectedLocation = null;
             }
         }

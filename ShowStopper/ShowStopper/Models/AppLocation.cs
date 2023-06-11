@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShowStopper.Models
 {
-    internal class AppLocation
+    public class AppLocation
     {
         public string Id { get; set; }
         public string Name { get; set; }
