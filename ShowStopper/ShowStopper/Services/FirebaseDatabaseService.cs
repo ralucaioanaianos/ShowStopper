@@ -43,19 +43,6 @@ namespace ShowStopper.Services
             }
         }
 
-        public static async Task addLocationToDatabase(string name, string address, string description, string owner)
-        {
-            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-            var response = await firebaseClient.Child("Locations").PostAsync(new AppLocation
-            {
-                Name = name,
-                Address = address,  
-                Description = description,
-                Owner = owner
-            });
-            string locationId = response.Key;
-        }
-
         public static async Task AddUserToDatabase(string phoneNumber, string firstName, string lastName, string email, string photoUrl, string userType, string companyName)
         {
             FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
@@ -168,6 +155,8 @@ namespace ShowStopper.Services
             await Task.Delay(500);
             return events;
         }
+
+        
 
         public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName, string phoneNumber, string companyName)
         {

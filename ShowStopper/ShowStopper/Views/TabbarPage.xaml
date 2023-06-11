@@ -8,7 +8,6 @@
             android:TabbedPage.ToolbarPlacement="Bottom">
     <views:MyEventsPage></views:MyEventsPage>
     <TabbedPage.Children>
-        <views:MyEventsPage></views:MyEventsPage>
         <views:MyLocationsPage></views:MyLocationsPage>
         <views:ProfilePage></views:ProfilePage>
     </TabbedPage.Children>

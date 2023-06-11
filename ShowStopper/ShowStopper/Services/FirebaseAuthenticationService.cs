@@ -60,5 +60,10 @@ namespace ShowStopper.Services
             }
             return user;
         }
+
+        public static void LogoutUser()
+        {
+            client.SignOut();
+        }
     }
 }
