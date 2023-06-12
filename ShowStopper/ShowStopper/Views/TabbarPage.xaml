@@ -10,5 +10,6 @@
     <TabbedPage.Children>
         <views:MyLocationsPage></views:MyLocationsPage>
         <views:ProfilePage></views:ProfilePage>
+        <views:ExplorePage></views:ExplorePage>
     </TabbedPage.Children>
 </TabbedPage>

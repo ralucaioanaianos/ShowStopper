@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.ExplorePage"
+             Title="ExplorePage"
+             NavigationPage.HasNavigationBar="False">
+
+    <Grid Padding="0"
+          HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <customControls:CustomNavigationBar
+            Grid.Row="0"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#A782B9"
+            IsBackButtonVisible="False"
+            IsPlusButtonVisible="False"
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="Explore">
+        </customControls:CustomNavigationBar>
+        <StackLayout Grid.Row="1">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                <Label Text="Events" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
+                <Switch IsToggled="{Binding IsShowingEvents}" VerticalOptions="Center" 
+                        />
+                <Label Text="Locations" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+            </StackLayout>
+
+            <ListView x:Name="eventsListView"
+                ItemsSource="{Binding Events}"
+                  SelectedItem="{Binding SelectedEvent}"
+                  Grid.Row="1"
+                  RowHeight="100"
+                  IsVisible="{Binding IsShowingEvents, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <ContentView VerticalOptions="FillAndExpand">
+                                <customControls:EventElement Name="inding Name}"
+                                                         Date="data"
+                                                         Location="loc"></customControls:EventElement>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <ListView x:Name="locationsListView"
+                ItemsSource="{Binding Locations}"
+                  SelectedItem="{Binding SelectedLocation}"
+                  Grid.Row="1"
+                  RowHeight="100"
+                      IsVisible="{Binding IsShowingLocations, Converter={StaticResource BooleanToVisibilityConverter}}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <ContentView VerticalOptions="FillAndExpand">
+                                <customControls:LocationElement Name="inding Name}"
+                                                         Owner="Owner"
+                                                         Address="Address"></customControls:LocationElement>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+         
+        </StackLayout>
+        
+        <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
+        <Grid VerticalOptions="Center"
+              IsVisible="False"
+              Grid.Row="1"
+          HorizontalOptions="Center"
+          Margin="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="no_events_image.png"
+               HeightRequest="150"
+               Grid.Row="1"></Image>
+            <Label Text="No events added yet"
+                   Grid.Row="2"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"
+               FontSize="20"
+               Margin="0,20,0,0"></Label>
+            <Label Text="Add your first events and it will appear here as soon as your request is reviewed and accepted!"
+               FontSize="15"
+               Margin="0,20,0,0"
+               Grid.Row="3"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"></Label>
+        </Grid>
+    </Grid>
+</ContentPage>

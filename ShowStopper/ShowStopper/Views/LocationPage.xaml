@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.Views.LocationPage"
-             Title="LocationPage">
+             Title="LocationPage"
+             NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid Padding="0"
           HorizontalOptions="FillAndExpand">
@@ -57,7 +58,6 @@
                                                      TapCommand="{Binding SeeEventsBtn}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
-
             </Grid>
         </Grid>
     </ContentPage.Content>
