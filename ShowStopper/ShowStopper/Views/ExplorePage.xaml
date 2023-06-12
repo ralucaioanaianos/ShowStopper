@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.Views.ExplorePage"
-             Title="ExplorePage"
+             Title="Explore"
+             IconImageSource="compass_icon.png"
              NavigationPage.HasNavigationBar="False">
 
     <Grid Padding="0"
@@ -24,10 +25,26 @@
         </customControls:CustomNavigationBar>
         <StackLayout Grid.Row="1">
             <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <Label Text="Events" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />
-                <Switch IsToggled="{Binding IsShowingEvents}" VerticalOptions="Center" 
-                        />
-                <Label Text="Locations" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />
+                <!--<Label Text="Events" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />-->
+                <customControls:GradientFilledLabel BorderColor="Transparent"
+                                                    GradientColor1="#1A2C6C"
+                                                    GradientColor2="#A782B9"
+                                                    Text="Events"
+                                                    TextColor="White"
+                                                    HorizontalOptions="EndAndExpand"
+                                                    VerticalOptions="CenterAndExpand"></customControls:GradientFilledLabel>
+                <Switch IsToggled="{Binding IsShowingLocations}" VerticalOptions="Center" 
+                        OnColor="LightGray"
+                        ThumbColor="#A782B9"
+                        BackgroundColor="Transparent"/>
+                <!--<Label Text="Locations" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />-->
+                <customControls:GradientFilledLabel BorderColor="Transparent"
+                                                    GradientColor1="#1A2C6C"
+                                                    GradientColor2="#A782B9"
+                                                    Text="Locations"
+                                                    TextColor="White"
+                                                    HorizontalOptions="StartAndExpand"
+                                                    VerticalOptions="Center"></customControls:GradientFilledLabel>
             </StackLayout>
 
             <ListView x:Name="eventsListView"
@@ -43,6 +60,7 @@
                                 <customControls:EventElement Name="inding Name}"
                                                          Date="data"
                                                          Location="loc"></customControls:EventElement>
+
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.CustomComponents.GradientFilledLabel"
+             x:Name="This"
+             x:DataType="customControls:GradientFilledLabel">
+    <ContentView.Content>
+        <Frame
+            BorderColor="{Binding Source={x:Reference This}, Path=BorderColor}"
+            x:Name="myButton"
+            HorizontalOptions="Center"
+            VerticalOptions="Start"
+            WidthRequest="80"
+            HeightRequest="40"
+            Margin="0"
+            Padding="0"
+            CornerRadius="48">
+            <Frame.Background>
+                <LinearGradientBrush 
+                    StartPoint="0,0"
+                    EndPoint="1,1">
+                    <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor1}"
+                          Offset="0.1" />
+                    <GradientStop Color="{Binding Source={x:Reference This}, Path=GradientColor2}"
+                          Offset="1.0" />
+                </LinearGradientBrush>
+            </Frame.Background>
+            <Label Text="{Binding Source={x:Reference This}, Path=Text}"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   TextColor="{Binding Source={x:Reference This}, Path=TextColor}">
+            </Label>
+        </Frame>
+    </ContentView.Content>
+</ContentView>

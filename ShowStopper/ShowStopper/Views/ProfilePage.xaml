@@ -4,6 +4,7 @@
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.Views.ProfilePage"
              Title="My Profile"
+             IconImageSource="user.png"
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <Grid>

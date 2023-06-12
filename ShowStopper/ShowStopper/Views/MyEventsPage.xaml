@@ -4,8 +4,8 @@
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ShowStopper.Views.MyEventsPage"
-             Title="MyEventsPage"
-             IconImageSource="cat_user.png"
+             Title="My Events"
+             IconImageSource="curtains_icon.png"
              NavigationPage.HasNavigationBar="False">
     <Grid Padding="0"
           HorizontalOptions="FillAndExpand">

@@ -3,8 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.Views.MyLocationsPage"
-             Title="MyLocationsPage"
-             IconImageSource="heart_icon.png"
+             Title="My Locations"
+             IconImageSource="stage_icon.png"
              NavigationPage.HasNavigationBar="False">
     <Grid Padding="0"
           HorizontalOptions="FillAndExpand">
