@@ -68,7 +68,7 @@
         </ListView>
         <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
         <Grid VerticalOptions="Center"
-              
+              IsVisible="False"
               Grid.Row="1"
           HorizontalOptions="Center"
           Margin="20,0,20,0">

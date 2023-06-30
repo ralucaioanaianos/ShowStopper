@@ -57,9 +57,32 @@
                     <DataTemplate>
                         <ViewCell Height="100">
                             <ContentView VerticalOptions="FillAndExpand">
-                                <customControls:EventElement Name="inding Name}"
-                                                         Date="data"
-                                                         Location="loc"></customControls:EventElement>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="cat_user.jpg"
+                                        Grid.Column="0"
+                                        HeightRequest="80"></Image>
+                                    <Grid Grid.Column="1"
+                                      HeightRequest="80">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <VerticalStackLayout Grid.Row="0">
+                                            <Label Text="{Binding Name}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding Date}"
+                                               FontSize="13"></Label>
+                                            <Label Text="{Binding Location}"
+                                               FontSize="13"></Label>
+                                        </VerticalStackLayout>
+
+                                    </Grid>
+                                </Grid>
 
                             </ContentView>
                         </ViewCell>
@@ -76,9 +99,33 @@
                     <DataTemplate>
                         <ViewCell Height="100">
                             <ContentView VerticalOptions="FillAndExpand">
-                                <customControls:LocationElement Name="inding Name}"
-                                                         Owner="Owner"
-                                                         Address="Address"></customControls:LocationElement>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="cat_user.jpg"
+                   Grid.Column="0"
+                   HeightRequest="80"></Image>
+                                    <Grid Grid.Column="1"
+                  HeightRequest="80">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <VerticalStackLayout Grid.Row="0">
+                                            <Label Text="{Binding Name}"
+                           FontSize="16"
+                           FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding Address}"
+                           FontSize="13"></Label>
+                                        </VerticalStackLayout>
+                                        <Label Grid.Row="1"
+                       Text="{Binding Owner}"
+                       FontAttributes="Bold"
+                       FontSize="14"></Label>
+                                    </Grid>
+                                </Grid>
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>
