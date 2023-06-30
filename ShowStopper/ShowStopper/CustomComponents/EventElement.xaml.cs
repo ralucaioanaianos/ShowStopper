@@ -1,11 +1,14 @@
+using ShowStopper.Models;
+
 namespace ShowStopper.CustomComponents;
 
 
 [XamlCompilation(XamlCompilationOptions.Compile)]
 public partial class EventElement : ContentView
 {
-    private static readonly BindableProperty NameProperty
-        = BindableProperty.Create(nameof(Name), typeof(string), typeof(EventElement));
+    private static readonly BindableProperty NameProperty =
+    BindableProperty.Create(nameof(Name), typeof(string), typeof(EventElement), string.Empty);
+
 
     public string Name
     {

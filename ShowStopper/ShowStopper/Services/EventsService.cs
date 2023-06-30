@@ -1,5 +1,6 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using Microsoft.Maui.ApplicationModel.Communication;
 using ShowStopper.Models;
 using System;
 using System.Collections.Concurrent;
@@ -40,13 +41,27 @@ namespace ShowStopper.Services
             }
         }
 
+        public static async Task<int> getEventsCount()
+        {
+            var firebaseClient = new FirebaseClient(databaseUrl);
+            int count = 0;
+            var eventQuery = firebaseClient
+                .Child("Events").AsObservable<AppEvent>().Subscribe(e =>
+                {
+                    count++;
+                });
+            await Task.Delay(TimeSpan.FromSeconds(2)); // Delay to allow time for events to be populated
+            eventQuery.Dispose();
+            return count;
+        }
+
         public static async Task<List<AppEvent>> getEventsByEmail(string email)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
             var events = new ConcurrentBag<AppEvent>();
             var newEmail = email.Replace('.', ',');
             var eventQuery = firebaseClient
-                .Child("Events").AsObservable<AppEvent>().Subscribe(async (e) =>
+                .Child("Events").AsObservable<AppEvent>().Subscribe(e =>
                 {
                     Console.WriteLine(e.Object.Organizer + ' ' + email);
                     if (e.Object.Organizer == newEmail)

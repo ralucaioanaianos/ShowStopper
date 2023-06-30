@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents;assembly=ShowStopper"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ShowStopper.Views.MyEventsPage"
              Title="My Events"
+             x:Name="This"
              IconImageSource="curtains_icon.png"
              NavigationPage.HasNavigationBar="False">
     <Grid Padding="0"
@@ -24,6 +25,7 @@
             PageName="My Events">
         </customControls:CustomNavigationBar>
         <ListView ItemsSource="{Binding Events}"
+                  x:Name="EventsListView"
                   SelectedItem="{Binding SelectedEvent}"
                   Grid.Row="1"
                   RowHeight="100">
@@ -32,9 +34,35 @@
                     <ViewCell Height="100">
                         <ContentView VerticalOptions="FillAndExpand"
                                      IsVisible="{Binding IsDataLoaded}">
-                            <customControls:EventElement Name="inding Name}"
-                                                         Date="data"
-                                                         Location="loc"></customControls:EventElement>
+                            <!--<customControls:EventElement Name="{Binding Source={x:Reference This}, Path=Name}"
+                                             Date="{Binding Date}"
+                                             Location="{Binding Location}" />-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="cat_user.jpg"
+                                        Grid.Column="0"
+                                        HeightRequest="80"></Image>
+                                <Grid Grid.Column="1"
+                                      HeightRequest="80">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <VerticalStackLayout Grid.Row="0">
+                                        <Label Text="{Binding Name}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"></Label>
+                                        <Label Text="{Binding Date}"
+                                               FontSize="13"></Label>
+                                        <Label Text="{Binding Location}"
+                                               FontSize="13"></Label>
+                                    </VerticalStackLayout>
+
+                                </Grid>
+                            </Grid>
                         </ContentView>
                     </ViewCell>
                 </DataTemplate>
@@ -42,7 +70,7 @@
         </ListView>
         <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
         <Grid VerticalOptions="Center"
-              
+              IsVisible="{Binding IsListEmpty}"
               Grid.Row="1"
           HorizontalOptions="Center"
           Margin="20,0,20,0">

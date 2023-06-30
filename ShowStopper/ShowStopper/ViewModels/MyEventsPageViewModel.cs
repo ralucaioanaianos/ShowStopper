@@ -18,9 +18,6 @@ namespace ShowStopper.ViewModels
     internal class MyEventsPageViewModel : INotifyPropertyChanged
     {
         public bool IsListEmpty { get; set; }
-
-        public string Name { get; set; } = "Name";
-
         public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
@@ -52,13 +49,12 @@ namespace ShowStopper.ViewModels
 
         public MyEventsPageViewModel(INavigation navigation)
         {
-            LoadEvents();
-            
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             EventTapped = new Command(EventTappedAsync);
-            
+            LoadEvents();
+            //EventsListView.ItemsSource = Events;
         }
 
         private AppEvent _selectedEvent;
@@ -94,7 +90,7 @@ namespace ShowStopper.ViewModels
             
             Events = collection;
                 IsDataLoaded = true;
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
             if (Events.Count == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
