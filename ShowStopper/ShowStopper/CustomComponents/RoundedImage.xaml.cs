@@ -4,11 +4,11 @@ namespace ShowStopper.CustomComponents;
 public partial class RoundedImage : ContentView
 {
 	private static readonly BindableProperty ImageSourceProperty
-		= BindableProperty.Create(nameof(ImageSource), typeof(string), typeof(RoundedImage));
+		= BindableProperty.Create(nameof(ImageSource), typeof(ImageSource), typeof(RoundedImage));
 
-	public string ImageSource
+	public ImageSource ImageSource
 	{
-		get => (string)GetValue(ImageSourceProperty);
+		get => (ImageSource)GetValue(ImageSourceProperty);
 		set => SetValue(ImageSourceProperty, value);
 	}
 
