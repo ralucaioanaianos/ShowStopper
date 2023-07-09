@@ -27,7 +27,17 @@
                 Margin="0,20,0,0"
                 ImageSource="{Binding SrcImg}"></customControls:RoundedImage>-->
                 <!--<Image Source="{Binding SrcImg}"></Image>-->
-                <Image Source="{Binding SrcImg}"></Image>
+                <!--<Image Source="{Binding SrcImg}"></Image>-->
+                <Border
+                    StrokeShape="RoundRectangle 80,80,80,80"
+                    HeightRequest="150"
+                    WidthRequest="150">
+                        <Image
+                               Aspect="AspectFit"
+                               Source="{Binding SrcImg}">
+
+                        </Image>
+                </Border>
                 <Label Text="{Binding Name}"
                    FontSize="20"
                    FontAttributes="Bold"

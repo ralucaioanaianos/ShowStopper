@@ -20,7 +20,7 @@
             IsPlusButtonVisible="True"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="My Events">
+            PageName="My Locations">
         </customControls:CustomNavigationBar>
         <ListView ItemsSource="{Binding Locations}"
                   SelectedItem="{Binding SelectedLocation}"

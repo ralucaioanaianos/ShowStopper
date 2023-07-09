@@ -26,7 +26,7 @@ namespace ShowStopper.Services
                     new GoogleProvider().AddScopes("email"),
                     new EmailProvider()
                 },
-            UserRepository = new FileUserRepository("FirebaseSample"),
+            //UserRepository = new FileUserRepository("FirebaseSample"),
 
         };
         public static FirebaseAuthClient client = new FirebaseAuthClient(authConfig);
