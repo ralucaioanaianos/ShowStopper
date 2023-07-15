@@ -55,22 +55,26 @@ namespace ShowStopper.ViewModels
         private async void Initialize()
         {
             await GetUser();
-            var webClient = new WebClient();
-            string stroageImage = await new FirebaseStorage("showstopper-71398.appspot.com")
-                .Child("profile_images")
-                .Child("cat.jpg")
-                .GetDownloadUrlAsync();
-            string imgurl = stroageImage;
-            byte[] imgBytes = webClient.DownloadData(imgurl);
-            string img = Convert.ToBase64String(imgBytes);
-           // var img = ImageSource.FromStream(() => new MemoryStream(imgBytes));
-            await Application.Current.MainPage.DisplayAlert("image", img.ToString(), "ok");
-            //SrcImg = img;
-            var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
-            var downloadUrl = await firebaseStorage
-                .Child("profile_images")
-                .Child("cat.jpg")
-                .GetDownloadUrlAsync();
+
+
+           // var webClient = new WebClient();
+           // string stroageImage = await new FirebaseStorage("showstopper-71398.appspot.com")
+           //     .Child("profile_images")
+           //     .Child("cat.jpg")
+           //     .GetDownloadUrlAsync();
+           // string imgurl = stroageImage;
+           // byte[] imgBytes = webClient.DownloadData(imgurl);
+           // string img = Convert.ToBase64String(imgBytes);
+           //// var img = ImageSource.FromStream(() => new MemoryStream(imgBytes));
+           // await Application.Current.MainPage.DisplayAlert("image", img.ToString(), "ok");
+           // //SrcImg = img;
+           // var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
+           // var downloadUrl = await firebaseStorage
+           //     .Child("profile_images")
+           //     .Child("cat.jpg")
+           //     .GetDownloadUrlAsync();
+
+
             //var httpClient = new HttpClient();
             //var imageBytes = await httpClient.GetByteArrayAsync(downloadUrl);
 

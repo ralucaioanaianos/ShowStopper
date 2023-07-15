@@ -27,6 +27,7 @@ namespace ShowStopper.Services
                     new EmailProvider()
                 },
             //UserRepository = new FileUserRepository("FirebaseSample"),
+           
 
         };
         public static FirebaseAuthClient client = new FirebaseAuthClient(authConfig);
