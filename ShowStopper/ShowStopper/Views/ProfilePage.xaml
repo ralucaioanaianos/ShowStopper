@@ -29,7 +29,7 @@
                 <!--<Image Source="{Binding SrcImg}"></Image>-->
                 <!--<Image Source="{Binding SrcImg}"></Image>-->
                 
-                <!--<Border
+                <Border
                     StrokeShape="RoundRectangle 80,80,80,80"
                     HeightRequest="150"
                     WidthRequest="150">
@@ -38,7 +38,7 @@
                                Source="{Binding SrcImg}">
 
                         </Image>
-                </Border>-->
+                </Border>
                 <Label Text="{Binding Name}"
                    FontSize="20"
                    FontAttributes="Bold"

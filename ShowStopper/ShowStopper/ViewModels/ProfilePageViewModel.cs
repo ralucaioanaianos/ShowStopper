@@ -57,22 +57,31 @@ namespace ShowStopper.ViewModels
             await GetUser();
 
 
-           // var webClient = new WebClient();
-           // string stroageImage = await new FirebaseStorage("showstopper-71398.appspot.com")
-           //     .Child("profile_images")
-           //     .Child("cat.jpg")
-           //     .GetDownloadUrlAsync();
-           // string imgurl = stroageImage;
-           // byte[] imgBytes = webClient.DownloadData(imgurl);
-           // string img = Convert.ToBase64String(imgBytes);
-           //// var img = ImageSource.FromStream(() => new MemoryStream(imgBytes));
-           // await Application.Current.MainPage.DisplayAlert("image", img.ToString(), "ok");
-           // //SrcImg = img;
-           // var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
-           // var downloadUrl = await firebaseStorage
-           //     .Child("profile_images")
-           //     .Child("cat.jpg")
-           //     .GetDownloadUrlAsync();
+            //var webClient = new WebClient();
+            //string stroageImage = await new FirebaseStorage("showstopper-71398.appspot.com")
+            //    .Child("profile_images")
+            //    .Child("cat.jpg")
+            //    .GetDownloadUrlAsync();
+            //string imgurl = stroageImage;
+            //byte[] imgBytes = webClient.DownloadData(imgurl);
+            //string img = Convert.ToBase64String(imgBytes);
+            // var img = ImageSource.FromStream(() => new MemoryStream(imgBytes));
+            // await Application.Current.MainPage.DisplayAlert("image", img.ToString(), "ok");
+            //SrcImg = img;
+            var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
+            var downloadUrl = await firebaseStorage
+                .Child("profile_images")
+                .Child("cat.jpg")
+                .GetDownloadUrlAsync();
+            int tokenIndex = downloadUrl.IndexOf("token=");
+
+            if (tokenIndex >= 0)
+            {
+                downloadUrl = downloadUrl.Substring(tokenIndex + 6);
+                //Console.WriteLine(token);
+            }
+            SrcImg = downloadUrl;
+            //await Application.Current.MainPage.DisplayAlert("image", downloadUrl, "ok");
 
 
             //var httpClient = new HttpClient();
