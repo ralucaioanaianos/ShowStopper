@@ -19,6 +19,8 @@ namespace ShowStopper.Models
             set { _name = value; }
         }
 
+        public FileResult Photo { get; set; }
+
         public string Email { get; set; }
         public string ProfileImage { get; set; }
 
@@ -27,6 +29,8 @@ namespace ShowStopper.Models
         public string PhoneNumber { get; set; }
 
         public string CompanyName { get; set; } 
+
+        public string PhotoStr { get; set; }
 
         //public string ConnectionId { get; set; }
     }

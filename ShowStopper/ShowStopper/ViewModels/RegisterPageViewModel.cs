@@ -121,6 +121,13 @@ namespace ShowStopper.ViewModels
                     }
                     var newEmail = email.Replace('.', ',');
                     await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName);
+                    var stream = await photo.OpenReadAsync();
+                    var mstream = new MemoryStream();
+                    stream.CopyTo(mstream);
+                    byte [] bytes = mstream.ToArray();
+                    string base64str = Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks);
+                    await FirebaseDatabaseService.AddUserToDatabase2(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName, photo);
+
                 }
                 else
                 {
@@ -141,6 +148,7 @@ namespace ShowStopper.ViewModels
         {
             try
             {
+                // imag = await MediaPicker.PickPhotoAsync();
                 photo = await MediaPicker.PickPhotoAsync();
             }
             catch (Exception ex)

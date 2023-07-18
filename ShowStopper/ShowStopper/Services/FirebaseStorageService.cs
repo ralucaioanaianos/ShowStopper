@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace ShowStopper.Services
 {
@@ -19,7 +20,12 @@ namespace ShowStopper.Services
             string storagePath = "photos/" + fileName;
 
             var storage = new FirebaseStorage(storageUrl);
+            
             var photoStream = await photo.OpenReadAsync();
+            //var options = new UploadOptions
+            //{
+            //    ContentType = "image/jpeg" // Set the content type to image/jpeg
+            //};
             var photoUrl = await storage.Child(storagePath).PutAsync(photoStream);
             return photoUrl;
         }

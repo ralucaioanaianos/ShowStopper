@@ -21,7 +21,7 @@ namespace ShowStopper.Services
         public static async Task AddUserToDatabase(string phoneNumber, string firstName, string lastName, string email, string photoUrl, string userType, string companyName)
         {
             FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-            var response = await firebaseClient.Child("Users").PostAsync(new AppUser
+            var response = await firebaseClient.Child("Users2").PostAsync(new AppUser
             {
                 PhoneNumber = phoneNumber,
                 FirstName = firstName,
@@ -33,6 +33,23 @@ namespace ShowStopper.Services
             });
             string userId = response.Key;
         }
+
+        public static async Task AddUserToDatabase2(string phoneNumber, string firstName, string lastName, string email, string photoUrl, string userType, string companyName, FileResult photo)
+        {
+            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+            var response = await firebaseClient.Child("Users").PostAsync(new AppUser
+            {
+                PhoneNumber = phoneNumber,
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                Photo = photo,
+                UserType = userType,
+                CompanyName = companyName,
+            });
+            string userId = response.Key;
+        }
+
         public static async Task SavePhotoToDatabase(string photoUrl)
         {
             var database = new FirebaseClient(databaseUrl);
@@ -95,6 +112,8 @@ namespace ShowStopper.Services
             await Application.Current.MainPage.DisplayAlert("GetUserByEmai", user.Email, "OK");
             return user;
         }
+
+        
 
         public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName, string phoneNumber, string companyName)
         {

@@ -18,7 +18,7 @@ namespace ShowStopper.ViewModels
 {
     internal class ProfilePageViewModel : INotifyPropertyChanged
     {
-
+        public string ImageName { get; set; }
         public ImageSource SrcImg { get; set; }
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
@@ -44,7 +44,7 @@ namespace ShowStopper.ViewModels
 
         public ProfilePageViewModel(INavigation navigation)
         {
-            SrcImg = "https://firebasestorage.googleapis.com/v0/b/showstopper-71398.appspot.com/o/profile_images%2Fcat.jpg?alt=media&token=82358ea8-ab06-4942-bd23-cef6151358bf";
+            //SrcImg = "https://firebasestorage.googleapis.com/v0/b/showstopper-71398.appspot.com/o/profile_images%2Fcat.jpg?alt=media&token=82358ea8-ab06-4942-bd23-cef6151358bf";
             _navigation = navigation;
             Initialize();
             BackBtn = new Command(BackButtonTappedAsync);
@@ -70,8 +70,8 @@ namespace ShowStopper.ViewModels
             //SrcImg = img;
             var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
             var downloadUrl = await firebaseStorage
-                .Child("profile_images")
-                .Child("cat.jpg")
+                .Child("photos")
+                .Child(ImageName)
                 .GetDownloadUrlAsync();
             int tokenIndex = downloadUrl.IndexOf("token=");
 
@@ -80,7 +80,9 @@ namespace ShowStopper.ViewModels
                 downloadUrl = downloadUrl.Substring(tokenIndex + 6);
                 //Console.WriteLine(token);
             }
-            SrcImg = downloadUrl;
+            //SrcImg = downloadUrl;
+            //SrcImg = "/data/user/0/com.companyname.showstopper/cache/2203693cc04e0be7f4f024d5f9499e13/f7023d0b8cbd4a4ab495d4c99414263a/IMG_20230611_131105.jpg";
+            SrcImg = "59c19f7e-2433-4669-87f4-653b5d55a930";
             //await Application.Current.MainPage.DisplayAlert("image", downloadUrl, "ok");
 
 
@@ -117,6 +119,13 @@ namespace ShowStopper.ViewModels
             }
             Name = _databaseUser.FirstName + " " + _databaseUser.LastName;
             string profileImageUrl = _databaseUser.ProfileImage;
+            int startIndex = profileImageUrl.IndexOf("photos%2F") + 9;
+            int endIndex = profileImageUrl.LastIndexOf("?alt");
+
+            if (startIndex >= 0 && endIndex >= 0 && endIndex > startIndex)
+            {
+                ImageName = profileImageUrl.Substring(startIndex, endIndex - startIndex);
+            }
         }
 
         private async void EditProfileBtnTappedAsync(object parameter)
