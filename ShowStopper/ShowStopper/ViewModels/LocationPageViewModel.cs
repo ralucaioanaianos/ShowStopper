@@ -12,7 +12,7 @@ namespace ShowStopper.ViewModels
     internal class LocationPageViewModel : INotifyPropertyChanged
     {
         public string Name { get; set; }
-        public string Description = "desctptiron";
+        public string Descriptionn { get; set; }
         public string Owner { get; set; }
         public string Address { get; set; }
 
@@ -43,8 +43,9 @@ namespace ShowStopper.ViewModels
         public LocationPageViewModel(INavigation navigation, AppLocation appLocation)
         {
             _navigation = navigation;
-            Name = "Location";
-            Description = "location description";
+            
+            Name = appLocation.Name;
+            Descriptionn = appLocation.Description;
             Owner = appLocation.Owner;
             Address = appLocation.Address;
             BackBtn = new Command(BackButtonTappedAsync);
