@@ -18,6 +18,8 @@
             GradientColor2="#A782B9"
             IsBackButtonVisible="False"
             IsPlusButtonVisible="False"
+            IsEmptyHeartButtonVisible="False"
+            IsFullHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Profile">
@@ -123,14 +125,16 @@
                StrokeShape="RoundRectangle 800,800,800,800"
                HeightRequest="5">
                 </Border>
-            </StackLayout>
-            <customControls:GradientFilledButton BorderColor="Transparent"
+                <customControls:GradientFilledButton BorderColor="Transparent"
+                                                 Grid.Row="1"
                                                      VerticalOptions="End"
                                                      Text="Sign Out"
                                                      TextColor="White"
                                                      TapCommand="{Binding SignOutBtn}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
+            </StackLayout>
+            
         </Grid>
         
         

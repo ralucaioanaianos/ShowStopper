@@ -32,6 +32,23 @@ public partial class CustomNavigationBar : ContentView
         set => SetValue(IsPlusButtonVisibleProperty, value);
     }
 
+    private static readonly BindableProperty IsEmptyHeartButtonVisibleProperty
+           = BindableProperty.Create(nameof(IsEmptyHeartButtonVisible), typeof(string), typeof(CustomNavigationBar));
+
+    public string IsEmptyHeartButtonVisible
+    {
+        get => (string)GetValue(IsEmptyHeartButtonVisibleProperty);
+        set => SetValue(IsEmptyHeartButtonVisibleProperty, value);
+    }
+
+    private static readonly BindableProperty IsFullHeartButtonVisibleProperty
+           = BindableProperty.Create(nameof(IsFullHeartButtonVisible), typeof(string), typeof(CustomNavigationBar));
+
+    public string IsFullHeartButtonVisible
+    {
+        get => (string)GetValue(IsFullHeartButtonVisibleProperty);
+        set => SetValue(IsFullHeartButtonVisibleProperty, value);
+    }
 
     private static readonly BindableProperty GradientColor1Property
            = BindableProperty.Create(nameof(GradientColor1), typeof(Color), typeof(CustomNavigationBar));
@@ -100,5 +117,55 @@ public partial class CustomNavigationBar : ContentView
     {
         get => GetValue(PlusBtnTapCommandParameterProperty);
         set => SetValue(PlusBtnTapCommandParameterProperty, value);
+    }
+
+    ////////////////////////////
+    ///
+
+    public static readonly BindableProperty EmptyHeartBtnTapCommandProperty = BindableProperty.Create(
+           nameof(EmptyHeartBtnTapCommand),
+           typeof(ICommand),
+           typeof(CustomNavigationBar));
+
+    public ICommand EmptyHeartBtnTapCommand
+    {
+        get => (ICommand)GetValue(EmptyHeartBtnTapCommandProperty);
+        set => SetValue(EmptyHeartBtnTapCommandProperty, value);
+    }
+
+    public static readonly BindableProperty EmptyHeartBtnTapCommandParameterProperty = BindableProperty.Create(
+        nameof(EmptyHeartBtnTapCommandParameter),
+        typeof(object),
+        typeof(CustomNavigationBar));
+
+    public object EmptyHeartBtnTapCommandParameter
+    {
+        get => GetValue(EmptyHeartBtnTapCommandParameterProperty);
+        set => SetValue(EmptyHeartBtnTapCommandParameterProperty, value);
+    }
+
+    ///////
+    ///
+
+    public static readonly BindableProperty FullHeartBtnTapCommandProperty = BindableProperty.Create(
+           nameof(FullHeartBtnTapCommand),
+           typeof(ICommand),
+           typeof(CustomNavigationBar));
+
+    public ICommand FullHeartBtnTapCommand
+    {
+        get => (ICommand)GetValue(FullHeartBtnTapCommandProperty);
+        set => SetValue(FullHeartBtnTapCommandProperty, value);
+    }
+
+    public static readonly BindableProperty FullHeartBtnTapCommandParameterProperty = BindableProperty.Create(
+        nameof(FullHeartBtnTapCommandParameter),
+        typeof(object),
+        typeof(CustomNavigationBar));
+
+    public object FullHeartBtnTapCommandParameter
+    {
+        get => GetValue(FullHeartBtnTapCommandParameterProperty);
+        set => SetValue(FullHeartBtnTapCommandParameterProperty, value);
     }
 }

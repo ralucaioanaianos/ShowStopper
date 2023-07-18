@@ -1,6 +1,7 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
 using Microsoft.Maui.ApplicationModel.Communication;
+using Microsoft.Maui.Devices.Sensors;
 using ShowStopper.Models;
 using System;
 using System.Collections.Concurrent;
@@ -8,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
+using System.Xml.Linq;
 
 namespace ShowStopper.Services
 {
@@ -87,6 +90,46 @@ namespace ShowStopper.Services
                 });
             await Task.Delay(500);
             return events;
+        }
+
+        public static async Task AddEventToFavorites(AppEvent appEvent)
+        {
+            try
+            {
+                FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var newEmail = email.Replace('.', ',');
+                var response = await firebaseClient.Child("EventFavorites").PostAsync(new EventFavorite
+                {
+                    EventId = appEvent.Id,
+                    UserEmail = newEmail,
+             
+                });
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("addFavoriteEvent", ex.Message, "ok");
+            }
+        }
+
+        public static async Task AddLocationToFavorites(AppLocation appLocation)
+        {
+            try
+            {
+                FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var newEmail = email.Replace('.', ',');
+                var response = await firebaseClient.Child("LocationFavorites").PostAsync(new LocationFavorite
+                {
+                    LocationId = appLocation.Id,
+                    UserEmail = newEmail,
+
+                });
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("addFavoriteLocation", ex.Message, "ok");
+            }
         }
     }
 }
