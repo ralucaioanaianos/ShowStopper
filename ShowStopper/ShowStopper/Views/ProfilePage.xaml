@@ -124,6 +124,13 @@
                HeightRequest="5">
                 </Border>
             </StackLayout>
+            <customControls:GradientFilledButton BorderColor="Transparent"
+                                                     VerticalOptions="End"
+                                                     Text="Sign Out"
+                                                     TextColor="White"
+                                                     TapCommand="{Binding SignOutBtn}"
+                                                     GradientColor1="#1A2C6C"
+                                                     GradientColor2="#A782B9"></customControls:GradientFilledButton>
         </Grid>
         
         

@@ -21,6 +21,8 @@ namespace ShowStopper.ViewModels
         public string ImageName { get; set; }
         public ImageSource SrcImg { get; set; }
         public Command BackBtn { get; }
+
+        public Command SignOutBtn { get; set; }
         public Command PlusBtn { get; }
         private INavigation _navigation;
         private User _user;
@@ -49,6 +51,7 @@ namespace ShowStopper.ViewModels
             Initialize();
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
+            SignOutBtn = new Command(SignOutButtonTappedAsync);
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
         }
 
@@ -102,6 +105,12 @@ namespace ShowStopper.ViewModels
 
         private async void PlusButtonTappedAsync(object parameter)
         {
+        }
+
+        private async void SignOutButtonTappedAsync(object parameter)
+        {
+            FirebaseAuthenticationService.LogoutUser();
+            await _navigation.PushAsync(new LoginPage("false"));
         }
 
         private async Task GetUser()
