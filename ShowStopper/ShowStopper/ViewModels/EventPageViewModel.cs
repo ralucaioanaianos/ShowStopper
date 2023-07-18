@@ -11,7 +11,7 @@ namespace ShowStopper.ViewModels
     class EventPageViewModel : INotifyPropertyChanged
     {
         public string Name { get; set; }
-        public string Description = "desctptiron";
+        public string Descriptionn { get; set; }
         public string Date { get; set; }
         public string Location { get; set; }
 
@@ -42,8 +42,8 @@ namespace ShowStopper.ViewModels
         public EventPageViewModel(INavigation navigation, AppEvent appEvent)
         {
             _navigation = navigation;
-            Name = "Event";
-            Description = "event description";
+            Name = appEvent.Name;
+            Descriptionn = appEvent.Description;
             Date = appEvent.Date;
             Location = appEvent.Location;
             Organizer = appEvent.Organizer;

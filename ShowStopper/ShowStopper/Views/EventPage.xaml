@@ -22,7 +22,7 @@
             IsPlusButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="{Binding Event}">
+            PageName="{Binding Name}">
             </customControls:CustomNavigationBar>
             <Grid HorizontalOptions="FillAndExpand"
                   Grid.Row="1">
@@ -38,20 +38,20 @@
                        HeightRequest="150"
                        Margin="0,20,0,0"></Image>
                 <Label Grid.Row="1"
-                       Text="13 March 2023"
+                       Text="{Binding Date}"
                        HorizontalOptions="End"
                        FontAttributes="Bold"
                        Margin="15,15,20,0"
                        FontSize="15"></Label>
                 <Label Grid.Row="2"
-                       Text="Cluj Arena"
+                       Text="{Binding Location}"
                        FontAttributes="Bold"
                        HorizontalOptions="End"
                        Margin="15,0,20,0"
                        FontSize="15"></Label>
                 <Label Grid.Row="3"
                        Margin="20,60,20,10"
-                       Text="{Binding Description}"></Label>
+                       Text="{Binding Descriptionn}"></Label>
                 <customControls:GradientFilledButton BorderColor="Transparent"
                                                      VerticalOptions="End"
                                                      Grid.Row="4"
