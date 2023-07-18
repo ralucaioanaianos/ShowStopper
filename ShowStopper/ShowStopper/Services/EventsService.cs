@@ -112,24 +112,6 @@ namespace ShowStopper.Services
             }
         }
 
-        public static async Task AddLocationToFavorites(AppLocation appLocation)
-        {
-            try
-            {
-                FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-                var newEmail = email.Replace('.', ',');
-                var response = await firebaseClient.Child("LocationFavorites").PostAsync(new LocationFavorite
-                {
-                    LocationId = appLocation.Id,
-                    UserEmail = newEmail,
-
-                });
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("addFavoriteLocation", ex.Message, "ok");
-            }
-        }
+        
     }
 }

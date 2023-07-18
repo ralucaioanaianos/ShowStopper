@@ -8,7 +8,7 @@ namespace ShowStopper.Models
 {
     public class LocationFavorite
     {
-        public string LocationId { get; set; }  
+        public string LocationName { get; set; }  
         public string UserEmail { get; set; }
     }
 }

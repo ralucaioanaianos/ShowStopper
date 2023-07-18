@@ -1,4 +1,5 @@
 ﻿using ShowStopper.Models;
+using ShowStopper.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,6 +12,7 @@ namespace ShowStopper.ViewModels
 {
     internal class LocationPageViewModel : INotifyPropertyChanged
     {
+        private AppLocation _location;
         public string Name { get; set; }
         public string Descriptionn { get; set; }
         public string Owner { get; set; }
@@ -21,6 +23,10 @@ namespace ShowStopper.ViewModels
 
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
+
+        public Command EmptyHeartBtn { get; }
+
+        public Command FullHeartBtn { get; }
 
         private INavigation _navigation;
 
@@ -40,16 +46,22 @@ namespace ShowStopper.ViewModels
 
         }
 
+        private async void EmptyHeartButtonTappedAsync(object parameter)
+        {
+            await LocationsService.AddLocationToFavorites(_location);
+        }
+
         public LocationPageViewModel(INavigation navigation, AppLocation appLocation)
         {
             _navigation = navigation;
-            
+            _location = appLocation;
             Name = appLocation.Name;
             Descriptionn = appLocation.Description;
             Owner = appLocation.Owner;
             Address = appLocation.Address;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
+            EmptyHeartBtn = new Command(EmptyHeartButtonTappedAsync);
             SeeEventsBtn = new Command(SeeEventsButtonTappedAsync);
         }
 

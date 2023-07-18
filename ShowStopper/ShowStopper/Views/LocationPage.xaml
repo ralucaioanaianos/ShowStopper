@@ -22,6 +22,7 @@
             IsFullHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
+            EmptyHeartBtnTapCommand="{Binding EmptyHeartBtn}"
             PageName="{Binding Name}">
             </customControls:CustomNavigationBar>
             <Grid HorizontalOptions="FillAndExpand"
