@@ -14,6 +14,15 @@ public partial class CustomNavigationBar : ContentView
         set => SetValue(PageNameProperty, value);
     }
 
+    public static readonly BindableProperty FavoritesTextProperty =
+    BindableProperty.Create(nameof(FavoritesText), typeof(string), typeof(CustomNavigationBar));
+
+    public string FavoritesText
+    {
+        get => (string)GetValue(FavoritesTextProperty);
+        set => SetValue(FavoritesTextProperty, value);
+    }
+
     private static readonly BindableProperty IsBackButtonVisibleProperty
            = BindableProperty.Create(nameof(IsBackButtonVisible), typeof(string), typeof(CustomNavigationBar));
 

@@ -21,6 +21,7 @@
             IsEmptyHeartButtonVisible="True"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
+            FavoritesText="{Binding FavoritesText}"
             EmptyHeartBtnTapCommand="{Binding EmptyHeartBtn}"
             PageName="{Binding Name}">
             </customControls:CustomNavigationBar>

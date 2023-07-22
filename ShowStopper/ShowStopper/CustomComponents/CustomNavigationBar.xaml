@@ -41,13 +41,19 @@
                              HeightRequest="50"
                              HorizontalOptions="EndAndExpand"
                              IsVisible="{Binding Source={x:Reference This}, Path=IsPlusButtonVisible}"></ImageButton>
-                <ImageButton Source="red_heart.png"
-                             Grid.Column="2"
-                             Command="{Binding Source={x:Reference This}, Path=EmptyHeartBtnTapCommand}"
-                             HeightRequest="50"
-                             HorizontalOptions="EndAndExpand"
-                             BorderColor="White"
-                             IsVisible="{Binding Source={x:Reference This}, Path=IsEmptyHeartButtonVisible}"></ImageButton>
+                <VerticalStackLayout Grid.Column="2"
+                                     HorizontalOptions="EndAndExpand"
+                                     WidthRequest="70"
+                                     IsVisible="{Binding Source={x:Reference This}, Path=IsEmptyHeartButtonVisible}">   
+                    <ImageButton Source="red_heart.png"
+                                 Command="{Binding Source={x:Reference This}, Path=EmptyHeartBtnTapCommand}"
+                                 HeightRequest="50"
+                                 BorderColor="White"></ImageButton>
+                    <Label Text="{Binding Source={x:Reference This}, Path=FavoritesText}"
+                           TextColor="White"
+                           FontSize="9"></Label>
+                </VerticalStackLayout>
+                
             </Grid>
             
         </Frame>

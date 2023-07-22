@@ -18,6 +18,8 @@ namespace ShowStopper.ViewModels
         public string Owner { get; set; }
         public string Address { get; set; }
 
+        public string FavoritesText { get; set; }
+
         public System.Boolean IsEmptyHeartButtonVisible { get; } 
         public bool IsNotAddedToFavorites { get; } 
 
@@ -51,7 +53,16 @@ namespace ShowStopper.ViewModels
 
         private async void EmptyHeartButtonTappedAsync(object parameter)
         {
-            await LocationsService.AddLocationToFavorites(_location);
+            bool result = await LocationsService.IsLocationInFavorites(_location);
+            if (result)
+            {
+                await LocationsService.RemoveLocationFromFavorites(_location);
+            }
+            else
+            {
+                await LocationsService.AddLocationToFavorites(_location);
+
+            }
         }
 
         public LocationPageViewModel(INavigation navigation, AppLocation appLocation)
@@ -59,6 +70,7 @@ namespace ShowStopper.ViewModels
             IsEmptyHeartButtonVisible = false;
             _navigation = navigation;
             _location = appLocation;
+            InitializeFavoritesButtons();
             Name = appLocation.Name;
             Descriptionn = appLocation.Description;
             Owner = appLocation.Owner;
@@ -73,7 +85,16 @@ namespace ShowStopper.ViewModels
         {
             //IsAddedToFavorites = await LocationsService.IsLocationInFavorites(_location);
             //IsNotAddedToFavorites = !IsAddedToFavorites;
+
             bool result = await LocationsService.IsLocationInFavorites(_location);
+            if (result)
+            {
+                FavoritesText = "Remove from Favorites";
+            }
+            else
+            {
+                FavoritesText = "Add to Favorites";
+            }
         //    if (result)
         //    {
         //        IsNotAddedToFavorites = "False";

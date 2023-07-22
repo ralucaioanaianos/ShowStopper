@@ -122,6 +122,8 @@ namespace ShowStopper.Services
                         await firebaseClient.Child("LocationFavorites").Child(favorite.Key).DeleteAsync();
                     }
                 }
+                await Application.Current.MainPage.DisplayAlert("removed favorite location", "yey", "ok");
+
             }
             catch (Exception ex)
             {
