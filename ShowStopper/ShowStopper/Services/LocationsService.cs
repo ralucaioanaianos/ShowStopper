@@ -162,5 +162,54 @@ namespace ShowStopper.Services
                 return false;
             }
         }
+
+        public static async Task<AppLocation> GetLocationByName(string name)
+        {
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var locationQuery = firebaseClient
+                    .Child("Locations")
+                    .OrderBy("Name")
+                    .EqualTo(name)
+                    .LimitToFirst(1);
+                var locationSnapshot = await locationQuery.OnceAsync<AppLocation>();
+                var location = locationSnapshot.FirstOrDefault()?.Object;
+                await Application.Current.MainPage.DisplayAlert("GetUserByEmai", location.Name, "OK");
+                return location;
+            } catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("getlocation by name", ex.Message, "ok");
+                return null;
+            }
+            }
+            
+
+        public static async Task<List<LocationFavorite>> GetFavoriteLocationsByEmail(string email)
+        {
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var favoriteLocations = new ConcurrentBag<LocationFavorite>();
+                var newEmail = email.Replace('.', ',');
+                var locationsQuery = firebaseClient
+                    .Child("LocationFavorites").AsObservable<LocationFavorite>().Subscribe(async (e) =>
+                    {
+                        Console.WriteLine(e.Object.UserEmail + ' ' + email);
+                        if (e.Object.UserEmail == newEmail)
+                        {
+                            favoriteLocations.Add(e.Object);
+                        }
+                    });
+                await Task.Delay(TimeSpan.FromSeconds(2));
+                locationsQuery.Dispose();
+                return favoriteLocations.ToList();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("getLocationfavorite", ex.Message, "ok");
+                return null;
+            }
+        }
     }
 }

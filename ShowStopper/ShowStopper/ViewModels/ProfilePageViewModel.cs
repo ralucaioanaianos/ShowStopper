@@ -21,7 +21,7 @@ namespace ShowStopper.ViewModels
         public string ImageName { get; set; }
         public ImageSource SrcImg { get; set; }
         public Command BackBtn { get; }
-
+        public Command FavoriteLocationsBtn { get; }
         public Command SignOutBtn { get; set; }
         public Command PlusBtn { get; }
         private INavigation _navigation;
@@ -53,24 +53,12 @@ namespace ShowStopper.ViewModels
             PlusBtn = new Command(PlusButtonTappedAsync);
             SignOutBtn = new Command(SignOutButtonTappedAsync);
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
+            FavoriteLocationsBtn = new Command(FavoriteLocationsBtnTappedAsync);
         }
 
         private async void Initialize()
         {
             await GetUser();
-
-
-            //var webClient = new WebClient();
-            //string stroageImage = await new FirebaseStorage("showstopper-71398.appspot.com")
-            //    .Child("profile_images")
-            //    .Child("cat.jpg")
-            //    .GetDownloadUrlAsync();
-            //string imgurl = stroageImage;
-            //byte[] imgBytes = webClient.DownloadData(imgurl);
-            //string img = Convert.ToBase64String(imgBytes);
-            // var img = ImageSource.FromStream(() => new MemoryStream(imgBytes));
-            // await Application.Current.MainPage.DisplayAlert("image", img.ToString(), "ok");
-            //SrcImg = img;
             var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
             var downloadUrl = await firebaseStorage
                 .Child("photos")
@@ -83,20 +71,8 @@ namespace ShowStopper.ViewModels
                 downloadUrl = downloadUrl.Substring(tokenIndex + 6);
                 //Console.WriteLine(token);
             }
-            //SrcImg = downloadUrl;
-            //SrcImg = "/data/user/0/com.companyname.showstopper/cache/2203693cc04e0be7f4f024d5f9499e13/f7023d0b8cbd4a4ab495d4c99414263a/IMG_20230611_131105.jpg";
             SrcImg = "59c19f7e-2433-4669-87f4-653b5d55a930";
-            //await Application.Current.MainPage.DisplayAlert("image", downloadUrl, "ok");
-
-
-            //var httpClient = new HttpClient();
-            //var imageBytes = await httpClient.GetByteArrayAsync(downloadUrl);
-
-            //Stream imageStream = new MemoryStream(imageBytes);
-            //var imageSource = ImageSource.FromStream(() => imageStream);
-            //SrcImg = imageSource;
             OnPropertyChanged(nameof(Name)); // Notify the UI about the updated Name value
-           // SrcImg = await FirebaseStorageService.LoadImages();
         }
 
         private async void BackButtonTappedAsync(object parameter)
@@ -140,6 +116,11 @@ namespace ShowStopper.ViewModels
         private async void EditProfileBtnTappedAsync(object parameter)
         {
             await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser));
+        }
+
+        private async void FavoriteLocationsBtnTappedAsync(object parameter)
+        {
+            await _navigation.PushAsync(new FavoriteLocationsPage());
         }
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
