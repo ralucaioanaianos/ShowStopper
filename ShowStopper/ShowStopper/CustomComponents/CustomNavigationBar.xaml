@@ -41,20 +41,13 @@
                              HeightRequest="50"
                              HorizontalOptions="EndAndExpand"
                              IsVisible="{Binding Source={x:Reference This}, Path=IsPlusButtonVisible}"></ImageButton>
-                <ImageButton Source="empty_heart_icon.png"
+                <ImageButton Source="red_heart.png"
                              Grid.Column="2"
                              Command="{Binding Source={x:Reference This}, Path=EmptyHeartBtnTapCommand}"
                              HeightRequest="50"
                              HorizontalOptions="EndAndExpand"
                              BorderColor="White"
                              IsVisible="{Binding Source={x:Reference This}, Path=IsEmptyHeartButtonVisible}"></ImageButton>
-                <ImageButton Source="full_heart_icon.png"
-                             Grid.Column="2"
-                             Command="{Binding Source={x:Reference This}, Path=FullHeartBtnTapCommand}"
-                             HeightRequest="50"
-                             HorizontalOptions="EndAndExpand"
-                             BorderColor="White"
-                             IsVisible="{Binding Source={x:Reference This}, Path=IsFullHeartButtonVisible}"></ImageButton>
             </Grid>
             
         </Frame>

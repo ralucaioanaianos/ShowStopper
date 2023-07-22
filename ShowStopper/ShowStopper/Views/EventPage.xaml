@@ -21,7 +21,6 @@
             IsBackButtonVisible="True"
             IsPlusButtonVisible="False"
             IsEmptyHeartButtonVisible="True"
-            IsFullHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="{Binding Name}">

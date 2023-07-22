@@ -1,5 +1,6 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
+using Microsoft.Maui.ApplicationModel.Communication;
 using ShowStopper.Models;
 using System;
 using System.Collections.Concurrent;
@@ -96,6 +97,67 @@ namespace ShowStopper.Services
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("addFavoriteLocation", ex.Message, "ok");
+            }
+        }
+
+        public static async Task RemoveLocationFromFavorites(AppLocation appLocation)
+        {
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var locations = new ConcurrentBag<AppLocation>();
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var newEmail = email.Replace('.', ',');
+                var locationFavorites = await firebaseClient
+            .Child("LocationFavorites")
+            .OrderBy("LocationName")
+            .EqualTo(appLocation.Name)
+            .OnceAsync<LocationFavorite>();
+
+                // Iterate through the matching favorites and remove them
+                foreach (var favorite in locationFavorites)
+                {
+                    if (favorite.Object.UserEmail == newEmail)
+                    {
+                        await firebaseClient.Child("LocationFavorites").Child(favorite.Key).DeleteAsync();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("delete location favorite", ex.Message, "ok");
+            }
+        }
+
+        public static async Task<bool> IsLocationInFavorites(AppLocation appLocation)
+        {
+            try
+            {
+                bool isAdded = false;
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var locations = new ConcurrentBag<AppLocation>();
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var newEmail = email.Replace('.', ',');
+                var locationFavorites = await firebaseClient
+            .Child("LocationFavorites")
+            .OrderBy("LocationName")
+            .EqualTo(appLocation.Name)
+            .OnceAsync<LocationFavorite>();
+
+                // Iterate through the matching favorites and remove them
+                foreach (var favorite in locationFavorites)
+                {
+                    if (favorite.Object.UserEmail == newEmail)
+                    {
+                        isAdded = true;
+                    }
+                }
+                return isAdded;
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("check location favorite", ex.Message, "ok");
+                return false;
             }
         }
     }

@@ -19,7 +19,6 @@
             IsBackButtonVisible="False"
             IsPlusButtonVisible="True"
             IsEmptyHeartButtonVisible="False"
-            IsFullHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Locations">

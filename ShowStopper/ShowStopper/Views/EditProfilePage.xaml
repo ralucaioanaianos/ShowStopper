@@ -18,7 +18,6 @@
             IsBackButtonVisible="True"
             IsPlusButtonVisible="False"
             IsEmptyHeartButtonVisible="False"
-            IsFullHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="Edit Profile">

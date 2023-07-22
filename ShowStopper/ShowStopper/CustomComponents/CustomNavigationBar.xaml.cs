@@ -147,25 +147,5 @@ public partial class CustomNavigationBar : ContentView
     ///////
     ///
 
-    public static readonly BindableProperty FullHeartBtnTapCommandProperty = BindableProperty.Create(
-           nameof(FullHeartBtnTapCommand),
-           typeof(ICommand),
-           typeof(CustomNavigationBar));
-
-    public ICommand FullHeartBtnTapCommand
-    {
-        get => (ICommand)GetValue(FullHeartBtnTapCommandProperty);
-        set => SetValue(FullHeartBtnTapCommandProperty, value);
-    }
-
-    public static readonly BindableProperty FullHeartBtnTapCommandParameterProperty = BindableProperty.Create(
-        nameof(FullHeartBtnTapCommandParameter),
-        typeof(object),
-        typeof(CustomNavigationBar));
-
-    public object FullHeartBtnTapCommandParameter
-    {
-        get => GetValue(FullHeartBtnTapCommandParameterProperty);
-        set => SetValue(FullHeartBtnTapCommandParameterProperty, value);
-    }
+    
 }
