@@ -278,7 +278,13 @@
                         
                     </StackLayout>-->
                     <VerticalStackLayout>
-                        <Label Text="Category"></Label>
+                        <customControls:GradientFilledButton
+                GradientColor1="#1A2C6C"
+                GradientColor2="#A782B9"
+                TextColor="White"
+                TapCommand="{Binding SaveBtn}"
+                BorderColor="Transparent"
+                Text="Save"></customControls:GradientFilledButton>
                     </VerticalStackLayout>
                 </ScrollView>
 

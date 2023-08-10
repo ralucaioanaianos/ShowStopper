@@ -65,6 +65,7 @@ namespace ShowStopper.ViewModels
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
 
+        public Command SaveBtn { get; }
         public ICommand MusicTappedCommand { get; }
 
         public Command EventTapped { get; }
@@ -119,6 +120,12 @@ namespace ShowStopper.ViewModels
             IsShowingEvents = true;
             IsShowingLocations = false;
             IsMusicExpanded = false;
+            SaveBtn = new Command(SaveBtnTappedAsync);
+        }
+
+        private async void SaveBtnTappedAsync(object parameter)
+        {
+            await Application.Current.MainPage.DisplayAlert("ok", "ok", "ok");
         }
 
         public void ExpandMusicCategories()
