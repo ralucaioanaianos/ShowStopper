@@ -66,6 +66,8 @@ namespace ShowStopper.ViewModels
         public Command PlusBtn { get; }
 
         public Command SaveBtn { get; }
+
+        public Command ShowFiltersBtn { get; }
         public ICommand MusicTappedCommand { get; }
 
         public Command EventTapped { get; }
@@ -121,6 +123,12 @@ namespace ShowStopper.ViewModels
             IsShowingLocations = false;
             IsMusicExpanded = false;
             SaveBtn = new Command(SaveBtnTappedAsync);
+            ShowFiltersBtn = new Command(ShowFiltersBtnTappedAsync);
+        }
+
+        private async void ShowFiltersBtnTappedAsync(object parameter)
+        {
+            await Application.Current.MainPage.DisplayAlert("ok", "filters", "ok");
         }
 
         private async void SaveBtnTappedAsync(object parameter)

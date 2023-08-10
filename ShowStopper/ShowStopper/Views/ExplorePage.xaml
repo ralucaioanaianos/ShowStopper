@@ -47,7 +47,10 @@
                                                     HorizontalOptions="StartAndExpand"
                                                     VerticalOptions="Center"></customControls:GradientFilledLabel>
                 </StackLayout>
-
+                <ImageButton Source="filter_icon.png" 
+                             Grid.Column="2" 
+                             HorizontalOptions="End"
+                             Command="{Binding ShowFiltersBtn}"/>
                 <ListView x:Name="eventsListView"
                 ItemsSource="{Binding Events}"
                   SelectedItem="{Binding SelectedEvent}"
@@ -167,7 +170,7 @@
             
         </Grid>
         <Grid x:Name="sidebar" 
-              IsVisible="True" 
+              IsVisible="False" 
               WidthRequest="300" 
               HorizontalOptions="End" 
               VerticalOptions="FillAndExpand">
