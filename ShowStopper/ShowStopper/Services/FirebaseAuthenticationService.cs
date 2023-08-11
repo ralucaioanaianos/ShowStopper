@@ -62,9 +62,10 @@ namespace ShowStopper.Services
             return user;
         }
 
-        public static void LogoutUser()
+        public static async void LogoutUser()
         {
-            client.SignOut();
+            await client.ResetEmailPasswordAsync(client.User.Info.Email);
+            //client.SignOut();
         }
     }
 }

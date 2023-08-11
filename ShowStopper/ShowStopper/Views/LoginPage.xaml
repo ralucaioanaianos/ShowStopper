@@ -119,12 +119,7 @@
                         Grid.Row="7"
                         FontAttributes="Bold"
                         HorizontalOptions="CenterAndExpand"
-                        Text="Forget Password" />
-                    <Label
-                        Grid.Row="8"
-                        Margin="0,-10,0,0"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="Don't have an account? Sign up here" />
+                        Text="I forgot my password" />
                 </Grid>
             </Frame>
         </Grid>

@@ -126,7 +126,7 @@ namespace ShowStopper.ViewModels
                     stream.CopyTo(mstream);
                     byte [] bytes = mstream.ToArray();
                     string base64str = Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks);
-                    await FirebaseDatabaseService.AddUserToDatabase2(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName, photo);
+                    await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName);
 
                 }
                 else

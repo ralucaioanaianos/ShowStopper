@@ -18,14 +18,11 @@ namespace ShowStopper.ViewModels
     internal class MyEventsPageViewModel : INotifyPropertyChanged
     {
         private ObservableCollection<AppEvent> _originalEvents;
-
         public bool IsListEmpty { get; set; }
         public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
-
         public Command EventTapped { get; }
-
         private ObservableCollection<AppEvent> _events;
         public ObservableCollection<AppEvent> Events
         {
@@ -56,7 +53,6 @@ namespace ShowStopper.ViewModels
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             EventTapped = new Command(EventTappedAsync);
-            //EventsListView.ItemsSource = Events;
         }
 
         private AppEvent _selectedEvent;
@@ -98,21 +94,10 @@ namespace ShowStopper.ViewModels
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
             List<AppEvent> list = await EventsService.getEventsByEmail(email);
-            if (list.Count == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert("list0", email, "ok");
-            }
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
-            
             Events = collection;
-            _originalEvents = new ObservableCollection<AppEvent>(Events); // Initialize with your original locations data
-
+            _originalEvents = new ObservableCollection<AppEvent>(Events);
             IsDataLoaded = true;
-            //await Task.Delay(1000);
-            if (Events.Count == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
-            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -122,17 +107,11 @@ namespace ShowStopper.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        
-
         private async void EventTappedAsync(object parameter)
         {
             if (parameter is AppEvent selectedEvent)
             {
                 await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedEvent.Name}", "OK");
-
-                // Call your custom method with the selected event
-                // Example:
-                // DoSomethingWithSelectedEvent(selectedEvent);
             }
         }
     }
