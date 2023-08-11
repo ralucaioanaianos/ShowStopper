@@ -9,4 +9,12 @@ public partial class MyEventsPage : ContentPage
         InitializeComponent();
         BindingContext = new MyEventsPageViewModel(Navigation);
     }
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (BindingContext is MyEventsPageViewModel viewModel)
+        {
+            viewModel.UpdateSearchResults(e.NewTextValue);
+        }
+    }
 }

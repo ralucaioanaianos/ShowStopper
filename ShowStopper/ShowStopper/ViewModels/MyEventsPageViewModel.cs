@@ -17,6 +17,8 @@ namespace ShowStopper.ViewModels
 {
     internal class MyEventsPageViewModel : INotifyPropertyChanged
     {
+        private ObservableCollection<AppEvent> _originalEvents;
+
         public bool IsListEmpty { get; set; }
         public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
@@ -49,11 +51,11 @@ namespace ShowStopper.ViewModels
 
         public MyEventsPageViewModel(INavigation navigation)
         {
+            LoadEvents();
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             EventTapped = new Command(EventTappedAsync);
-            LoadEvents();
             //EventsListView.ItemsSource = Events;
         }
 
@@ -66,6 +68,20 @@ namespace ShowStopper.ViewModels
                 _selectedEvent = value;
                 OnPropertyChanged(nameof(SelectedEvent));
                 OnEventSelected();
+            }
+        }
+
+        public void UpdateSearchResults(string searchText)
+        {
+            if (string.IsNullOrWhiteSpace(searchText))
+            {
+                _originalEvents = new ObservableCollection<AppEvent>(Events);
+            }
+            else
+            {
+                Events = new ObservableCollection<AppEvent>(
+                    _originalEvents.Where(l => l.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                                                 l.Location.Contains(searchText, StringComparison.OrdinalIgnoreCase)));
             }
         }
 
@@ -89,7 +105,9 @@ namespace ShowStopper.ViewModels
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
             
             Events = collection;
-                IsDataLoaded = true;
+            _originalEvents = new ObservableCollection<AppEvent>(Events); // Initialize with your original locations data
+
+            IsDataLoaded = true;
             //await Task.Delay(1000);
             if (Events.Count == 0)
             {

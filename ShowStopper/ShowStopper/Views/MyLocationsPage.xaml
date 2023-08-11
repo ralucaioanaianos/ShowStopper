@@ -23,51 +23,55 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Locations">
         </customControls:CustomNavigationBar>
-        <SearchBar Placeholder="Search through your locations" TextChanged="SearchBar_TextChanged" />
-        <ListView ItemsSource="{Binding Locations}"
+        <StackLayout Grid.Row="1">
+            <SearchBar Placeholder="Search through your locations" TextChanged="SearchBar_TextChanged"
+                   />
+
+            <ListView ItemsSource="{Binding Locations}"
                   SelectedItem="{Binding SelectedLocation}"
-                  Grid.Row="1"
                   RowHeight="100">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell Height="100">
-                        <ContentView VerticalOptions="FillAndExpand"
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <ContentView VerticalOptions="FillAndExpand"
                                      IsVisible="{Binding IsDataLoaded}">
-                            <!--<customControls:LocationElement Name="inding Name}"
+                                <!--<customControls:LocationElement Name="inding Name}"
                                                          Address="data"
                                                          Owner="loc"></customControls:LocationElement>-->
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"></ColumnDefinition>
-                                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                                </Grid.ColumnDefinitions>
-                                <Image Source="cat_user.jpg"
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="cat_user.jpg"
                    Grid.Column="0"
                    HeightRequest="80"></Image>
-                                <Grid Grid.Column="1"
+                                    <Grid Grid.Column="1"
                   HeightRequest="80">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"></RowDefinition>
-                                        <RowDefinition Height="Auto"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    <VerticalStackLayout Grid.Row="0">
-                                        <Label Text="{Binding Name}"
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <VerticalStackLayout Grid.Row="0">
+                                            <Label Text="{Binding Name}"
                            FontSize="16"
                            FontAttributes="Bold"></Label>
-                                        <Label Text="{Binding Address}"
+                                            <Label Text="{Binding Address}"
                            FontSize="13"></Label>
-                                    </VerticalStackLayout>
-                                    <Label Grid.Row="1"
+                                        </VerticalStackLayout>
+                                        <Label Grid.Row="1"
                        Text="{Binding Owner}"
                        FontAttributes="Bold"
                        FontSize="14"></Label>
+                                    </Grid>
                                 </Grid>
-                            </Grid>
-                        </ContentView>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        
         <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
         <Grid VerticalOptions="Center"
               IsVisible="False"
