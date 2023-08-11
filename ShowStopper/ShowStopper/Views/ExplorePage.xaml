@@ -7,12 +7,15 @@
              IconImageSource="compass_icon.png"
              NavigationPage.HasNavigationBar="False">
     <Grid VerticalOptions="FillAndExpand">
+        
         <Grid Padding="0"
           HorizontalOptions="FillAndExpand">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
+           
             <customControls:CustomNavigationBar
             Grid.Row="0"
             GradientColor1="#1A2C6C"
@@ -25,7 +28,9 @@
             PageName="Explore">
             </customControls:CustomNavigationBar>
             <StackLayout Grid.Row="1">
+                
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    
                     <!--<Label Text="Events" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />-->
                     <customControls:GradientFilledLabel BorderColor="Transparent"
                                                     GradientColor1="#1A2C6C"
@@ -137,6 +142,10 @@
                 </ListView>
 
             </StackLayout>
+            <ImageButton Source="filter_icon.png"  
+                         Margin="0,0,20,0"
+                         HorizontalOptions="End"
+                         Command="{Binding ShowFiltersBtn}"/>
 
             <!--<ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
         <Grid VerticalOptions="Center"

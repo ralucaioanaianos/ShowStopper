@@ -17,16 +17,21 @@ namespace ShowStopper.Services
         {
             // Upload the photo to Firebase Storage
             string fileName = Path.GetFileName(photo.FullPath);
-            string storagePath = "photos/" + fileName;
+            string storagePath = "photos/" + "image.jpg";
+
+            var metadata = new Firebase.Storage.FirebaseMetaData
+            {
+                ContentType = "image/jpeg",
+                FullPath = storagePath,
+                // other metadata options
+            };
 
             var storage = new FirebaseStorage(storageUrl);
             
             var photoStream = await photo.OpenReadAsync();
-            //var options = new UploadOptions
-            //{
-            //    ContentType = "image/jpeg" // Set the content type to image/jpeg
-            //};
+
             var photoUrl = await storage.Child(storagePath).PutAsync(photoStream);
+            
             return photoUrl;
         }
 
