@@ -9,4 +9,13 @@ public partial class ExplorePage : ContentPage
 		InitializeComponent();
 		BindingContext = new ExplorePageViewModel(Navigation);
 	}
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (BindingContext is ExplorePageViewModel viewModel)
+        {
+            viewModel.UpdateSearchResults(e.NewTextValue);
+        }
+    }
+
 }

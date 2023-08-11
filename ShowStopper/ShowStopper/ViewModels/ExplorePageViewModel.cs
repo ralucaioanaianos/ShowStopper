@@ -14,6 +14,22 @@ namespace ShowStopper.ViewModels
 {
     internal class ExplorePageViewModel : INotifyPropertyChanged
     {
+        private string _searchQuery;
+        public string SearchQuery
+        {
+            get { return _searchQuery; }
+            set
+            {
+                _searchQuery = value;
+                OnPropertyChanged(nameof(SearchQuery));
+                ApplySearch();
+            }
+        }
+
+        private ObservableCollection<AppEvent> _originalEvents;
+        private ObservableCollection<AppLocation> _originalLocations;
+
+
         private bool _isShowingLocations;
         public bool IsShowingLocations
         {
@@ -126,6 +142,56 @@ namespace ShowStopper.ViewModels
             ShowFiltersBtn = new Command(ShowFiltersBtnTappedAsync);
         }
 
+        public void UpdateSearchResults(string searchText)
+        {
+            if (IsShowingEvents)
+            {
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    Events = new ObservableCollection<AppEvent>(_originalEvents);
+                }
+                else
+                {
+                    Events = new ObservableCollection<AppEvent>(
+                        _originalEvents.Where(e => e.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                                                   e.Description.Contains(searchText, StringComparison.OrdinalIgnoreCase)));
+                }
+            }
+            else if (IsShowingLocations)
+            {
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    Locations = new ObservableCollection<AppLocation>(_originalLocations);
+                }
+                else
+                {
+                    Locations = new ObservableCollection<AppLocation>(
+                        _originalLocations.Where(l => l.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                                                     l.Address.Contains(searchText, StringComparison.OrdinalIgnoreCase)));
+                }
+            }
+        }
+
+
+
+
+
+        private void ApplySearch()
+        {
+            if (IsShowingEvents)
+            {
+                Events = new ObservableCollection<AppEvent>(
+                    Events.Where(e => e.Name.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                                       e.Description.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)));
+            }
+            else if (IsShowingLocations)
+            {
+                Locations = new ObservableCollection<AppLocation>(
+                    Locations.Where(l => l.Name.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase) ||
+                                         l.Address.Contains(SearchQuery, StringComparison.OrdinalIgnoreCase)));
+            }
+        }
+
         private async void ShowFiltersBtnTappedAsync(object parameter)
         {
             await Application.Current.MainPage.DisplayAlert("ok", "filters", "ok");
@@ -221,6 +287,7 @@ namespace ShowStopper.ViewModels
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
 
             Events = collection;
+            _originalEvents = new ObservableCollection<AppEvent>(Events); // Initialize with your original events data
             IsDataLoaded = true;
             await Task.Delay(1000);
             if (Events.Count == 0)
@@ -239,6 +306,7 @@ namespace ShowStopper.ViewModels
             ObservableCollection<AppLocation> collection = new ObservableCollection<AppLocation>(list);
 
             Locations = collection;
+            _originalLocations = new ObservableCollection<AppLocation>(Locations); // Initialize with your original locations data
             IsDataLoaded = true;
             await Task.Delay(1000);
             if (Locations.Count == 0)

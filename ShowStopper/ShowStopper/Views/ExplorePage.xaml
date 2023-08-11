@@ -52,6 +52,7 @@
                                                     HorizontalOptions="StartAndExpand"
                                                     VerticalOptions="Center"></customControls:GradientFilledLabel>
                 </StackLayout>
+                <SearchBar Placeholder="Search events and locations" TextChanged="SearchBar_TextChanged" />
                 <ImageButton Source="filter_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
