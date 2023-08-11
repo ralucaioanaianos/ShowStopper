@@ -55,6 +55,7 @@ namespace ShowStopper.Services
             var database = new FirebaseClient(databaseUrl);
             var photosNode = database.Child("photos");
             await photosNode.PostAsync(new { Url = photoUrl });
+            ; ;
         }
 
         public static async Task<AppUser> LookForUserInDatabase(User loggedUser)
