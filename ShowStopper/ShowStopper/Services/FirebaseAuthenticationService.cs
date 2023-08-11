@@ -71,5 +71,10 @@ namespace ShowStopper.Services
         {
             await client.ResetEmailPasswordAsync(client.User.Info.Email);
         }
+
+        public static async Task ResetPasswordWithEmail(string email)
+        {
+            await client.ResetEmailPasswordAsync(email);
+        }
     }
 }

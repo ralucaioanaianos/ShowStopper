@@ -115,11 +115,13 @@
                             Source="https://cdn-icons-png.flaticon.com/512/174/174857.png"
                             WidthRequest="30" />
                     </StackLayout>
-                    <Label
-                        Grid.Row="7"
-                        FontAttributes="Bold"
-                        HorizontalOptions="CenterAndExpand"
-                        Text="I forgot my password" />
+                    <Button Grid.Row="7"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="I forgot my password"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            Command="{Binding ForgottenPasswordBtn}"></Button>
                 </Grid>
             </Frame>
         </Grid>

@@ -23,7 +23,7 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
         private string userName;
         private string userPassword;
-
+        public Command ForgottenPasswordBtn { get; }
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Command RegisterBtn { get; }
@@ -55,9 +55,20 @@ namespace ShowStopper.ViewModels
             _navigation = navigation;
             RegisterBtn = new Command(RegisterBtnTappedAsync);
             LoginBtn = new Command(LoginBtnTappedAsync);
+            ForgottenPasswordBtn = new Command(ForgottenPasswordBtnTappedAsync);
         }
 
-       
+        public async void ForgottenPasswordBtnTappedAsync(object parameter)
+        {
+            string userInput = await Application.Current.MainPage.DisplayPromptAsync("Reset Password", "You will receive an email with the instructions for resetting your password.\n\nPlease enter your email:", "OK", "Cancel", "Email");
+
+            if (!string.IsNullOrWhiteSpace(userInput))
+            {
+                await FirebaseAuthenticationService.ResetPasswordWithEmail(userInput);
+            }
+            
+            
+        }
 
         private async void LoginBtnTappedAsync(object obj)
         {
