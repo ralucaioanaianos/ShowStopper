@@ -6,14 +6,17 @@
              Title="Explore"
              IconImageSource="compass_icon.png"
              NavigationPage.HasNavigationBar="False">
-
-    <Grid Padding="0"
+    <Grid VerticalOptions="FillAndExpand">
+        
+        <Grid Padding="0"
           HorizontalOptions="FillAndExpand">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-        </Grid.RowDefinitions>
-        <customControls:CustomNavigationBar
+            
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+           
+            <customControls:CustomNavigationBar
             Grid.Row="0"
             GradientColor1="#1A2C6C"
             GradientColor2="#A782B9"
@@ -23,119 +26,128 @@
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="Explore">
-        </customControls:CustomNavigationBar>
-        <StackLayout Grid.Row="1">
-            <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                <!--<Label Text="Events" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />-->
-                <customControls:GradientFilledLabel BorderColor="Transparent"
+            </customControls:CustomNavigationBar>
+            <StackLayout Grid.Row="1">
+                
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    
+                    <!--<Label Text="Events" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />-->
+                    <customControls:GradientFilledLabel BorderColor="Transparent"
                                                     GradientColor1="#1A2C6C"
                                                     GradientColor2="#A782B9"
                                                     Text="Events"
                                                     TextColor="White"
                                                     HorizontalOptions="EndAndExpand"
                                                     VerticalOptions="CenterAndExpand"></customControls:GradientFilledLabel>
-                <Switch IsToggled="{Binding IsShowingLocations}" VerticalOptions="Center" 
+                    <Switch IsToggled="{Binding IsShowingLocations}" VerticalOptions="Center" 
                         OnColor="LightGray"
                         ThumbColor="#A782B9"
                         BackgroundColor="Transparent"/>
-                <!--<Label Text="Locations" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />-->
-                <customControls:GradientFilledLabel BorderColor="Transparent"
+                    <!--<Label Text="Locations" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />-->
+                    <customControls:GradientFilledLabel BorderColor="Transparent"
                                                     GradientColor1="#1A2C6C"
                                                     GradientColor2="#A782B9"
                                                     Text="Locations"
                                                     TextColor="White"
                                                     HorizontalOptions="StartAndExpand"
                                                     VerticalOptions="Center"></customControls:GradientFilledLabel>
-            </StackLayout>
-
-            <ListView x:Name="eventsListView"
+                </StackLayout>
+                <ImageButton Source="filter_icon.png" 
+                             Grid.Column="2" 
+                             HorizontalOptions="End"
+                             Command="{Binding ShowFiltersBtn}"/>
+                <ListView x:Name="eventsListView"
                 ItemsSource="{Binding Events}"
                   SelectedItem="{Binding SelectedEvent}"
                   Grid.Row="1"
                   RowHeight="100"
                   IsVisible="{Binding IsShowingEvents, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell Height="100">
-                            <ContentView VerticalOptions="FillAndExpand">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="cat_user.jpg"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="100">
+                                <ContentView VerticalOptions="FillAndExpand">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="cat_user.jpg"
                                         Grid.Column="0"
                                         HeightRequest="80"></Image>
-                                    <Grid Grid.Column="1"
+                                        <Grid Grid.Column="1"
                                       HeightRequest="80">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <VerticalStackLayout Grid.Row="0">
-                                            <Label Text="{Binding Name}"
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <VerticalStackLayout Grid.Row="0">
+                                                <Label Text="{Binding Name}"
                                                FontSize="16"
                                                FontAttributes="Bold"></Label>
-                                            <Label Text="{Binding Date}"
+                                                <Label Text="{Binding Date}"
                                                FontSize="13"></Label>
-                                            <Label Text="{Binding Location}"
+                                                <Label Text="{Binding Location}"
                                                FontSize="13"></Label>
-                                        </VerticalStackLayout>
+                                            </VerticalStackLayout>
 
+                                        </Grid>
                                     </Grid>
-                                </Grid>
 
-                            </ContentView>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <ListView x:Name="locationsListView"
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <ListView x:Name="locationsListView"
                 ItemsSource="{Binding Locations}"
                   SelectedItem="{Binding SelectedLocation}"
                   Grid.Row="1"
                   RowHeight="100"
                       IsVisible="{Binding IsShowingLocations, Converter={StaticResource BooleanToVisibilityConverter}}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell Height="100">
-                            <ContentView VerticalOptions="FillAndExpand">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="2*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Image Source="cat_user.jpg"
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="100">
+                                <ContentView VerticalOptions="FillAndExpand">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <Image Source="cat_user.jpg"
                    Grid.Column="0"
                    HeightRequest="80"></Image>
-                                    <Grid Grid.Column="1"
+                                        <Grid Grid.Column="1"
                   HeightRequest="80">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <VerticalStackLayout Grid.Row="0">
-                                            <Label Text="{Binding Name}"
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <VerticalStackLayout Grid.Row="0">
+                                                <Label Text="{Binding Name}"
                            FontSize="16"
                            FontAttributes="Bold"></Label>
-                                            <Label Text="{Binding Address}"
+                                                <Label Text="{Binding Address}"
                            FontSize="13"></Label>
-                                        </VerticalStackLayout>
-                                        <Label Grid.Row="1"
+                                            </VerticalStackLayout>
+                                            <Label Grid.Row="1"
                        Text="{Binding Owner}"
                        FontAttributes="Bold"
                        FontSize="14"></Label>
+                                        </Grid>
                                     </Grid>
-                                </Grid>
-                            </ContentView>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-         
-        </StackLayout>
-        
-        <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
+                                </ContentView>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+
+            </StackLayout>
+            <ImageButton Source="filter_icon.png"  
+                         Margin="0,0,20,0"
+                         HorizontalOptions="End"
+                         Command="{Binding ShowFiltersBtn}"/>
+
+            <!--<ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
         <Grid VerticalOptions="Center"
               IsVisible="False"
               Grid.Row="1"
@@ -163,6 +175,133 @@
                HorizontalOptions="Center"
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"></Label>
+        </Grid>-->
+            
+        </Grid>
+        <Grid x:Name="sidebar" 
+              IsVisible="False" 
+              WidthRequest="300" 
+              HorizontalOptions="End" 
+              VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Frame HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" CornerRadius="50"
+                   BorderColor="#A782B9" BackgroundColor="White">
+                <ScrollView VerticalOptions="FillAndExpand">
+                    <!--<StackLayout VerticalOptions="Fill">
+                            <HorizontalStackLayout>
+                                <CheckBox Color="#1A2C6C" Margin="0,-8,0,0"></CheckBox>
+                                <Label Text="Music" FontSize="17" FontAttributes="Bold">
+                                    <Label.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding MusicTappedCommand}"></TapGestureRecognizer>
+                                    </Label.GestureRecognizers>
+                                </Label>
+                                
+                            </HorizontalStackLayout>
+
+                            <StackLayout x:Name="musicSubItems" IsVisible="{Binding IsMusicExpanded}" Margin="10,0,0,0">
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Band Performance" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Benefit Concert" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Classical Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Concert" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Country Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Hip-Hop" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="House Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Jazz Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Karaoke" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Live Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Multi-Genre Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Music Award Show" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Music Awards" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Music Festival" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Opera" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Pop Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Rap" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Rock Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Solo Artist" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Techno Music" FontSize="15" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout>
+                                    <CheckBox Color="#A782B9" Margin="0,-8,0,0" ScaleX="0.8" ScaleY="0.8"></CheckBox>
+                                    <Label Text="Trap" FontSize="15" />
+                                </HorizontalStackLayout>
+                            </StackLayout>
+
+                        
+                    </StackLayout>-->
+                    <VerticalStackLayout>
+                        <customControls:GradientFilledButton
+                GradientColor1="#1A2C6C"
+                GradientColor2="#A782B9"
+                TextColor="White"
+                TapCommand="{Binding SaveBtn}"
+                BorderColor="Transparent"
+                Text="Save"></customControls:GradientFilledButton>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+            </Frame>
         </Grid>
     </Grid>
+    
 </ContentPage>

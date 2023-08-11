@@ -45,8 +45,16 @@ namespace ShowStopper.ViewModels
                 OnPropertyChanged(nameof(IsShowingEvents));
             }
         }
+        private bool _isMusicExpanded;
 
-
+        public bool IsMusicExpanded
+        {
+            get { return _isMusicExpanded; }
+            set
+            {
+                _isMusicExpanded = value;
+            }
+        }
         public ICommand ShowEventsCommand { get; }
         public ICommand ShowLocationsCommand { get; }
         public bool IsListEmpty { get; set; }
@@ -56,6 +64,11 @@ namespace ShowStopper.ViewModels
         public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
+
+        public Command SaveBtn { get; }
+
+        public Command ShowFiltersBtn { get; }
+        public ICommand MusicTappedCommand { get; }
 
         public Command EventTapped { get; }
 
@@ -105,8 +118,31 @@ namespace ShowStopper.ViewModels
             LocationTapped = new Command(LocationTappedAsync);
             ShowEventsCommand = new Command(ShowEvents);
             ShowLocationsCommand = new Command(ShowLocations);
+            MusicTappedCommand = new Command(ExpandMusicCategories);
             IsShowingEvents = true;
             IsShowingLocations = false;
+            IsMusicExpanded = false;
+            SaveBtn = new Command(SaveBtnTappedAsync);
+            ShowFiltersBtn = new Command(ShowFiltersBtnTappedAsync);
+        }
+
+        private async void ShowFiltersBtnTappedAsync(object parameter)
+        {
+            await Application.Current.MainPage.DisplayAlert("ok", "filters", "ok");
+        }
+
+        private async void SaveBtnTappedAsync(object parameter)
+        {
+            await Application.Current.MainPage.DisplayAlert("ok", "ok", "ok");
+        }
+
+        public void ExpandMusicCategories()
+        {
+            IsMusicExpanded = !IsMusicExpanded;
+            OnPropertyChanged(nameof(IsMusicExpanded));
+            Console.WriteLine("MUSIC WAS TAPPED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            Console.WriteLine(IsMusicExpanded);
+            Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!");
         }
 
         private void ShowEvents()
