@@ -22,6 +22,7 @@ namespace ShowStopper.ViewModels
         public ImageSource SrcImg { get; set; }
         public Command BackBtn { get; }
         public Command FavoriteLocationsBtn { get; }
+        public Command ResetPasswordBtn { get; }
         public Command SignOutBtn { get; set; }
         public Command PlusBtn { get; }
         private INavigation _navigation;
@@ -54,6 +55,7 @@ namespace ShowStopper.ViewModels
             SignOutBtn = new Command(SignOutButtonTappedAsync);
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
             FavoriteLocationsBtn = new Command(FavoriteLocationsBtnTappedAsync);
+            ResetPasswordBtn = new Command(ResetPasswordBtnTappedAsync);
         }
 
         private async void Initialize()
@@ -121,6 +123,17 @@ namespace ShowStopper.ViewModels
         private async void FavoriteLocationsBtnTappedAsync(object parameter)
         {
             await _navigation.PushAsync(new FavoriteLocationsPage());
+        }
+
+        private async void ResetPasswordBtnTappedAsync(object parameter)
+        {
+            bool userConfirmed = await Application.Current.MainPage.DisplayAlert("Reset Password", "If you press yes, you will be automatically logged out and you will receive an email with the instructions of resetting your password. Are you sure you want to continue?", "Yes", "No");
+
+            if (userConfirmed)
+            {
+                await FirebaseAuthenticationService.ResetPassword();
+                await _navigation.PushAsync(new LoginPage("false"));
+            }
         }
 
         private async void ImageButton_Clicked(object sender, EventArgs e)

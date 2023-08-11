@@ -24,8 +24,7 @@
             PageName="My Locations">
         </customControls:CustomNavigationBar>
         <StackLayout Grid.Row="1">
-            <SearchBar Placeholder="Search through your locations" TextChanged="SearchBar_TextChanged"
-                   />
+            <SearchBar Placeholder="Search through your locations" TextChanged="SearchBar_TextChanged"/>
 
             <ListView ItemsSource="{Binding Locations}"
                   SelectedItem="{Binding SelectedLocation}"
@@ -35,9 +34,6 @@
                         <ViewCell Height="100">
                             <ContentView VerticalOptions="FillAndExpand"
                                      IsVisible="{Binding IsDataLoaded}">
-                                <!--<customControls:LocationElement Name="inding Name}"
-                                                         Address="data"
-                                                         Owner="loc"></customControls:LocationElement>-->
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"></ColumnDefinition>

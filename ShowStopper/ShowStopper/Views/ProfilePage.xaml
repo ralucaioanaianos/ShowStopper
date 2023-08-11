@@ -82,65 +82,28 @@
                              HorizontalOptions="End"
                              Command="{Binding FavoriteLocationsBtn}"/>
                 </Grid>
-                <!--<Grid Margin="20,10,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image Source="stage_icon.png" 
-                       Grid.Column="0" 
-                       Margin="0,0,0,0"
-                       HeightRequest="25"/>
-                    <Label Text="Favorite Locations" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <Image Source="arrow_left_icon.png" Grid.Column="2" HorizontalOptions="End" />
-                </Grid>-->
-                <!--<Grid Margin="20,10,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image Source="ticket_icon.png" 
-                       Grid.Column="0" 
-                       Margin="0,0,0,0"/>
-                    <Label Text="Favorite Events" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <Image Source="arrow_left_icon.png" Grid.Column="2" HorizontalOptions="End" />
-                </Grid>-->
-                <!--<Grid Margin="20,10,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Image Source="heart_icon.png" 
-                       Grid.Column="0" 
-                       Margin="0,0,0,0"/>
-                    <Label Text="Favorites" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <Image Source="arrow_left_icon.png" Grid.Column="2" HorizontalOptions="End" />
-                </Grid>
-                <Grid Margin="20,10,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <ImageButton Source="card_icon.png" 
-                       Grid.Column="0" 
-                       Margin="0,0,0,0"
-                       HeightRequest="25"/>
-                    <Label Text="Payment Methods" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <Image Source="arrow_left_icon.png" Grid.Column="2" HorizontalOptions="End" />
-                </Grid>-->
                 <Border BackgroundColor="Gray" 
                Margin="20, 20, 20, 20"
                StrokeShape="RoundRectangle 800,800,800,800"
                HeightRequest="5">
                 </Border>
+                <Grid Margin="20,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="key_icon.png" 
+                           HeightRequest="25"
+                       Grid.Column="0" 
+                       Margin="0,0,0,0"/>
+                    <Label Text="Reset Password" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
+                    <ImageButton Source="arrow_left_icon.png" 
+                             Grid.Column="2" 
+                             HorizontalOptions="End"
+                             Command="{Binding ResetPasswordBtn}"/>
+                </Grid>
                 <customControls:GradientFilledButton BorderColor="Transparent"
                                                  Grid.Row="1"
                                                      VerticalOptions="End"
