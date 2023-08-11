@@ -14,6 +14,8 @@ namespace ShowStopper.ViewModels
 {
     internal class MyLocationsPageViewModel : INotifyPropertyChanged
     {
+        private ObservableCollection<AppLocation> _originalLocations;
+
         public bool IsListEmpty { get; set; }
         public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
@@ -53,6 +55,20 @@ namespace ShowStopper.ViewModels
             LocationTapped = new Command(LocationTappedAsync);
         }
 
+        public void UpdateSearchResults(string searchText)
+        {            
+                if (string.IsNullOrWhiteSpace(searchText))
+                {
+                    Locations = new ObservableCollection<AppLocation>(_originalLocations);
+                }
+                else
+                {
+                    Locations = new ObservableCollection<AppLocation>(
+                        _originalLocations.Where(l => l.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
+                                                     l.Address.Contains(searchText, StringComparison.OrdinalIgnoreCase)));
+                }
+        }
+
         private AppLocation _selectedLocation;
         public AppLocation SelectedLocation
         {
@@ -87,6 +103,7 @@ namespace ShowStopper.ViewModels
                 ObservableCollection<AppLocation> collection = new ObservableCollection<AppLocation>(list);
 
                 Locations = collection;
+                _originalLocations = new ObservableCollection<AppLocation>(Locations); // Initialize with your original locations data
                 IsDataLoaded = true;
                 await Task.Delay(1000);
                 if (Locations.Count == 0)

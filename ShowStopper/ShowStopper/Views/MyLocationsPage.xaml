@@ -23,6 +23,7 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Locations">
         </customControls:CustomNavigationBar>
+        <SearchBar Placeholder="Search through your locations" TextChanged="SearchBar_TextChanged" />
         <ListView ItemsSource="{Binding Locations}"
                   SelectedItem="{Binding SelectedLocation}"
                   Grid.Row="1"

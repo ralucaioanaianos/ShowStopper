@@ -9,4 +9,12 @@ public partial class MyLocationsPage : ContentPage
 		InitializeComponent();
 		BindingContext = new MyLocationsPageViewModel(Navigation);
 	}
+
+    private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (BindingContext is MyLocationsPageViewModel viewModel)
+        {
+            viewModel.UpdateSearchResults(e.NewTextValue);
+        }
+    }
 }
