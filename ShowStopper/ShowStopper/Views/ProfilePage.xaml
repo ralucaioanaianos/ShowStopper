@@ -23,6 +23,9 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Profile">
             </customControls:CustomNavigationBar>
+            <ScrollView>
+                
+            </ScrollView>
             <StackLayout Grid.Row="1">
                 <!--<customControls:RoundedImage
                 Margin="0,20,0,0"
@@ -49,79 +52,81 @@
                    FontSize="18"
                    FontAttributes="Bold"
                    Margin="20,30,0,0"></Label>
-                <Grid Margin="20,10,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                <ScrollView HeightRequest="100">
+                    <StackLayout HeightRequest="200">
+                        <Grid Margin="20,10,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <Image Source="edit_icon.png" 
+                            <Image Source="edit_icon.png" 
                        Grid.Column="0" 
                        Margin="0,0,0,0"/>
-                    <Label Text="Edit Profile" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <ImageButton Source="arrow_left_icon.png" 
+                            <Label Text="Edit Profile" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
+                            <ImageButton Source="arrow_left_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
                              Command="{Binding EditProfileBtn}"/>
-                </Grid>
-                <Grid Margin="20,10,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                        </Grid>
+                        <Grid Margin="20,10,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <Image Source="stage_icon.png" 
+                            <Image Source="stage_icon.png" 
                            HeightRequest="25"
                        Grid.Column="0" 
                        Margin="0,0,0,0"/>
-                    <Label Text="My Favorite Locations" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <ImageButton Source="arrow_left_icon.png" 
+                            <Label Text="My Favorite Locations" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
+                            <ImageButton Source="arrow_left_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
                              Command="{Binding FavoriteLocationsBtn}"/>
-                </Grid>
-                <Border BackgroundColor="Gray" 
+                        </Grid>
+                        <Border BackgroundColor="Gray" 
                Margin="20, 20, 20, 20"
                StrokeShape="RoundRectangle 800,800,800,800"
                HeightRequest="5">
-                </Border>
-                <Grid Margin="20,0,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                        </Border>
+                        <Grid Margin="20,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <Image Source="key_icon.png" 
+                            <Image Source="key_icon.png" 
                            HeightRequest="25"
                        Grid.Column="0" 
                        Margin="0,0,0,0"/>
-                    <Label Text="Reset Password" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <ImageButton Source="arrow_left_icon.png" 
+                            <Label Text="Reset Password" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
+                            <ImageButton Source="arrow_left_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
                              Command="{Binding ResetPasswordBtn}"/>
-                </Grid>
-                <Grid Margin="20,0,20,0">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                        </Grid>
+                        <Grid Margin="20,0,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-                    <Image Source="feedback_icon.png" 
+                            <Image Source="feedback_icon.png" 
                            HeightRequest="25"
                        Grid.Column="0" 
                        Margin="0,0,0,0"/>
-                    <Label Text="Send Feedback" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
-                    <ImageButton Source="arrow_left_icon.png" 
+                            <Label Text="Send Feedback" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
+                            <ImageButton Source="arrow_left_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
                              Command="{Binding SendFeedbackBtn}"/>
-                </Grid>
-                <customControls:GradientFilledButton BorderColor="Transparent"
+                        </Grid>
+                        <customControls:GradientFilledButton BorderColor="Transparent"
                                                  Grid.Row="1"
                                                      VerticalOptions="End"
                                                      Text="Sign Out"
@@ -129,6 +134,10 @@
                                                      TapCommand="{Binding SignOutBtn}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
+                    </StackLayout>
+                </ScrollView>
+               
+                
             </StackLayout>
             
         </Grid>
