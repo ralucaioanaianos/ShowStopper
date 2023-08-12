@@ -23,6 +23,7 @@ namespace ShowStopper.ViewModels
         public Command BackBtn { get; }
         public Command FavoriteLocationsBtn { get; }
         public Command ResetPasswordBtn { get; }
+        public Command SendFeedbackBtn { get; }
         public Command SignOutBtn { get; set; }
         public Command PlusBtn { get; }
         private INavigation _navigation;
@@ -56,6 +57,7 @@ namespace ShowStopper.ViewModels
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
             FavoriteLocationsBtn = new Command(FavoriteLocationsBtnTappedAsync);
             ResetPasswordBtn = new Command(ResetPasswordBtnTappedAsync);
+            SendFeedbackBtn = new Command(SendFeedbackBtnTappedAsync);
         }
 
         private async void Initialize()
@@ -134,6 +136,11 @@ namespace ShowStopper.ViewModels
                 await FirebaseAuthenticationService.ResetPassword();
                 await _navigation.PushAsync(new LoginPage("false"));
             }
+        }
+
+        private async void SendFeedbackBtnTappedAsync(object parameter)
+        {
+            await _navigation.PushAsync(new FeedbackPage());
         }
 
         private async void ImageButton_Clicked(object sender, EventArgs e)

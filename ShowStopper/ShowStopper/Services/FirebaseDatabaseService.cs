@@ -34,6 +34,16 @@ namespace ShowStopper.Services
             string userId = response.Key;
         }
 
+        public static async Task AddFeedbackMessageToDatabase(string userEmail, string message)
+        {
+            FirebaseClient client = new FirebaseClient(databaseUrl);
+            var response = await client.Child("Feedbacks").PostAsync(new FeedbackMessage
+            {
+                UserEmail = userEmail,
+                Message = message
+            });
+        }
+
         public static async Task SavePhotoToDatabase(string photoUrl)
         {
             var database = new FirebaseClient(databaseUrl);

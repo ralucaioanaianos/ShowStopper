@@ -104,6 +104,23 @@
                              HorizontalOptions="End"
                              Command="{Binding ResetPasswordBtn}"/>
                 </Grid>
+                <Grid Margin="20,0,20,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Source="feedback_icon.png" 
+                           HeightRequest="25"
+                       Grid.Column="0" 
+                       Margin="0,0,0,0"/>
+                    <Label Text="Send Feedback" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
+                    <ImageButton Source="arrow_left_icon.png" 
+                             Grid.Column="2" 
+                             HorizontalOptions="End"
+                             Command="{Binding SendFeedbackBtn}"/>
+                </Grid>
                 <customControls:GradientFilledButton BorderColor="Transparent"
                                                  Grid.Row="1"
                                                      VerticalOptions="End"

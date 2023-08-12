@@ -66,8 +66,6 @@ namespace ShowStopper.ViewModels
             {
                 await FirebaseAuthenticationService.ResetPasswordWithEmail(userInput);
             }
-            
-            
         }
 
         private async void LoginBtnTappedAsync(object obj)
@@ -79,14 +77,12 @@ namespace ShowStopper.ViewModels
                    
                     if (foundUser != null) 
                     {
-                    //await _navigation.PushAsync(new ProfilePage(loggedUser, foundUser));
-                    await _navigation.PushAsync(new TabbarPage());
+                        await _navigation.PushAsync(new TabbarPage());
                     }
                     else
                     {
                         await Application.Current.MainPage.DisplayAlert("aa", "element not retrieed", "ok");
                     }
-                
             }
             catch (Exception ex)
             {
