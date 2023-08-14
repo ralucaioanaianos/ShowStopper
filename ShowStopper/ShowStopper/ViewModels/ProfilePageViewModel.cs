@@ -78,11 +78,11 @@ namespace ShowStopper.ViewModels
             await GetUser();
             var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
             var downloadUrl = await firebaseStorage
-                .Child("profile_images")
-                .Child("cat.jpg")
+                .Child("photos")
+                .Child(ImageName)
                 .GetDownloadUrlAsync();
-            //SrcImg = downloadUrl;
-            SrcImg = "https://firebasestorage.googleapis.com/v0/b/showstopper-71398.appspot.com/o/photos%2FIMG_20230524_152007.jpg?alt=media&token=59c19f7e-2433-4669-87f4-653b5d55a930";
+            SrcImg = downloadUrl;
+            //SrcImg = "https://firebasestorage.googleapis.com/v0/b/showstopper-71398.appspot.com/o/photos%2FIMG_20230524_152007.jpg?alt=media&token=59c19f7e-2433-4669-87f4-653b5d55a930";
             OnPropertyChanged(nameof(Name)); // Notify the UI about the updated Name value
         }
 
