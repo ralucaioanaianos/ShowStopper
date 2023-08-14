@@ -36,6 +36,9 @@ namespace ShowStopper.Services
         {
             
             var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
+
+            // Send verification emai
+
         }
 
         public static string GetLoggedUserEmail()

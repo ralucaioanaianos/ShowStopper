@@ -23,16 +23,7 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="My Profile">
             </customControls:CustomNavigationBar>
-            <ScrollView>
-                
-            </ScrollView>
             <StackLayout Grid.Row="1">
-                <!--<customControls:RoundedImage
-                Margin="0,20,0,0"
-                ImageSource="{Binding SrcImg}"></customControls:RoundedImage>-->
-                <!--<Image Source="{Binding SrcImg}"></Image>-->
-                <!--<Image Source="{Binding SrcImg}"></Image>-->
-                
                 <Border
                     StrokeShape="RoundRectangle 80,80,80,80"
                     HeightRequest="150"
@@ -43,6 +34,8 @@
 
                         </Image>
                 </Border>
+                <!--<Image Source="cat_user.jpg">-->
+                <!--</Image>-->
                 <Label Text="{Binding Name}"
                    FontSize="20"
                    FontAttributes="Bold"
@@ -52,8 +45,8 @@
                    FontSize="18"
                    FontAttributes="Bold"
                    Margin="20,30,0,0"></Label>
-                <ScrollView HeightRequest="100">
-                    <StackLayout HeightRequest="200">
+                <ScrollView HeightRequest="250">
+                    <StackLayout>
                         <Grid Margin="20,10,20,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />

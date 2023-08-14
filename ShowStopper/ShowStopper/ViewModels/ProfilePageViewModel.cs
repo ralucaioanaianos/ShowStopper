@@ -19,7 +19,20 @@ namespace ShowStopper.ViewModels
     internal class ProfilePageViewModel : INotifyPropertyChanged
     {
         public string ImageName { get; set; }
-        public ImageSource SrcImg { get; set; }
+        //public ImageSource SrcImg { get; set; }
+        private ImageSource _srcImg;
+        public ImageSource SrcImg
+        {
+            get { return _srcImg; }
+            set
+            {
+                if (_srcImg != value)
+                {
+                    _srcImg = value;
+                    OnPropertyChanged(nameof(SrcImg)); // Raise the PropertyChanged event
+                }
+            }
+        }
         public Command BackBtn { get; }
         public Command FavoriteLocationsBtn { get; }
         public Command ResetPasswordBtn { get; }
@@ -68,14 +81,8 @@ namespace ShowStopper.ViewModels
                 .Child("profile_images")
                 .Child("cat.jpg")
                 .GetDownloadUrlAsync();
-            int tokenIndex = downloadUrl.IndexOf("token=");
-
-            //if (tokenIndex >= 0)
-            //{
-            //    downloadUrl = downloadUrl.Substring(tokenIndex + 6);
-            //    //Console.WriteLine(token);
-            //}
-            SrcImg = "https://firebasestorage.googleapis.com/v0/b/showstopper-71398.appspot.com/o/profile_images%2Fcat.jpg?alt=media&token=82358ea8-ab06-4942-bd23-cef6151358bf";
+            //SrcImg = downloadUrl;
+            SrcImg = "https://firebasestorage.googleapis.com/v0/b/showstopper-71398.appspot.com/o/photos%2FIMG_20230524_152007.jpg?alt=media&token=59c19f7e-2433-4669-87f4-653b5d55a930";
             OnPropertyChanged(nameof(Name)); // Notify the UI about the updated Name value
         }
 
