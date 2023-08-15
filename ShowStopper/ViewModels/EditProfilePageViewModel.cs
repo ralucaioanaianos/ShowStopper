@@ -1,6 +1,7 @@
 ﻿using Firebase.Auth;
 using Firebase.Database;
 using Firebase.Database.Query;
+using Microsoft.Maui.Storage;
 using ShowStopper.Models;
 using ShowStopper.Services;
 using System;
@@ -75,12 +76,25 @@ namespace ShowStopper.ViewModels
             {
                 // imag = await MediaPicker.PickPhotoAsync();
                 Photo = await MediaPicker.PickPhotoAsync();
+                using (Stream stream = await Photo.OpenReadAsync())
+                {
+                    // Create a copy of the stream's content in a memory stream
+                    MemoryStream memoryStream = new MemoryStream();
+                    await stream.CopyToAsync(memoryStream);
+
+                    // Set the position of the memory stream back to the beginning
+                    memoryStream.Seek(0, SeekOrigin.Begin);
+
+                    // Create an ImageSource from the memory stream
+                    SrcImg = ImageSource.FromStream(() => memoryStream);
+                }
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("error", ex.Message, "ok");
             }
             
+
         }
 
         private async void BackButtonTappedAsync(object parameter)
