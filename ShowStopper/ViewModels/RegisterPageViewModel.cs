@@ -113,7 +113,7 @@ namespace ShowStopper.ViewModels
                 if (photo != null)
                 {
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
-                    await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
+                    //await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
                     //TODO: userType instead of "User"
                     if (companyName == null)
                     {

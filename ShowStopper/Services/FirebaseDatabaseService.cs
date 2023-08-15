@@ -110,7 +110,7 @@ namespace ShowStopper.Services
 
         
 
-        public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName, string phoneNumber, string companyName)
+        public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName, string phoneNumber, string companyName, string photoUrl)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
             var userId = await GetUserIdByEmail(user.Email);
@@ -124,7 +124,7 @@ namespace ShowStopper.Services
                 toUpdateUser.Object.FirstName = firstName;
                 toUpdateUser.Object.PhoneNumber = phoneNumber;
                 toUpdateUser.Object.CompanyName = companyName;
-                //toUpdateUser.Object.
+                toUpdateUser.Object.ProfileImage = photoUrl;
                 await firebaseClient
                    .Child("Users")
                    .Child(userId)

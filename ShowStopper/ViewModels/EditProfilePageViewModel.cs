@@ -5,15 +5,21 @@ using ShowStopper.Models;
 using ShowStopper.Services;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace ShowStopper.ViewModels
 {
-    class EditProfilePageViewModel
+    class EditProfilePageViewModel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
 
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         private INavigation _navigation;
 
         private User _user;
@@ -30,12 +36,25 @@ namespace ShowStopper.ViewModels
         public Command SelectPhoto { get; }
 
         public Command SaveBtn { get; }
-
+        private ImageSource _srcImg;
+        public ImageSource SrcImg
+        {
+            get { return _srcImg; }
+            set
+            {
+                if (_srcImg != value)
+                {
+                    _srcImg = value;
+                    OnPropertyChanged(nameof(SrcImg)); // Raise the PropertyChanged event
+                }
+            }
+        }
         public ImageSource ProfileImageSource { get; set; }
 
         public EditProfilePageViewModel(INavigation navigation, User user, AppUser databaseUser)
         {
             DatabaseUser = databaseUser;
+            SrcImg = databaseUser.ProfileImage;
             _navigation = navigation;
             _user = user;
             FirstName = databaseUser.FirstName;
@@ -61,6 +80,7 @@ namespace ShowStopper.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("error", ex.Message, "ok");
             }
+            
         }
 
         private async void BackButtonTappedAsync(object parameter)
@@ -74,11 +94,12 @@ namespace ShowStopper.ViewModels
 
         private async void SaveBtnTappedAsync(object parameter)
         {
-            //if (Photo != null)
-            //{
-            //    string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(Photo);
-            //}
-            await FirebaseDatabaseService.UpdateUserData(DatabaseUser, FirstName, LastName, PhoneNumber, CompanyName);
+            string photoUrl = DatabaseUser.ProfileImage;
+            if (Photo != null)
+            {
+                photoUrl = await FirebaseStorageService.UploadPhotoToStorage(Photo);
+            }
+            await FirebaseDatabaseService.UpdateUserData(DatabaseUser, FirstName, LastName, PhoneNumber, CompanyName, photoUrl);
             await _navigation.PopAsync();
         }
     }
