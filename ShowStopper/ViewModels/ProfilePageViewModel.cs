@@ -18,7 +18,7 @@ namespace ShowStopper.ViewModels
 {
     internal class ProfilePageViewModel : INotifyPropertyChanged
     {
-        public string ImageName { get; set; }
+        public string ImageUrl { get; set; }
         //public ImageSource SrcImg { get; set; }
         private ImageSource _srcImg;
         public ImageSource SrcImg
@@ -76,12 +76,12 @@ namespace ShowStopper.ViewModels
         private async void Initialize()
         {
             await GetUser();
-            var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
-            var downloadUrl = await firebaseStorage
-                .Child("photos")
-                .Child(ImageName)
-                .GetDownloadUrlAsync();
-            SrcImg = downloadUrl;
+            //var firebaseStorage = new FirebaseStorage("showstopper-71398.appspot.com");
+            //var downloadUrl = await firebaseStorage
+            //    .Child("photos")
+            //    .Child(ImageName)
+            //    .GetDownloadUrlAsync();
+            SrcImg = ImageUrl;
             //SrcImg = "https://firebasestorage.googleapis.com/v0/b/showstopper-71398.appspot.com/o/photos%2FIMG_20230524_152007.jpg?alt=media&token=59c19f7e-2433-4669-87f4-653b5d55a930";
             OnPropertyChanged(nameof(Name)); // Notify the UI about the updated Name value
         }
@@ -114,14 +114,15 @@ namespace ShowStopper.ViewModels
                 };
             }
             Name = _databaseUser.FirstName + " " + _databaseUser.LastName;
-            string profileImageUrl = _databaseUser.ProfileImage;
-            int startIndex = profileImageUrl.IndexOf("photos%2F") + 9;
-            int endIndex = profileImageUrl.LastIndexOf("?alt");
+            ImageUrl = _databaseUser.ProfileImage;
 
-            if (startIndex >= 0 && endIndex >= 0 && endIndex > startIndex)
-            {
-                ImageName = profileImageUrl.Substring(startIndex, endIndex - startIndex);
-            }
+            //int startIndex = profileImageUrl.IndexOf("photos%2F") + 9;
+            //int endIndex = profileImageUrl.LastIndexOf("?alt");
+
+            //if (startIndex >= 0 && endIndex >= 0 && endIndex > startIndex)
+            //{
+            //    ImageName = profileImageUrl.Substring(startIndex, endIndex - startIndex);
+            //}
         }
 
         private async void EditProfileBtnTappedAsync(object parameter)

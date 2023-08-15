@@ -26,6 +26,8 @@ namespace ShowStopper.ViewModels
         public string PhoneNumber { get; set; }
         public string CompanyName { get; set; }
         AppUser DatabaseUser { get; set; }
+        private FileResult Photo;
+        public Command SelectPhoto { get; }
 
         public Command SaveBtn { get; }
 
@@ -45,6 +47,20 @@ namespace ShowStopper.ViewModels
             SaveBtn = new Command(SaveBtnTappedAsync);
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
+            SelectPhoto = new Command(SelectPhotoTappedAsync);
+        }
+
+        private async void SelectPhotoTappedAsync(object sender)
+        {
+            try
+            {
+                // imag = await MediaPicker.PickPhotoAsync();
+                Photo = await MediaPicker.PickPhotoAsync();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("error", ex.Message, "ok");
+            }
         }
 
         private async void BackButtonTappedAsync(object parameter)
@@ -58,6 +74,10 @@ namespace ShowStopper.ViewModels
 
         private async void SaveBtnTappedAsync(object parameter)
         {
+            //if (Photo != null)
+            //{
+            //    string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(Photo);
+            //}
             await FirebaseDatabaseService.UpdateUserData(DatabaseUser, FirstName, LastName, PhoneNumber, CompanyName);
             await _navigation.PopAsync();
         }

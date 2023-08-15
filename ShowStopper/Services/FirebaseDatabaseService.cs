@@ -124,6 +124,7 @@ namespace ShowStopper.Services
                 toUpdateUser.Object.FirstName = firstName;
                 toUpdateUser.Object.PhoneNumber = phoneNumber;
                 toUpdateUser.Object.CompanyName = companyName;
+                //toUpdateUser.Object.
                 await firebaseClient
                    .Child("Users")
                    .Child(userId)
