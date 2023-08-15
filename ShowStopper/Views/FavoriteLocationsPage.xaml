@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.FavoriteLocationsPage"
+             Title="My Favorite Locations"
+             NavigationPage.HasNavigationBar="False">
+    <Grid Padding="0"
+          HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <customControls:CustomNavigationBar
+            Grid.Row="0"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#A782B9"
+            IsBackButtonVisible="True"
+            IsPlusButtonVisible="True"
+            IsEmptyHeartButtonVisible="False"
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="My Favorite Locations">
+        </customControls:CustomNavigationBar>
+        <ListView ItemsSource="{Binding FavoriteLocations}"
+                  SelectedItem="{Binding SelectedLocation}"
+                  Grid.Row="1"
+                  RowHeight="100">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell Height="100">
+                        <ContentView VerticalOptions="FillAndExpand"
+                                     IsVisible="{Binding IsDataLoaded}">
+                            <!--<customControls:LocationElement Name="inding Name}"
+                                                         Address="data"
+                                                         Owner="loc"></customControls:LocationElement>-->
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Image Source="cat_user.jpg"
+                   Grid.Column="0"
+                   HeightRequest="80"></Image>
+                                <Grid Grid.Column="1"
+                  HeightRequest="80">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="Auto"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <VerticalStackLayout Grid.Row="0">
+                                        <Label Text="{Binding Name}"
+                           FontSize="16"
+                           FontAttributes="Bold"></Label>
+                                        <Label Text="{Binding Address}"
+                           FontSize="13"></Label>
+                                    </VerticalStackLayout>
+                                    <Label Grid.Row="1"
+                       Text="{Binding Owner}"
+                       FontAttributes="Bold"
+                       FontSize="14"></Label>
+                                </Grid>
+                            </Grid>
+                        </ContentView>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
+        <Grid VerticalOptions="Center"
+              IsVisible="False"
+              Grid.Row="1"
+          HorizontalOptions="Center"
+          Margin="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="no_locations_image.png"
+               HeightRequest="150"
+               Grid.Row="1"></Image>
+            <Label Text="No locations added yet"
+                   Grid.Row="2"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"
+               FontSize="20"
+               Margin="0,20,0,0"></Label>
+            <Label Text="Add your first location and it will appear here as soon as your request is reviewed and accepted!"
+               FontSize="15"
+               Margin="0,20,0,0"
+               Grid.Row="3"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"></Label>
+        </Grid>
+    </Grid>
+</ContentPage>

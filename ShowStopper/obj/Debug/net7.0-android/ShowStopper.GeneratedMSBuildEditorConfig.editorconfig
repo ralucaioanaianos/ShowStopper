@@ -1,0 +1,171 @@
+is_global = true
+build_property.TargetFramework = net7.0-android
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = false
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.EnableAotAnalyzer = 
+build_property.EnableSingleFileAnalyzer = true
+build_property.EnableTrimAnalyzer = false
+build_property.IncludeAllContentForSelfExtract = 
+build_property.RootNamespace = ShowStopper
+build_property.ProjectDir = C:\Raluca\app\ShowStopper\ShowStopper\ShowStopper\
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/App.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.App.xaml
+build_metadata.AdditionalFiles.TargetPath = App.xaml
+build_metadata.AdditionalFiles.RelativePath = App.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/AppShell.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.AppShell.xaml
+build_metadata.AdditionalFiles.TargetPath = AppShell.xaml
+build_metadata.AdditionalFiles.RelativePath = AppShell.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/CustomComponents/CustomNavigationBar.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.CustomComponents.CustomNavigationBar.xaml
+build_metadata.AdditionalFiles.TargetPath = CustomComponents\CustomNavigationBar.xaml
+build_metadata.AdditionalFiles.RelativePath = CustomComponents\CustomNavigationBar.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/CustomComponents/EventElement.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.CustomComponents.EventElement.xaml
+build_metadata.AdditionalFiles.TargetPath = CustomComponents\EventElement.xaml
+build_metadata.AdditionalFiles.RelativePath = CustomComponents\EventElement.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/CustomComponents/GradientFilledButton.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.CustomComponents.GradientFilledButton.xaml
+build_metadata.AdditionalFiles.TargetPath = CustomComponents\GradientFilledButton.xaml
+build_metadata.AdditionalFiles.RelativePath = CustomComponents\GradientFilledButton.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/CustomComponents/GradientFilledLabel.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.CustomComponents.GradientFilledLabel.xaml
+build_metadata.AdditionalFiles.TargetPath = CustomComponents\GradientFilledLabel.xaml
+build_metadata.AdditionalFiles.RelativePath = CustomComponents\GradientFilledLabel.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/CustomComponents/LocationElement.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.CustomComponents.LocationElement.xaml
+build_metadata.AdditionalFiles.TargetPath = CustomComponents\LocationElement.xaml
+build_metadata.AdditionalFiles.RelativePath = CustomComponents\LocationElement.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/CustomComponents/RoundedImage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.CustomComponents.RoundedImage.xaml
+build_metadata.AdditionalFiles.TargetPath = CustomComponents\RoundedImage.xaml
+build_metadata.AdditionalFiles.RelativePath = CustomComponents\RoundedImage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Dashboard.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Dashboard.xaml
+build_metadata.AdditionalFiles.TargetPath = Dashboard.xaml
+build_metadata.AdditionalFiles.RelativePath = Dashboard.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Resources/Styles/Colors.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Resources.Styles.Colors.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Colors.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Colors.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Resources/Styles/Styles.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Resources.Styles.Styles.xaml
+build_metadata.AdditionalFiles.TargetPath = Resources\Styles\Styles.xaml
+build_metadata.AdditionalFiles.RelativePath = Resources\Styles\Styles.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/AddEventPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.AddEventPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AddEventPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AddEventPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/AddLocationPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.AddLocationPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\AddLocationPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\AddLocationPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/EditProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.EditProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\EditProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\EditProfilePage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/EventPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.EventPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\EventPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\EventPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/ExplorePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.ExplorePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ExplorePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ExplorePage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/FavoriteLocationsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.FavoriteLocationsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\FavoriteLocationsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\FavoriteLocationsPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/FeedbackPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.FeedbackPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\FeedbackPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\FeedbackPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/LocationPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.LocationPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LocationPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LocationPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/LoginPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.LoginPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\LoginPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\LoginPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/MyEventsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.MyEventsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MyEventsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MyEventsPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/MyLocationsPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.MyLocationsPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\MyLocationsPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\MyLocationsPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/PanoramaView.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.PanoramaView.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\PanoramaView.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\PanoramaView.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/ProfilePage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.ProfilePage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\ProfilePage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\ProfilePage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/RegisterPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.RegisterPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\RegisterPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\RegisterPage.xaml
+
+[C:/Raluca/app/ShowStopper/ShowStopper/ShowStopper/Views/TabbarPage.xaml]
+build_metadata.AdditionalFiles.GenKind = Xaml
+build_metadata.AdditionalFiles.ManifestResourceName = ShowStopper.Views.TabbarPage.xaml
+build_metadata.AdditionalFiles.TargetPath = Views\TabbarPage.xaml
+build_metadata.AdditionalFiles.RelativePath = Views\TabbarPage.xaml

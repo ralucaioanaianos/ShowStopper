@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.EventPage"
+             Title="EventPage"
+             IconImageSource="cat_user.png"
+             NavigationPage.HasNavigationBar="False"
+             x:Name="This">
+    <ContentPage.Content>
+        <Grid Padding="0"
+          HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <customControls:CustomNavigationBar
+            Grid.Row="0"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#A782B9"
+            IsBackButtonVisible="True"
+            IsPlusButtonVisible="False"
+            IsEmptyHeartButtonVisible="True"
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="{Binding Name}">
+            </customControls:CustomNavigationBar>
+            <Grid HorizontalOptions="FillAndExpand"
+                  Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Image Source="img_meci.jpg"
+                       Grid.Row="0"
+                       HeightRequest="150"
+                       Margin="0,20,0,0"></Image>
+                <Label Grid.Row="1"
+                       Text="{Binding Date}"
+                       HorizontalOptions="End"
+                       FontAttributes="Bold"
+                       Margin="15,15,20,0"
+                       FontSize="15"></Label>
+                <Label Grid.Row="2"
+                       Text="{Binding Location}"
+                       FontAttributes="Bold"
+                       HorizontalOptions="End"
+                       Margin="15,0,20,0"
+                       FontSize="15"></Label>
+                <Label Grid.Row="3"
+                       Margin="20,60,20,10"
+                       Text="{Binding Descriptionn}"></Label>
+                <customControls:GradientFilledButton BorderColor="Transparent"
+                                                     VerticalOptions="End"
+                                                     Grid.Row="4"
+                                                     Text="Buy Tickets"
+                                                     TextColor="White"
+                                                     TapCommand="{Binding BuyBtn}"
+                                                     GradientColor1="#1A2C6C"
+                                                     GradientColor2="#A782B9"></customControls:GradientFilledButton>
+                
+            </Grid>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

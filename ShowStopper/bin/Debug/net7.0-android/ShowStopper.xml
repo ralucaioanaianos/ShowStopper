@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ShowStopper</name>
+    </assembly>
+    <members>
+        <member name="F:ShowStopper.CustomComponents.CustomNavigationBar.EmptyHeartBtnTapCommandProperty">
+            
+        </member>
+    </members>
+</doc>

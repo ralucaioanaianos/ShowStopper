@@ -1,0 +1,1 @@
+C:\Raluca\app\ShowStopper\ShowStopper\ShowStopper\ShowStopper.csproj;x64

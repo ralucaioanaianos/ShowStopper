@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.RegisterPage"
+             Title="RegisterPage"
+             NavigationPage.HasNavigationBar="True">
+    <!--<NavigationPage>
+        <Grid BackgroundColor="Yellow"></Grid>
+    </NavigationPage>-->
+    <Grid
+        Padding="20,0,20,0"
+        HorizontalOptions="FillAndExpand"
+        RowSpacing="20"
+        VerticalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Entry
+            Grid.Row="2"
+            Margin="0,0,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Email"
+            Text="{Binding Email}"
+            VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="3"
+            HorizontalOptions="FillAndExpand"
+            IsPassword="True"
+            Placeholder="Password"
+            Text="{Binding Password}"
+            VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="4"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="First Name"
+            Text="{Binding FirstName}"
+            VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="5"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Last Name"
+            Text="{Binding LastName}"
+            VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="6"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Phone Number"
+            Text="{Binding PhoneNumber}"
+            VerticalOptions="FillAndExpand" />
+        <Entry
+            Grid.Row="7"
+            Margin="0,20,0,0"
+            HorizontalOptions="FillAndExpand"
+            Placeholder="Company Name"
+            Text="{Binding CompanyName}"
+            VerticalOptions="FillAndExpand" />
+        <Button Text="pick image" Grid.Row="8"
+                Command="{Binding SelectPhoto}"></Button>
+        <customControls:GradientFilledButton
+                Grid.Row="9"
+                GradientColor1="#1A2C6C"
+                GradientColor2="#5D1B7D"
+                TextColor="White"
+                TapCommand="{Binding RegisterUser}"
+                BorderColor="Transparent"
+                Text="Create Account"></customControls:GradientFilledButton>
+    </Grid>
+</ContentPage>

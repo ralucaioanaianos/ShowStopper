@@ -1,0 +1,130 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.LoginPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Content>
+        <Grid
+            BackgroundColor="#1C375C"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Image
+                    HeightRequest="250"
+                    Aspect="AspectFill"
+                    Source="party_background_1" />
+
+            <Frame
+                Grid.Row="1"
+                Margin="0,0,0,-40"
+                BorderColor="#1C375C"
+                CornerRadius="50"
+                HasShadow="True"
+                HeightRequest="1000">
+                <Grid
+                    Padding="20,50,20,0"
+                    HorizontalOptions="FillAndExpand"
+                    RowSpacing="20"
+                    VerticalOptions="FillAndExpand">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Label
+                        Grid.Row="0"
+                        FontAttributes="Bold"
+                        FontSize="24"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Welcome Back!"
+                        TextColor="#1C375C" />
+                    <Label
+                        Grid.Row="1"
+                        Margin="0,-15,0,0"
+                        HorizontalOptions="CenterAndExpand"
+                        Text="Invalid email address or password."
+                        IsVisible="{Binding IsVisible}"
+                        TextColor="Red" />
+                    <Entry
+                        Grid.Row="2"
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Username"
+                        Text="{Binding UserName}"
+                        VerticalOptions="FillAndExpand" />
+                    <Entry
+                        Grid.Row="3"
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        Text="{Binding UserPassword}"
+                        VerticalOptions="FillAndExpand" />
+                    <customControls:GradientFilledButton
+                        Grid.Row="4"
+                        GradientColor1="#1A2C6C"
+                        GradientColor2="#A782B9"
+                        TextColor="White"
+                        Text="Login"
+                        BorderColor="#1A2C6C"
+                        TapCommand="{Binding LoginBtn}">
+                    </customControls:GradientFilledButton>
+
+                    <customControls:GradientFilledButton
+                        Grid.Row="5"
+                        GradientColor1="#1A2C6C"
+                        GradientColor2="#A782B9"
+                        TextColor="White"
+                        Text="Register using email"
+                        BorderColor="#1A2C6C"
+                        TapCommand="{Binding RegisterBtn}">
+                    </customControls:GradientFilledButton>
+                    <StackLayout
+                        Grid.Row="6"
+                        HorizontalOptions="CenterAndExpand"
+                        Orientation="Horizontal"
+                        Spacing="40">
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo626DNKJxdHM-VNRD0m7x_8Jim-r9kRalJQ"
+                            WidthRequest="30" />
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnLfAn36-LTYNHjioWgvu-0KUTIDDrW5lX_g"
+                            WidthRequest="30" />
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            Source="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
+                            WidthRequest="30" />
+                        <Image
+                            Aspect="AspectFit"
+                            HeightRequest="30"
+                            Source="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                            WidthRequest="30" />
+                    </StackLayout>
+                    <Button Grid.Row="7"
+                            HorizontalOptions="CenterAndExpand"
+                            Text="I forgot my password"
+                            BackgroundColor="Transparent"
+                            TextColor="Black"
+                            FontAttributes="Bold"
+                            Command="{Binding ForgottenPasswordBtn}"></Button>
+                </Grid>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+
+</ContentPage>

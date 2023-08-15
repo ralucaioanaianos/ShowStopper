@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents;assembly=ShowStopper"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="ShowStopper.Views.MyEventsPage"
+             Title="My Events"
+             x:Name="This"
+             IconImageSource="curtains_icon.png"
+             NavigationPage.HasNavigationBar="False">
+    <Grid Padding="0"
+          HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <customControls:CustomNavigationBar
+            Grid.Row="0"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#A782B9"
+            IsBackButtonVisible="False"
+            IsPlusButtonVisible="True"
+            IsEmptyHeartButtonVisible="False"
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="My Events">
+        </customControls:CustomNavigationBar>
+        <StackLayout Grid.Row="1">
+            <SearchBar Placeholder="Search through your events" TextChanged="SearchBar_TextChanged"/>
+            <ListView ItemsSource="{Binding Events}"
+                  x:Name="EventsListView"
+                  SelectedItem="{Binding SelectedEvent}"
+                  RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <ContentView VerticalOptions="FillAndExpand"
+                                     IsVisible="{Binding IsDataLoaded}">
+                                <!--<customControls:EventElement Name="{Binding Source={x:Reference This}, Path=Name}"
+                                             Date="{Binding Date}"
+                                             Location="{Binding Location}" />-->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="cat_user.jpg"
+                                        Grid.Column="0"
+                                        HeightRequest="80"></Image>
+                                    <Grid Grid.Column="1"
+                                      HeightRequest="80">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <VerticalStackLayout Grid.Row="0">
+                                            <Label Text="{Binding Name}"
+                                               FontSize="16"
+                                               FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding Date}"
+                                               FontSize="13"></Label>
+                                            <Label Text="{Binding Location}"
+                                               FontSize="13"></Label>
+                                        </VerticalStackLayout>
+
+                                    </Grid>
+                                </Grid>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        
+        <ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
+        <Grid VerticalOptions="Center"
+              IsVisible="{Binding IsListEmpty}"
+              Grid.Row="1"
+          HorizontalOptions="Center"
+          Margin="20,0,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Image Source="no_events_image.png"
+               HeightRequest="150"
+               Grid.Row="1"></Image>
+            <Label Text="No events added yet"
+                   Grid.Row="2"
+               HorizontalOptions="Center"
+               FontAttributes="Bold"
+               FontSize="20"
+               Margin="0,20,0,0"></Label>
+            <Label Text="Add your first events and it will appear here as soon as your request is reviewed and accepted!"
+               FontSize="15"
+               Margin="0,20,0,0"
+               Grid.Row="3"
+               HorizontalOptions="Center"
+               HorizontalTextAlignment="Center"
+               VerticalTextAlignment="Center"></Label>
+        </Grid>
+    </Grid>
+</ContentPage>
