@@ -82,7 +82,8 @@ namespace ShowStopper.ViewModels
 
         public string Password
         {
-            get => password; set
+            get => password; 
+            set
             {
                 password = value;
                 RaisePropertyChanged("Password");
@@ -141,7 +142,6 @@ namespace ShowStopper.ViewModels
         {
             try
             {
-                // imag = await MediaPicker.PickPhotoAsync();
                 photo = await MediaPicker.PickPhotoAsync();
             }
             catch (Exception ex)

@@ -16,7 +16,7 @@ namespace ShowStopper.Services
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public static async Task addLocationToDatabase(string name, string description, string address)
+        public static async Task addLocationToDatabase(string name, string description, string address, string image)
         {
             try
             {
@@ -28,7 +28,8 @@ namespace ShowStopper.Services
                     Name = name,
                     Description = description,
                     Address = address,
-                    Owner = newEmail
+                    Owner = newEmail,
+                    Image = image
                 });
                 string locationId = response.Key;
             }
