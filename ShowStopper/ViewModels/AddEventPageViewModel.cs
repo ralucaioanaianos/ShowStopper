@@ -13,11 +13,13 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
+        public DateTime TodayDate { get; set; }
+
 
         public string name;
         public string description;
         public string type;
-        public string date;
+        public DateTime date;
         public string organizer;
         public string location;
         private FileResult photo;
@@ -59,7 +61,7 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        public string Date
+        public DateTime Date
         {
             get => date;
             set
@@ -103,6 +105,8 @@ namespace ShowStopper.ViewModels
             SaveBtn = new Command(SaveBtnTappedAsync);
             BackBtn = new Command(BackButtonTappedAsync);
             SelectPhoto = new Command(SelectPhotoTappedAsync);
+            TodayDate = DateTime.Now;
+
         }
 
         private async void SelectPhotoTappedAsync(object sender)

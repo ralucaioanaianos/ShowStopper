@@ -25,19 +25,21 @@
             </customControls:CustomNavigationBar>
             <StackLayout Grid.Row="1"
                          Margin="20,20,20,20">
-            <Entry Placeholder="Name"
+                <Entry Placeholder="Name"
                    Text="{Binding Name}"></Entry>
-            <Entry Placeholder="Description"
+                <Entry Placeholder="Description"
                    Text="{Binding Description}"></Entry>
-            <Entry Placeholder="Type"
+                <Entry Placeholder="Type"
                    Text="{Binding Type}"></Entry>
-            <Entry Placeholder="Date"
-                   Text="{Binding Date}"></Entry>
-            <Entry Placeholder="Organizer"
+                <!--<Entry Placeholder="Date"
+                   Text="{Binding Date}"></Entry>-->
+                <DatePicker Date="{Binding Date}"
+                            MinimumDate="{Binding TodayDate}"></DatePicker>
+                <Entry Placeholder="Organizer"
                    Text="{Binding Organizer}"></Entry>
-            <Entry Placeholder="Location"
+                <Entry Placeholder="Location"
                    Text="{Binding Location}"></Entry>
-            <Button Text="pick image" Grid.Row="8"
+                <Button Text="pick image" Grid.Row="8"
                 Command="{Binding SelectPhoto}"></Button>
 
             </StackLayout>

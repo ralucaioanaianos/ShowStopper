@@ -12,7 +12,7 @@ namespace ShowStopper.ViewModels
     {
         public string Name { get; set; }
         public string Descriptionn { get; set; }
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
         public string Location { get; set; }
 
         public string Organizer { get; set; }
