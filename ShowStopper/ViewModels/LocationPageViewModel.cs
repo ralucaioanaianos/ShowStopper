@@ -16,6 +16,7 @@ namespace ShowStopper.ViewModels
         public string Name { get; set; }
         public string Descriptionn { get; set; }
         public string Owner { get; set; }
+        public string Image { get; set; }
         public string Address { get; set; }
 
         public string FavoritesText { get; set; }
@@ -75,6 +76,7 @@ namespace ShowStopper.ViewModels
             Descriptionn = appLocation.Description;
             Owner = appLocation.Owner;
             Address = appLocation.Address;
+            Image = appLocation.Image;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             EmptyHeartBtn = new Command(EmptyHeartButtonTappedAsync);

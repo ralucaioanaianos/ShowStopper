@@ -34,7 +34,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Image Source="img_meci.jpg"
+                <Image Source="{Binding Image}"
                        Grid.Row="0"
                        HeightRequest="150"
                        Margin="0,20,0,0"></Image>
