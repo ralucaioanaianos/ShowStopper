@@ -23,9 +23,19 @@
             PageName="Edit Profile">
             </customControls:CustomNavigationBar>
             <StackLayout Grid.Row="1">
-                <customControls:RoundedImage
+                <!--<customControls:RoundedImage
                 Margin="0,20,0,0"
-                ImageSource="cat_user.jpg"></customControls:RoundedImage>
+                ImageSource="{Binding SrcImg}"></customControls:RoundedImage>-->
+                <Border
+                    StrokeShape="RoundRectangle 80,80,80,80"
+                    HeightRequest="150"
+                    WidthRequest="150">
+                    <Image
+                               Aspect="AspectFit"
+                               Source="{Binding SrcImg}">
+
+                    </Image>
+                </Border>
                 <StackLayout Padding="20">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -39,7 +49,13 @@
                             <ColumnDefinition Width="*" />
                             <ColumnDefinition Width="2*" />
                         </Grid.ColumnDefinitions>
-                        <Button Text="Change" Grid.Row="0" Grid.Column="1" VerticalOptions="End" HorizontalOptions="End" Margin="0,10" />
+                        <Button Text="Change profile picture" 
+                                Grid.Row="0" 
+                                Grid.Column="1" 
+                                VerticalOptions="End" 
+                                HorizontalOptions="End" 
+                                Margin="0,10"
+                                Command="{Binding SelectPhoto}"/>
 
                         <Label Text="First Name:" FontSize="16" Grid.Row="1" Grid.Column="0" Margin="0,10" />
                         <Entry Text="{Binding FirstName}" Grid.Row="1" Grid.Column="1" Margin="0,5" />

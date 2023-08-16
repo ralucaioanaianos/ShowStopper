@@ -72,7 +72,7 @@
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                             <ColumnDefinition Width="2*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="cat_user.jpg"
+                                        <Image Source="{Binding Image}"
                                         Grid.Column="0"
                                         HeightRequest="80"></Image>
                                         <Grid Grid.Column="1"
@@ -114,7 +114,7 @@
                                             <ColumnDefinition Width="*"></ColumnDefinition>
                                             <ColumnDefinition Width="2*"></ColumnDefinition>
                                         </Grid.ColumnDefinitions>
-                                        <Image Source="cat_user.jpg"
+                                        <Image Source="{Binding Image}"
                    Grid.Column="0"
                    HeightRequest="80"></Image>
                                         <Grid Grid.Column="1"

@@ -82,7 +82,8 @@ namespace ShowStopper.ViewModels
 
         public string Password
         {
-            get => password; set
+            get => password; 
+            set
             {
                 password = value;
                 RaisePropertyChanged("Password");
@@ -113,7 +114,7 @@ namespace ShowStopper.ViewModels
                 if (photo != null)
                 {
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
-                    await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
+                    //await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
                     //TODO: userType instead of "User"
                     if (companyName == null)
                     {
@@ -121,13 +122,6 @@ namespace ShowStopper.ViewModels
                     }
                     var newEmail = email.Replace('.', ',');
                     await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName);
-                    var stream = await photo.OpenReadAsync();
-                    var mstream = new MemoryStream();
-                    stream.CopyTo(mstream);
-                    byte [] bytes = mstream.ToArray();
-                    string base64str = Convert.ToBase64String(bytes, Base64FormattingOptions.InsertLineBreaks);
-                    await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName);
-
                 }
                 else
                 {
@@ -148,7 +142,6 @@ namespace ShowStopper.ViewModels
         {
             try
             {
-                // imag = await MediaPicker.PickPhotoAsync();
                 photo = await MediaPicker.PickPhotoAsync();
             }
             catch (Exception ex)

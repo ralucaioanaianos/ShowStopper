@@ -13,17 +13,23 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
+        public DateTime TodayDate { get; set; }
+
 
         public string name;
         public string description;
         public string type;
-        public string date;
+        public DateTime date;
         public string organizer;
         public string location;
+        private FileResult photo;
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public Command SaveBtn { get; }
+        public Command SelectPhoto { get; }
+
 
         public string Name
         {
@@ -55,7 +61,7 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        public string Date
+        public DateTime Date
         {
             get => date;
             set
@@ -98,13 +104,38 @@ namespace ShowStopper.ViewModels
             string userEmail = FirebaseAuthenticationService.GetLoggedUserEmail();
             SaveBtn = new Command(SaveBtnTappedAsync);
             BackBtn = new Command(BackButtonTappedAsync);
+            SelectPhoto = new Command(SelectPhotoTappedAsync);
+            TodayDate = DateTime.Now;
 
+        }
+
+        private async void SelectPhotoTappedAsync(object sender)
+        {
+            try
+            {
+                photo = await MediaPicker.PickPhotoAsync();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("error", ex.Message, "ok");
+            }
         }
 
         private async void SaveBtnTappedAsync(object parameter)
         {
-            await EventsService.addEventToDatabase(Name, Description, Type, Date, Location);
-            await _navigation.PopAsync();
+            try
+            {
+                if (photo != null)
+                {
+                    string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
+                    await EventsService.addEventToDatabase(Name, Description, Type, Date, Location, photoUrl);
+                }
+                await _navigation.PopAsync();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+            }
         }
 
         private async void BackButtonTappedAsync(object parameter)
