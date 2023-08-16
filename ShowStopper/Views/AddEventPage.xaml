@@ -37,8 +37,10 @@
                    Text="{Binding Organizer}"></Entry>
             <Entry Placeholder="Location"
                    Text="{Binding Location}"></Entry>
-            
-        </StackLayout>
+            <Button Text="pick image" Grid.Row="8"
+                Command="{Binding SelectPhoto}"></Button>
+
+            </StackLayout>
             <customControls:GradientFilledButton GradientColor1="#1A2C6C"
                                                  GradientColor2="#A782B9"
                                                  TextColor="White"

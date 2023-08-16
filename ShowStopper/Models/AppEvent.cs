@@ -15,5 +15,6 @@ namespace ShowStopper.Models
         public string Date { get; set; }
         public string Organizer { get; set; }
         public string Location { get; set; }
+        public string Image { get; set; }
     }
 }
