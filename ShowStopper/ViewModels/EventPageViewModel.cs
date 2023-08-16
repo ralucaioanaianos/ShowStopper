@@ -16,6 +16,8 @@ namespace ShowStopper.ViewModels
         public string Location { get; set; }
 
         public string Organizer { get; set; }
+        public string Image { get; set; }
+
         public Command BuyBtn { get; }
 
         
@@ -47,6 +49,7 @@ namespace ShowStopper.ViewModels
             Date = appEvent.Date;
             Location = appEvent.Location;
             Organizer = appEvent.Organizer;
+            Image = appEvent.Image;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             BuyBtn = new Command(BuyButtonTappedAsync);
