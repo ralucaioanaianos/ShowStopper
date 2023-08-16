@@ -14,6 +14,13 @@ namespace ShowStopper.ViewModels
 {
     internal class ExplorePageViewModel : INotifyPropertyChanged
     {
+        public Command ExitBtn { get; }
+        public DateTime YesterdayDate { get; set; }
+        public DateTime FromTime { get; set; }
+        public DateTime ToTime { get; set; }
+        public int FromPrice { get; set; }
+        public int ToPrice { get; set; } 
+        public Command SaveBtn { get; }
         private string _searchQuery;
         public string SearchQuery
         {
@@ -80,9 +87,6 @@ namespace ShowStopper.ViewModels
         public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
-
-        public Command SaveBtn { get; }
-
         public Command ShowFiltersBtn { get; }
         public ICommand MusicTappedCommand { get; }
 
@@ -134,12 +138,18 @@ namespace ShowStopper.ViewModels
             LocationTapped = new Command(LocationTappedAsync);
             ShowEventsCommand = new Command(ShowEvents);
             ShowLocationsCommand = new Command(ShowLocations);
-            MusicTappedCommand = new Command(ExpandMusicCategories);
             IsShowingEvents = true;
             IsShowingLocations = false;
             IsMusicExpanded = false;
             SaveBtn = new Command(SaveBtnTappedAsync);
             ShowFiltersBtn = new Command(ShowFiltersBtnTappedAsync);
+            YesterdayDate = DateTime.Today.AddDays(-1);
+            ExitBtn = new Command(ExitBtnTappedAsync);
+        }
+
+        private async void ExitBtnTappedAsync(object parameter)
+        {
+            await _navigation.PopAsync();
         }
 
         public void UpdateSearchResults(string searchText)
@@ -172,10 +182,6 @@ namespace ShowStopper.ViewModels
             }
         }
 
-
-
-
-
         private void ApplySearch()
         {
             if (IsShowingEvents)
@@ -194,29 +200,31 @@ namespace ShowStopper.ViewModels
 
         private async void ShowFiltersBtnTappedAsync(object parameter)
         {
-            await Application.Current.MainPage.DisplayAlert("ok", "filters", "ok");
+            await _navigation.PushAsync(new FilterEventsPage());
         }
 
         private async void SaveBtnTappedAsync(object parameter)
         {
-            await Application.Current.MainPage.DisplayAlert("ok", "ok", "ok");
-        }
+            if (FromPrice > ToPrice)
+            {
+                await Application.Current.MainPage.DisplayAlert("Invalid price range", "Minimum price cannot be greater than maximum price!", "ok");
+            }
 
-        public void ExpandMusicCategories()
-        {
-            IsMusicExpanded = !IsMusicExpanded;
-            OnPropertyChanged(nameof(IsMusicExpanded));
-            Console.WriteLine("MUSIC WAS TAPPED !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            Console.WriteLine(IsMusicExpanded);
-            Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!");
+            else if (FromTime <  DateTime.Now || ToTime < DateTime.Now || ToTime < FromTime)
+            {
+                await Application.Current.MainPage.DisplayAlert("Invalid date", "", "ok");
+            }
+            else
+            {
+                Events = new ObservableCollection<AppEvent>(Events.Where(e => e.Date >= FromTime && e.Date <= ToTime && e.Price >= FromPrice && e.Price <= ToPrice));
+                //OnPropertyChanged(nameof(Events));
+                await _navigation.PopAsync();
+            }
         }
-
         private void ShowEvents()
         {
             IsShowingEvents = true;
             IsShowingLocations = false;
-
-            // Update the ListView data source
             if (Events == null)
             {
                 LoadEvents();
@@ -227,8 +235,6 @@ namespace ShowStopper.ViewModels
         {
             IsShowingEvents = false;
             IsShowingLocations = true;
-
-            // Update the ListView data source
             if (Locations == null)
             {
                 LoadLocations();

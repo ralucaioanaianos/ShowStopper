@@ -39,6 +39,9 @@
                    Text="{Binding Organizer}"></Entry>
                 <Entry Placeholder="Location"
                    Text="{Binding Location}"></Entry>
+                <Entry Placeholder="Price"
+                       Text="{Binding Price}"
+                       Keyboard="Numeric"></Entry>
                 <Button Text="pick image" Grid.Row="8"
                 Command="{Binding SelectPhoto}"></Button>
 

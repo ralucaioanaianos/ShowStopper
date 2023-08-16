@@ -23,6 +23,7 @@ namespace ShowStopper.ViewModels
         public string organizer;
         public string location;
         private FileResult photo;
+        private int price;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -38,6 +39,16 @@ namespace ShowStopper.ViewModels
             {   
                 name = value;
                 RaisePropertyChanged("Name");
+            }
+        }
+
+        public int Price
+        {
+            get => price;
+            set
+            {
+                price = value;
+                RaisePropertyChanged("Price");
             }
         }
 
@@ -128,7 +139,7 @@ namespace ShowStopper.ViewModels
                 if (photo != null)
                 {
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
-                    await EventsService.addEventToDatabase(Name, Description, Type, Date, Location, photoUrl);
+                    await EventsService.addEventToDatabase(Name, Description, Type, Date, Location, Price, photoUrl);
                 }
                 await _navigation.PopAsync();
             }

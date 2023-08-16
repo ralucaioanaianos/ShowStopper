@@ -7,15 +7,15 @@
              IconImageSource="compass_icon.png"
              NavigationPage.HasNavigationBar="False">
     <Grid VerticalOptions="FillAndExpand">
-        
+
         <Grid Padding="0"
           HorizontalOptions="FillAndExpand">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-           
+
             <customControls:CustomNavigationBar
             Grid.Row="0"
             GradientColor1="#1A2C6C"
@@ -28,10 +28,8 @@
             PageName="Explore">
             </customControls:CustomNavigationBar>
             <StackLayout Grid.Row="1">
-                
+
                 <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
-                    
-                    <!--<Label Text="Events" HorizontalOptions="EndAndExpand" VerticalOptions="Center" />-->
                     <customControls:GradientFilledLabel BorderColor="Transparent"
                                                     GradientColor1="#1A2C6C"
                                                     GradientColor2="#A782B9"
@@ -43,7 +41,6 @@
                         OnColor="LightGray"
                         ThumbColor="#A782B9"
                         BackgroundColor="Transparent"/>
-                    <!--<Label Text="Locations" HorizontalOptions="StartAndExpand" VerticalOptions="Center" />-->
                     <customControls:GradientFilledLabel BorderColor="Transparent"
                                                     GradientColor1="#1A2C6C"
                                                     GradientColor2="#A782B9"
@@ -53,52 +50,55 @@
                                                     VerticalOptions="Center"></customControls:GradientFilledLabel>
                 </StackLayout>
                 <SearchBar Placeholder="Search events and locations" TextChanged="SearchBar_TextChanged" />
-                <ImageButton Source="filter_icon.png" 
+               
+                <StackLayout Grid.Row="1"
+                             IsVisible="{Binding IsShowingEvents, Converter={StaticResource BooleanToVisibilityConverter}}">
+                    <ImageButton Source="x_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
                              Command="{Binding ShowFiltersBtn}"/>
-                <ListView x:Name="eventsListView"
+                    <ListView x:Name="eventsListView"
                 ItemsSource="{Binding Events}"
                   SelectedItem="{Binding SelectedEvent}"
                   Grid.Row="1"
-                  RowHeight="100"
-                  IsVisible="{Binding IsShowingEvents, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell Height="100">
-                                <ContentView VerticalOptions="FillAndExpand">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                            <ColumnDefinition Width="2*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding Image}"
+                  RowHeight="100">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell Height="100">
+                                    <ContentView VerticalOptions="FillAndExpand">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="2*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image Source="{Binding Image}"
                                         Grid.Column="0"
                                         HeightRequest="80"></Image>
-                                        <Grid Grid.Column="1"
+                                            <Grid Grid.Column="1"
                                       HeightRequest="80">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition Height="*"></RowDefinition>
-                                                <RowDefinition Height="Auto"></RowDefinition>
-                                            </Grid.RowDefinitions>
-                                            <VerticalStackLayout Grid.Row="0">
-                                                <Label Text="{Binding Name}"
+                                                <Grid.RowDefinitions>
+                                                    <RowDefinition Height="*"></RowDefinition>
+                                                    <RowDefinition Height="Auto"></RowDefinition>
+                                                </Grid.RowDefinitions>
+                                                <VerticalStackLayout Grid.Row="0">
+                                                    <Label Text="{Binding Name}"
                                                FontSize="16"
                                                FontAttributes="Bold"></Label>
-                                                <Label Text="{Binding Date}"
+                                                    <Label Text="{Binding Date}"
                                                FontSize="13"></Label>
-                                                <Label Text="{Binding Location}"
+                                                    <Label Text="{Binding Location}"
                                                FontSize="13"></Label>
-                                            </VerticalStackLayout>
+                                                </VerticalStackLayout>
 
+                                            </Grid>
                                         </Grid>
-                                    </Grid>
-
-                                </ContentView>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                                    </ContentView>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                
                 <ListView x:Name="locationsListView"
                 ItemsSource="{Binding Locations}"
                   SelectedItem="{Binding SelectedLocation}"
@@ -177,7 +177,7 @@
                HorizontalTextAlignment="Center"
                VerticalTextAlignment="Center"></Label>
         </Grid>-->
-            
+
         </Grid>
         <Grid x:Name="sidebar" 
               IsVisible="False" 
@@ -304,5 +304,5 @@
             </Frame>
         </Grid>
     </Grid>
-    
+
 </ContentPage>

@@ -19,7 +19,7 @@ namespace ShowStopper.Services
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public static async Task addEventToDatabase(string name, string description, string type, DateTime date, string location, string photo)
+        public static async Task addEventToDatabase(string name, string description, string type, DateTime date, string location, int price, string photo)
         {
             try
             {
@@ -34,6 +34,7 @@ namespace ShowStopper.Services
                     Organizer = newEmail,
                     Type = type,
                     Description = description,
+                    Price = price,
                     Image = photo,
                 });
                 await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + newEmail + ' ' + location, "ok");
