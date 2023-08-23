@@ -14,6 +14,7 @@ namespace ShowStopper.ViewModels
 {
     internal class ExplorePageViewModel : INotifyPropertyChanged
     {
+        public Command Refresh { get; set; }
         public Command ExitBtn { get; }
         public DateTime YesterdayDate { get; set; }
         public DateTime FromTime { get; set; }
@@ -145,6 +146,12 @@ namespace ShowStopper.ViewModels
             ShowFiltersBtn = new Command(ShowFiltersBtnTappedAsync);
             YesterdayDate = DateTime.Today.AddDays(-1);
             ExitBtn = new Command(ExitBtnTappedAsync);
+            Refresh = new Command(RefreshTriggered);
+        }
+
+        private async void RefreshTriggered()
+        {
+            OnPropertyChanged(nameof(Events));  
         }
 
         private async void ExitBtnTappedAsync(object parameter)
@@ -217,6 +224,7 @@ namespace ShowStopper.ViewModels
             else
             {
                 Events = new ObservableCollection<AppEvent>(Events.Where(e => e.Date >= FromTime && e.Date <= ToTime && e.Price >= FromPrice && e.Price <= ToPrice));
+                await Application.Current.MainPage.DisplayAlert("events filtered", Events.Count.ToString(), "ok");
                 //OnPropertyChanged(nameof(Events));
                 await _navigation.PopAsync();
             }

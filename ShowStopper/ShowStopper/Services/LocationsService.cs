@@ -55,8 +55,9 @@ namespace ShowStopper.Services
                             locations.Add(e.Object);
                         }
                     });
+                await Application.Current.MainPage.DisplayAlert("count email", locations.Count.ToString(), "ok");
                 await Task.Delay(TimeSpan.FromSeconds(2));
-                locationsQuery.Dispose();
+                //locationsQuery.Dispose();
                 return locations.ToList();
             } catch (Exception ex)
             {
@@ -70,10 +71,10 @@ namespace ShowStopper.Services
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
             var locations = new List<AppLocation>();
-            var locationQuery = firebaseClient
-                .Child("Locations").AsObservable<AppLocation>().Subscribe(l =>
+            var eventQuery = firebaseClient
+                .Child("Locations").AsObservable<AppLocation>().Subscribe(e =>
                 {
-                    locations.Add(l.Object);
+                    locations.Add(e.Object);
                 });
             await Task.Delay(500);
             return locations;

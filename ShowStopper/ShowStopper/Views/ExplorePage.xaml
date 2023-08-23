@@ -58,6 +58,9 @@
                              HorizontalOptions="End"
                              Command="{Binding ShowFiltersBtn}"/>
                     <ListView x:Name="eventsListView"
+                              IsPullToRefreshEnabled="True"
+                              RefreshCommand="{Binding Refresh}"
+                              IsRefreshing="False"
                 ItemsSource="{Binding Events}"
                   SelectedItem="{Binding SelectedEvent}"
                   Grid.Row="1"
