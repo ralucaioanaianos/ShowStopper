@@ -58,7 +58,7 @@
                                                      Grid.Row="4"
                                                      Text="Buy Tickets"
                                                      TextColor="White"
-                                                     TapCommand="{Binding BuyBtn}"
+                                                     TapCommand="{Binding StartPaymentCommand}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
                 

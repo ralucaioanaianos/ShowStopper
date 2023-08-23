@@ -46,7 +46,6 @@ namespace ShowStopper.Services
                 var firebaseClient = new FirebaseClient(databaseUrl);
                 var locations = new List<AppLocation>();
                 var newEmail = email.Replace('.', ',');
-
                 var locationsQuery = firebaseClient
                     .Child("Locations")
                     .OrderBy("Owner")
@@ -54,14 +53,10 @@ namespace ShowStopper.Services
                     .OnceAsync<AppLocation>();
 
                 var locationSnapshots = await locationsQuery;
-
                 foreach (var snapshot in locationSnapshots)
                 {
                     locations.Add(snapshot.Object);
                 }
-
-                await Application.Current.MainPage.DisplayAlert("count email", locations.Count.ToString(), "OK");
-
                 return locations;
             }
             catch (Exception ex)
