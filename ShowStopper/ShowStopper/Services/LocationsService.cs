@@ -55,9 +55,10 @@ namespace ShowStopper.Services
                             locations.Add(e.Object);
                         }
                     });
-                await Application.Current.MainPage.DisplayAlert("count email", locations.Count.ToString(), "ok");
                 await Task.Delay(TimeSpan.FromSeconds(2));
-                //locationsQuery.Dispose();
+                await Application.Current.MainPage.DisplayAlert("count email", locations.Count.ToString(), "ok");
+
+                locationsQuery.Dispose();
                 return locations.ToList();
             } catch (Exception ex)
             {
@@ -70,14 +71,20 @@ namespace ShowStopper.Services
         public static async Task<List<AppLocation>> getAllLocations()
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
-            var locations = new List<AppLocation>();
-            var eventQuery = firebaseClient
-                .Child("Locations").AsObservable<AppLocation>().Subscribe(e =>
-                {
-                    locations.Add(e.Object);
-                });
-            await Task.Delay(500);
+            //var eventQuery = firebaseClient
+            //    .Child("Locations").AsObservable<AppLocation>().Subscribe(e =>
+            //    {
+            //        locations.Add(e.Object);
+            //    });
+            //await Task.Delay(500);
+            //await Application.Current.MainPage.DisplayAlert("count all", locations.Count.ToString(), "ok");
+
+            //return locations;
+            var locationsTask = firebaseClient.Child("Locations").OnceAsync<AppLocation>();
+            await Task.WhenAll(locationsTask);
+            var locations = locationsTask.Result.Select(snapshot => snapshot.Object).ToList();
             return locations;
+
         }
 
         public static async Task AddLocationToFavorites(AppLocation appLocation)

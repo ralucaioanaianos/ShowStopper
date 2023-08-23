@@ -53,14 +53,12 @@
                
                 <StackLayout Grid.Row="1"
                              IsVisible="{Binding IsShowingEvents, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <ImageButton Source="x_icon.png" 
+                    <!--<ImageButton Source="x_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
-                             Command="{Binding ShowFiltersBtn}"/>
+                             Command="{Binding ShowFiltersBtn}"/>-->
                     <ListView x:Name="eventsListView"
-                              IsPullToRefreshEnabled="True"
-                              RefreshCommand="{Binding Refresh}"
-                              IsRefreshing="False"
+                              
                 ItemsSource="{Binding Events}"
                   SelectedItem="{Binding SelectedEvent}"
                   Grid.Row="1"
@@ -146,10 +144,10 @@
                 </ListView>
 
             </StackLayout>
-            <ImageButton Source="filter_icon.png"  
+            <!--<ImageButton Source="filter_icon.png"  
                          Margin="0,0,20,0"
                          HorizontalOptions="End"
-                         Command="{Binding ShowFiltersBtn}"/>
+                         Command="{Binding ShowFiltersBtn}"/>-->
 
             <!--<ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
         <Grid VerticalOptions="Center"
