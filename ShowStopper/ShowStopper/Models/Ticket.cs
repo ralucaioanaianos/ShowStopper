@@ -8,6 +8,7 @@ namespace ShowStopper.Models
 {
     public class Ticket
     {
+        public AppUser AppUser { get; set; }
         public AppEvent AppEvent { get; set; } 
     }
 }

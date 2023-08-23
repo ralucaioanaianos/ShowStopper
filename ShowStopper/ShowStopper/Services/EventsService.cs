@@ -85,15 +85,8 @@ namespace ShowStopper.Services
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
             var eventsTask = firebaseClient.Child("Events").OnceAsync<AppEvent>();
-            var locationsTask = firebaseClient.Child("Locations").OnceAsync<AppLocation>();
-
-            await Task.WhenAll(eventsTask, locationsTask);
-
+            await Task.WhenAll(eventsTask);
             var events = eventsTask.Result.Select(snapshot => snapshot.Object).ToList();
-            var locations = locationsTask.Result.Select(snapshot => snapshot.Object).ToList();
-
-            await Application.Current.MainPage.DisplayAlert("LOCATIONS COUNT", locations.Count.ToString(), "OK");
-
             return events;
         }
 
