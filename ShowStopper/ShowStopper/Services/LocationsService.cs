@@ -44,25 +44,29 @@ namespace ShowStopper.Services
             try
             {
                 var firebaseClient = new FirebaseClient(databaseUrl);
-                var locations = new ConcurrentBag<AppLocation>();
+                var locations = new List<AppLocation>();
                 var newEmail = email.Replace('.', ',');
-                var locationsQuery = firebaseClient
-                    .Child("Locations").AsObservable<AppLocation>().Subscribe(async (e) =>
-                    {
-                        Console.WriteLine(e.Object.Owner + ' ' + email);
-                        if (e.Object.Owner == newEmail)
-                        {
-                            locations.Add(e.Object);
-                        }
-                    });
-                await Task.Delay(TimeSpan.FromSeconds(2));
-                await Application.Current.MainPage.DisplayAlert("count email", locations.Count.ToString(), "ok");
 
-                locationsQuery.Dispose();
-                return locations.ToList();
-            } catch (Exception ex)
+                var locationsQuery = firebaseClient
+                    .Child("Locations")
+                    .OrderBy("Owner")
+                    .EqualTo(newEmail)
+                    .OnceAsync<AppLocation>();
+
+                var locationSnapshots = await locationsQuery;
+
+                foreach (var snapshot in locationSnapshots)
+                {
+                    locations.Add(snapshot.Object);
+                }
+
+                await Application.Current.MainPage.DisplayAlert("count email", locations.Count.ToString(), "OK");
+
+                return locations;
+            }
+            catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("getLocation", ex.Message, "ok");
+                await Application.Current.MainPage.DisplayAlert("getLocation", ex.Message, "OK");
                 return null;
             }
         }
