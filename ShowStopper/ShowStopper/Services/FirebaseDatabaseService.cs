@@ -95,6 +95,7 @@ namespace ShowStopper.Services
 
         public static async Task<AppUser> GetUserByEmail(string email)
         {
+            Console.WriteLine("ENTERED GETUSERBYEMAIL");
             var firebaseClient = new FirebaseClient(databaseUrl);
             var newEmail = email.Replace(".", ",");
             var userQuery = firebaseClient
@@ -102,9 +103,12 @@ namespace ShowStopper.Services
                 .OrderBy("Email")
                 .EqualTo(newEmail)
                 .LimitToFirst(1);
+            Console.WriteLine("OK");
             var userSnapshot = await userQuery.OnceAsync<AppUser>();
             var user = userSnapshot.FirstOrDefault()?.Object;
             await Application.Current.MainPage.DisplayAlert("GetUserByEmai", user.Email, "OK");
+            await Task.Delay(500);
+            Console.WriteLine(user.Email);
             return user;
         }
 

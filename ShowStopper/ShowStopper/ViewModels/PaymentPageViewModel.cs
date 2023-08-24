@@ -22,8 +22,7 @@ namespace ShowStopper.ViewModels
 
         public PaymentPageViewModel()
         {
-            //_navigation = navigation;
-            //_totalAmount = totalAmount;
+            
             
         }
 

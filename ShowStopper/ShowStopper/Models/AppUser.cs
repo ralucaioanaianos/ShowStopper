@@ -33,5 +33,7 @@ namespace ShowStopper.Models
         public string PhotoStr { get; set; }
 
         //public string ConnectionId { get; set; }
+
+        public List<string> AttendingEvents { get; set; }
     }
 }
