@@ -42,53 +42,54 @@
             <ScrollView>
                 <VerticalStackLayout>
                     <Entry
-            Margin="0,0,0,0"
-            HorizontalOptions="FillAndExpand"
-            Placeholder="Email"
-            Text="{Binding Email}"
-            VerticalOptions="FillAndExpand" />
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Email"
+                        Text="{Binding Email}"
+                        VerticalOptions="FillAndExpand" />
                     <Entry
-            HorizontalOptions="FillAndExpand"
-            IsPassword="True"
-            Placeholder="Password"
-            Text="{Binding Password}"
-            VerticalOptions="FillAndExpand" />
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        IsPassword="True"
+                        Placeholder="Password"
+                        Text="{Binding Password}"
+                        VerticalOptions="FillAndExpand" />      
                     <Entry
-            Margin="0,20,0,0"
-            HorizontalOptions="FillAndExpand"
-            Placeholder="First Name"
-            Text="{Binding FirstName}"
-            VerticalOptions="FillAndExpand" />
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="First Name"
+                        Text="{Binding FirstName}"
+                        VerticalOptions="FillAndExpand" />
                     <Entry
-            Margin="0,20,0,0"
-            HorizontalOptions="FillAndExpand"
-            Placeholder="Last Name"
-            Text="{Binding LastName}"
-            VerticalOptions="FillAndExpand" />
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Last Name"
+                        Text="{Binding LastName}"
+                        VerticalOptions="FillAndExpand" />
                     <Entry
-            Margin="0,20,0,0"
-            HorizontalOptions="FillAndExpand"
-            Placeholder="Phone Number"
-            Text="{Binding PhoneNumber}"
-            VerticalOptions="FillAndExpand" />
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Phone Number"
+                        Text="{Binding PhoneNumber}"
+                        VerticalOptions="FillAndExpand" />
                     <Entry
-            Margin="0,20,0,0"
-            HorizontalOptions="FillAndExpand"
-            Placeholder="Company Name"
-            Text="{Binding CompanyName}"
-            VerticalOptions="FillAndExpand" />
+                        Margin="0,20,0,0"
+                        HorizontalOptions="FillAndExpand"
+                        Placeholder="Company Name"
+                        Text="{Binding CompanyName}"
+                        VerticalOptions="FillAndExpand" />
                     <Button Text="pick image" Grid.Row="8"
-                Command="{Binding SelectPhoto}"></Button>
+                            Command="{Binding SelectPhoto}"></Button>
                     <customControls:GradientFilledButton
-                GradientColor1="#1A2C6C"
-                GradientColor2="#A782B9"
-                TextColor="White"
-                TapCommand="{Binding RegisterUser}"
-                BorderColor="Transparent"
-                Text="Create Account"></customControls:GradientFilledButton>
+                            Margin="0,40,0,0"
+                            GradientColor1="#1A2C6C"
+                            GradientColor2="#A782B9"
+                            TextColor="White"
+                            TapCommand="{Binding RegisterUser}"
+                            BorderColor="Transparent"
+                            Text="Create Account"></customControls:GradientFilledButton>
                 </VerticalStackLayout>
             </ScrollView>
-
         </Grid>
     </Grid>
 </ContentPage>

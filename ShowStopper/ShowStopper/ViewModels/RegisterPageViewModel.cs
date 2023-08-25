@@ -29,7 +29,7 @@ namespace ShowStopper.ViewModels
         private string companyName;
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+        public Command BackBtn { get; }
         public string Email
         {
             get => email;
@@ -104,6 +104,12 @@ namespace ShowStopper.ViewModels
             _navigation = navigation;
             SelectPhoto = new Command(SelectPhotoTappedAsync);
             RegisterUser = new Command(RegisterUserTappedAsync);
+            BackBtn = new Command(BackBtnTappedAsync);
+        }
+
+        private async void BackBtnTappedAsync(object parameter)
+        {
+            await _navigation.PopAsync();
         }
 
         private async void RegisterUserTappedAsync(object obj)
