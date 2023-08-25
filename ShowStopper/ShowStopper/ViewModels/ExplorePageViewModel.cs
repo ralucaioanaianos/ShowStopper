@@ -16,11 +16,10 @@ namespace ShowStopper.ViewModels
     {
         public Command Refresh { get; set; }
         public Command ExitBtn { get; }
-        public DateTime YesterdayDate { get; set; }
         public DateTime FromTime { get; set; }
         public DateTime ToTime { get; set; }
-        public int FromPrice { get; set; }
-        public int ToPrice { get; set; } 
+        public decimal FromPrice { get; set; }
+        public decimal ToPrice { get; set; } 
         public Command SaveBtn { get; }
         private string _searchQuery;
         public string SearchQuery
@@ -127,6 +126,33 @@ namespace ShowStopper.ViewModels
         {
         }
 
+        private DateTime GetMaximumEventsDate()
+        {
+            DateTime maximumDate = DateTime.Now;
+            //Console.WriteLine("LENGTH: " + Events.Count);
+            if(Events is null)
+            {
+                return maximumDate;
+            }
+            foreach (AppEvent ev in Events)
+            {
+                if (ev.Date > maximumDate)
+                    maximumDate = ev.Date;
+            }
+            return maximumDate;
+        }
+
+        private decimal GetMaximumEventsPrice()
+        {
+            decimal maximumPrice = 0;
+            foreach (AppEvent ev in Events)
+            {
+                if (ev.Price > maximumPrice)
+                    maximumPrice = ev.Price;
+            }
+            return maximumPrice;
+        }
+
         public ExplorePageViewModel(INavigation navigation)
         {
             LoadEvents();
@@ -144,9 +170,13 @@ namespace ShowStopper.ViewModels
             IsMusicExpanded = false;
             SaveBtn = new Command(SaveBtnTappedAsync);
             ShowFiltersBtn = new Command(ShowFiltersBtnTappedAsync);
-            YesterdayDate = DateTime.Today.AddDays(-1);
             ExitBtn = new Command(ExitBtnTappedAsync);
             Refresh = new Command(RefreshTriggered);
+            FromTime = DateTime.Today;
+            //ToTime = DateTime.Today;
+            
+            //FromPrice = 0;
+            //ToPrice = GetMaximumEventsPrice();
         }
 
         private async void RefreshTriggered()
@@ -303,10 +333,21 @@ namespace ShowStopper.ViewModels
             Events = collection;
             _originalEvents = new ObservableCollection<AppEvent>(Events); // Initialize with your original events data
             IsDataLoaded = true;
-            await Task.Delay(1000);
+            ToTime = DateTime.MinValue;
             if (Events.Count == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("prolr", "events empty", "ok");
+            }
+            else
+            {
+                foreach(AppEvent e in Events) 
+                { 
+                    if (e.Date > ToTime)
+                    {
+                        ToTime = e.Date;
+                        OnPropertyChanged(nameof(ToTime));
+                    }
+                }
             }
         }
 

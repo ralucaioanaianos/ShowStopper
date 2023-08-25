@@ -53,10 +53,10 @@
                
                 <StackLayout Grid.Row="1"
                              IsVisible="{Binding IsShowingEvents, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <!--<ImageButton Source="x_icon.png" 
+                    <ImageButton Source="x_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
-                             Command="{Binding ShowFiltersBtn}"/>-->
+                             Command="{Binding ShowFiltersBtn}"/>
                     <ListView x:Name="eventsListView"
                               
                 ItemsSource="{Binding Events}"
