@@ -44,6 +44,8 @@ namespace ShowStopper.ViewModels
         private async void PlusButtonTappedAsync(object parameter)
         {
             await _navigation.PushAsync(new AddEventPage());
+            LoadEvents();
+            OnPropertyChanged(nameof(Events));  
         }
 
         public MyEventsPageViewModel(INavigation navigation)
