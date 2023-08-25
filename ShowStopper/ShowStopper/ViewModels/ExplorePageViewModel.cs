@@ -16,6 +16,7 @@ namespace ShowStopper.ViewModels
     {
         public Command Refresh { get; set; }
         public Command ExitBtn { get; }
+        public Command UpdateFilterEventsResults { get; }
         public DateTime FromTime { get; set; }
         public DateTime ToTime { get; set; }
         public decimal FromPrice { get; set; }
@@ -126,33 +127,6 @@ namespace ShowStopper.ViewModels
         {
         }
 
-        private DateTime GetMaximumEventsDate()
-        {
-            DateTime maximumDate = DateTime.Now;
-            //Console.WriteLine("LENGTH: " + Events.Count);
-            if(Events is null)
-            {
-                return maximumDate;
-            }
-            foreach (AppEvent ev in Events)
-            {
-                if (ev.Date > maximumDate)
-                    maximumDate = ev.Date;
-            }
-            return maximumDate;
-        }
-
-        private decimal GetMaximumEventsPrice()
-        {
-            decimal maximumPrice = 0;
-            foreach (AppEvent ev in Events)
-            {
-                if (ev.Price > maximumPrice)
-                    maximumPrice = ev.Price;
-            }
-            return maximumPrice;
-        }
-
         public ExplorePageViewModel(INavigation navigation)
         {
             LoadEvents();
@@ -173,10 +147,7 @@ namespace ShowStopper.ViewModels
             ExitBtn = new Command(ExitBtnTappedAsync);
             Refresh = new Command(RefreshTriggered);
             FromTime = DateTime.Today;
-            //ToTime = DateTime.Today;
-            
-            //FromPrice = 0;
-            //ToPrice = GetMaximumEventsPrice();
+            UpdateFilterEventsResults = new Command(UpdateFilterEventsResultsTapped);
         }
 
         private async void RefreshTriggered()
@@ -187,6 +158,16 @@ namespace ShowStopper.ViewModels
         private async void ExitBtnTappedAsync(object parameter)
         {
             await _navigation.PopAsync();
+        }
+
+        public async void UpdateFilterEventsResultsTapped(object parameter)
+        {
+            await Application.Current.MainPage.DisplayAlert("ok", Events.Count.ToString(), "ok");
+
+            Events = new ObservableCollection<AppEvent>(
+                        _originalEvents.Where(e => e.Date >= FromTime && e.Date <= ToTime && e.Price >= FromPrice && e.Price <= ToPrice));
+            await Application.Current.MainPage.DisplayAlert("ok", Events.Count.ToString(), "ok");
+
         }
 
         public void UpdateSearchResults(string searchText)
@@ -247,15 +228,20 @@ namespace ShowStopper.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Invalid price range", "Minimum price cannot be greater than maximum price!", "ok");
             }
 
-            else if (FromTime <  DateTime.Now || ToTime < DateTime.Now || ToTime < FromTime)
+            else if (FromTime <  DateTime.Today || ToTime < DateTime.Today || ToTime < FromTime)
             {
                 await Application.Current.MainPage.DisplayAlert("Invalid date", "", "ok");
             }
             else
             {
-                Events = new ObservableCollection<AppEvent>(Events.Where(e => e.Date >= FromTime && e.Date <= ToTime && e.Price >= FromPrice && e.Price <= ToPrice));
+                Events.Clear();
+                _events.Clear();
+                foreach (var e in _originalEvents.Where(e => e.Date >= FromTime && e.Date <= ToTime && e.Price >= FromPrice && e.Price <= ToPrice))
+                {
+                    Events.Add(e);
+                    _events.Add(e);
+                }
                 await Application.Current.MainPage.DisplayAlert("events filtered", Events.Count.ToString(), "ok");
-                //OnPropertyChanged(nameof(Events));
                 await _navigation.PopAsync();
             }
         }
@@ -331,6 +317,8 @@ namespace ShowStopper.ViewModels
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
 
             Events = collection;
+            await Application.Current.MainPage.DisplayAlert("list0", Events.Count.ToString(), "ok");
+
             _originalEvents = new ObservableCollection<AppEvent>(Events); // Initialize with your original events data
             IsDataLoaded = true;
             ToTime = DateTime.MinValue;
@@ -369,7 +357,6 @@ namespace ShowStopper.ViewModels
             Locations = collection;
             _originalLocations = new ObservableCollection<AppLocation>(Locations); // Initialize with your original locations data
             IsDataLoaded = true;
-            await Task.Delay(1000);
             if (Locations.Count == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("prolr", "locations empty", "ok");

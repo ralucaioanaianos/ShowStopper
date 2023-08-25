@@ -2,6 +2,7 @@
 using PayPalCheckoutSdk.Orders;
 using ShowStopper.Models;
 using ShowStopper.Services;
+using ShowStopper.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,6 +15,7 @@ namespace ShowStopper.ViewModels
 {
     class EventPageViewModel : INotifyPropertyChanged
     {
+        public Command SimilarBtn { get; }
         public string Name { get; set; }
         public string Descriptionn { get; set; }
         public DateTime Date { get; set; }
@@ -63,9 +65,14 @@ namespace ShowStopper.ViewModels
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             BuyBtn = new Command(BuyButtonTappedAsync);
+            SimilarBtn = new Command(SimilarBtnTappedAsync);
 
         }
 
+        private async void SimilarBtnTappedAsync(object parameter)
+        {
+            await _navigation.PushAsync(new SimilarEventsPage(AppEvent));
+        }
         private async Task StartPaymentAsync()
         {
             if (Price > 0)

@@ -17,5 +17,4 @@ public partial class ExplorePage : ContentPage
             viewModel.UpdateSearchResults(e.NewTextValue);
         }
     }
-
 }

@@ -33,6 +33,7 @@
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
                     <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="Auto"></RowDefinition>
                 </Grid.RowDefinitions>
                 <Image Source="{Binding Image}"
                        Grid.Row="0"
@@ -61,7 +62,14 @@
                                                      TapCommand="{Binding StartPaymentCommand}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
-                
+                <customControls:GradientFilledButton BorderColor="Transparent"
+                                                     VerticalOptions="End"
+                                                     Grid.Row="5"
+                                                     Text="Similar Events"
+                                                     TextColor="White"
+                                                     TapCommand="{Binding SimilarBtn}"
+                                                     GradientColor1="#1A2C6C"
+                                                     GradientColor2="#A782B9"></customControls:GradientFilledButton>
             </Grid>
         </Grid>
     </ContentPage.Content>

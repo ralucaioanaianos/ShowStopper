@@ -88,11 +88,25 @@ namespace ShowStopper.Services
 
         public static async Task<List<AppEvent>> getAllEvents()
         {
-            var firebaseClient = new FirebaseClient(databaseUrl);
-            var eventsTask = firebaseClient.Child("Events").OnceAsync<AppEvent>();
-            await Task.WhenAll(eventsTask);
-            var events = eventsTask.Result.Select(snapshot => snapshot.Object).ToList();
-            return events;
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var events = new List<AppEvent>();
+                var eventsQuery = firebaseClient
+                        .Child("Events")
+                        .OnceAsync<AppEvent>();
+                var eventsSnapshot = await eventsQuery;
+                foreach (var snapshot in eventsSnapshot)
+                {
+                    events.Add(snapshot.Object);
+                }
+                return events;
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("get events", ex.Message, "ok");
+                return null;
+            }
         }
 
         public static async Task AddEventToFavorites(AppEvent appEvent)
