@@ -62,23 +62,28 @@ namespace ShowStopper.Services
 
         public static async Task<List<AppEvent>> getEventsByEmail(string email)
         {
-            var firebaseClient = new FirebaseClient(databaseUrl);
-            var events = new ConcurrentBag<AppEvent>();
-            var newEmail = email.Replace('.', ',');
-            var eventQuery = firebaseClient
-                .Child("Events").AsObservable<AppEvent>().Subscribe(e =>
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var events = new List<AppEvent>();
+                var newEmail = email.Replace('.', ',');
+                var eventsQuery = firebaseClient
+                        .Child("Events")
+                        .OrderBy("Organizer")
+                        .EqualTo(newEmail)
+                        .OnceAsync<AppEvent>();
+                var eventsSnapshot = await eventsQuery;
+                foreach (var snapshot in eventsSnapshot)
                 {
-                    Console.WriteLine(e.Object.Organizer + ' ' + email);
-                    if (e.Object.Organizer == newEmail)
-                    {
-                        Console.WriteLine("found");
-                        events.Add(e.Object);
-
-                    }
-                });
-            await Task.Delay(TimeSpan.FromSeconds(2)); // Delay to allow time for events to be populated
-            eventQuery.Dispose();
-            return events.ToList();
+                    events.Add(snapshot.Object);
+                }
+                return events;
+            } catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("get events", ex.Message, "ok");
+                return null;
+            }
+            
         }
 
         public static async Task<List<AppEvent>> getAllEvents()

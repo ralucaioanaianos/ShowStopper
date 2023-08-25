@@ -109,7 +109,7 @@ namespace ShowStopper.ViewModels
                     await Browser.OpenAsync(new Uri(approvalUrl), BrowserLaunchMode.SystemPreferred);
                     for (var i = 0; i < decimal.Parse(result);i++)
                     {
-                        await UserService.AddEventToUser(AppEvent);
+                        await UserService.AddEventToUser(AppEvent.Name);
                     }
                 }
                 catch (Exception ex)
@@ -123,7 +123,7 @@ namespace ShowStopper.ViewModels
                 string result = await Application.Current.MainPage.DisplayPromptAsync("Purchase tickets", "How many tickets do you want to purchase?", initialValue: "0", maxLength: 2, keyboard: Keyboard.Numeric);
                 for (var i = 0;i < decimal.Parse(result);i++)
                 {
-                    await UserService.AddEvent(AppEvent.Name);
+                    await UserService.AddEventToUser(AppEvent.Name);
                 }
             }  
         }

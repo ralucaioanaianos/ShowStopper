@@ -15,17 +15,12 @@ namespace ShowStopper.Services
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public static async Task<bool> AddEvent(string eventName)
+        public static async Task<bool> AddEventToUser(string eventName)
         {
-            Console.WriteLine("EVENT NAME: " + eventName);
             var firebaseClient = new FirebaseClient(databaseUrl);
             var userEmail = FirebaseAuthenticationService.GetLoggedUserEmail();
-            Console.WriteLine($"user email: {userEmail}");  
-            var newEmail = userEmail.Replace('.', ',');
             var userId = await GetUserIdByEmail(userEmail);
-            Console.WriteLine("USER ID: " + userId);
-            var toUpdateUser = await FirebaseDatabaseService.GetUserByEmail(userEmail);
-            Console.WriteLine("FOUND USER EMAIL: " + toUpdateUser.Email);
+            var toUpdateUser = await GetUserByEmail(userEmail);
             if (toUpdateUser != null)
             {
                 if (toUpdateUser.AttendingEvents == null)
@@ -43,39 +38,6 @@ namespace ShowStopper.Services
             else
                 return false;
         }
-
-        public static async Task AddEventToUser(AppEvent appEvent)
-        {
-            try
-            {
-                FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
-                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-                var newEmail = email.Replace('.', ',');
-                Console.WriteLine($"NEW EMAIL: {newEmail}");
-
-                // Fetch the user's data
-                //var user = await firebaseClient.Child("Users").Child(newEmail).OnceSingleAsync<AppUser>();
-                var user = (await firebaseClient
-                            .Child("Users")
-                            .OnceAsync<AppUser>()).Where(a => a.Object.Email == newEmail).FirstOrDefault().Object;
-                // Add the event name to the AttendingEvents list
-                if (user.AttendingEvents == null)
-                {
-                    user.AttendingEvents = new List<string>();
-                }
-                user.AttendingEvents.Add(appEvent.Name);
-                Console.WriteLine($"EVENT NAME: {appEvent.Name}");
-                // Update the user's data
-                //await firebaseClient.Child("Users").Child(newEmail).PutAsync(user);
-                //await FirebaseDatabaseService.UpdateUserData()
-            }
-            catch (Exception ex)
-            {
-                await Application.Current.MainPage.DisplayAlert("addTicket", ex.Message, "ok");
-            }
-        }
-
-
 
         public static async Task<bool> UpdateUserData(AppUser user, string firstName, string lastName, string phoneNumber, string companyName, string photoUrl)
         {
@@ -103,22 +65,6 @@ namespace ShowStopper.Services
                 return false;
         }
 
-        public static async Task<AppUser> getUserByEmail(string email)
-        {
-            var firebaseClient = new FirebaseClient(databaseUrl);
-            var user = new AppUser();
-            var newEmail = email.Replace('.', ',');
-            var userQuery = firebaseClient
-                .Child("Users").AsObservable<AppUser>().Subscribe(u =>
-                {
-                    if (u.Object.Email == newEmail)
-
-                        user = u.Object;
-                });
-            await Task.Delay(500);
-            return user;
-        }
-
         public static async Task<AppUser> GetUserByEmail(string email)
         {
             Console.WriteLine("ENTERED GETUSER");
@@ -131,7 +77,6 @@ namespace ShowStopper.Services
                 .LimitToFirst(1);
             var userSnapshot = await userQuery.OnceAsync<AppUser>();
             var user = userSnapshot.FirstOrDefault()?.Object;
-            await Application.Current.MainPage.DisplayAlert("GetUserByEmai", user.Email, "OK");
             return user;
         }
 

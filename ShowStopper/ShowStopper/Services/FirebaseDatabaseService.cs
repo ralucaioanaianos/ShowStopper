@@ -77,22 +77,6 @@ namespace ShowStopper.Services
             return userId;
         }
 
-        public static async Task<AppUser> getUserByEmail(string email)
-        {
-            var firebaseClient = new FirebaseClient(databaseUrl);
-            var user = new AppUser();
-            var newEmail = email.Replace('.', ',');
-            var userQuery = firebaseClient
-                .Child("Users").AsObservable<AppUser>().Subscribe(u =>
-                {
-                    if (u.Object.Email == newEmail)
-                      
-                    user = u.Object;
-                });
-            await Task.Delay(500);
-            return user;
-        }
-
         public static async Task<AppUser> GetUserByEmail(string email)
         {
             Console.WriteLine("ENTERED GETUSERBYEMAIL");

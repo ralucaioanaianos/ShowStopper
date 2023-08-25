@@ -95,7 +95,7 @@
                             <ImageButton Source="arrow_left_icon.png" 
                              Grid.Column="2" 
                              HorizontalOptions="End"
-                             Command="{Binding FavoriteLocationsBtn}"/>
+                             Command="{Binding MyTicketsBtn}"/>
                         </Grid>
                         <Border BackgroundColor="Gray" 
                Margin="20, 20, 20, 20"
