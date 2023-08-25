@@ -334,6 +334,7 @@ namespace ShowStopper.ViewModels
             _originalEvents = new ObservableCollection<AppEvent>(Events); // Initialize with your original events data
             IsDataLoaded = true;
             ToTime = DateTime.MinValue;
+            ToPrice = 0;
             if (Events.Count == 0)
             {
                 await Application.Current.MainPage.DisplayAlert("prolr", "events empty", "ok");
@@ -346,6 +347,11 @@ namespace ShowStopper.ViewModels
                     {
                         ToTime = e.Date;
                         OnPropertyChanged(nameof(ToTime));
+                    }
+                    if (e.Price > ToPrice)
+                    {
+                        ToPrice = e.Price;
+                        OnPropertyChanged(nameof(ToPrice));
                     }
                 }
             }
