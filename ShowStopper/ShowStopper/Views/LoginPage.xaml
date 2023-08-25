@@ -15,7 +15,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Image
-                    HeightRequest="250"
+                    HeightRequest="300"
                     Aspect="AspectFill"
                     Source="party_background_1" />
 
@@ -89,32 +89,7 @@
                         BorderColor="#1A2C6C"
                         TapCommand="{Binding RegisterBtn}">
                     </customControls:GradientFilledButton>
-                    <StackLayout
-                        Grid.Row="6"
-                        HorizontalOptions="CenterAndExpand"
-                        Orientation="Horizontal"
-                        Spacing="40">
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo626DNKJxdHM-VNRD0m7x_8Jim-r9kRalJQ"
-                            WidthRequest="30" />
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnLfAn36-LTYNHjioWgvu-0KUTIDDrW5lX_g"
-                            WidthRequest="30" />
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://www.freepnglogos.com/uploads/google-logo-png/google-logo-icon-png-transparent-background-osteopathy-16.png"
-                            WidthRequest="30" />
-                        <Image
-                            Aspect="AspectFit"
-                            HeightRequest="30"
-                            Source="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                            WidthRequest="30" />
-                    </StackLayout>
+                    
                     <Button Grid.Row="7"
                             HorizontalOptions="CenterAndExpand"
                             Text="I forgot my password"

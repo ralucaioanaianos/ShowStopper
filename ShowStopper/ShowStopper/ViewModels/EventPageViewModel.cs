@@ -71,13 +71,8 @@ namespace ShowStopper.ViewModels
             if (Price > 0)
             {
                 string result = await Application.Current.MainPage.DisplayPromptAsync("Purchase tickets", "How many tickets do you want to purchase?", initialValue: "0", maxLength: 2, keyboard: Keyboard.Numeric);
-
-                // await Application.Current.MainPage.DisplayAlert("ok", "ok", "ok");
-                // Set up PayPal environment and client
                 var environment = new LiveEnvironment("AfsCfY_-W3mkduSG4GWQg9jifpZuW1p0SY7WPF_CATT2MuBMkr6tZu6eCrdoJo8Crn8FlJ1g35zFbeXt", "EHOY5cjeM9vT1NPYzWGU4ezYLEXaIV0bWmTZqzg6L0cZhKsbgSgoFPMTAd9HWGvNiRpJPD1iXqTkQe1c");
                 var client = new PayPalHttpClient(environment);
-
-                // Create an order with items and amount
                 var order = new OrderRequest()
                 {
                     CheckoutPaymentIntent = "CAPTURE",
@@ -95,7 +90,6 @@ namespace ShowStopper.ViewModels
                 };
                 try
                 {
-                    // Create order and get the approval URL
                     var request = new OrdersCreateRequest();
                     request.RequestBody(order);
                     var response = await client.Execute(request);
@@ -104,8 +98,6 @@ namespace ShowStopper.ViewModels
                     var approvalUrl = orderResult.Links
                         .Find(link => link.Rel.Equals("approve", StringComparison.OrdinalIgnoreCase))
                         .Href;
-
-                    // Open a browser or in-app browser to complete payment
                     await Browser.OpenAsync(new Uri(approvalUrl), BrowserLaunchMode.SystemPreferred);
                     for (var i = 0; i < decimal.Parse(result);i++)
                     {
@@ -114,16 +106,18 @@ namespace ShowStopper.ViewModels
                 }
                 catch (Exception ex)
                 {
-                    // Handle exception
                     await Application.Current.MainPage.DisplayAlert("payment error", ex.Message, "ok");
                 }
             }
             else
             {
                 string result = await Application.Current.MainPage.DisplayPromptAsync("Purchase tickets", "How many tickets do you want to purchase?", initialValue: "0", maxLength: 2, keyboard: Keyboard.Numeric);
-                for (var i = 0;i < decimal.Parse(result);i++)
+                if (result != null)
                 {
-                    await UserService.AddEventToUser(AppEvent.Name);
+                    for (var i = 0; i < decimal.Parse(result); i++)
+                    {
+                        await UserService.AddEventToUser(AppEvent.Name);
+                    }
                 }
             }  
         }

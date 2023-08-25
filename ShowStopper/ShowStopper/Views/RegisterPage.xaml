@@ -4,78 +4,91 @@
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.RegisterPage"
              Title="RegisterPage"
-             NavigationPage.HasNavigationBar="True">
-    <!--<NavigationPage>
-        <Grid BackgroundColor="Yellow"></Grid>
-    </NavigationPage>-->
-    <Grid
-        Padding="20,0,20,0"
-        HorizontalOptions="FillAndExpand"
-        RowSpacing="20"
-        VerticalOptions="FillAndExpand">
+             NavigationPage.HasNavigationBar="False">
+    <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <Entry
-            Grid.Row="2"
+        <customControls:CustomNavigationBar
+            Grid.Row="0"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#A782B9"
+            IsBackButtonVisible="True"
+            IsPlusButtonVisible="False"
+            IsEmptyHeartButtonVisible="False"
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="Register">
+        </customControls:CustomNavigationBar>
+        <Grid
+            Grid.Row="1"
+            Padding="20,0,20,0"
+            HorizontalOptions="FillAndExpand"
+            RowSpacing="20"
+            VerticalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <ScrollView>
+                <VerticalStackLayout>
+                    <Entry
             Margin="0,0,0,0"
             HorizontalOptions="FillAndExpand"
             Placeholder="Email"
             Text="{Binding Email}"
             VerticalOptions="FillAndExpand" />
-        <Entry
-            Grid.Row="3"
+                    <Entry
             HorizontalOptions="FillAndExpand"
             IsPassword="True"
             Placeholder="Password"
             Text="{Binding Password}"
             VerticalOptions="FillAndExpand" />
-        <Entry
-            Grid.Row="4"
+                    <Entry
             Margin="0,20,0,0"
             HorizontalOptions="FillAndExpand"
             Placeholder="First Name"
             Text="{Binding FirstName}"
             VerticalOptions="FillAndExpand" />
-        <Entry
-            Grid.Row="5"
+                    <Entry
             Margin="0,20,0,0"
             HorizontalOptions="FillAndExpand"
             Placeholder="Last Name"
             Text="{Binding LastName}"
             VerticalOptions="FillAndExpand" />
-        <Entry
-            Grid.Row="6"
+                    <Entry
             Margin="0,20,0,0"
             HorizontalOptions="FillAndExpand"
             Placeholder="Phone Number"
             Text="{Binding PhoneNumber}"
             VerticalOptions="FillAndExpand" />
-        <Entry
-            Grid.Row="7"
+                    <Entry
             Margin="0,20,0,0"
             HorizontalOptions="FillAndExpand"
             Placeholder="Company Name"
             Text="{Binding CompanyName}"
             VerticalOptions="FillAndExpand" />
-        <Button Text="pick image" Grid.Row="8"
+                    <Button Text="pick image" Grid.Row="8"
                 Command="{Binding SelectPhoto}"></Button>
-        <customControls:GradientFilledButton
-                Grid.Row="9"
+                    <customControls:GradientFilledButton
                 GradientColor1="#1A2C6C"
-                GradientColor2="#5D1B7D"
+                GradientColor2="#A782B9"
                 TextColor="White"
                 TapCommand="{Binding RegisterUser}"
                 BorderColor="Transparent"
                 Text="Create Account"></customControls:GradientFilledButton>
+                </VerticalStackLayout>
+            </ScrollView>
+
+        </Grid>
     </Grid>
 </ContentPage>
