@@ -1,5 +1,7 @@
-﻿using Firebase.Database;
+﻿using Firebase.Auth;
+using Firebase.Database;
 using Firebase.Database.Query;
+using Microsoft.Maui.Devices.Sensors;
 using ShowStopper.Models;
 using System;
 using System.Collections.Concurrent;
@@ -153,20 +155,61 @@ namespace ShowStopper.Services
             }
         }
 
+        private static async Task<string> GetLocationIdByName(string name)
+        {
+            var firebaseClient = new FirebaseClient(databaseUrl);
+            var locationQuery = firebaseClient
+                .Child("Locations")
+                .OrderBy("Name")
+                .EqualTo(name)
+                .LimitToFirst(1);
+            var locationSnapshot = await locationQuery.OnceAsync<AppLocation>();
+            var locationId = locationSnapshot.FirstOrDefault()?.Key;
+            return locationId;
+        }
+
         public static async Task ReviewLocation(AppLocation appLocation, int rating, string message)
         {
             try
             {
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var locationId = await GetLocationIdByName(appLocation.Name);
+                var firebaseClient = new FirebaseClient(databaseUrl);
                 var newEmail = email.Replace('.', ',');
-                appLocation.Reviews.Add(new LocationReview
+                var toReviewLocation = (await firebaseClient
+                .Child("Locations")
+            .OnceAsync<AppLocation>()).Where(a => a.Object.Name == appLocation.Name).FirstOrDefault();
+                if (toReviewLocation != null)
                 {
-                    Email = newEmail,
-                    Rating = rating,
-                    Message = message
-                });
-                appLocation.RatingsNumber += 1;
-                appLocation.Rating = (appLocation.Rating + rating) / appLocation.RatingsNumber;
+                    if (toReviewLocation.Object.Reviews == null)
+                    {
+                        toReviewLocation.Object.Reviews = new List<LocationReview>
+                        {
+                            new LocationReview
+                            {
+                                Rating = rating,
+                                Message = message,
+                                Email = newEmail
+                            }
+                        };
+                    }
+                    else
+                    {
+                        toReviewLocation.Object.Reviews.Add(new LocationReview
+                        {
+                            Rating = rating,
+                            Message = message,
+                            Email = newEmail
+                        });
+                    }
+                }
+                toReviewLocation.Object.RatingsNumber += 1;
+                toReviewLocation.Object.Rating = (toReviewLocation.Object.Rating + rating) / toReviewLocation.Object.RatingsNumber;
+                await firebaseClient
+                    .Child("Locations")
+                    .Child(locationId)
+                    .PutAsync(toReviewLocation.Object);
+
             }catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("review location", ex.Message, "ok");

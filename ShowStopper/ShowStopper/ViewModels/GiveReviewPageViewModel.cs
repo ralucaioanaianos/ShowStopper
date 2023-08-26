@@ -1,4 +1,5 @@
 ﻿using ShowStopper.Models;
+using ShowStopper.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,8 +11,8 @@ namespace ShowStopper.ViewModels
 {
     internal class GiveReviewPageViewModel : INotifyPropertyChanged
     {
-        private decimal _rating;
-        public decimal Rating
+        private int _rating;
+        public int Rating
         {
             get { return _rating; }
             set
@@ -24,7 +25,7 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        public Command SaveBtn { get; }
+        public Command SendBtn { get; }
         public Command BackBtn { get; }
         public Command PlusBtn {  get; }
 
@@ -61,8 +62,31 @@ namespace ShowStopper.ViewModels
             Star3Btn = new Command(Star3BtnTappedAsync);
             Star4Btn = new Command(Star4BtnTappedAsync);
             Star5Btn = new Command(Star5BtnTappedAsync);
+            SendBtn = new Command(SaveBtnTappedAsync);
+            BackBtn = new Command(BackBtnTappedAsync);
 
+        }
 
+        private async void SaveBtnTappedAsync(object parameter)
+        {
+            if (_location == null) {
+                await Application.Current.MainPage.DisplayAlert("save", "locationnull", "ok");
+            }
+            if (Rating == 0)
+            {
+                await Application.Current.MainPage.DisplayAlert("save", "rating nu", "ok");
+            }
+            if (Message == null)
+            {
+                await Application.Current.MainPage.DisplayAlert("save", "mess nul", "ok");
+            }
+            await LocationsService.ReviewLocation(_location, Rating, Message);
+            await _navigation.PopAsync();
+        }
+
+        private async void BackBtnTappedAsync(object parameter)
+        {
+            await _navigation.PopAsync();
         }
 
         public  async void Star1BtnTappedAsync()
