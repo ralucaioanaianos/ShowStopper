@@ -54,7 +54,7 @@
                            FontAttributes="Bold"
                            Margin="20,0,0,0"></Label>
                         <HorizontalStackLayout Margin="15,20,20,0">
-                            <Image Source="ticket_icon.png"
+                            <Image Source="calender_icon.png"
                            Margin="0,0,0,0"></Image>
                             <Label Text="Date:"
                                TextColor="Gray"
@@ -72,7 +72,7 @@
                StrokeShape="RoundRectangle 800,800,800,800"
                HeightRequest="5"></Border>
                         <HorizontalStackLayout Margin="15,0,20,0">
-                            <Image Source="ticket_icon.png"></Image>
+                            <Image Source="location_icon.png"></Image>
                             <Label Text="Location: "
                                TextColor="Gray"
                                FontAttributes="Bold"
@@ -90,7 +90,7 @@
                StrokeShape="RoundRectangle 800,800,800,800"
                HeightRequest="5"></Border>
                         <HorizontalStackLayout Margin="15,0,20,0">
-                            <Image Source="ticket_icon.png"></Image>
+                            <Image Source="organizer_icon.png"></Image>
                             <Label Text="Organizer: "
                                TextColor="Gray"
                                FontAttributes="Bold"
