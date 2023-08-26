@@ -150,6 +150,31 @@ namespace ShowStopper.ViewModels
             UpdateFilterEventsResults = new Command(UpdateFilterEventsResultsTapped);
         }
 
+        public ExplorePageViewModel(INavigation navigation, ObservableCollection<AppEvent> eventsList)
+        {
+            //LoadEvents();
+            LoadLocations();
+            Events = eventsList;
+            _originalEvents = eventsList;
+
+            _navigation = navigation;
+            BackBtn = new Command(BackButtonTappedAsync);
+            PlusBtn = new Command(PlusButtonTappedAsync);
+            EventTapped = new Command(EventTappedAsync);
+            LocationTapped = new Command(LocationTappedAsync);
+            ShowEventsCommand = new Command(ShowEvents);
+            ShowLocationsCommand = new Command(ShowLocations);
+            IsShowingEvents = true;
+            IsShowingLocations = false;
+            IsMusicExpanded = false;
+            SaveBtn = new Command(SaveBtnTappedAsync);
+            ShowFiltersBtn = new Command(ShowFiltersBtnTappedAsync);
+            ExitBtn = new Command(ExitBtnTappedAsync);
+            Refresh = new Command(RefreshTriggered);
+            FromTime = DateTime.Today;
+            UpdateFilterEventsResults = new Command(UpdateFilterEventsResultsTapped);
+        }
+
         private async void RefreshTriggered()
         {
             OnPropertyChanged(nameof(Events));  
@@ -162,11 +187,14 @@ namespace ShowStopper.ViewModels
 
         public async void UpdateFilterEventsResultsTapped(object parameter)
         {
-            await Application.Current.MainPage.DisplayAlert("ok", Events.Count.ToString(), "ok");
+            Events.Clear();
+            foreach (var filteredEvent in _originalEvents.Where(e => e.Date >= FromTime && e.Date <= ToTime && e.Price >= FromPrice && e.Price <= ToPrice))
+            {
+                Events.Add(filteredEvent);
+            }
 
-            Events = new ObservableCollection<AppEvent>(
-                        _originalEvents.Where(e => e.Date >= FromTime && e.Date <= ToTime && e.Price >= FromPrice && e.Price <= ToPrice));
-            await Application.Current.MainPage.DisplayAlert("ok", Events.Count.ToString(), "ok");
+            await Application.Current.MainPage.DisplayAlert("updatefilterresuts", Events.Count.ToString(), "ok");
+            await _navigation.PushAsync(new ExplorePage(Events));
 
         }
 

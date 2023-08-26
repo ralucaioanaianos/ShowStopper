@@ -194,7 +194,7 @@ namespace ShowStopper.Services
                     }
                 }
                 toReviewLocation.Object.RatingsNumber += 1;
-                toReviewLocation.Object.Rating = (toReviewLocation.Object.Rating + rating) / toReviewLocation.Object.RatingsNumber;
+                toReviewLocation.Object.Rating = (toReviewLocation.Object.Rating * (toReviewLocation.Object.RatingsNumber - 1) + rating) / toReviewLocation.Object.RatingsNumber;
                 await firebaseClient
                     .Child("Locations")
                     .Child(locationId)
