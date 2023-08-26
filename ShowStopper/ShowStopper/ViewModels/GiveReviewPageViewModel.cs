@@ -47,8 +47,9 @@ namespace ShowStopper.ViewModels
         private AppLocation _location { get; set; }
 
         private INavigation _navigation { get ; set; }
+        private Action _reviewSavedCallback;
 
-        public GiveReviewPageViewModel(INavigation navigation, AppLocation appLocation)
+        public GiveReviewPageViewModel(INavigation navigation, AppLocation appLocation, Action reviewSavedCallback)
         {
             _navigation = navigation;
             _location = appLocation;
@@ -64,7 +65,7 @@ namespace ShowStopper.ViewModels
             Star5Btn = new Command(Star5BtnTappedAsync);
             SendBtn = new Command(SaveBtnTappedAsync);
             BackBtn = new Command(BackBtnTappedAsync);
-
+            _reviewSavedCallback = reviewSavedCallback;
         }
 
         private async void SaveBtnTappedAsync(object parameter)
@@ -81,6 +82,7 @@ namespace ShowStopper.ViewModels
                 await Application.Current.MainPage.DisplayAlert("save", "mess nul", "ok");
             }
             await LocationsService.ReviewLocation(_location, Rating, Message);
+            _reviewSavedCallback?.Invoke();
             await _navigation.PopAsync();
         }
 

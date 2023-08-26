@@ -249,7 +249,6 @@ namespace ShowStopper.Services
                     .LimitToFirst(1);
                 var locationSnapshot = await locationQuery.OnceAsync<AppLocation>();
                 var location = locationSnapshot.FirstOrDefault()?.Object;
-                await Application.Current.MainPage.DisplayAlert("GetUserByEmai", location.Name, "OK");
                 return location;
             } catch (Exception ex)
             {

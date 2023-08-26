@@ -55,39 +55,24 @@ namespace ShowStopper.ViewModels
 
         private async void GiveReviewTappedAsync()
         {
-            await _navigation.PushAsync(new GiveReviewPage(_location));
+            await _navigation.PushAsync(new GiveReviewPage(_location, LoadReviewsAfterReviewAdded));
+            await LoadReviews();
         }
 
-        private async void LoadReviews()
+        private async void LoadReviewsAfterReviewAdded()
+        {
+            await Application.Current.MainPage.DisplayAlert("load", "ok", "ok");
+            await LoadReviews();
+        }
+
+        private async Task LoadReviews()
         {
             try
             {
+                _location = await LocationsService.GetLocationByName(_location.Name);
                 ObservableCollection<LocationReview> collection = new ObservableCollection<LocationReview>(_location.Reviews);
-                //if (_location == null)
-                //{
-                //    await Application.Current.MainPage.DisplayAlert("load", "loc nul", "ok");
-
-                //}
-                //else
-                //{
-                //    if (_location.Reviews != null)
-                //    {
-                //        await Application.Current.MainPage.DisplayAlert("load", _location.Reviews.Count.ToString() + ' ' + _location.Reviews.First().Rating.ToString(), "ok");
-
-                //    }
-                //    else
-                //    {
-                //        await Application.Current.MainPage.DisplayAlert("load", "nul", "ok");
-
-                //    }
-                //}
-                
-                Reviews = collection;
-                await Task.Delay(1000);
-                //if (Reviews.Count == 0)
-                //{
-                //    await Application.Current.MainPage.DisplayAlert("prolr", "norev", "ok");
-                //}
+               
+                Reviews = collection;               
             }
             catch (Exception ex)
             {
