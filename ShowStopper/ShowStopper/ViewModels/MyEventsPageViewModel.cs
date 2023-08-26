@@ -43,9 +43,14 @@ namespace ShowStopper.ViewModels
 
         private async void PlusButtonTappedAsync(object parameter)
         {
-            await _navigation.PushAsync(new AddEventPage());
+            await _navigation.PushAsync(new AddEventPage(LoadReviewsAfterReviewAdded));
             LoadEvents();
             OnPropertyChanged(nameof(Events));  
+        }
+
+        private async void LoadReviewsAfterReviewAdded()
+        {
+            await LoadEvents();
         }
 
         public MyEventsPageViewModel(INavigation navigation)
@@ -92,7 +97,7 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        private async void LoadEvents()
+        private async Task LoadEvents()
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
             List<AppEvent> list = await EventsService.getEventsByEmail(email);

@@ -107,7 +107,10 @@ namespace ShowStopper.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
 
-        public AddEventPageViewModel(INavigation navigation)
+        private Action _reviewSavedCallback;
+
+
+        public AddEventPageViewModel(INavigation navigation, Action reviewSavedCallback)
         {
             _navigation = navigation;
             SaveBtn = new Command(SaveBtnTappedAsync);
@@ -117,6 +120,7 @@ namespace ShowStopper.ViewModels
             BackBtn = new Command(BackButtonTappedAsync);
             SelectPhoto = new Command(SelectPhotoTappedAsync);
             TodayDate = DateTime.Now;
+            _reviewSavedCallback = reviewSavedCallback;
 
         }
 
@@ -141,6 +145,7 @@ namespace ShowStopper.ViewModels
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
                     await EventsService.addEventToDatabase(Name, Description, Type, Date, Location, Price, photoUrl);
                 }
+                _reviewSavedCallback?.Invoke();
                 await _navigation.PopAsync();
             }
             catch (Exception ex)

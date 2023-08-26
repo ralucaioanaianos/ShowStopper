@@ -5,9 +5,9 @@ namespace ShowStopper.Views;
 
 public partial class AddEventPage : ContentPage
 {
-    public AddEventPage()
+    public AddEventPage(Action reviewAddedCallback)
     {
 		InitializeComponent();
-        BindingContext = new AddEventPageViewModel(Navigation);
+        BindingContext = new AddEventPageViewModel(Navigation, reviewAddedCallback);
     }
 }
