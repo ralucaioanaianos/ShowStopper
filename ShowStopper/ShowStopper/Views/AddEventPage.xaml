@@ -23,40 +23,75 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="Add Event">
             </customControls:CustomNavigationBar>
-            <StackLayout Grid.Row="1"
-                         Margin="20,20,20,20">
-                <Entry Placeholder="Name"
-                   Text="{Binding Name}"></Entry>
-                <Entry Placeholder="Description"
-                   Text="{Binding Description}"></Entry>
-                <Entry Placeholder="Type"
-                   Text="{Binding Type}"></Entry>
-                <!--<Entry Placeholder="Date"
-                   Text="{Binding Date}"></Entry>-->
-                <DatePicker Date="{Binding Date}"
-                            MinimumDate="{Binding TodayDate}"></DatePicker>
-                <Entry Placeholder="Organizer"
-                   Text="{Binding Organizer}"></Entry>
-                <Entry Placeholder="Location"
-                   Text="{Binding Location}"></Entry>
-                <Entry Placeholder="Price"
-                       Text="{Binding Price}"
-                       Keyboard="Numeric"></Entry>
-                <Button Text="pick image" Grid.Row="8"
-                Command="{Binding SelectPhoto}"></Button>
-
-            </StackLayout>
-            <customControls:GradientFilledButton GradientColor1="#1A2C6C"
+            <ScrollView Grid.Row="1">
+                <StackLayout Margin="20,20,20,20">
+                    <Label Text="Name:"
+                           FontAttributes="Bold"
+                           Margin="5,0,0,0"
+                           TextColor="DarkGray"></Label>
+                    <Entry Text="{Binding Name}"></Entry>
+                    <Label Text="Description:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                    <Entry Text="{Binding Description}"></Entry>
+                    <Label Text="Type:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                    <Entry Text="{Binding Type}"></Entry>
+                    <Label Text="Date:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                    <DatePicker Date="{Binding Date}"
+                                MinimumDate="{Binding TodayDate}"
+                                TextColor="DarkGray"></DatePicker>
+                    <Label Text="Time:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                    <TimePicker Time="{Binding Date}"
+                                TextColor="DarkGray"></TimePicker>
+                    <Label Text="Location:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                    <Entry Placeholder="Location"
+                           Text="{Binding Location}"></Entry>
+                    <Label Text="Ticket Price:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                    <Entry Placeholder="Price"
+                           Text="{Binding Price}"
+                           Keyboard="Numeric"></Entry>
+                    <HorizontalStackLayout HorizontalOptions="Center"
+                                           Margin="0,20,0,0">
+                        <ImageButton Source="second_camera.png"
+                                 Command="{Binding SelectPhoto}"
+                                 HeightRequest="40"></ImageButton>
+                        <Label Text="Pick Photo"
+                               Margin="0,10,0,0"
+                               TextColor="#805B93"
+                               FontAttributes="Bold"
+                               FontSize="15"></Label>
+                    </HorizontalStackLayout>
+                   
+                    <customControls:GradientFilledButton GradientColor1="#1A2C6C"
                                                  GradientColor2="#A782B9"
                                                  TextColor="White"
                                                  BorderColor="Transparent"
                                                  TapCommand="{Binding SaveBtn}"
                                                  Text="Add"
-                                                 Grid.Row="1"
                                                  VerticalOptions="End"
-                                                 Margin="0,0,0,20">
+                                                 Margin="0,20,0,20">
 
-            </customControls:GradientFilledButton>
+                    </customControls:GradientFilledButton>
+                </StackLayout>
+            </ScrollView>
+           
+            
         </Grid>
 
     </ContentPage.Content>

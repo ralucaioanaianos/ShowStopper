@@ -1,6 +1,4 @@
-﻿using Firebase.Auth;
-using ShowStopper.CustomComponents;
-using ShowStopper.Models;
+﻿using ShowStopper.Models;
 using ShowStopper.Services;
 using ShowStopper.Views;
 using System;
@@ -8,16 +6,13 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
-using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace ShowStopper.ViewModels
 {
-    internal class MyEventsPageViewModel : INotifyPropertyChanged
+    internal class EventsFromLocationPageViewModel : INotifyPropertyChanged
     {
-        private ObservableCollection<AppEvent> _originalEvents;
         public bool IsListEmpty { get; set; }
         public bool IsDataLoaded { get; set; } = false;
         public Command BackBtn { get; }
@@ -43,17 +38,9 @@ namespace ShowStopper.ViewModels
 
         private async void PlusButtonTappedAsync(object parameter)
         {
-            await _navigation.PushAsync(new AddEventPage(LoadReviewsAfterReviewAdded));
-            LoadEvents();
-            OnPropertyChanged(nameof(Events));  
         }
 
-        private async void LoadReviewsAfterReviewAdded()
-        {
-            await LoadEvents();
-        }
-
-        public MyEventsPageViewModel(INavigation navigation)
+        public EventsFromLocationPageViewModel(INavigation navigation, AppLocation location)
         {
             LoadEvents();
             _navigation = navigation;
@@ -73,20 +60,6 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        public void UpdateSearchResults(string searchText)
-        {
-            if (string.IsNullOrWhiteSpace(searchText))
-            {
-                _originalEvents = new ObservableCollection<AppEvent>(Events);
-            }
-            else
-            {
-                Events = new ObservableCollection<AppEvent>(
-                    _originalEvents.Where(l => l.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) ||
-                                                 l.Location.Contains(searchText, StringComparison.OrdinalIgnoreCase)));
-            }
-        }
-
         private async void OnEventSelected()
         {
             if (SelectedEvent != null)
@@ -102,7 +75,6 @@ namespace ShowStopper.ViewModels
             List<AppEvent> list = await EventsService.getEventsByEmail(email);
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
             Events = collection;
-            _originalEvents = new ObservableCollection<AppEvent>(Events);
             IsDataLoaded = true;
         }
 

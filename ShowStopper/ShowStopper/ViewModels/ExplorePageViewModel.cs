@@ -135,8 +135,6 @@ namespace ShowStopper.ViewModels
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
-            EventTapped = new Command(EventTappedAsync);
-            LocationTapped = new Command(LocationTappedAsync);
             ShowEventsCommand = new Command(ShowEvents);
             ShowLocationsCommand = new Command(ShowLocations);
             IsShowingEvents = true;
@@ -155,13 +153,11 @@ namespace ShowStopper.ViewModels
             //LoadEvents();
             LoadLocations();
             Events = eventsList;
-            _originalEvents = eventsList;
+            
 
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
-            EventTapped = new Command(EventTappedAsync);
-            LocationTapped = new Command(LocationTappedAsync);
             ShowEventsCommand = new Command(ShowEvents);
             ShowLocationsCommand = new Command(ShowLocations);
             IsShowingEvents = true;
@@ -192,8 +188,6 @@ namespace ShowStopper.ViewModels
             {
                 Events.Add(filteredEvent);
             }
-
-            await Application.Current.MainPage.DisplayAlert("updatefilterresuts", Events.Count.ToString(), "ok");
             await _navigation.PushAsync(new ExplorePage(Events));
 
         }
@@ -269,7 +263,6 @@ namespace ShowStopper.ViewModels
                     Events.Add(e);
                     _events.Add(e);
                 }
-                await Application.Current.MainPage.DisplayAlert("events filtered", Events.Count.ToString(), "ok");
                 await _navigation.PopAsync();
             }
         }
@@ -345,8 +338,6 @@ namespace ShowStopper.ViewModels
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
 
             Events = collection;
-            await Application.Current.MainPage.DisplayAlert("list0", Events.Count.ToString(), "ok");
-
             _originalEvents = new ObservableCollection<AppEvent>(Events); // Initialize with your original events data
             IsDataLoaded = true;
             ToTime = DateTime.MinValue;
@@ -398,28 +389,28 @@ namespace ShowStopper.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private async void EventTappedAsync(object parameter)
-        {
-            if (parameter is AppEvent selectedEvent)
-            {
-                await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedEvent.Name}", "OK");
+    //    private async void EventTappedAsync(object parameter)
+    //    {
+    //        if (parameter is AppEvent selectedEvent)
+    //        {
+    //            await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedEvent.Name}", "OK");
 
-                // Call your custom method with the selected event
-                // Example:
-                // DoSomethingWithSelectedEvent(selectedEvent);
-            }
-        }
+    //            // Call your custom method with the selected event
+    //            // Example:
+    //            // DoSomethingWithSelectedEvent(selectedEvent);
+    //        }
+    //    }
 
-        private async void LocationTappedAsync(object parameter)
-        {
-            if (parameter is AppLocation selectedLocation)
-            {
-                await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedLocation.Name}", "OK");
+    //    private async void LocationTappedAsync(object parameter)
+    //    {
+    //        if (parameter is AppLocation selectedLocation)
+    //        {
+    //            await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedLocation.Name}", "OK");
 
-                // Call your custom method with the selected event
-                // Example:
-                // DoSomethingWithSelectedEvent(selectedEvent);
-            }
-        }
+    //            // Call your custom method with the selected event
+    //            // Example:
+    //            // DoSomethingWithSelectedEvent(selectedEvent);
+    //        }
+    //    }
     }
 }
