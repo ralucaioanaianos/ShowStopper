@@ -39,25 +39,32 @@
                              HeightRequest="50"
                              HorizontalOptions="End"
                              Margin="0,10,20,0"></ImageButton>
-                        <HorizontalStackLayout Margin="20,-20,0,0">
-                            <Label Text="{Binding Address}"
-                               FontSize="25"
-                               FontAttributes="Bold"></Label>
-                        </HorizontalStackLayout>
+
                         <HorizontalStackLayout>
                             <Label Text="Football stadium"
+                                   Grid.Column="0"
                            FontSize="20"
                            FontAttributes="Bold"
                            Margin="20,0,0,0"></Label>
-                            <HorizontalStackLayout VerticalOptions="End">
-                                <Label TextColor="Yellow"></Label>
-                                <Image Source="star_icon.png"></Image>
+                            <HorizontalStackLayout VerticalOptions="EndAndExpand"
+                                                   Grid.Column="1"
+                                                   Margin="10,0,0,0"
+                                                   IsVisible="{Binding IsRatingVisible}">
+                                <Label TextColor="#FFDA1C"
+                                       FontSize="20"
+                                       FontAttributes="Bold"
+                                       Text="{Binding Rating}"></Label>
+                                <Image Source="star_icon.png"
+                                       HeightRequest="30"
+                                       Margin="0,-5,0,0"></Image>
                             </HorizontalStackLayout>
                         </HorizontalStackLayout>
+                            
                         
                         <HorizontalStackLayout Margin="15,20,20,0">
                             <Image Source="seats_icon.png"
-                           Margin="0,0,0,0"></Image>
+                           Margin="0,0,0,0"
+                                   HeightRequest="40"></Image>
                             <Label Text="Available seats:"
                                TextColor="Gray"
                                Margin="20,0,0,0"
@@ -129,9 +136,9 @@
                                                      Margin="0,30,0,0"
                                                      VerticalOptions="End"
                                                      Grid.Row="4"
-                                                     Text="Rate Location"
+                                                     Text="Reviews"
                                                      TextColor="White"
-                                                     TapCommand="{Binding RateLocationBtn}"
+                                                     TapCommand="{Binding ReviewsBtn}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
                     </VerticalStackLayout>

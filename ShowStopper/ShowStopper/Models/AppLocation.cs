@@ -14,5 +14,8 @@ namespace ShowStopper.Models
         public string Owner { get; set; }
         public string Address { get; set; }
         public string Image { get; set; }
+        public int RatingsNumber { get; set; }
+        public decimal Rating { get; set; }
+        public List<LocationReview> Reviews { get; set; }
     }
 }

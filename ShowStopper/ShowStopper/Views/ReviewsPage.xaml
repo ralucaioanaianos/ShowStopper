@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.ReviewsPage"
+             Title="ReviewsPage"
+             NavigationPage.HasNavigationBar="False">
+    <Grid Padding="0"
+          HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <customControls:CustomNavigationBar
+            Grid.Row="0"
+            GradientColor1="#1A2C6C"
+            GradientColor2="#A782B9"
+            IsBackButtonVisible="True"
+            IsPlusButtonVisible="False"
+            IsEmptyHeartButtonVisible="False"
+            BackBtnTapCommand="{Binding BackBtn}"
+            PlusBtnTapCommand="{Binding PlusBtn}"
+            PageName="Reviews">
+        </customControls:CustomNavigationBar>
+        <StackLayout Grid.Row="1">
+            <ListView ItemsSource="{Binding Reviews}"
+                  RowHeight="100">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell Height="100">
+                            <ContentView VerticalOptions="FillAndExpand">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    
+                                    <Grid Grid.Column="0"
+                  HeightRequest="80">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"></RowDefinition>
+                                            <RowDefinition Height="Auto"></RowDefinition>
+                                        </Grid.RowDefinitions>
+                                        <VerticalStackLayout Grid.Row="0">
+                                            <Label Text="{Binding Email}"
+                           FontSize="16"
+                           FontAttributes="Bold"></Label>
+                                            <Label Text="{Binding Message}"
+                           FontSize="13"></Label>
+                                        </VerticalStackLayout>
+                                        <Label Grid.Row="1"
+                       Text="{Binding Rating}"
+                       FontAttributes="Bold"
+                       FontSize="14"></Label>
+                                    </Grid>
+                                </Grid>
+                            </ContentView>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <customControls:GradientFilledButton BorderColor="Transparent"
+                                                     Margin="0,30,0,0"
+                                                     VerticalOptions="End"
+                                                     Grid.Row="2"
+                                                     Text="Give review"
+                                                     TextColor="White"
+                                                     TapCommand="{Binding GiveReviewBtn}"
+                                                     GradientColor1="#1A2C6C"
+                                                     GradientColor2="#A782B9"></customControls:GradientFilledButton>
+    </Grid>
+</ContentPage>

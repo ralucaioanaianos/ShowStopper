@@ -1,5 +1,6 @@
 ﻿using ShowStopper.Models;
 using ShowStopper.Services;
+using ShowStopper.Views;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,12 +13,16 @@ namespace ShowStopper.ViewModels
 {
     internal class LocationPageViewModel : INotifyPropertyChanged
     {
+        public bool IsRatingVisible { get; set; }
         private AppLocation _location;
         public string Name { get; set; }
         public string Descriptionn { get; set; }
         public string Owner { get; set; }
         public string Image { get; set; }
         public string Address { get; set; }
+        public decimal Rating { get; set; }
+
+        public Command ReviewsBtn { get; set; }
 
         public string FavoritesText { get; set; }
 
@@ -77,10 +82,25 @@ namespace ShowStopper.ViewModels
             Owner = appLocation.Owner;
             Address = appLocation.Address;
             Image = appLocation.Image;
+            if (appLocation.Rating == 0)
+            {
+                IsRatingVisible = false;
+            }
+            else
+            {
+                IsRatingVisible = true;
+            }
+            Rating = appLocation.Rating;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             EmptyHeartBtn = new Command(EmptyHeartButtonTappedAsync);
             SeeEventsBtn = new Command(SeeEventsButtonTappedAsync);
+            ReviewsBtn = new Command(ReviewsBtnTappedAsync);
+        }
+
+        private async void ReviewsBtnTappedAsync(object parameter)
+        {
+            await _navigation.PushAsync(new ReviewsPage(_location));
         }
 
         private async void InitializeFavoritesButtons()

@@ -1,6 +1,5 @@
 ﻿using Firebase.Database;
 using Firebase.Database.Query;
-using Microsoft.Maui.ApplicationModel.Communication;
 using ShowStopper.Models;
 using System;
 using System.Collections.Concurrent;
@@ -29,13 +28,39 @@ namespace ShowStopper.Services
                     Description = description,
                     Address = address,
                     Owner = newEmail,
-                    Image = image
+                    Image = image,
+                    Rating = 0,
+                    RatingsNumber = 0,
+                    Reviews = new List<LocationReview>()
                 });
                 string locationId = response.Key;
             }
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("addLocation", ex.Message, "ok");
+            }
+        }
+
+        public static async Task<List<LocationReview>> GetLocationReviews(AppLocation location)
+        {
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var reviews = new List<LocationReview>();
+                var reviewsQuery = firebaseClient
+                    .Child("Location")
+                    .Child("Reviews")
+                    .OnceAsync<LocationReview>();
+                var reviewsSnapshots = await reviewsQuery;
+                foreach (var reviewSnapshot in reviewsSnapshots)
+                {
+                    reviews.Add(reviewSnapshot.Object);
+                }
+                return reviews;
+            } catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("get rev", ex.Message, "ok");
+                return null;
             }
         }
 
@@ -70,15 +95,6 @@ namespace ShowStopper.Services
         public static async Task<List<AppLocation>> getAllLocations()
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
-            //var eventQuery = firebaseClient
-            //    .Child("Locations").AsObservable<AppLocation>().Subscribe(e =>
-            //    {
-            //        locations.Add(e.Object);
-            //    });
-            //await Task.Delay(500);
-            //await Application.Current.MainPage.DisplayAlert("count all", locations.Count.ToString(), "ok");
-
-            //return locations;
             var locationsTask = firebaseClient.Child("Locations").OnceAsync<AppLocation>();
             await Task.WhenAll(locationsTask);
             var locations = locationsTask.Result.Select(snapshot => snapshot.Object).ToList();
@@ -121,8 +137,6 @@ namespace ShowStopper.Services
             .OrderBy("LocationName")
             .EqualTo(appLocation.Name)
             .OnceAsync<LocationFavorite>();
-
-                // Iterate through the matching favorites and remove them
                 foreach (var favorite in locationFavorites)
                 {
                     if (favorite.Object.UserEmail == newEmail)
@@ -136,6 +150,26 @@ namespace ShowStopper.Services
             catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("delete location favorite", ex.Message, "ok");
+            }
+        }
+
+        public static async Task ReviewLocation(AppLocation appLocation, int rating, string message)
+        {
+            try
+            {
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var newEmail = email.Replace('.', ',');
+                appLocation.Reviews.Add(new LocationReview
+                {
+                    Email = newEmail,
+                    Rating = rating,
+                    Message = message
+                });
+                appLocation.RatingsNumber += 1;
+                appLocation.Rating = (appLocation.Rating + rating) / appLocation.RatingsNumber;
+            }catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("review location", ex.Message, "ok");
             }
         }
 
@@ -154,7 +188,6 @@ namespace ShowStopper.Services
             .EqualTo(appLocation.Name)
             .OnceAsync<LocationFavorite>();
 
-                // Iterate through the matching favorites and remove them
                 foreach (var favorite in locationFavorites)
                 {
                     if (favorite.Object.UserEmail == newEmail)

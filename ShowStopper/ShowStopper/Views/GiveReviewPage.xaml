@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.GiveReviewPage"
+             Title="GiveReviewPage">
+    <ContentPage.Content>
+        <Grid Padding="0"
+          HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <customControls:CustomNavigationBar
+                Grid.Row="0"
+                GradientColor1="#1A2C6C"
+                GradientColor2="#A782B9"
+                IsBackButtonVisible="True"
+                IsPlusButtonVisible="False"
+                IsEmptyHeartButtonVisible="False"
+                IsFullHeartButtonVisible="False"
+                BackBtnTapCommand="{Binding BackBtn}"
+                PlusBtnTapCommand="{Binding PlusBtn}"
+                PageName="Review Location">
+            </customControls:CustomNavigationBar>
+            <VerticalStackLayout Grid.Row="1">
+                <HorizontalStackLayout>
+                    <ImageButton Source="{Binding Star1}"
+                                 Command="{Binding Star1Btn}"></ImageButton>
+                    <ImageButton Source="{Binding Star2}"
+                                 Command="{Binding Star2Btn}"></ImageButton>
+                    <ImageButton Source="{Binding Star3}"
+                                 Command="{Binding Star3Btn}"></ImageButton>
+                    <ImageButton Source="{Binding Star4}"
+                                 Command="{Binding Star4Btn}"></ImageButton>
+                    <ImageButton Source="{Binding Star5}"
+                                 Command="{Binding Star5Btn}"></ImageButton>
+                    <Label Text="{Binding Rating}" />
+                </HorizontalStackLayout>
+                <Frame Grid.Row="1"
+                   BorderColor="Black"
+                   HeightRequest="300"
+                   HorizontalOptions="FillAndExpand"
+                   Margin="20,20,20,20"
+                   BackgroundColor="Transparent">
+                    <Editor Text="{Binding Message}" 
+                        Placeholder="Enter your review..."
+                        AutoSize="TextChanges" 
+                        BackgroundColor="White"/>
+                </Frame>
+                <customControls:GradientFilledButton BorderColor="Transparent"
+                                                     VerticalOptions="End"
+                                                     Grid.Row="1"
+                                                     Text="Send"
+                                                     TextColor="White"
+                                                     TapCommand="{Binding SendBtn}"
+                                                     GradientColor1="#1A2C6C"
+                                                     GradientColor2="#A782B9"></customControls:GradientFilledButton>
+            </VerticalStackLayout>
+
+
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
