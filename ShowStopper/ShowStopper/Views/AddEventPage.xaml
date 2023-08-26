@@ -57,8 +57,7 @@
                            Margin="5,15,0,0"
                            FontAttributes="Bold"
                            TextColor="DarkGray"></Label>
-                    <Entry Placeholder="Location"
-                           Text="{Binding Location}"></Entry>
+                    <Entry Text="{Binding Location}"></Entry>
                     <Label Text="Ticket Price:"
                            Margin="5,15,0,0"
                            FontAttributes="Bold"
@@ -66,6 +65,14 @@
                     <Entry Placeholder="Price"
                            Text="{Binding Price}"
                            Keyboard="Numeric"></Entry>
+                    <Label Text="Number of Available Places:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                    <Entry Placeholder="Available Places:"
+                           Text="{Binding TotalPlaces}"
+                           Keyboard="Numeric"></Entry>
+
                     <HorizontalStackLayout HorizontalOptions="Center"
                                            Margin="0,20,0,0">
                         <ImageButton Source="second_camera.png"

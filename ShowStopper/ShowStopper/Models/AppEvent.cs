@@ -18,5 +18,7 @@ namespace ShowStopper.Models
         public string Image { get; set; }
         public int Price { get; set; }
         public double Relevance { get; set; } 
+        public int TotalPlaces { get; set; }
+        public int AvailablePlaces { get; set; }
     }
 }

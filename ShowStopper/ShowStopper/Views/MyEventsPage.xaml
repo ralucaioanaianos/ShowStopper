@@ -82,6 +82,19 @@
                                                    TextColor="DarkGray"
                                                    FontSize="13"></Label>
                                             </HorizontalStackLayout>
+                                            <HorizontalStackLayout>
+                                                <Image Source="location_icon.png"
+                                                       HeightRequest="15"></Image>
+                                                <Label Text="{Binding AvailablePlaces}"
+                                                   TextColor="DarkGray"
+                                                   FontSize="13"></Label>
+                                                <Label Text=" / "
+                                                   TextColor="DarkGray"
+                                                   FontSize="13"></Label>
+                                                <Label Text="{Binding TotalPlaces}"
+                                                   TextColor="DarkGray"
+                                                   FontSize="13"></Label>
+                                            </HorizontalStackLayout>
                                             
                                         </VerticalStackLayout>
                                         

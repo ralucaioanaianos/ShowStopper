@@ -24,6 +24,7 @@ namespace ShowStopper.ViewModels
         public string location;
         private FileResult photo;
         private int price;
+        private int totalPlaces;
 
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -49,6 +50,16 @@ namespace ShowStopper.ViewModels
             {
                 price = value;
                 RaisePropertyChanged("Price");
+            }
+        }
+
+        public int TotalPlaces
+        {
+            get => totalPlaces;
+            set
+            {
+                totalPlaces = value;
+                RaisePropertyChanged("TotalPlaces");
             }
         }
 
@@ -143,7 +154,7 @@ namespace ShowStopper.ViewModels
                 if (photo != null)
                 {
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
-                    await EventsService.addEventToDatabase(Name, Description, Type, Date, Location, Price, photoUrl);
+                    await EventsService.addEventToDatabase(Name, Description, Type, Date, Location, Price, TotalPlaces, photoUrl);
                 }
                 _reviewSavedCallback?.Invoke();
                 await _navigation.PopAsync();
