@@ -59,8 +59,8 @@
                                        Margin="0,-5,0,0"></Image>
                             </HorizontalStackLayout>
                         </HorizontalStackLayout>
-                            
-                        
+
+
                         <HorizontalStackLayout Margin="15,20,20,0">
                             <Image Source="seats_icon.png"
                            Margin="0,0,0,0"
@@ -123,7 +123,7 @@
                         <Label
                        Margin="20,0,20,10"
                        Text="{Binding Descriptionn}"></Label>
-                        
+
                         <customControls:GradientFilledButton BorderColor="Transparent"
                                                      VerticalOptions="End"
                                                      Grid.Row="5"

@@ -25,35 +25,36 @@
         </customControls:CustomNavigationBar>
         <StackLayout Grid.Row="1">
             <ListView ItemsSource="{Binding Reviews}"
+                      SeparatorColor="Transparent"
+                      BackgroundColor="Transparent"
                   RowHeight="100">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="100">
                             <ContentView VerticalOptions="FillAndExpand">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    
-                                    <Grid Grid.Column="0"
-                  HeightRequest="80">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"></RowDefinition>
-                                            <RowDefinition Height="Auto"></RowDefinition>
-                                        </Grid.RowDefinitions>
-                                        <VerticalStackLayout Grid.Row="0">
-                                            <Label Text="{Binding Email}"
-                           FontSize="16"
-                           FontAttributes="Bold"></Label>
-                                            <Label Text="{Binding Message}"
-                           FontSize="13"></Label>
-                                        </VerticalStackLayout>
-                                        <Label Grid.Row="1"
-                       Text="{Binding Rating}"
-                       FontAttributes="Bold"
-                       FontSize="14"></Label>
-                                    </Grid>
-                                </Grid>
+                                <VerticalStackLayout  Margin="20,10,0,0">
+                                    <HorizontalStackLayout>
+                                        <Label Text="{Binding Email}"
+                                                FontSize="16"
+                                                FontAttributes="Bold"></Label>
+                                        <Image Source="star_icon.png" 
+                                               HeightRequest="20"
+                                               Margin="20,0,0,0"></Image>
+                                        <Label Text="{Binding Rating}"
+                                               TextColor="#FCC419"
+                                               FontSize="20"
+                                               FontAttributes="Bold"></Label>
+                                    </HorizontalStackLayout>
+                                    <Label Text="{Binding Message}"
+                                           Margin="10,10,0,0"
+                                           TextColor="DarkGray"></Label>
+                                    <Border BackgroundColor="Gray" 
+                        Grid.Row="2"
+               Margin="20, 10, 20, 10"
+               StrokeShape="RoundRectangle 800,800,800,800"
+               HeightRequest="5"></Border>
+
+                                </VerticalStackLayout>
                             </ContentView>
                         </ViewCell>
                     </DataTemplate>
@@ -61,7 +62,7 @@
             </ListView>
         </StackLayout>
         <customControls:GradientFilledButton BorderColor="Transparent"
-                                                     Margin="0,30,0,0"
+                                                     Margin="0,30,0,40"
                                                      VerticalOptions="End"
                                                      Grid.Row="2"
                                                      Text="Give review"
