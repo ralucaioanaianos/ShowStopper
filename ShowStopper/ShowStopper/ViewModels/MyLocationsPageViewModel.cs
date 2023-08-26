@@ -40,9 +40,14 @@ namespace ShowStopper.ViewModels
             await _navigation.PopAsync();
         }
 
+        private async void LoadLocationsAfterReviewAdded()
+        {
+            await LoadLocations();
+        }
+
         private async void PlusButtonTappedAsync(object parameter)
         {
-            await _navigation.PushAsync(new AddLocationPage());
+            await _navigation.PushAsync(new AddLocationPage(LoadLocationsAfterReviewAdded));
             OnPropertyChanged(nameof(Locations));
         }
 
@@ -91,7 +96,7 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        private async void LoadLocations()
+        private async Task LoadLocations()
         {
             try
             {

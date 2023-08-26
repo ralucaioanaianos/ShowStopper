@@ -39,7 +39,6 @@ namespace ShowStopper.ViewModels
 
         private async void PlusButtonTappedAsync(object parameter)
         {
-            await _navigation.PushAsync(new AddLocationPage());
         }
 
         public FavoriteLocationsPageViewModel(INavigation navigation)

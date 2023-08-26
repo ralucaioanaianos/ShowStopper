@@ -72,7 +72,10 @@ namespace ShowStopper.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
         }
 
-        public AddLocationPageViewModel(INavigation navigation)
+        private Action _locationSavedCallback;
+
+
+        public AddLocationPageViewModel(INavigation navigation, Action locationSavedCallback)
         {
             _navigation = navigation;
             SaveBtn = new Command(SaveBtnTappedAsync);
@@ -80,6 +83,7 @@ namespace ShowStopper.ViewModels
             SaveBtn = new Command(SaveBtnTappedAsync);
             BackBtn = new Command(BackButtonTappedAsync);
             SelectPhoto = new Command(SelectPhotoTappedAsync);
+            _locationSavedCallback = locationSavedCallback;
         }
 
         private async void SelectPhotoTappedAsync(object sender)
@@ -103,6 +107,7 @@ namespace ShowStopper.ViewModels
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
                     await LocationsService.addLocationToDatabase(Name, Description, Address, photoUrl);
                 }
+                _locationSavedCallback?.Invoke();
                 await _navigation.PopAsync();
             }
             catch (Exception ex)
@@ -114,10 +119,6 @@ namespace ShowStopper.ViewModels
         private async void BackButtonTappedAsync(object parameter)
         {
             await _navigation.PopAsync();
-        }
-
-        private async void PlusButtonTappedAsync(object parameter)
-        {
         }
     }
 }
