@@ -20,7 +20,7 @@
             GradientColor2="#A782B9"
             IsBackButtonVisible="True"
             IsPlusButtonVisible="False"
-            IsEmptyHeartButtonVisible="True"
+            IsEmptyHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="{Binding Name}">
@@ -28,33 +28,93 @@
             <Grid HorizontalOptions="FillAndExpand"
                   Grid.Row="1">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
-                    <RowDefinition Height="Auto"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="4*"></RowDefinition>
                 </Grid.RowDefinitions>
-                <Image Source="{Binding Image}"
-                       Grid.Row="0"
-                       HeightRequest="150"
-                       Margin="0,20,0,0"></Image>
-                <Label Grid.Row="1"
+                <ScrollView HeightRequest="500">
+                    <VerticalStackLayout>
+                        <Image Source="{Binding Image}"
+                       Aspect="AspectFill"
+                       HeightRequest="200"
+                       Margin="0,0,0,0"></Image>
+                        <ImageButton Source="red_heart.png"
+                             HeightRequest="50"
+                             HorizontalOptions="End"
+                             Margin="0,10,20,0"></ImageButton>
+                        <HorizontalStackLayout Margin="20,-20,0,0">
+                            <Label Text="{Binding Price}"
+                               FontSize="25"
+                               FontAttributes="Bold"></Label>
+                            <Label Text="$"
+                               FontSize="25"
+                               FontAttributes="Bold"></Label>
+                        </HorizontalStackLayout>
+                        <Label Text="Football match"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           Margin="20,0,0,0"></Label>
+                        <HorizontalStackLayout Margin="15,20,20,0">
+                            <Image Source="ticket_icon.png"
+                           Margin="0,0,0,0"></Image>
+                            <Label Text="Date:"
+                               TextColor="Gray"
+                               Margin="20,0,0,0"
+                               FontAttributes="Bold"></Label>
+                            <Label Margin="7,0,0,0"
                        Text="{Binding Date}"
-                       HorizontalOptions="End"
-                       FontAttributes="Bold"
-                       Margin="15,15,20,0"
-                       FontSize="15"></Label>
-                <Label Grid.Row="2"
+                       HorizontalOptions="StartAndExpand"
+                       FontSize="15"
+                           TextColor="Gray"></Label>
+                        </HorizontalStackLayout>
+                        <Border BackgroundColor="Gray" 
+                        Grid.Row="2"
+               Margin="20, 10, 20, 10"
+               StrokeShape="RoundRectangle 800,800,800,800"
+               HeightRequest="5"></Border>
+                        <HorizontalStackLayout Margin="15,0,20,0">
+                            <Image Source="ticket_icon.png"></Image>
+                            <Label Text="Location: "
+                               TextColor="Gray"
+                               FontAttributes="Bold"
+                               Margin="20,0,0,0"></Label>
+                            <Label Grid.Row="2"
                        Text="{Binding Location}"
-                       FontAttributes="Bold"
                        HorizontalOptions="End"
-                       Margin="15,0,20,0"
+                       Margin="0,0,20,0"
+                               TextColor="Gray"
                        FontSize="15"></Label>
-                <Label Grid.Row="3"
-                       Margin="20,60,20,10"
+                        </HorizontalStackLayout>
+                        <Border BackgroundColor="Gray" 
+                        Grid.Row="2"
+               Margin="20, 10, 20, 10"
+               StrokeShape="RoundRectangle 800,800,800,800"
+               HeightRequest="5"></Border>
+                        <HorizontalStackLayout Margin="15,0,20,0">
+                            <Image Source="ticket_icon.png"></Image>
+                            <Label Text="Organizer: "
+                               TextColor="Gray"
+                               FontAttributes="Bold"
+                               Margin="20,0,0,0"></Label>
+                            <Label Grid.Row="2"
+                       Text="{Binding Organizer}"
+                       HorizontalOptions="End"
+                       Margin="0,0,20,0"
+                               TextColor="Gray"
+                       FontSize="15"></Label>
+                        </HorizontalStackLayout>
+                        <Border BackgroundColor="Gray" 
+                        Grid.Row="2"
+               Margin="20, 10, 20, 10"
+               StrokeShape="RoundRectangle 800,800,800,800"
+               HeightRequest="5"></Border>
+                        <Label Text="About this event:"
+                           FontAttributes="Bold"
+                           FontSize="20"
+                           Margin="20,10,0,0"></Label>
+                        <Label
+                       Margin="20,0,20,10"
                        Text="{Binding Descriptionn}"></Label>
-                <customControls:GradientFilledButton BorderColor="Transparent"
+                        <customControls:GradientFilledButton BorderColor="Transparent"
                                                      VerticalOptions="End"
                                                      Grid.Row="4"
                                                      Text="Buy Tickets"
@@ -62,7 +122,8 @@
                                                      TapCommand="{Binding StartPaymentCommand}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
-                <customControls:GradientFilledButton BorderColor="Transparent"
+                        <customControls:GradientFilledButton BorderColor="Transparent"
+                                                     Margin="0,30,0,0"
                                                      VerticalOptions="End"
                                                      Grid.Row="5"
                                                      Text="Similar Events"
@@ -70,6 +131,10 @@
                                                      TapCommand="{Binding SimilarBtn}"
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
+                    </VerticalStackLayout>
+                </ScrollView>
+                
+                
             </Grid>
         </Grid>
     </ContentPage.Content>
