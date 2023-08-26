@@ -45,9 +45,9 @@ namespace ShowStopper.ViewModels
 
         public ReviewsPageViewModel(INavigation navigation, AppLocation location)
         {
+            _location = location;
             LoadReviews();
             _navigation = navigation;
-            _location = location;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             GiveReviewBtn = new Command(GiveReviewTappedAsync);
@@ -62,15 +62,32 @@ namespace ShowStopper.ViewModels
         {
             try
             {
-                List<LocationReview> list = await LocationsService.GetLocationReviews(_location);
-                ObservableCollection<LocationReview> collection = new ObservableCollection<LocationReview>(list);
+                ObservableCollection<LocationReview> collection = new ObservableCollection<LocationReview>(_location.Reviews);
+                //if (_location == null)
+                //{
+                //    await Application.Current.MainPage.DisplayAlert("load", "loc nul", "ok");
 
+                //}
+                //else
+                //{
+                //    if (_location.Reviews != null)
+                //    {
+                //        await Application.Current.MainPage.DisplayAlert("load", _location.Reviews.Count.ToString() + ' ' + _location.Reviews.First().Rating.ToString(), "ok");
+
+                //    }
+                //    else
+                //    {
+                //        await Application.Current.MainPage.DisplayAlert("load", "nul", "ok");
+
+                //    }
+                //}
+                
                 Reviews = collection;
                 await Task.Delay(1000);
-                if (Reviews.Count == 0)
-                {
-                    await Application.Current.MainPage.DisplayAlert("prolr", "norev", "ok");
-                }
+                //if (Reviews.Count == 0)
+                //{
+                //    await Application.Current.MainPage.DisplayAlert("prolr", "norev", "ok");
+                //}
             }
             catch (Exception ex)
             {

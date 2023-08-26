@@ -47,18 +47,8 @@ namespace ShowStopper.Services
         {
             try
             {
-                var firebaseClient = new FirebaseClient(databaseUrl);
-                var reviews = new List<LocationReview>();
-                var reviewsQuery = firebaseClient
-                    .Child("Location")
-                    .Child("Reviews")
-                    .OnceAsync<LocationReview>();
-                var reviewsSnapshots = await reviewsQuery;
-                foreach (var reviewSnapshot in reviewsSnapshots)
-                {
-                    reviews.Add(reviewSnapshot.Object);
-                }
-                return reviews;
+                
+                return location.Reviews;
             } catch (Exception ex)
             {
                 await Application.Current.MainPage.DisplayAlert("get rev", ex.Message, "ok");
