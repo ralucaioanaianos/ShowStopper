@@ -61,7 +61,6 @@ namespace ShowStopper.ViewModels
 
         private async void LoadReviewsAfterReviewAdded()
         {
-            await Application.Current.MainPage.DisplayAlert("load", "ok", "ok");
             await LoadReviews();
         }
 

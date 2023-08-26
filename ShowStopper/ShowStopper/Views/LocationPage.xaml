@@ -53,7 +53,7 @@
                                 <Label TextColor="#FFDA1C"
                                        FontSize="20"
                                        FontAttributes="Bold"
-                                       Text="{Binding Rating}"></Label>
+                                       Text="{Binding Rating, StringFormat='{0:F1}'}"></Label>
                                 <Image Source="star_icon.png"
                                        HeightRequest="30"
                                        Margin="0,-5,0,0"></Image>

@@ -39,9 +39,6 @@ namespace ShowStopper.ViewModels
         public ImageSource Star3 { get; set; }
         public ImageSource Star4 { get; set; }
         public ImageSource Star5 { get; set; }
-
-
-
         public string Message { get; set; }
 
         private AppLocation _location { get; set; }
@@ -70,17 +67,6 @@ namespace ShowStopper.ViewModels
 
         private async void SaveBtnTappedAsync(object parameter)
         {
-            if (_location == null) {
-                await Application.Current.MainPage.DisplayAlert("save", "locationnull", "ok");
-            }
-            if (Rating == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert("save", "rating nu", "ok");
-            }
-            if (Message == null)
-            {
-                await Application.Current.MainPage.DisplayAlert("save", "mess nul", "ok");
-            }
             await LocationsService.ReviewLocation(_location, Rating, Message);
             _reviewSavedCallback?.Invoke();
             await _navigation.PopAsync();
@@ -104,7 +90,6 @@ namespace ShowStopper.ViewModels
             OnPropertyChanged(nameof(Star4));
             Star5 = "empty_star_second.png";
             OnPropertyChanged(nameof(Star5));
-            await Application.Current.MainPage.DisplayAlert("1", Rating.ToString() + " " + Star1, "ok");
         }
         public  void Star2BtnTappedAsync()
         {
