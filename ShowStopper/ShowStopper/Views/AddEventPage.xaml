@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             xmlns:local="clr-namespace:ShowStopper"
              x:Class="ShowStopper.Views.AddEventPage"
              Title="AddEventPage"
              NavigationPage.HasNavigationBar="False">
@@ -23,6 +24,7 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="Add Event">
             </customControls:CustomNavigationBar>
+            
             <ScrollView Grid.Row="1">
                 <StackLayout Margin="20,20,20,20">
                     <Label Text="Name:"
@@ -97,8 +99,8 @@
                     </customControls:GradientFilledButton>
                 </StackLayout>
             </ScrollView>
-           
             
+
         </Grid>
 
     </ContentPage.Content>

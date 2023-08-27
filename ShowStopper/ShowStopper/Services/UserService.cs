@@ -25,9 +25,13 @@ namespace ShowStopper.Services
             {
                 if (toUpdateUser.AttendingEvents == null)
                 {
-                    toUpdateUser.AttendingEvents = new List<string>();
+                    toUpdateUser.AttendingEvents = new List<Ticket>();
                 }
-                toUpdateUser.AttendingEvents.Add(eventName);
+                toUpdateUser.AttendingEvents.Add(new Ticket
+                {
+                    EventName = eventName,
+                    BuyDate = DateTime.Now
+                });
                 Console.WriteLine(toUpdateUser.AttendingEvents.Count.ToString());
                 await firebaseClient
                    .Child("Users")

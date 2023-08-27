@@ -34,6 +34,6 @@ namespace ShowStopper.Models
 
         //public string ConnectionId { get; set; }
 
-        public List<string> AttendingEvents { get; set; }
+        public List<Ticket> AttendingEvents { get; set; }
     }
 }

@@ -10,4 +10,6 @@ public partial class AddEventPage : ContentPage
 		InitializeComponent();
         BindingContext = new AddEventPageViewModel(Navigation, reviewAddedCallback);
     }
+
+    
 }
