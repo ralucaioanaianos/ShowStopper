@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ShowStopper.Models
 {
-    public class LocationFavorite
+    public class LocationFavorite 
     {
         public string LocationName { get; set; }  
         public string UserEmail { get; set; }

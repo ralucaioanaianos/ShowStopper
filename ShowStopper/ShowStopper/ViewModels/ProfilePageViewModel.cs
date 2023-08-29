@@ -50,7 +50,7 @@ namespace ShowStopper.ViewModels
                 if (_name != value)
                 {
                     _name = value;
-                    OnPropertyChanged(nameof(Name)); // Raise the PropertyChanged event
+                    OnPropertyChanged(nameof(Name));
                 }
             }
         }

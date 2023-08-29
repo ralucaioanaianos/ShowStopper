@@ -42,13 +42,13 @@
                 </Border>
                 <!--<Image Source="cat_user.jpg">-->
                 <!--</Image>-->
-                
-                    <Label Text="{Binding Name}"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   HorizontalTextAlignment="Center"
-                   Margin="0,20,0,0"></Label>
-                
+
+                <Label Text="{Binding Name}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       Margin="0,20,0,0"></Label>
+
                 <Label Text="Account"
                    FontSize="18"
                    FontAttributes="Bold"

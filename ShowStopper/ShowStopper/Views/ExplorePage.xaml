@@ -70,29 +70,79 @@
                                         <ContentView VerticalOptions="FillAndExpand">
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                                    <ColumnDefinition Width="3*"></ColumnDefinition>
                                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                                 </Grid.ColumnDefinitions>
                                                 <Image Source="{Binding Image}"
                                         Grid.Column="0"
                                         HeightRequest="80"></Image>
                                                 <Grid Grid.Column="1"
-                                      HeightRequest="80">
+                                          HeightRequest="80">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"></RowDefinition>
                                                         <RowDefinition Height="Auto"></RowDefinition>
                                                     </Grid.RowDefinitions>
                                                     <VerticalStackLayout Grid.Row="0">
                                                         <Label Text="{Binding Name}"
-                                               FontSize="16"
-                                               FontAttributes="Bold"></Label>
-                                                        <Label Text="{Binding Date}"
-                                               FontSize="13"></Label>
-                                                        <Label Text="{Binding Location}"
-                                               FontSize="13"></Label>
+                                                   FontSize="16"
+                                                   TextColor="#1A2C6C"
+                                                   FontAttributes="Bold"></Label>
+                                                        <Label Text="{Binding Type}"
+                                                   FontSize="14"
+                                                   FontAttributes="Bold"></Label>
+                                                        <HorizontalStackLayout>
+                                                            <Image Source="calender_icon.png"
+                                                       HeightRequest="15"></Image>
+                                                            <Label Text="{Binding Date}"
+                                                   TextColor="DarkGray"
+                                                   FontSize="13">
+                                                            </Label>
+                                                        </HorizontalStackLayout>
+                                                        <HorizontalStackLayout>
+                                                            <Image Source="location_icon.png"
+                                                       HeightRequest="15"></Image>
+                                                            <Label Text="{Binding Location}"
+                                                   TextColor="DarkGray"
+                                                   FontSize="13"></Label>
+                                                        </HorizontalStackLayout>
+                                                        <!--<HorizontalStackLayout>
+                                                            <Image Source="location_icon.png"
+                                                       HeightRequest="15"></Image>
+                                                            <Label Text="{Binding AvailablePlaces}"
+                                                   TextColor="DarkGray"
+                                                   FontSize="13"></Label>
+                                                            <Label Text=" / "
+                                                   TextColor="DarkGray"
+                                                   FontSize="13"></Label>
+                                                            <Label Text="{Binding TotalPlaces}"
+                                                   TextColor="DarkGray"
+                                                   FontSize="13"></Label>
+                                                        </HorizontalStackLayout>-->
+
                                                     </VerticalStackLayout>
 
+
                                                 </Grid>
+                                                <HorizontalStackLayout Grid.Column="2"
+                                                           VerticalOptions="Center"
+                                                           Margin="50,0,0,0">
+                                                    <Label Text="{Binding Price}"
+                                           HorizontalOptions="Start"
+                                           TextColor="#A782B9"
+                                           FontAttributes="Bold"
+                                           FontSize="18"></Label>
+                                                    <Label Text="$"
+                                               HorizontalOptions="Start"
+                                               TextColor="#A782B9"
+                                               FontAttributes="Bold"
+                                               FontSize="18">
+
+                                                    </Label>
+                                                </HorizontalStackLayout>
+
+
+
                                             </Grid>
                                         </ContentView>
                                     </ViewCell>

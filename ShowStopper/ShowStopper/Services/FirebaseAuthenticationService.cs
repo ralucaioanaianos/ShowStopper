@@ -14,7 +14,6 @@ namespace ShowStopper.Services
     class FirebaseAuthenticationService
     {
         public static string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
-
         public static string authDomain = "showstopper-71398.firebaseapp.com";
 
         public static FirebaseAuthConfig authConfig = new FirebaseAuthConfig
@@ -25,11 +24,10 @@ namespace ShowStopper.Services
                 {
                     new GoogleProvider().AddScopes("email"),
                     new EmailProvider()
-                },
-            //UserRepository = new FileUserRepository("FirebaseSample"),
-           
-
+                },           
         };
+        
+        
         public static FirebaseAuthClient client = new FirebaseAuthClient(authConfig);
 
         public static async Task CreateUserFirebase(string email, string password)

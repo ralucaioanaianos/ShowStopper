@@ -58,7 +58,6 @@ namespace ShowStopper.Services
                 toUpdateUser.Object.PhoneNumber = phoneNumber;
                 toUpdateUser.Object.CompanyName = companyName;
                 toUpdateUser.Object.ProfileImage = photoUrl;
-                //toUpdateUser.Object.AttendingEvents = attendingEvents;
                 await firebaseClient
                    .Child("Users")
                    .Child(userId)
@@ -71,7 +70,6 @@ namespace ShowStopper.Services
 
         public static async Task<AppUser> GetUserByEmail(string email)
         {
-            Console.WriteLine("ENTERED GETUSER");
             var firebaseClient = new FirebaseClient(databaseUrl);
             var newEmail = email.Replace(".", ",");
             var userQuery = firebaseClient

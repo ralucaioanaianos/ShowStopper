@@ -30,10 +30,10 @@
             <ListView ItemsSource="{Binding Events}"
                   x:Name="EventsListView"
                   SelectedItem="{Binding SelectedEvent}"
-                  RowHeight="100">
+                  RowHeight="150">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="100">
+                        <ViewCell Height="150">
                             <ContentView VerticalOptions="FillAndExpand"
                                      IsVisible="{Binding IsDataLoaded}">
                                 <ContentView.Background>
@@ -82,7 +82,7 @@
                                                    TextColor="DarkGray"
                                                    FontSize="13"></Label>
                                             </HorizontalStackLayout>
-                                            <HorizontalStackLayout>
+                                            <!--<HorizontalStackLayout>
                                                 <Image Source="location_icon.png"
                                                        HeightRequest="15"></Image>
                                                 <Label Text="{Binding AvailablePlaces}"
@@ -94,7 +94,7 @@
                                                 <Label Text="{Binding TotalPlaces}"
                                                    TextColor="DarkGray"
                                                    FontSize="13"></Label>
-                                            </HorizontalStackLayout>
+                                            </HorizontalStackLayout>-->
                                             
                                         </VerticalStackLayout>
                                         

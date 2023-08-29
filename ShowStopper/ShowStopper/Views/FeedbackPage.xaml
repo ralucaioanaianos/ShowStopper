@@ -24,7 +24,7 @@
                 PlusBtnTapCommand="{Binding PlusBtn}"
                 PageName="Send Feedback">   
             </customControls:CustomNavigationBar>
-            <VerticalStackLayout Grid.Row="1">
+            <VerticalStackLayout Grid.Row="1" HeightRequest="500">
                 <Frame Grid.Row="1"
                    BorderColor="Black"
                    HeightRequest="300"
@@ -37,6 +37,7 @@
                         BackgroundColor="White"/>
                 </Frame>
                 <customControls:GradientFilledButton BorderColor="Transparent"
+                                                     Margin="0,150,0,0"
                                                      VerticalOptions="End"
                                                      Grid.Row="1"
                                                      Text="Send"

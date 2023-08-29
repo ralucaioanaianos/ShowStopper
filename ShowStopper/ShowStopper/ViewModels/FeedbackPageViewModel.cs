@@ -32,7 +32,7 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
-        public Command SendBtn { get; }
+        public Command SendBtn { get; set; }
 
         public FeedbackPageViewModel(INavigation navigation)
         {
@@ -53,6 +53,7 @@ namespace ShowStopper.ViewModels
 
         private async void SendBtnTappedAsync(object parameter)
         {
+            await Application.Current.MainPage.DisplayAlert("", "Thank you for your message!", "Close");
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
             await FirebaseDatabaseService.AddFeedbackMessageToDatabase(email, FeedbackMessage);
             await Application.Current.MainPage.DisplayAlert("", "Thank you for your message!", "Close");
