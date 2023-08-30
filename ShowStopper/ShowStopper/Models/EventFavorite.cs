@@ -8,7 +8,7 @@ namespace ShowStopper.Models
 {
     public class EventFavorite
     {
-        public string EventId;
-        public string UserEmail;
+        public string EventName { get; set; }
+        public string UserEmail { get; set; }
     }
 }

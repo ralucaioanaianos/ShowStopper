@@ -118,12 +118,12 @@ namespace ShowStopper.Services
                 FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 var newEmail = email.Replace('.', ',');
-                var response = await firebaseClient.Child("EventFavorites").PostAsync(new EventFavorite
-                {
-                    EventId = appEvent.Id,
-                    UserEmail = newEmail,
+                //var response = await firebaseClient.Child("EventFavorites").PostAsync(new EventFavorite
+                //{
+                //    EventId = appEvent.Id,
+                //    UserEmail = newEmail,
              
-                });
+                //});
             }
             catch (Exception ex)
             {

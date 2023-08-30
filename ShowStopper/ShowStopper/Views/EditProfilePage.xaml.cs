@@ -6,9 +6,9 @@ namespace ShowStopper.Views;
 
 public partial class EditProfilePage : ContentPage
 {
-	public EditProfilePage(User user, AppUser databaseUser)
+	public EditProfilePage(User user, AppUser databaseUser, Action initializeUserAfterEdit)
 	{
 		InitializeComponent();
-        BindingContext = new EditProfilePageViewModel(Navigation, user, databaseUser);
+        BindingContext = new EditProfilePageViewModel(Navigation, user, databaseUser, initializeUserAfterEdit);
     }
 }

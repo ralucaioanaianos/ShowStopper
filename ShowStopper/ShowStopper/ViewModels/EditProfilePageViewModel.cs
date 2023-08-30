@@ -51,8 +51,9 @@ namespace ShowStopper.ViewModels
             }
         }
         public ImageSource ProfileImageSource { get; set; }
+        private Action _initializeUserAfterEdit;
 
-        public EditProfilePageViewModel(INavigation navigation, User user, AppUser databaseUser)
+        public EditProfilePageViewModel(INavigation navigation, User user, AppUser databaseUser, Action initializeUserAfterEdit)
         {
             DatabaseUser = databaseUser;
             SrcImg = databaseUser.ProfileImage;
@@ -68,6 +69,7 @@ namespace ShowStopper.ViewModels
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             SelectPhoto = new Command(SelectPhotoTappedAsync);
+            _initializeUserAfterEdit = initializeUserAfterEdit;
         }
 
         private async void SelectPhotoTappedAsync(object sender)
@@ -106,6 +108,7 @@ namespace ShowStopper.ViewModels
                 photoUrl = await FirebaseStorageService.UploadPhotoToStorage(Photo);
             }
             await FirebaseDatabaseService.UpdateUserData(DatabaseUser, FirstName, LastName, PhoneNumber, CompanyName, photoUrl);
+            _initializeUserAfterEdit.Invoke();
             await _navigation.PopAsync();
         }
     }

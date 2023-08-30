@@ -72,6 +72,8 @@ namespace ShowStopper.ViewModels
             MyTicketsBtn = new Command(MyTicketsBtnTappedAsync);
         }
 
+        
+
         private async void Initialize()
         {
             await GetUser();
@@ -111,7 +113,7 @@ namespace ShowStopper.ViewModels
 
         private async void EditProfileBtnTappedAsync(object parameter)
         {
-            await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser));
+            await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser, Initialize));
             await GetUser();
             OnPropertyChanged(nameof(Name));
             OnPropertyChanged(nameof(SrcImg));
@@ -145,7 +147,7 @@ namespace ShowStopper.ViewModels
 
         private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser));
+            await _navigation.PushAsync(new EditProfilePage(_user, _databaseUser, Initialize));
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
