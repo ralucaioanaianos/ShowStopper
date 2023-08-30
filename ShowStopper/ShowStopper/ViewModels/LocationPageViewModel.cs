@@ -71,7 +71,9 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        public LocationPageViewModel(INavigation navigation, AppLocation appLocation)
+        private Action _locationModifiedCallback;
+
+        public LocationPageViewModel(INavigation navigation, AppLocation appLocation, Action locationModifiedCallback)
         {
             IsEmptyHeartButtonVisible = false;
             _navigation = navigation;
@@ -96,11 +98,13 @@ namespace ShowStopper.ViewModels
             EmptyHeartBtn = new Command(EmptyHeartButtonTappedAsync);
             SeeEventsBtn = new Command(SeeEventsButtonTappedAsync);
             ReviewsBtn = new Command(ReviewsBtnTappedAsync);
+            _locationModifiedCallback = locationModifiedCallback;
         }
 
         private async void ReviewsBtnTappedAsync(object parameter)
         {
-            await _navigation.PushAsync(new ReviewsPage(_location));
+            await _navigation.PushAsync(new ReviewsPage(_location, _locationModifiedCallback));
+            _locationModifiedCallback.Invoke();
         }
 
         private async void InitializeFavoritesButtons()

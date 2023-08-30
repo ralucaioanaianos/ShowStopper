@@ -45,8 +45,9 @@ namespace ShowStopper.ViewModels
 
         private INavigation _navigation { get ; set; }
         private Action _reviewSavedCallback;
+        private Action _locationReviewedCallback;
 
-        public GiveReviewPageViewModel(INavigation navigation, AppLocation appLocation, Action reviewSavedCallback)
+        public GiveReviewPageViewModel(INavigation navigation, AppLocation appLocation, Action reviewSavedCallback, Action locationReviewedCallback)
         {
             _navigation = navigation;
             _location = appLocation;
@@ -63,12 +64,14 @@ namespace ShowStopper.ViewModels
             SendBtn = new Command(SaveBtnTappedAsync);
             BackBtn = new Command(BackBtnTappedAsync);
             _reviewSavedCallback = reviewSavedCallback;
+            _locationReviewedCallback = locationReviewedCallback;
         }
 
         private async void SaveBtnTappedAsync(object parameter)
         {
             await LocationsService.ReviewLocation(_location, Rating, Message);
             _reviewSavedCallback?.Invoke();
+            _locationReviewedCallback?.Invoke();
             await _navigation.PopAsync();
         }
 

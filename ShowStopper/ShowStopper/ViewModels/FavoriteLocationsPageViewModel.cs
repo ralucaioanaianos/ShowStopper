@@ -67,12 +67,17 @@ namespace ShowStopper.ViewModels
         {
             if (SelectedLocation != null)
             {
-                await _navigation.PushAsync(new LocationPage(SelectedLocation));
+                await _navigation.PushAsync(new LocationPage(SelectedLocation, LoadLocationsAfterReviewAdded));
                 SelectedLocation = null;
             }
         }
 
-        private async void LoadLocations()
+        private async void LoadLocationsAfterReviewAdded()
+        {
+            await LoadLocations();
+        }
+
+        private async Task LoadLocations()
         {
             try
             {

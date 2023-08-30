@@ -70,7 +70,7 @@
                                                  GradientColor2="#A782B9"
                                                  TextColor="White"
                                                  BorderColor="Transparent"
-                                                 TapCommand="{Binding SaveBtn}"
+                                                 TapCommand="{Binding RegisterUser}"
                                                  Text="Add"
                                                  VerticalOptions="End"
                                                  Margin="0,20,0,20">

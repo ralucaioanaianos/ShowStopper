@@ -21,20 +21,42 @@
             IsEmptyHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="Add Event">
+            PageName="Add Locations">
             </customControls:CustomNavigationBar>
-            <StackLayout Grid.Row="1"
-                         Margin="20,20,20,20">
-                <Entry Placeholder="Name"
-                   Text="{Binding Name}"></Entry>
-                <Entry Placeholder="Description"
-                   Text="{Binding Description}"></Entry>
-                <Entry Placeholder="Owner"
-                   Text="{Binding Owner}"></Entry>
-                <Entry Placeholder="Address"
-                   Text="{Binding Address}"></Entry>
-                <Button Text="pick image" Grid.Row="8"
-                Command="{Binding SelectPhoto}"></Button>
+            <StackLayout Grid.Row="1" 
+                         Margin="20">
+                <Label Text="Name:"
+                        FontAttributes="Bold"
+                        Margin="5,0,0,0"
+                        TextColor="DarkGray">
+                </Label>
+                <Entry Text="{Binding Name}"></Entry>
+                <Label Text="Description:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                <Entry Text="{Binding Description}"></Entry>
+                <Label Text="Description:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                <Entry Text="{Binding Owner}"></Entry>
+                <Label Text="Description:"
+                           Margin="5,15,0,0"
+                           FontAttributes="Bold"
+                           TextColor="DarkGray"></Label>
+                <Entry Text="{Binding Address}"></Entry>
+                <HorizontalStackLayout HorizontalOptions="Center"
+                                           Margin="0,20,0,0">
+                    <ImageButton Source="second_camera.png"
+                                 Command="{Binding SelectPhoto}"
+                                 HeightRequest="40"></ImageButton>
+                    <Label Text="Pick Photo"
+                               Margin="0,10,0,0"
+                               TextColor="#805B93"
+                               FontAttributes="Bold"
+                               FontSize="15"></Label>
+                </HorizontalStackLayout>
             </StackLayout>
             <customControls:GradientFilledButton GradientColor1="#1A2C6C"
                                                  GradientColor2="#A782B9"

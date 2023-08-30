@@ -39,9 +39,13 @@
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{Binding Image}"
-                   Grid.Column="0"
-                   HeightRequest="80"></Image>
+                                    <Frame HeightRequest="80" 
+                                                       WidthRequest="80" 
+                                                       Grid.Column="0"
+                                                       Padding="0">
+                                        <Image Source="{Binding Image}"
+                                               Aspect="AspectFill"></Image>
+                                    </Frame>
                                     <Grid Grid.Column="1"
                   HeightRequest="80">
                                         <Grid.RowDefinitions>

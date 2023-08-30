@@ -15,31 +15,36 @@
             Grid.Row="0"
             GradientColor1="#1A2C6C"
             GradientColor2="#A782B9"
-            IsBackButtonVisible="False"
-            IsPlusButtonVisible="True"
+            IsBackButtonVisible="True"
+            IsPlusButtonVisible="False"
             IsEmptyHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="My Events">
+            PageName="Similar Events">
         </customControls:CustomNavigationBar>
         <StackLayout Grid.Row="1">
             <ListView ItemsSource="{Binding Events}"
                   x:Name="EventsListView"
                   SelectedItem="{Binding SelectedEvent}"
-                  RowHeight="100">
+                  RowHeight="150">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell Height="100">
+                        <ViewCell Height="150">
                             <ContentView VerticalOptions="FillAndExpand">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                                        <ColumnDefinition Width="3*"></ColumnDefinition>
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Image Source="{Binding Image}"
-                                        Grid.Column="0"
-                                        HeightRequest="80"></Image>
+                                    <Frame HeightRequest="80" 
+                                                       WidthRequest="80" 
+                                                       Grid.Column="0"
+                                                       Padding="0">
+                                        <Image Source="{Binding Image}"
+                                               Aspect="AspectFill"></Image>
+                                    </Frame>
                                     <Grid Grid.Column="1"
                                       HeightRequest="80">
                                         <Grid.RowDefinitions>
@@ -55,8 +60,23 @@
                                             <Label Text="{Binding Location}"
                                                FontSize="13"></Label>
                                         </VerticalStackLayout>
-
                                     </Grid>
+                                    <HorizontalStackLayout Grid.Column="2"
+                                                           VerticalOptions="Center"
+                                                           Margin="50,0,0,0">
+                                        <Label Text="{Binding Price}"
+                                           HorizontalOptions="Start"
+                                           TextColor="#A782B9"
+                                           FontAttributes="Bold"
+                                           FontSize="18"></Label>
+                                        <Label Text="$"
+                                               HorizontalOptions="Start"
+                                               TextColor="#A782B9"
+                                               FontAttributes="Bold"
+                                               FontSize="18">
+
+                                        </Label>
+                                    </HorizontalStackLayout>
                                 </Grid>
                             </ContentView>
                         </ViewCell>

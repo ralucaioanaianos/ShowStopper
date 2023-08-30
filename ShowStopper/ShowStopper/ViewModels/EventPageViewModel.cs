@@ -126,6 +126,7 @@ namespace ShowStopper.ViewModels
                         await UserService.AddEventToUser(AppEvent.Name);
                     }
                 }
+                else { await Application.Current.MainPage.DisplayAlert("canceled", "ok", "ok"); }
             }  
         }
 

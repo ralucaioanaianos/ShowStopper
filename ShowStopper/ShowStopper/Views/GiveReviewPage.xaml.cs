@@ -5,9 +5,9 @@ namespace ShowStopper.Views;
 
 public partial class GiveReviewPage : ContentPage
 {
-	public GiveReviewPage(AppLocation location, Action reviewAddedCallback)
+	public GiveReviewPage(AppLocation location, Action reviewAddedCallback, Action locationReviewedCallback)
 	{
 		InitializeComponent();
-		BindingContext = new GiveReviewPageViewModel(Navigation, location, reviewAddedCallback);
+		BindingContext = new GiveReviewPageViewModel(Navigation, location, reviewAddedCallback, locationReviewedCallback);
 	}
 }

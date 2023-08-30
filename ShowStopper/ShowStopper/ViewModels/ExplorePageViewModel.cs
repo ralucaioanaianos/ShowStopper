@@ -319,11 +319,16 @@ namespace ShowStopper.ViewModels
             }
         }
 
+        private async void LoadLocationsAfterReviewAdded()
+        {
+            await LoadLocations();
+        }
+
         private async void OnLocationSelected()
         {
             if (SelectedLocation != null)
             {
-                await _navigation.PushAsync(new LocationPage(SelectedLocation));
+                await _navigation.PushAsync(new LocationPage(SelectedLocation, LoadLocationsAfterReviewAdded));
                 SelectedLocation = null;
             }
         }
@@ -364,7 +369,7 @@ namespace ShowStopper.ViewModels
             }
         }
 
-        private async void LoadLocations()
+        private async Task LoadLocations()
         {
             List<AppLocation> list = await LocationsService.getAllLocations();
             if (list.Count == 0)

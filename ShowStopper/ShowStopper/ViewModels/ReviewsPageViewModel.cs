@@ -43,7 +43,9 @@ namespace ShowStopper.ViewModels
             
         }
 
-        public ReviewsPageViewModel(INavigation navigation, AppLocation location)
+        private Action _locationReviewedCallback;
+
+        public ReviewsPageViewModel(INavigation navigation, AppLocation location, Action locationReviewedCallback)
         {
             _location = location;
             LoadReviews();
@@ -51,11 +53,13 @@ namespace ShowStopper.ViewModels
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             GiveReviewBtn = new Command(GiveReviewTappedAsync);
+            _locationReviewedCallback = locationReviewedCallback;
         }
 
         private async void GiveReviewTappedAsync()
         {
-            await _navigation.PushAsync(new GiveReviewPage(_location, LoadReviewsAfterReviewAdded));
+            await _navigation.PushAsync(new GiveReviewPage(_location, LoadReviewsAfterReviewAdded, _locationReviewedCallback));
+            _locationReviewedCallback.Invoke();
             await LoadReviews();
         }
 
