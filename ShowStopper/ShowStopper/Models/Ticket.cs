@@ -9,6 +9,7 @@ namespace ShowStopper.Models
     public class Ticket
     {
         public string EventName { get; set; }
-        public DateTime BuyDate { get; set; }   
+        public DateTime BuyDate { get; set; }
+        public string Image { get; set; }
     }
 }

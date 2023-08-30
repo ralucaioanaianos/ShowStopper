@@ -29,9 +29,23 @@ namespace ShowStopper.ViewModels
 
         public Command BuyBtn { get; }
 
-        
+        public Command EmptyHeartBtn { get; }
+
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
+        private string _heartSrc;
+        public string HeartSrc
+        {
+            get { return _heartSrc; }
+            set
+            {
+                if (_heartSrc != value)
+                {
+                    _heartSrc = value;
+                    OnPropertyChanged(nameof(HeartSrc)); // Raise the PropertyChanged event
+                }
+            }
+        }
         private INavigation _navigation;
 
         public ICommand StartPaymentCommand => new Command(async () => await StartPaymentAsync());
@@ -51,6 +65,21 @@ namespace ShowStopper.ViewModels
 
         }
 
+        private async void EmptyHeartButtonTappedAsync(object parameter)
+        {
+            bool result = await EventsService.IsEventInFavorites(AppEvent);
+            if (result)
+            {
+                await EventsService.RemoveEventFromFavorites(AppEvent);
+                HeartSrc = "empty_heart.png";
+            }
+            else
+            {
+                await EventsService.AddEventToFavorites(AppEvent);
+                HeartSrc = "red_heart.png";
+            }
+        }
+
         public EventPageViewModel(INavigation navigation, AppEvent appEvent)
         {
             _navigation = navigation;
@@ -62,11 +91,28 @@ namespace ShowStopper.ViewModels
             Organizer = appEvent.Organizer;
             Price = appEvent.Price;
             Image = appEvent.Image;
+            InitializeHeart();
+            //HeartSrc = "empty_heart.png";
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             BuyBtn = new Command(BuyButtonTappedAsync);
             SimilarBtn = new Command(SimilarBtnTappedAsync);
+            EmptyHeartBtn = new Command(EmptyHeartButtonTappedAsync);
 
+        }
+
+        public async void InitializeHeart()
+        {
+            bool result = await EventsService.IsEventInFavorites(AppEvent);
+            if (result)
+            {
+                HeartSrc = "red_heart.png";
+            }
+            else
+            {
+                HeartSrc = "empty_heart.png";
+            }
+            await Application.Current.MainPage.DisplayAlert("heart", HeartSrc, "ok");
         }
 
         private async void SimilarBtnTappedAsync(object parameter)
@@ -89,7 +135,7 @@ namespace ShowStopper.ViewModels
                     {
                         AmountWithBreakdown = new AmountWithBreakdown
                         {
-                            CurrencyCode = "USD",
+                            CurrencyCode = "EUR",
                             Value = (Price*(decimal.Parse(result))).ToString("0.00"),
                         }
                     }
@@ -108,7 +154,7 @@ namespace ShowStopper.ViewModels
                     await Browser.OpenAsync(new Uri(approvalUrl), BrowserLaunchMode.SystemPreferred);
                     for (var i = 0; i < decimal.Parse(result);i++)
                     {
-                        await UserService.AddEventToUser(AppEvent.Name);
+                        await UserService.AddEventToUser(AppEvent.Name, AppEvent.Image);
                     }
                 }
                 catch (Exception ex)
@@ -123,7 +169,7 @@ namespace ShowStopper.ViewModels
                 {
                     for (var i = 0; i < decimal.Parse(result); i++)
                     {
-                        await UserService.AddEventToUser(AppEvent.Name);
+                        await UserService.AddEventToUser(AppEvent.Name, AppEvent.Image);
                     }
                 }
                 else { await Application.Current.MainPage.DisplayAlert("canceled", "ok", "ok"); }

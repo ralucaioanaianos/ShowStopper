@@ -22,15 +22,15 @@ namespace ShowStopper.ViewModels
 
         public bool IsListEmpty { get; set; }
         public bool IsDataLoaded { get; set; } = false;
-        public Command EventTapped { get; }
-        private ObservableCollection<AppEvent> _events;
-        public ObservableCollection<AppEvent> Events
+        public Command TicketTapped { get; }
+        private ObservableCollection<Ticket> _tickets;
+        public ObservableCollection<Ticket> Tickets
         {
-            get { return _events; }
+            get { return _tickets; }
             set 
             { 
-                _events = value;
-                OnPropertyChanged(nameof(Events));
+                _tickets = value;
+                OnPropertyChanged(nameof(Tickets));
             }
         }
         private INavigation _navigation;
@@ -39,45 +39,45 @@ namespace ShowStopper.ViewModels
 
         public MyTicketsPageViewModel(INavigation navigation)
         {
-            LoadEvents();
+            LoadTickets();
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
-            EventTapped = new Command(EventTappedAsync);
+            TicketTapped = new Command(TicketTappedAsync);
         }
 
-        private AppEvent _selectedEvent;
-        public AppEvent SelectedEvent
+        private AppEvent _selectedTicket;
+        public AppEvent SelectedTicket
         {
-            get { return _selectedEvent; }
+            get { return _selectedTicket; }
             set
             {
-                _selectedEvent = value;
-                OnPropertyChanged(nameof(SelectedEvent));
-                OnEventSelected();
+                _selectedTicket = value;
+                OnPropertyChanged(nameof(SelectedTicket));
+                //OnTicketSelected();
             }
         }
 
-        private async void OnEventSelected()
+        private async void OnTicketSelected()
         {
-            if (SelectedEvent != null)
+            if (SelectedTicket != null)
             {
-                await _navigation.PushAsync(new EventPage(SelectedEvent));
-                SelectedEvent = null;
+                await _navigation.PushAsync(new EventPage(SelectedTicket));
+                SelectedTicket = null;
             }
         }
 
-        private async void LoadEvents()
+        private async void LoadTickets()
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-            List<AppEvent> list = await EventsService.getEventsByEmail(email);
-            ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
-            Events = collection;
-            await Application.Current.MainPage.DisplayAlert("loadev", Events.Count.ToString(), "ok");
+            List<Ticket> tickets = await UserService.GetTicketsForUser();
+            ObservableCollection<Ticket> collection = new ObservableCollection<Ticket>(tickets);
+            Tickets = collection;
+            await Application.Current.MainPage.DisplayAlert("loadev", Tickets.Count.ToString(), "ok");
             IsDataLoaded = true;
         }
 
-        private async void EventTappedAsync(object parameter)
+        private async void TicketTappedAsync(object parameter)
         {
             if (parameter is AppEvent selectedEvent)
             {

@@ -118,12 +118,12 @@ namespace ShowStopper.Services
                 FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 var newEmail = email.Replace('.', ',');
-                //var response = await firebaseClient.Child("EventFavorites").PostAsync(new EventFavorite
-                //{
-                //    EventId = appEvent.Id,
-                //    UserEmail = newEmail,
-             
-                //});
+                var response = await firebaseClient.Child("EventFavorites").PostAsync(new EventFavorite
+                {
+                    EventName = appEvent.Name,
+                    UserEmail = newEmail,
+                });
+                await Application.Current.MainPage.DisplayAlert("added favorite event", "yey", "ok");
             }
             catch (Exception ex)
             {
@@ -131,6 +131,63 @@ namespace ShowStopper.Services
             }
         }
 
-        
+        public static async Task<bool> IsEventInFavorites(AppEvent appEvent)
+        {
+            try
+            {
+                bool isAdded = false;
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var events = new ConcurrentBag<AppEvent>();
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var newEmail = email.Replace('.', ',');
+                var eventFavorites = await firebaseClient
+            .Child("EventFavorites")
+            .OrderBy("EventName")
+            .EqualTo(appEvent.Name)
+            .OnceAsync<EventFavorite>();
+                foreach (var favorite in eventFavorites)
+                {
+                    if (favorite.Object.UserEmail == newEmail)
+                    {
+                        isAdded = true;
+                    }
+                }
+                return isAdded;
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("check location favorite", ex.Message, "ok");
+                return false;
+            }
+        }
+
+        public static async Task RemoveEventFromFavorites(AppEvent appEvent)
+        {
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var events = new ConcurrentBag<AppEvent>();
+                string email = FirebaseAuthenticationService.GetLoggedUserEmail();
+                var newEmail = email.Replace('.', ',');
+                var eventFavorites = await firebaseClient
+            .Child("EventFavorites")
+            .OrderBy("EventName")
+            .EqualTo(appEvent.Name)
+            .OnceAsync<EventFavorite>();
+                foreach (var favorite in eventFavorites)
+                {
+                    if (favorite.Object.UserEmail == newEmail)
+                    {
+                        await firebaseClient.Child("EventFavorites").Child(favorite.Key).DeleteAsync();
+                    }
+                }
+                await Application.Current.MainPage.DisplayAlert("removed favorite location", "yey", "ok");
+
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("delete location favorite", ex.Message, "ok");
+            }
+        }
     }
 }

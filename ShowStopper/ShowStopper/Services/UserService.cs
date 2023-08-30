@@ -15,7 +15,7 @@ namespace ShowStopper.Services
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
-        public static async Task<bool> AddEventToUser(string eventName)
+        public static async Task<bool> AddEventToUser(string eventName, string eventImage)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
             var userEmail = FirebaseAuthenticationService.GetLoggedUserEmail();
@@ -30,7 +30,8 @@ namespace ShowStopper.Services
                 toUpdateUser.AttendingEvents.Add(new Ticket
                 {
                     EventName = eventName,
-                    BuyDate = DateTime.Now
+                    BuyDate = DateTime.Now,
+                    Image = eventImage
                 });
                 Console.WriteLine(toUpdateUser.AttendingEvents.Count.ToString());
                 await firebaseClient
@@ -80,6 +81,13 @@ namespace ShowStopper.Services
             var userSnapshot = await userQuery.OnceAsync<AppUser>();
             var user = userSnapshot.FirstOrDefault()?.Object;
             return user;
+        }
+
+        public static async Task<List<Ticket>> GetTicketsForUser()
+        {
+            AppUser user = await GetUserByEmail(FirebaseAuthenticationService.GetLoggedUserEmail());  
+            List<Ticket> tickets = user.AttendingEvents.ToList();
+            return tickets;
         }
 
         private static async Task<string> GetUserIdByEmail(string email)
