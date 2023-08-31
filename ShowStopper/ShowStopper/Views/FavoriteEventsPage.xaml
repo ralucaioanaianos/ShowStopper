@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents;assembly=ShowStopper"
-             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
-             x:Class="ShowStopper.Views.MyEventsPage"
-             Title="My Events"
-             x:Name="This"
-             IconImageSource="curtains_icon.png"
-             NavigationPage.HasNavigationBar="False">
+             xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
+             x:Class="ShowStopper.Views.FavoriteEventsPage"
+             Title="FavoriteEventsPage"
+    NavigationPage.HasNavigationBar="False">
     <Grid Padding="0"
           HorizontalOptions="FillAndExpand">
         <Grid.RowDefinitions>
@@ -18,16 +15,15 @@
             Grid.Row="0"
             GradientColor1="#1A2C6C"
             GradientColor2="#A782B9"
-            IsBackButtonVisible="False"
-            IsPlusButtonVisible="True"
+            IsBackButtonVisible="True"
+            IsPlusButtonVisible="False"
             IsEmptyHeartButtonVisible="False"
             BackBtnTapCommand="{Binding BackBtn}"
             PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="My Events">
+            PageName="My Favorite Events">
         </customControls:CustomNavigationBar>
         <StackLayout Grid.Row="1">
-            <SearchBar Placeholder="Search through your events" TextChanged="SearchBar_TextChanged"/>
-            <ListView ItemsSource="{Binding Events}"
+            <ListView ItemsSource="{Binding FavoriteEvents}"
                   x:Name="EventsListView"
                   SelectedItem="{Binding SelectedEvent}"
                   RowHeight="150">
@@ -35,7 +31,7 @@
                     <DataTemplate>
                         <ViewCell Height="150">
                             <ContentView VerticalOptions="FillAndExpand"
-                                         IsVisible="{Binding IsDataLoaded}">
+                                     IsVisible="{Binding IsDataLoaded}">
                                 <ContentView.Background>
                                     <RadialGradientBrush>
                                         <GradientStop Color="#EFF2FF" Offset="0.0" />
@@ -81,8 +77,8 @@
                                                 <Image Source="location_icon.png"
                                                        HeightRequest="15"></Image>
                                                 <Label Text="{Binding Location}"
-                                                   TextColor="DarkGray"
-                                                   FontSize="13"></Label>
+                                                       TextColor="DarkGray"
+                                                       FontSize="13"></Label>
                                             </HorizontalStackLayout>
                                         </VerticalStackLayout>
                                     </Grid>
@@ -99,7 +95,6 @@
                                                TextColor="#A782B9"
                                                FontAttributes="Bold"
                                                FontSize="18">
-
                                         </Label>
                                     </HorizontalStackLayout>
                                 </Grid>

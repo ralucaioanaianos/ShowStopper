@@ -108,6 +108,9 @@
 	  <MauiXaml Update="Views\ExplorePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\FavoriteEventsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\FavoriteLocationsPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

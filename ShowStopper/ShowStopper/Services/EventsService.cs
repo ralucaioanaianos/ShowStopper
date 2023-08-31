@@ -189,5 +189,53 @@ namespace ShowStopper.Services
                 await Application.Current.MainPage.DisplayAlert("delete location favorite", ex.Message, "ok");
             }
         }
+
+        public static async Task<List<EventFavorite>> GetFavoriteEventsByEmail(string email)
+        {
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var favoriteEvents = new ConcurrentBag<EventFavorite>();
+                var newEmail = email.Replace('.', ',');
+                var eventsQuery = firebaseClient
+                    .Child("EventFavorites").AsObservable<EventFavorite>().Subscribe(async (e) =>
+                    {
+                        Console.WriteLine(e.Object.UserEmail + ' ' + email);
+                        if (e.Object.UserEmail == newEmail)
+                        {
+                            favoriteEvents.Add(e.Object);
+                        }
+                    });
+                await Task.Delay(TimeSpan.FromSeconds(2));
+                eventsQuery.Dispose();
+                return favoriteEvents.ToList();
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("getLocationfavorite", ex.Message, "ok");
+                return null;
+            }
+        }
+
+        public static async Task<AppEvent> GetEventByName(string name)
+        {
+            try
+            {
+                var firebaseClient = new FirebaseClient(databaseUrl);
+                var eventQuery = firebaseClient
+                    .Child("Events")
+                    .OrderBy("Name")
+                    .EqualTo(name)
+                    .LimitToFirst(1);
+                var eventSnapshot = await eventQuery.OnceAsync<AppEvent>();
+                var appEvent = eventSnapshot.FirstOrDefault()?.Object;
+                return appEvent;
+            }
+            catch (Exception ex)
+            {
+                await Application.Current.MainPage.DisplayAlert("getlocation by name", ex.Message, "ok");
+                return null;
+            }
+        }
     }
 }

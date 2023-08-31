@@ -33,6 +33,8 @@ namespace ShowStopper.ViewModels
         }
         public Command BackBtn { get; }
         public Command FavoriteLocationsBtn { get; }
+        public Command FavoriteEventsBtn { get; }
+
         public Command ResetPasswordBtn { get; }
         public Command SendFeedbackBtn { get; }
         public Command SignOutBtn { get; set; }
@@ -67,6 +69,7 @@ namespace ShowStopper.ViewModels
             SignOutBtn = new Command(SignOutButtonTappedAsync);
             EditProfileBtn = new Command(EditProfileBtnTappedAsync);
             FavoriteLocationsBtn = new Command(FavoriteLocationsBtnTappedAsync);
+            FavoriteEventsBtn = new Command(FavoriteEventsBtnTappedAsync);
             ResetPasswordBtn = new Command(ResetPasswordBtnTappedAsync);
             SendFeedbackBtn = new Command(SendFeedbackBtnTappedAsync);
             MyTicketsBtn = new Command(MyTicketsBtnTappedAsync);
@@ -127,6 +130,12 @@ namespace ShowStopper.ViewModels
         private async void FavoriteLocationsBtnTappedAsync(object parameter)
         {
             await _navigation.PushAsync(new FavoriteLocationsPage());
+        }
+
+        private async void FavoriteEventsBtnTappedAsync(object parameter)
+        {
+            await _navigation.PushAsync(new FavoriteEventsPage());
+            //await _navigation.PushAsync(new FavoriteLocationsPage());
         }
 
         private async void ResetPasswordBtnTappedAsync(object parameter)

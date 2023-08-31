@@ -94,6 +94,24 @@
                              HorizontalOptions="End"
                              Command="{Binding FavoriteLocationsBtn}"/>
                         </Grid>
+
+                        <Grid Margin="20,10,20,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image Source="stage_icon.png" 
+                           HeightRequest="25"
+                       Grid.Column="0" 
+                       Margin="0,0,0,0"/>
+                            <Label Text="My Favorite Events" FontSize="15" Margin="10,0,0,0" Grid.Column="1" />
+                            <ImageButton Source="arrow_left_icon.png" 
+                             Grid.Column="2" 
+                             HorizontalOptions="End"
+                             Command="{Binding FavoriteEventsBtn}"/>
+                        </Grid>
                         <Grid Margin="20,10,20,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
