@@ -66,9 +66,6 @@
                                                      GradientColor1="#1A2C6C"
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
             </VerticalStackLayout>
-
-
-
         </Grid>
     </ContentPage.Content>
 </ContentPage>

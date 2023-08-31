@@ -45,7 +45,7 @@ namespace ShowStopper.ViewModels
         {
             await _navigation.PushAsync(new AddEventPage(LoadReviewsAfterReviewAdded));
             LoadEvents();
-            OnPropertyChanged(nameof(Events));  
+            OnPropertyChanged(nameof(Events));
         }
 
         private async void LoadReviewsAfterReviewAdded()
@@ -99,7 +99,7 @@ namespace ShowStopper.ViewModels
         private async Task LoadEvents()
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-            List<AppEvent> list = await EventsService.getEventsByEmail(email);
+            List<AppEvent> list = await EventsService.GetEventsByEmail(email);
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
             Events = collection;
             _originalEvents = new ObservableCollection<AppEvent>(Events);

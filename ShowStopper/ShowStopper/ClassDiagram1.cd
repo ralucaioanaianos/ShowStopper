@@ -1,0 +1,525 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="FullSignature">
+  <Class Name="ShowStopper.MainActivity" Collapsed="true">
+    <Position X="9.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Platforms\Android\MainActivity.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.MainApplication" Collapsed="true">
+    <Position X="11.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Platforms\Android\MainApplication.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.LoginPage" Collapsed="true">
+    <Position X="6.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.RegisterPage" Collapsed="true">
+    <Position X="15" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\RegisterPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.App" Collapsed="true">
+    <Position X="8" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.AppShell" Collapsed="true">
+    <Position X="13.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>AppShell.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.MauiProgram" Collapsed="true">
+    <Position X="13.25" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MauiProgram.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.CustomComponents.CustomNavigationBar" Collapsed="true">
+    <Position X="4.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QCQIAgABAAEAgQAEABhAIEAAgggAAQAACgAAEAwIkAE=</HashCode>
+      <FileName>CustomComponents\CustomNavigationBar.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.CustomComponents.EventElement" Collapsed="true">
+    <Position X="11.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgEAAAAAAAAAAIAAAQAAAAAAAABAAAAAAACAAA=</HashCode>
+      <FileName>CustomComponents\EventElement.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.CustomComponents.GradientFilledButton" Collapsed="true">
+    <Position X="8" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CKAIAgAEAAEAEQAIgAAAAAACAAAAAIAAEAAACAAAAAA=</HashCode>
+      <FileName>CustomComponents\GradientFilledButton.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.CustomComponents.GradientFilledLabel" Collapsed="true">
+    <Position X="9.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CIAIAgAAAAEAEQAIgAAAAAACAAAAAAAAEAAACAAAAAA=</HashCode>
+      <FileName>CustomComponents\GradientFilledLabel.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.CustomComponents.LocationElement" Collapsed="true">
+    <Position X="11.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAjAAAAAAAABAAAAAAQAAAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>CustomComponents\LocationElement.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.CustomComponents.RoundedImage" Collapsed="true">
+    <Position X="6.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAQAAAAAAAAAAMAGAAAAAAAAAAAAAAAAAAgAAA=</HashCode>
+      <FileName>CustomComponents\RoundedImage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.AppEvent" Collapsed="true">
+    <Position X="9.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACIAAAAQAgAAAAAAIAAAQAAAAIABBBAQAAACAAAAA=</HashCode>
+      <FileName>Models\AppEvent.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.AppLocation" Collapsed="true">
+    <Position X="11.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAECAAQAgAAAAAAAAAAQAAAAAABECAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AppLocation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.AppUser" Collapsed="true">
+    <Position X="15" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACYEAAACAAACACAAAAQAQAAAgACAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Models\AppUser.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.Category" Collapsed="true">
+    <Position X="1" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Category.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.Class1" Collapsed="true">
+    <Position X="2.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Class1.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.Entity" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAgABAAAAAgBAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Entity.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.Models.EventFavorite" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\EventFavorite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.FeedbackMessage" Collapsed="true">
+    <Position X="4.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAA=</HashCode>
+      <FileName>Models\FeedbackMessage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.LocationFavorite" Collapsed="true">
+    <Position X="13.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>Models\LocationFavorite.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.LocationReview" Collapsed="true">
+    <Position X="2.75" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAAAAAAAAAAAAEAAAAAIAAAAAA=</HashCode>
+      <FileName>Models\LocationReview.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Models.Ticket" Collapsed="true">
+    <Position X="13.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAIAAAAAAAAAIAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ticket.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.EventRecommendationService" Collapsed="true">
+    <Position X="2.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgIhAAQAAAAAAAEAABAAAAAAAACAAA=</HashCode>
+      <FileName>Services\EventRecommendationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.EventsService" Collapsed="true">
+    <Position X="8" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAFAAAAAAQAAAAAoAEAABAAAAAIAAABIA=</HashCode>
+      <FileName>Services\EventsService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.FeedbacksService" Collapsed="true">
+    <Position X="9.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAABAAAAAAAAIA=</HashCode>
+      <FileName>Services\FeedbacksService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.FirebaseAuthenticationService" Collapsed="true">
+    <Position X="15" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAhAAAAAAQAAAAAAAAAAAAAAAAAAAAEABAAACKE=</HashCode>
+      <FileName>Services\FirebaseAuthenticationService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.FirebaseDatabaseService" Collapsed="true">
+    <Position X="1" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>Services\FirebaseDatabaseService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.FirebaseStorageService" Collapsed="true">
+    <Position X="2.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAQ=</HashCode>
+      <FileName>Services\FirebaseStorageService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.LocationsService" Collapsed="true">
+    <Position X="4.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAABAgAABCAAAAEABQAAAAAEAAAIAAAEAAAAAAAIA=</HashCode>
+      <FileName>Services\LocationsService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.PaymentService" Collapsed="true">
+    <Position X="9.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Services\PaymentService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Services.UserService" Collapsed="true">
+    <Position X="15" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAABAAIAAAAAAAAgAARAAAAAIAAAAAAAAAAAIAIAIA=</HashCode>
+      <FileName>Services\UserService.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.ViewModels.AddEventPageViewModel" Collapsed="true">
+    <Position X="2.75" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABABIAACISAgAAAAIwIBAAQCoABNAAABCwAAAQCAIAE=</HashCode>
+      <FileName>ViewModels\AddEventPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.ViewModels.AddLocationPageViewModel" Collapsed="true">
+    <Position X="6.25" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACCIAAggAAAIQABAAQAoAJEAAACAgAAAACAAAE=</HashCode>
+      <FileName>ViewModels\AddLocationPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.ViewModels.EditProfilePageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQEQAAAAgACAAIQABQAAAoABAAYBAAgAAAoCAIIk=</HashCode>
+      <FileName>ViewModels\EditProfilePageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.EventPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAQAkAAgAIQKAACQAgQBIABABggBACAAAKAM=</HashCode>
+      <FileName>ViewModels\EventPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.EventsFromLocationPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkAIAAAAgAABAAAAIQAAQAAAggBAAAAAAgCAAAAAKAE=</HashCode>
+      <FileName>ViewModels\EventsFromLocationPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.ExplorePageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="11.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QkAICCAAgBhhiAAgIQIgwMTAkgBADACAggDBghCIqFk=</HashCode>
+      <FileName>ViewModels\ExplorePageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.FavoriteEventsPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="15" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAJAAAAgAABAAAAIQAAQAAAgABAAAgAAgCAAAAAKAE=</HashCode>
+      <FileName>ViewModels\FavoriteEventsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.FavoriteLocationsPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAADAAgBAAAAAAIQAAAQAAgABAAACAAgAAABCAqIE=</HashCode>
+      <FileName>ViewModels\FavoriteLocationsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.FeedbackPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACAAAAAAwAAAAAIQAAAAAAgABAAAAAAgAAAAAAIAE=</HashCode>
+      <FileName>ViewModels\FeedbackPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.GiveReviewPageViewModel" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAwAEAAQAIAgQI4AAUggAgQBAAAUABjAAIACAAIA=</HashCode>
+      <FileName>ViewModels\GiveReviewPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.LocationPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAABwAAQUIQAARAQAgABABBECAiQAAAAgKAE=</HashCode>
+      <FileName>ViewModels\LocationPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.LoginPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IgQAAAACAAAAEAAAAAAABAAAgABAAAAAAQAAAAsAAIA=</HashCode>
+      <FileName>ViewModels\LoginPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.MyEventsPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="1" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkBIAAAAgAABAAAAIQAAQAAAggBAAAAAAgDAAAAAKBE=</HashCode>
+      <FileName>ViewModels\MyEventsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.MyLocationsPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAADAAgBAAAAAAIQIAAEAAgABAAACAAgBAABCAqAE=</HashCode>
+      <FileName>ViewModels\MyLocationsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.MyTicketsPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAUAQAAAgIAABAAAIQEAAAAAgABAAAAEAgAAAAIAKAE=</HashCode>
+      <FileName>ViewModels\MyTicketsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.ProfilePageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASAAICCAABAAAQAIIQAAAAQAgJFAAIJCGhEAAIAAIIE=</HashCode>
+      <FileName>ViewModels\ProfilePageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.RegisterPageViewModel" Collapsed="true">
+    <Position X="1" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAQEACICBAAAAgASABQAAAoUBAAAACAAAACgAAAEg=</HashCode>
+      <FileName>ViewModels\RegisterPageViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.ViewModels.ReviewsPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="4.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAEAAAAAAgAAAIQAAAAACgABAAAAAEjAAAAAAIAE=</HashCode>
+      <FileName>ViewModels\ReviewsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.ViewModels.SimilarEventsPageViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AkAIIAAAAAABEAAAIQAAQAQAggBAAAAAAgCAAAAAIAk=</HashCode>
+      <FileName>ViewModels\SimilarEventsPageViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="ShowStopper.Views.AddEventPage" Collapsed="true">
+    <Position X="1" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AddEventPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.AddLocationPage" Collapsed="true">
+    <Position X="4.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\AddLocationPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.EditProfilePage">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EditProfilePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.EventPage" Collapsed="true">
+    <Position X="15" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EventPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.EventsFromLocationPage" Collapsed="true">
+    <Position X="4.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\EventsFromLocationPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.ExplorePage" Collapsed="true">
+    <Position X="9.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ExplorePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.FavoriteEventsPage" Collapsed="true">
+    <Position X="13.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\FavoriteEventsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.FavoriteLocationsPage" Collapsed="true">
+    <Position X="1" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\FavoriteLocationsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.FeedbackPage" Collapsed="true">
+    <Position X="6.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\FeedbackPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.FilterEventsPage" Collapsed="true">
+    <Position X="11.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\FilterEventsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.FilterLocationsPage" Collapsed="true">
+    <Position X="13.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\FilterLocationsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.GiveReviewPage" Collapsed="true">
+    <Position X="4.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\GiveReviewPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.LocationPage" Collapsed="true">
+    <Position X="15" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\LocationPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.MyEventsPage" Collapsed="true">
+    <Position X="15" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MyEventsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.MyLocationsPage" Collapsed="true">
+    <Position X="2.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MyLocationsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.MyTicketsPage" Collapsed="true">
+    <Position X="6.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MyTicketsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.ProfilePage" Collapsed="true">
+    <Position X="11.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ProfilePage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.ReviewsPage" Collapsed="true">
+    <Position X="2.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ReviewsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.SimilarEventsPage" Collapsed="true">
+    <Position X="8" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\SimilarEventsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ShowStopper.Views.TabbarPage" Collapsed="true">
+    <Position X="11.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\TabbarPage.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

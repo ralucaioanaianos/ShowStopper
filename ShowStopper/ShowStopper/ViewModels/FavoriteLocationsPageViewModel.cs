@@ -38,13 +38,11 @@ namespace ShowStopper.ViewModels
         }
 
         private async void PlusButtonTappedAsync(object parameter)
-        {
-        }
+        { }
 
         public FavoriteLocationsPageViewModel(INavigation navigation)
         {
             LoadLocations();
-
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
@@ -83,29 +81,19 @@ namespace ShowStopper.ViewModels
             {
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 List<LocationFavorite> favoritesList = await LocationsService.GetFavoriteLocationsByEmail(email);
-                //List<AppLocation> list = await LocationsService.getLocationsByEmail(email);
-                if (favoritesList.Count == 0)
-                {
-                    await Application.Current.MainPage.DisplayAlert("list0", email, "ok");
-                }
                 ObservableCollection<AppLocation> collection = new ObservableCollection<AppLocation>();
                 foreach (LocationFavorite favorite in favoritesList)
                 {
                     AppLocation location = await LocationsService.GetLocationByName(favorite.LocationName);
                     collection.Add(location);
                 }
-
                 FavoriteLocations = collection;
                 IsDataLoaded = true;
                 await Task.Delay(1000);
-                if (FavoriteLocations.Count == 0)
-                {
-                    await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
-                }
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("LoadLocations", ex.Message, "ok");
+                Console.WriteLine(ex);
             }
 
         }
@@ -119,14 +107,6 @@ namespace ShowStopper.ViewModels
 
         private async void LocationTappedAsync(object parameter)
         {
-            if (parameter is AppLocation selectedLocation)
-            {
-                await Application.Current.MainPage.DisplayAlert("Location Selected", $"You tapped on {selectedLocation.Name}", "OK");
-
-                // Call your custom method with the selected event
-                // Example:
-                // DoSomethingWithSelectedEvent(selectedEvent);
-            }
         }
     }
 

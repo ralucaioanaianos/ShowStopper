@@ -43,15 +43,11 @@ namespace ShowStopper.Services
                         .Find(link => link.Rel.Equals("approve", StringComparison.OrdinalIgnoreCase))
                         .Href;
                     await Browser.OpenAsync(new Uri(approvalUrl), BrowserLaunchMode.SystemPreferred);
-                    //for (var i = 0; i < decimal.Parse(result); i++)
-                    //{
-                    //    await UserService.AddEventToUser(AppEvent.Name, AppEvent.Image);
-                    //}
                     return decimal.Parse(result);
                 }
                 catch (Exception ex)
                 {
-                    await Application.Current.MainPage.DisplayAlert("payment error", ex.Message, "ok");
+                    Console.WriteLine(ex.ToString());
                     return 0;
                 }
             }
@@ -59,14 +55,6 @@ namespace ShowStopper.Services
             {
                 string result = await Application.Current.MainPage.DisplayPromptAsync("Purchase tickets", "How many tickets do you want to purchase?", initialValue: "0", maxLength: 2, keyboard: Keyboard.Numeric);
                 return decimal.Parse(result);
-                //if (result != null)
-                //{
-                //    for (var i = 0; i < decimal.Parse(result); i++)
-                //    {
-                //        await UserService.AddEventToUser(AppEvent.Name, AppEvent.Image);
-                //    }
-                //}
-                //else { await Application.Current.MainPage.DisplayAlert("canceled", "ok", "ok"); }
             }
         }
     }

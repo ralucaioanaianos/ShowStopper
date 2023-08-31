@@ -102,23 +102,14 @@ namespace ShowStopper.ViewModels
             {
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 List<AppLocation> list = await LocationsService.getLocationsByEmail(email);
-                if (list.Count == 0)
-                {
-                    await Application.Current.MainPage.DisplayAlert("list0", email, "ok");
-                }
                 ObservableCollection<AppLocation> collection = new ObservableCollection<AppLocation>(list);
-
                 Locations = collection;
-                _originalLocations = new ObservableCollection<AppLocation>(Locations); // Initialize with your original locations data
+                _originalLocations = new ObservableCollection<AppLocation>(Locations);
                 IsDataLoaded = true;
                 await Task.Delay(1000);
-                if (Locations.Count == 0)
-                {
-                    await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
-                }
             } catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("LoadLocations", ex.Message, "ok");
+                Console.WriteLine(ex.ToString());
             }
             
         }
@@ -132,14 +123,6 @@ namespace ShowStopper.ViewModels
 
         private async void LocationTappedAsync(object parameter)
         {
-            if (parameter is AppLocation selectedLocation)
-            {
-                await Application.Current.MainPage.DisplayAlert("Location Selected", $"You tapped on {selectedLocation.Name}", "OK");
-
-                // Call your custom method with the selected event
-                // Example:
-                // DoSomethingWithSelectedEvent(selectedEvent);
-            }
         }
     }
 }

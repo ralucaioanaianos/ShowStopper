@@ -31,9 +31,6 @@ namespace ShowStopper.Models
         public string CompanyName { get; set; } 
 
         public string PhotoStr { get; set; }
-
-        //public string ConnectionId { get; set; }
-
         public List<Ticket> AttendingEvents { get; set; }
     }
 }

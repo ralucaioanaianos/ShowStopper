@@ -43,29 +43,29 @@
                                     <ColumnDefinition Width="2*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Frame HeightRequest="80" 
-                                                       WidthRequest="80" 
-                                                       Grid.Column="0"
-                                                       Padding="0">
+                                       WidthRequest="80" 
+                                       Grid.Column="0"
+                                       Padding="0">
                                     <Image Source="{Binding Image}"
-                                               Aspect="AspectFill"></Image>
+                                           Aspect="AspectFill"></Image>
                                 </Frame>
                                 <Grid Grid.Column="1"
-                  HeightRequest="80">
+                                      HeightRequest="80">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*"></RowDefinition>
                                         <RowDefinition Height="Auto"></RowDefinition>
                                     </Grid.RowDefinitions>
                                     <VerticalStackLayout Grid.Row="0">
                                         <Label Text="{Binding Name}"
-                           FontSize="16"
-                           FontAttributes="Bold"></Label>
+                                               FontSize="16"
+                                               FontAttributes="Bold"></Label>
                                         <Label Text="{Binding Address}"
-                           FontSize="13"></Label>
+                                               FontSize="13"></Label>
                                     </VerticalStackLayout>
                                     <Label Grid.Row="1"
-                       Text="{Binding Owner}"
-                       FontAttributes="Bold"
-                       FontSize="14"></Label>
+                                           Text="{Binding Owner}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"></Label>
                                 </Grid>
                             </Grid>
                         </ContentView>
@@ -77,8 +77,8 @@
         <Grid VerticalOptions="Center"
               IsVisible="False"
               Grid.Row="1"
-          HorizontalOptions="Center"
-          Margin="20,0,20,0">
+              HorizontalOptions="Center"
+              Margin="20,0,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -86,21 +86,21 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Image Source="no_locations_image.png"
-               HeightRequest="150"
-               Grid.Row="1"></Image>
+                   HeightRequest="150"
+                   Grid.Row="1"></Image>
             <Label Text="No locations added yet"
                    Grid.Row="2"
-               HorizontalOptions="Center"
-               FontAttributes="Bold"
-               FontSize="20"
-               Margin="0,20,0,0"></Label>
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   Margin="0,20,0,0"></Label>
             <Label Text="Add your first location and it will appear here as soon as your request is reviewed and accepted!"
-               FontSize="15"
-               Margin="0,20,0,0"
-               Grid.Row="3"
-               HorizontalOptions="Center"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"></Label>
+                   FontSize="15"
+                   Margin="0,20,0,0"
+                   Grid.Row="3"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"></Label>
         </Grid>
     </Grid>
 </ContentPage>

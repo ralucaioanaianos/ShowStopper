@@ -20,7 +20,7 @@ namespace ShowStopper.ViewModels
         public DateTime FromTime { get; set; }
         public DateTime ToTime { get; set; }
         public decimal FromPrice { get; set; }
-        public decimal ToPrice { get; set; } 
+        public decimal ToPrice { get; set; }
         public Command SaveBtn { get; }
         private string _searchQuery;
         public string SearchQuery
@@ -150,10 +150,9 @@ namespace ShowStopper.ViewModels
 
         public ExplorePageViewModel(INavigation navigation, ObservableCollection<AppEvent> eventsList)
         {
-            //LoadEvents();
             LoadLocations();
             Events = eventsList;
-            
+
 
             _navigation = navigation;
             BackBtn = new Command(BackButtonTappedAsync);
@@ -173,7 +172,7 @@ namespace ShowStopper.ViewModels
 
         private async void RefreshTriggered()
         {
-            OnPropertyChanged(nameof(Events));  
+            OnPropertyChanged(nameof(Events));
         }
 
         private async void ExitBtnTappedAsync(object parameter)
@@ -250,7 +249,7 @@ namespace ShowStopper.ViewModels
                 await Application.Current.MainPage.DisplayAlert("Invalid price range", "Minimum price cannot be greater than maximum price!", "ok");
             }
 
-            else if (FromTime <  DateTime.Today || ToTime < DateTime.Today || ToTime < FromTime)
+            else if (FromTime < DateTime.Today || ToTime < DateTime.Today || ToTime < FromTime)
             {
                 await Application.Current.MainPage.DisplayAlert("Invalid date", "", "ok");
             }
@@ -335,11 +334,7 @@ namespace ShowStopper.ViewModels
 
         private async void LoadEvents()
         {
-            List<AppEvent> list = await EventsService.getAllEvents();
-            if (list.Count == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert("list0", "events empty", "ok");
-            }
+            List<AppEvent> list = await EventsService.GetAllEvents();
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
 
             Events = collection;
@@ -347,44 +342,30 @@ namespace ShowStopper.ViewModels
             IsDataLoaded = true;
             ToTime = DateTime.MinValue;
             ToPrice = 0;
-            if (Events.Count == 0)
+            foreach (AppEvent e in Events)
             {
-                await Application.Current.MainPage.DisplayAlert("prolr", "events empty", "ok");
-            }
-            else
-            {
-                foreach(AppEvent e in Events) 
-                { 
-                    if (e.Date > ToTime)
-                    {
-                        ToTime = e.Date;
-                        OnPropertyChanged(nameof(ToTime));
-                    }
-                    if (e.Price > ToPrice)
-                    {
-                        ToPrice = e.Price;
-                        OnPropertyChanged(nameof(ToPrice));
-                    }
+                if (e.Date > ToTime)
+                {
+                    ToTime = e.Date;
+                    OnPropertyChanged(nameof(ToTime));
+                }
+                if (e.Price > ToPrice)
+                {
+                    ToPrice = e.Price;
+                    OnPropertyChanged(nameof(ToPrice));
                 }
             }
+
         }
 
         private async Task LoadLocations()
         {
             List<AppLocation> list = await LocationsService.getAllLocations();
-            if (list.Count == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert("list0", "empty locations", "ok");
-            }
             ObservableCollection<AppLocation> collection = new ObservableCollection<AppLocation>(list);
 
             Locations = collection;
-            _originalLocations = new ObservableCollection<AppLocation>(Locations); // Initialize with your original locations data
+            _originalLocations = new ObservableCollection<AppLocation>(Locations);
             IsDataLoaded = true;
-            if (Locations.Count == 0)
-            {
-                await Application.Current.MainPage.DisplayAlert("prolr", "locations empty", "ok");
-            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -393,29 +374,5 @@ namespace ShowStopper.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-    //    private async void EventTappedAsync(object parameter)
-    //    {
-    //        if (parameter is AppEvent selectedEvent)
-    //        {
-    //            await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedEvent.Name}", "OK");
-
-    //            // Call your custom method with the selected event
-    //            // Example:
-    //            // DoSomethingWithSelectedEvent(selectedEvent);
-    //        }
-    //    }
-
-    //    private async void LocationTappedAsync(object parameter)
-    //    {
-    //        if (parameter is AppLocation selectedLocation)
-    //        {
-    //            await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedLocation.Name}", "OK");
-
-    //            // Call your custom method with the selected event
-    //            // Example:
-    //            // DoSomethingWithSelectedEvent(selectedEvent);
-    //        }
-    //    }
     }
 }

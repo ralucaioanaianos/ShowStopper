@@ -42,7 +42,6 @@ namespace ShowStopper.ViewModels
             LoadEvents();
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
-            //EventTapped = new Command(EventTappedAsync);
         }
 
         private AppEvent _selectedEvent;
@@ -80,10 +79,6 @@ namespace ShowStopper.ViewModels
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 
                 List<EventFavorite> favoritesList = await EventsService.GetFavoriteEventsByEmail(email);
-                if (favoritesList.Count == 0)
-                {
-                    await Application.Current.MainPage.DisplayAlert("list0", email, "ok");
-                }
                 ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>();
                 foreach (EventFavorite favorite in favoritesList)
                 {
@@ -93,28 +88,12 @@ namespace ShowStopper.ViewModels
                 FavoriteEvents = collection;
                 IsDataLoaded = true;
                 await Task.Delay(1000);
-                if (FavoriteEvents.Count == 0)
-                {
-                    await Application.Current.MainPage.DisplayAlert("prolr", email, "ok");
-                }
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("LoadLocations", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
 
-        }
-
-        private async void EventTappedAsync(object parameter)
-        {
-            if (parameter is AppEvent selectedEvent)
-            {
-                await Application.Current.MainPage.DisplayAlert("Location Selected", $"You tapped on {selectedEvent.Name}", "OK");
-
-                // Call your custom method with the selected event
-                // Example:
-                // DoSomethingWithSelectedEvent(selectedEvent);
-            }
         }
     }
 }

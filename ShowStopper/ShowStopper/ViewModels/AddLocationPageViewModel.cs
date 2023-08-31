@@ -14,19 +14,14 @@ namespace ShowStopper.ViewModels
         private INavigation _navigation;
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
-
         public string name;
         public string description;
         public string owner;
         public string address;
         private FileResult photo;
-
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         public Command SaveBtn { get; }
         public Command SelectPhoto { get; }
-
         public string Name
         {
             get => name;
@@ -36,7 +31,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Name");
             }
         }
-
         public string Description
         {
             get => description;
@@ -46,7 +40,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Description");
             }
         }
-
         public string Owner
         {
             get => owner;
@@ -56,7 +49,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Owner");
             }
         }
-
         public string Address
         {
             get => address;
@@ -66,14 +58,7 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Address");
             }
         }
-
-        private void RaisePropertyChanged(string v)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
-        }
-
         private Action _locationSavedCallback;
-
 
         public AddLocationPageViewModel(INavigation navigation, Action locationSavedCallback)
         {
@@ -86,6 +71,11 @@ namespace ShowStopper.ViewModels
             _locationSavedCallback = locationSavedCallback;
         }
 
+        private void RaisePropertyChanged(string v)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
+        }
+
         private async void SelectPhotoTappedAsync(object sender)
         {
             try
@@ -94,7 +84,7 @@ namespace ShowStopper.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("error", ex.Message, "ok");
+                Console.WriteLine(ex.ToString());
             }
         }
 
@@ -112,7 +102,7 @@ namespace ShowStopper.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                Console.WriteLine($"{ex.Message}");
             }
         }
 

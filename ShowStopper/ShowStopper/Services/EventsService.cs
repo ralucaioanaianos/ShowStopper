@@ -39,12 +39,11 @@ namespace ShowStopper.Services
                     TotalPlaces = totalPlaces,
                     AvailablePlaces = totalPlaces
                 });
-                await Application.Current.MainPage.DisplayAlert("aa", name + ' ' + location + ' ' + date + ' ' + newEmail + ' ' + location, "ok");
                 string eventId = response.Key;
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("addEvent", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -57,12 +56,12 @@ namespace ShowStopper.Services
                 {
                     count++;
                 });
-            await Task.Delay(TimeSpan.FromSeconds(2)); // Delay to allow time for events to be populated
+            await Task.Delay(TimeSpan.FromSeconds(2));
             eventQuery.Dispose();
             return count;
         }
 
-        public static async Task<List<AppEvent>> getEventsByEmail(string email)
+        public static async Task<List<AppEvent>> GetEventsByEmail(string email)
         {
             try
             {
@@ -82,13 +81,12 @@ namespace ShowStopper.Services
                 return events;
             } catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("get events", ex.Message, "ok");
+                Console.WriteLine("GetEventsByEmail " + ex.ToString());
                 return null;
             }
-            
         }
 
-        public static async Task<List<AppEvent>> getAllEvents()
+        public static async Task<List<AppEvent>> GetAllEvents()
         {
             try
             {
@@ -106,7 +104,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("get events", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -123,11 +121,10 @@ namespace ShowStopper.Services
                     EventName = appEvent.Name,
                     UserEmail = newEmail,
                 });
-                await Application.Current.MainPage.DisplayAlert("added favorite event", "yey", "ok");
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("addFavoriteEvent", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -141,10 +138,10 @@ namespace ShowStopper.Services
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 var newEmail = email.Replace('.', ',');
                 var eventFavorites = await firebaseClient
-            .Child("EventFavorites")
-            .OrderBy("EventName")
-            .EqualTo(appEvent.Name)
-            .OnceAsync<EventFavorite>();
+                    .Child("EventFavorites")
+                    .OrderBy("EventName")
+                    .EqualTo(appEvent.Name)
+                    .OnceAsync<EventFavorite>();
                 foreach (var favorite in eventFavorites)
                 {
                     if (favorite.Object.UserEmail == newEmail)
@@ -156,7 +153,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("check location favorite", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
@@ -170,10 +167,10 @@ namespace ShowStopper.Services
                 string email = FirebaseAuthenticationService.GetLoggedUserEmail();
                 var newEmail = email.Replace('.', ',');
                 var eventFavorites = await firebaseClient
-            .Child("EventFavorites")
-            .OrderBy("EventName")
-            .EqualTo(appEvent.Name)
-            .OnceAsync<EventFavorite>();
+                    .Child("EventFavorites")
+                    .OrderBy("EventName")
+                    .EqualTo(appEvent.Name)
+                    .OnceAsync<EventFavorite>();
                 foreach (var favorite in eventFavorites)
                 {
                     if (favorite.Object.UserEmail == newEmail)
@@ -181,12 +178,10 @@ namespace ShowStopper.Services
                         await firebaseClient.Child("EventFavorites").Child(favorite.Key).DeleteAsync();
                     }
                 }
-                await Application.Current.MainPage.DisplayAlert("removed favorite location", "yey", "ok");
-
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("delete location favorite", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -212,7 +207,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("getLocationfavorite", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -233,7 +228,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("getlocation by name", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }

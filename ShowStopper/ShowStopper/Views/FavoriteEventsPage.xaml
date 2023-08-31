@@ -4,7 +4,7 @@
              xmlns:customControls="clr-namespace:ShowStopper.CustomComponents"
              x:Class="ShowStopper.Views.FavoriteEventsPage"
              Title="FavoriteEventsPage"
-    NavigationPage.HasNavigationBar="False">
+             NavigationPage.HasNavigationBar="False">
     <Grid Padding="0"
           HorizontalOptions="FillAndExpand">
         <Grid.RowDefinitions>
@@ -24,14 +24,14 @@
         </customControls:CustomNavigationBar>
         <StackLayout Grid.Row="1">
             <ListView ItemsSource="{Binding FavoriteEvents}"
-                  x:Name="EventsListView"
-                  SelectedItem="{Binding SelectedEvent}"
-                  RowHeight="150">
-                <ListView.ItemTemplate>
+                      x:Name="EventsListView"
+                      SelectedItem="{Binding SelectedEvent}"
+                      RowHeight="150">
+                    <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell Height="150">
                             <ContentView VerticalOptions="FillAndExpand"
-                                     IsVisible="{Binding IsDataLoaded}">
+                                         IsVisible="{Binding IsDataLoaded}">
                                 <ContentView.Background>
                                     <RadialGradientBrush>
                                         <GradientStop Color="#EFF2FF" Offset="0.0" />
@@ -45,9 +45,9 @@
                                         <ColumnDefinition Width="2*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
                                     <Frame HeightRequest="80" 
-                                                       WidthRequest="80" 
-                                                       Grid.Column="0"
-                                                       Padding="0">
+                                           WidthRequest="80" 
+                                           Grid.Column="0"
+                                           Padding="0">
                                         <Image Source="{Binding Image}"
                                                Aspect="AspectFill"></Image>
                                     </Frame>
@@ -69,8 +69,8 @@
                                                 <Image Source="calender_icon.png"
                                                        HeightRequest="15"></Image>
                                                 <Label Text="{Binding Date}"
-                                                   TextColor="DarkGray"
-                                                   FontSize="13">
+                                                       TextColor="DarkGray"
+                                                       FontSize="13">
                                                 </Label>
                                             </HorizontalStackLayout>
                                             <HorizontalStackLayout>
@@ -86,10 +86,10 @@
                                                            VerticalOptions="Center"
                                                            Margin="50,0,0,0">
                                         <Label Text="{Binding Price}"
-                                           HorizontalOptions="Start"
-                                           TextColor="#A782B9"
-                                           FontAttributes="Bold"
-                                           FontSize="18"></Label>
+                                               HorizontalOptions="Start"
+                                               TextColor="#A782B9"
+                                               FontAttributes="Bold"
+                                               FontSize="18"></Label>
                                         <Label Text="$"
                                                HorizontalOptions="Start"
                                                TextColor="#A782B9"
@@ -108,8 +108,8 @@
         <Grid VerticalOptions="Center"
               IsVisible="{Binding IsListEmpty}"
               Grid.Row="1"
-          HorizontalOptions="Center"
-          Margin="20,0,20,0">
+              HorizontalOptions="Center"
+              Margin="20,0,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
@@ -117,21 +117,21 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <Image Source="no_events_image.png"
-               HeightRequest="150"
-               Grid.Row="1"></Image>
+                   HeightRequest="150"
+                   Grid.Row="1"></Image>
             <Label Text="No events added yet"
                    Grid.Row="2"
-               HorizontalOptions="Center"
-               FontAttributes="Bold"
-               FontSize="20"
-               Margin="0,20,0,0"></Label>
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="20"
+                   Margin="0,20,0,0"></Label>
             <Label Text="Add your first events and it will appear here as soon as your request is reviewed and accepted!"
-               FontSize="15"
-               Margin="0,20,0,0"
-               Grid.Row="3"
-               HorizontalOptions="Center"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"></Label>
+                   FontSize="15"
+                   Margin="0,20,0,0"
+                   Grid.Row="3"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"></Label>
         </Grid>
     </Grid>
 </ContentPage>

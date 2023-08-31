@@ -42,7 +42,7 @@ namespace ShowStopper.ViewModels
                 if (_heartSrc != value)
                 {
                     _heartSrc = value;
-                    OnPropertyChanged(nameof(HeartSrc)); // Raise the PropertyChanged event
+                    OnPropertyChanged(nameof(HeartSrc));
                 }
             }
         }
@@ -56,14 +56,10 @@ namespace ShowStopper.ViewModels
         }
 
         private async void PlusButtonTappedAsync(object parameter)
-        {
-            
-        }
+        {}
 
         private async void BuyButtonTappedAsync(object parameter)
-        {
-
-        }
+        {}
 
         private async void EmptyHeartButtonTappedAsync(object parameter)
         {
@@ -92,7 +88,6 @@ namespace ShowStopper.ViewModels
             Price = appEvent.Price;
             Image = appEvent.Image;
             InitializeHeart();
-            //HeartSrc = "empty_heart.png";
             BackBtn = new Command(BackButtonTappedAsync);
             PlusBtn = new Command(PlusButtonTappedAsync);
             BuyBtn = new Command(BuyButtonTappedAsync);
@@ -112,7 +107,6 @@ namespace ShowStopper.ViewModels
             {
                 HeartSrc = "empty_heart.png";
             }
-            await Application.Current.MainPage.DisplayAlert("heart", HeartSrc, "ok");
         }
 
         private async void SimilarBtnTappedAsync(object parameter)

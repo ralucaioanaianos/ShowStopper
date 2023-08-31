@@ -53,10 +53,8 @@ namespace ShowStopper.ViewModels
 
         private async void SendBtnTappedAsync(object parameter)
         {
-            await Application.Current.MainPage.DisplayAlert("", "Thank you for your message!", "Close");
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-            await FirebaseDatabaseService.AddFeedbackMessageToDatabase(email, FeedbackMessage);
-            await Application.Current.MainPage.DisplayAlert("", "Thank you for your message!", "Close");
+            await FeedbacksService.AddFeedbackMessageToDatabase(email, FeedbackMessage);
             FeedbackMessage = string.Empty;
         }
     }

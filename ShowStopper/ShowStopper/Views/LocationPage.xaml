@@ -13,15 +13,15 @@
                 <RowDefinition Height="Auto"></RowDefinition>
             </Grid.RowDefinitions>
             <customControls:CustomNavigationBar
-            Grid.Row="0"
-            GradientColor1="#1A2C6C"
-            GradientColor2="#A782B9"
-            IsBackButtonVisible="True"
-            IsPlusButtonVisible="False"
-            IsEmptyHeartButtonVisible="False"
-            BackBtnTapCommand="{Binding BackBtn}"
-            PlusBtnTapCommand="{Binding PlusBtn}"
-            PageName="{Binding Name}">
+                    Grid.Row="0"
+                    GradientColor1="#1A2C6C"
+                    GradientColor2="#A782B9"
+                    IsBackButtonVisible="True"
+                    IsPlusButtonVisible="False"
+                    IsEmptyHeartButtonVisible="False"
+                    BackBtnTapCommand="{Binding BackBtn}"
+                    PlusBtnTapCommand="{Binding PlusBtn}"
+                    PageName="{Binding Name}">
             </customControls:CustomNavigationBar>
             <Grid HorizontalOptions="FillAndExpand"
                   Grid.Row="1">
@@ -43,7 +43,6 @@
                              HorizontalOptions="End"
                              Command="{Binding EmptyHeartBtn}"
                              Margin="0,10,20,0"></ImageButton>
-
                         <HorizontalStackLayout>
                             <Label Text="Football stadium"
                                    Grid.Column="0"
@@ -63,71 +62,67 @@
                                        Margin="0,-5,0,0"></Image>
                             </HorizontalStackLayout>
                         </HorizontalStackLayout>
-
-
                         <HorizontalStackLayout Margin="15,20,20,0">
                             <Image Source="seats_icon.png"
                            Margin="0,0,0,0"
                                    HeightRequest="40"></Image>
                             <Label Text="Available seats:"
-                               TextColor="Gray"
-                               Margin="20,0,0,0"
-                               FontAttributes="Bold"></Label>
+                                   TextColor="Gray"
+                                   Margin="20,0,0,0"
+                                   FontAttributes="Bold"></Label>
                             <Label Margin="7,0,0,0"
-                       Text="{Binding Date}"
-                       HorizontalOptions="StartAndExpand"
-                       FontSize="15"
-                           TextColor="Gray"></Label>
+                                   Text="{Binding Date}"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontSize="15"
+                                   TextColor="Gray"></Label>
                         </HorizontalStackLayout>
                         <Border BackgroundColor="Gray" 
-                        Grid.Row="2"
-               Margin="20, 10, 20, 10"
-               StrokeShape="RoundRectangle 800,800,800,800"
-               HeightRequest="5"></Border>
+                                Grid.Row="2"
+                                Margin="20, 10, 20, 10"
+                                StrokeShape="RoundRectangle 800,800,800,800"
+                                HeightRequest="5"></Border>
                         <HorizontalStackLayout Margin="15,0,20,0">
                             <Image Source="location_icon.png"></Image>
                             <Label Text="Address: "
-                               TextColor="Gray"
-                               FontAttributes="Bold"
-                               Margin="20,0,0,0"></Label>
+                                   TextColor="Gray"
+                                   FontAttributes="Bold"
+                                   Margin="20,0,0,0"></Label>
                             <Label Grid.Row="2"
-                       Text="{Binding Address}"
-                       HorizontalOptions="End"
-                       Margin="0,0,20,0"
-                               TextColor="Gray"
-                       FontSize="15"></Label>
+                                   Text="{Binding Address}"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,20,0"
+                                   TextColor="Gray"
+                                   FontSize="15"></Label>
                         </HorizontalStackLayout>
                         <Border BackgroundColor="Gray" 
-                        Grid.Row="2"
-               Margin="20, 10, 20, 10"
-               StrokeShape="RoundRectangle 800,800,800,800"
-               HeightRequest="5"></Border>
+                                Grid.Row="2"
+                                Margin="20, 10, 20, 10"
+                                StrokeShape="RoundRectangle 800,800,800,800"
+                                HeightRequest="5"></Border>
                         <HorizontalStackLayout Margin="15,0,20,0">
                             <Image Source="organizer_icon.png"></Image>
                             <Label Text="Owner: "
-                               TextColor="Gray"
-                               FontAttributes="Bold"
-                               Margin="20,0,0,0"></Label>
+                                   TextColor="Gray"
+                                   FontAttributes="Bold"
+                                   Margin="20,0,0,0"></Label>
                             <Label Grid.Row="2"
-                       Text="{Binding Owner}"
-                       HorizontalOptions="End"
-                       Margin="0,0,20,0"
-                               TextColor="Gray"
-                       FontSize="15"></Label>
+                                   Text="{Binding Owner}"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,20,0"
+                                   TextColor="Gray"
+                                   FontSize="15"></Label>
                         </HorizontalStackLayout>
                         <Border BackgroundColor="Gray" 
-                        Grid.Row="2"
-               Margin="20, 10, 20, 10"
-               StrokeShape="RoundRectangle 800,800,800,800"
-               HeightRequest="5"></Border>
+                                Grid.Row="2"
+                                Margin="20, 10, 20, 10"
+                                StrokeShape="RoundRectangle 800,800,800,800"
+                                HeightRequest="5"></Border>
                         <Label Text="About this location:"
-                           FontAttributes="Bold"
-                           FontSize="20"
-                           Margin="20,10,0,0"></Label>
-                        <Label
-                       Margin="20,0,20,10"
-                       Text="{Binding Descriptionn}"></Label>
-
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               Margin="20,10,0,0"></Label>
+                        <Label Margin="20,0,20,10"
+                               Text="{Binding Descriptionn}"></Label>
                         <customControls:GradientFilledButton BorderColor="Transparent"
                                                      VerticalOptions="End"
                                                      Grid.Row="5"
@@ -147,8 +142,6 @@
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
                     </VerticalStackLayout>
                 </ScrollView>
-
-
             </Grid>
         </Grid>
     </ContentPage.Content>

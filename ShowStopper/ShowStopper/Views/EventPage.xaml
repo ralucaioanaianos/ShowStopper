@@ -40,7 +40,6 @@
                             <Image Source="{Binding Image}"
                                    Aspect="AspectFill"></Image>
                         </Frame>
-                        
                         <ImageButton Source="{Binding HeartSrc}"
                              HeightRequest="50"
                              HorizontalOptions="End"
@@ -48,77 +47,76 @@
                              Margin="0,10,20,0"></ImageButton>
                         <HorizontalStackLayout Margin="20,-20,0,0">
                             <Label Text="{Binding Price}"
-                               FontSize="25"
-                               FontAttributes="Bold"></Label>
+                                   FontSize="25"
+                                   FontAttributes="Bold"></Label>
                             <Label Text="$"
-                               FontSize="25"
-                               FontAttributes="Bold"></Label>
+                                   FontSize="25"
+                                   FontAttributes="Bold"></Label>
                         </HorizontalStackLayout>
                         <Label Text="Football match"
-                           FontSize="20"
-                           FontAttributes="Bold"
-                           Margin="20,0,0,0"></Label>
+                               FontSize="20"
+                               FontAttributes="Bold"
+                               Margin="20,0,0,0"></Label>
                         <HorizontalStackLayout Margin="15,20,20,0">
                             <Image Source="calender_icon.png"
-                           Margin="0,0,0,0"></Image>
+                                   Margin="0,0,0,0"></Image>
                             <Label Text="Date:"
-                               TextColor="Gray"
-                               Margin="20,0,0,0"
-                               FontAttributes="Bold"></Label>
+                                   TextColor="Gray"
+                                   Margin="20,0,0,0"
+                                   FontAttributes="Bold"></Label>
                             <Label Margin="7,0,0,0"
-                       Text="{Binding Date}"
-                       HorizontalOptions="StartAndExpand"
-                       FontSize="15"
-                           TextColor="Gray"></Label>
+                                   Text="{Binding Date}"
+                                   HorizontalOptions="StartAndExpand"
+                                   FontSize="15"
+                                   TextColor="Gray"></Label>
                         </HorizontalStackLayout>
                         <Border BackgroundColor="Gray" 
-                        Grid.Row="2"
-               Margin="20, 10, 20, 10"
-               StrokeShape="RoundRectangle 800,800,800,800"
-               HeightRequest="5"></Border>
+                                Grid.Row="2"
+                                Margin="20, 10, 20, 10"
+                                StrokeShape="RoundRectangle 800,800,800,800"
+                                HeightRequest="5"></Border>
                         <HorizontalStackLayout Margin="15,0,20,0">
                             <Image Source="location_icon.png"></Image>
                             <Label Text="Location: "
-                               TextColor="Gray"
-                               FontAttributes="Bold"
-                               Margin="20,0,0,0"></Label>
+                                   TextColor="Gray"
+                                   FontAttributes="Bold"
+                                   Margin="20,0,0,0"></Label>
                             <Label Grid.Row="2"
-                       Text="{Binding Location}"
-                       HorizontalOptions="End"
-                       Margin="0,0,20,0"
-                               TextColor="Gray"
-                       FontSize="15"></Label>
+                                   Text="{Binding Location}"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,20,0"
+                                   TextColor="Gray"
+                                   FontSize="15"></Label>
                         </HorizontalStackLayout>
                         <Border BackgroundColor="Gray" 
-                        Grid.Row="2"
-               Margin="20, 10, 20, 10"
-               StrokeShape="RoundRectangle 800,800,800,800"
-               HeightRequest="5"></Border>
+                                Grid.Row="2"
+                                Margin="20, 10, 20, 10"
+                                StrokeShape="RoundRectangle 800,800,800,800"
+                                HeightRequest="5"></Border>
                         <HorizontalStackLayout Margin="15,0,20,0">
                             <Image Source="organizer_icon.png"></Image>
                             <Label Text="Organizer: "
-                               TextColor="Gray"
-                               FontAttributes="Bold"
-                               Margin="20,0,0,0"></Label>
+                                   TextColor="Gray"
+                                   FontAttributes="Bold"
+                                   Margin="20,0,0,0"></Label>
                             <Label Grid.Row="2"
-                       Text="{Binding Organizer}"
-                       HorizontalOptions="End"
-                       Margin="0,0,20,0"
-                               TextColor="Gray"
-                       FontSize="15"></Label>
+                                   Text="{Binding Organizer}"
+                                   HorizontalOptions="End"
+                                   Margin="0,0,20,0"
+                                           TextColor="Gray"
+                                   FontSize="15"></Label>
                         </HorizontalStackLayout>
                         <Border BackgroundColor="Gray" 
-                        Grid.Row="2"
-               Margin="20, 10, 20, 10"
-               StrokeShape="RoundRectangle 800,800,800,800"
-               HeightRequest="5"></Border>
+                                Grid.Row="2"
+                                Margin="20, 10, 20, 10"
+                                StrokeShape="RoundRectangle 800,800,800,800"
+                                HeightRequest="5"></Border>
                         <Label Text="About this event:"
-                           FontAttributes="Bold"
-                           FontSize="20"
-                           Margin="20,10,0,0"></Label>
-                        <Label
-                       Margin="20,0,20,10"
-                       Text="{Binding Descriptionn}"></Label>
+                               FontAttributes="Bold"
+                               FontSize="20"
+                               Margin="20,10,0,0"></Label>
+                        <Label Margin="20,0,20,10"
+                               Text="{Binding Descriptionn}"></Label>
                         <customControls:GradientFilledButton BorderColor="Transparent"
                                                      VerticalOptions="End"
                                                      Grid.Row="4"
@@ -138,8 +136,6 @@
                                                      GradientColor2="#A782B9"></customControls:GradientFilledButton>
                     </VerticalStackLayout>
                 </ScrollView>
-                
-                
             </Grid>
         </Grid>
     </ContentPage.Content>

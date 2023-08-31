@@ -34,21 +34,16 @@
                     StrokeShape="RoundRectangle 80,80,80,80"
                     HeightRequest="150"
                     WidthRequest="150">
-                        <Image
-                               Aspect="AspectFit"
-                               Source="{Binding SrcImg}">
+                    <Image Aspect="AspectFit"
+                           Source="{Binding SrcImg}">
 
-                        </Image>
+                    </Image>
                 </Border>
-                <!--<Image Source="cat_user.jpg">-->
-                <!--</Image>-->
-
                 <Label Text="{Binding Name}"
                        FontSize="20"
                        FontAttributes="Bold"
                        HorizontalTextAlignment="Center"
                        Margin="0,20,0,0"></Label>
-
                 <Label Text="Account"
                    FontSize="18"
                    FontAttributes="Bold"
@@ -56,18 +51,11 @@
                 <ScrollView HeightRequest="250">
                     <StackLayout>
                         <Grid Margin="20,10,20,0">
-                            <!--<Grid.Background>
-                                <RadialGradientBrush Center="0.0,1.0">
-                                    <GradientStop Color="#E5E9F8" Offset="0.1" />
-                                    <GradientStop Color="White" Offset="1.0"></GradientStop>
-                                </RadialGradientBrush>
-                            </Grid.Background>-->
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-                            
                             <Image Source="edit_icon.png" 
                        Grid.Column="0" 
                        Margin="0,0,0,0"/>
@@ -83,7 +71,6 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
                             <Image Source="stage_icon.png" 
                            HeightRequest="25"
                        Grid.Column="0" 
@@ -94,14 +81,12 @@
                              HorizontalOptions="End"
                              Command="{Binding FavoriteLocationsBtn}"/>
                         </Grid>
-
                         <Grid Margin="20,10,20,0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
                             <Image Source="stage_icon.png" 
                            HeightRequest="25"
                        Grid.Column="0" 
@@ -140,7 +125,6 @@
                                 <ColumnDefinition Width="Auto" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
-
                             <Image Source="key_icon.png" 
                            HeightRequest="25"
                        Grid.Column="0" 

@@ -15,6 +15,21 @@ namespace ShowStopper.Services
         public string webApiKey = "AIzaSyCBEbT1yT0WqRG6Rsts6dYdMz5OQ9dBHVM";
         private static string databaseUrl = "https://showstopper-71398-default-rtdb.europe-west1.firebasedatabase.app/";
 
+        public static async Task AddUserToDatabase(string phoneNumber, string firstName, string lastName, string email, string photoUrl, string userType, string companyName)
+        {
+            FirebaseClient firebaseClient = new FirebaseClient(databaseUrl);
+            var response = await firebaseClient.Child("Users").PostAsync(new AppUser
+            {
+                PhoneNumber = phoneNumber,
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                ProfileImage = photoUrl,
+                UserType = userType,
+                CompanyName = companyName
+            });
+        }
+
         public static async Task<bool> AddEventToUser(string eventName, string eventImage)
         {
             var firebaseClient = new FirebaseClient(databaseUrl);
@@ -104,5 +119,15 @@ namespace ShowStopper.Services
             return userId;
         }
 
+        public static async Task<AppUser> LookForUserInDatabase(User loggedUser)
+        {
+            var databaseClient = new FirebaseClient(databaseUrl);
+            var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
+            var replacedEmail = loggedUser.Info.Email.Replace('.', ',');
+            var foundElements = firebaseObjects
+                .Where(obj => obj.Object.Email == replacedEmail).ToList();
+            var foundUser = foundElements.FirstOrDefault();
+            return foundUser.Object;
+        }
     }
 }

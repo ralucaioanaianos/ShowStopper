@@ -24,7 +24,6 @@
             PlusBtnTapCommand="{Binding PlusBtn}"
             PageName="Add Event">
             </customControls:CustomNavigationBar>
-            
             <ScrollView Grid.Row="1">
                 <StackLayout Margin="20,20,20,20">
                     <Label Text="Name:"
@@ -74,19 +73,17 @@
                     <Entry Placeholder="Available Places:"
                            Text="{Binding TotalPlaces}"
                            Keyboard="Numeric"></Entry>
-
                     <HorizontalStackLayout HorizontalOptions="Center"
                                            Margin="0,20,0,0">
                         <ImageButton Source="second_camera.png"
-                                 Command="{Binding SelectPhoto}"
-                                 HeightRequest="40"></ImageButton>
+                                     Command="{Binding SelectPhoto}"
+                                     HeightRequest="40"></ImageButton>
                         <Label Text="Pick Photo"
                                Margin="0,10,0,0"
                                TextColor="#805B93"
                                FontAttributes="Bold"
                                FontSize="15"></Label>
                     </HorizontalStackLayout>
-                   
                     <customControls:GradientFilledButton GradientColor1="#1A2C6C"
                                                  GradientColor2="#A782B9"
                                                  TextColor="White"
@@ -95,13 +92,9 @@
                                                  Text="Add"
                                                  VerticalOptions="End"
                                                  Margin="0,20,0,20">
-
                     </customControls:GradientFilledButton>
                 </StackLayout>
             </ScrollView>
-            
-
         </Grid>
-
     </ContentPage.Content>
 </ContentPage>

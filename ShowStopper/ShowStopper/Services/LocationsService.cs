@@ -39,7 +39,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("addLocation", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -51,7 +51,7 @@ namespace ShowStopper.Services
                 return location.Reviews;
             } catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("get rev", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }
@@ -78,7 +78,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("getLocation", ex.Message, "OK");
+                Console.WriteLine($"{ex.Message}");
                 return null;
             }
         }
@@ -91,7 +91,6 @@ namespace ShowStopper.Services
             await Task.WhenAll(locationsTask);
             var locations = locationsTask.Result.Select(snapshot => snapshot.Object).ToList();
             return locations;
-
         }
 
         public static async Task AddLocationToFavorites(AppLocation appLocation)
@@ -107,12 +106,10 @@ namespace ShowStopper.Services
                     UserEmail = newEmail,
 
                 });
-                await Application.Current.MainPage.DisplayAlert("added favorite location", "yey", "ok");
-
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("addFavoriteLocation", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -136,12 +133,10 @@ namespace ShowStopper.Services
                         await firebaseClient.Child("LocationFavorites").Child(favorite.Key).DeleteAsync();
                     }
                 }
-                await Application.Current.MainPage.DisplayAlert("removed favorite location", "yey", "ok");
-
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("delete location favorite", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -202,7 +197,7 @@ namespace ShowStopper.Services
 
             }catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("review location", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
             }
         }
 
@@ -232,7 +227,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("check location favorite", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return false;
             }
         }
@@ -252,11 +247,10 @@ namespace ShowStopper.Services
                 return location;
             } catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("getlocation by name", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return null;
             }
-            }
-            
+        }
 
         public static async Task<List<LocationFavorite>> GetFavoriteLocationsByEmail(string email)
         {
@@ -280,7 +274,7 @@ namespace ShowStopper.Services
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("getLocationfavorite", ex.Message, "ok");
+                Console.WriteLine(ex.Message);
                 return null;
             }
         }

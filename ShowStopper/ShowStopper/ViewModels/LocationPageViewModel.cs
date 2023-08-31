@@ -109,9 +109,6 @@ namespace ShowStopper.ViewModels
 
         private async void InitializeFavoritesButtons()
         {
-            //IsAddedToFavorites = await LocationsService.IsLocationInFavorites(_location);
-            //IsNotAddedToFavorites = !IsAddedToFavorites;
-
             bool result = await LocationsService.IsLocationInFavorites(_location);
             if (result)
             {
@@ -121,16 +118,6 @@ namespace ShowStopper.ViewModels
             {
                 FavoritesText = "Add to Favorites";
             }
-        //    if (result)
-        //    {
-        //        IsNotAddedToFavorites = "False";
-        //        IsAddedToFavorites = "True";
-        //    }
-        //    else
-        //    {
-        //        IsNotAddedToFavorites = "True";
-        //        IsAddedToFavorites = "False";
-        //    }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

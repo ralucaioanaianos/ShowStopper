@@ -128,9 +128,6 @@ public partial class CustomNavigationBar : ContentView
         set => SetValue(PlusBtnTapCommandParameterProperty, value);
     }
 
-    ////////////////////////////
-    ///
-
     public static readonly BindableProperty EmptyHeartBtnTapCommandProperty = BindableProperty.Create(
            nameof(EmptyHeartBtnTapCommand),
            typeof(ICommand),
@@ -152,9 +149,4 @@ public partial class CustomNavigationBar : ContentView
         get => GetValue(EmptyHeartBtnTapCommandParameterProperty);
         set => SetValue(EmptyHeartBtnTapCommandParameterProperty, value);
     }
-
-    ///////
-    ///
-
-    
 }

@@ -27,19 +27,5 @@ namespace ShowStopper.Services
             var photoUrl = await storage.Child(storagePath).PutAsync(photoStream);
             return photoUrl;
         }
-
-        public static async Task<ImageSource> LoadImages()
-        {
-            var webClient = new WebClient();
-            var stroageImage = await new FirebaseStorage(storageUrl)
-                .Child("profile_images/")
-                .Child("cat.jpg")
-                .GetDownloadUrlAsync();
-            string imgurl = stroageImage;
-            byte[] imgBytes = webClient.DownloadData(imgurl);
-            //string img = Convert.ToBase64String(imgBytes);
-            var img = ImageSource.FromStream(() => new MemoryStream(imgBytes));
-            return img;
-        }
     }
 }

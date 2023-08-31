@@ -18,7 +18,6 @@
                     HeightRequest="300"
                     Aspect="AspectFill"
                     Source="party_background_1" />
-
             <Frame
                 Grid.Row="1"
                 Margin="0,0,0,-40"

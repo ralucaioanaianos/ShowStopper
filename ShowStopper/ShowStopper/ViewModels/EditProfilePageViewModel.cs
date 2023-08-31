@@ -46,7 +46,7 @@ namespace ShowStopper.ViewModels
                 if (_srcImg != value)
                 {
                     _srcImg = value;
-                    OnPropertyChanged(nameof(SrcImg)); // Raise the PropertyChanged event
+                    OnPropertyChanged(nameof(SrcImg));
                 }
             }
         }
@@ -97,8 +97,7 @@ namespace ShowStopper.ViewModels
         }
 
         private async void PlusButtonTappedAsync(object parameter)
-        {
-        }
+        {}
 
         private async void SaveBtnTappedAsync(object parameter)
         {
@@ -107,7 +106,7 @@ namespace ShowStopper.ViewModels
             {
                 photoUrl = await FirebaseStorageService.UploadPhotoToStorage(Photo);
             }
-            await FirebaseDatabaseService.UpdateUserData(DatabaseUser, FirstName, LastName, PhoneNumber, CompanyName, photoUrl);
+            await UserService.UpdateUserData(DatabaseUser, FirstName, LastName, PhoneNumber, CompanyName, photoUrl);
             _initializeUserAfterEdit.Invoke();
             await _navigation.PopAsync();
         }

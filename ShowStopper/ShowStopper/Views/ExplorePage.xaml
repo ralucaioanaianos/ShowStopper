@@ -49,11 +49,13 @@
                 <SearchBar Placeholder="Search events and locations" TextChanged="SearchBar_TextChanged" />
                 <StackLayout Grid.Row="1"
                              IsVisible="{Binding IsShowingEvents, Converter={StaticResource BooleanToVisibilityConverter}}">
-                    <ImageButton Source="x_icon.png" 
-                             Grid.Column="2" 
-                             HorizontalOptions="End"
-                             Command="{Binding ShowFiltersBtn}"/>
-                        
+                    <ImageButton Source="filter_icon.png" 
+                                 Grid.Column="2" 
+                                 HorizontalOptions="End"
+                                 HeightRequest="40"
+                                 Margin="0,10,20,0"
+                                 Command="{Binding ShowFiltersBtn}"/>
+
                     <ScrollView HeightRequest="500">
                         <ListView x:Name="eventsListView"     
                                   RowHeight="150"
@@ -83,52 +85,50 @@
                                                     <Image Source="{Binding Image}"
                                                            Aspect="AspectFill"></Image>
                                                 </Frame>
-
                                                 <Grid Grid.Column="1"
-                                          HeightRequest="80">
+                                                      HeightRequest="80">
                                                     <Grid.RowDefinitions>
                                                         <RowDefinition Height="*"></RowDefinition>
                                                         <RowDefinition Height="Auto"></RowDefinition>
                                                     </Grid.RowDefinitions>
                                                     <VerticalStackLayout Grid.Row="0">
                                                         <Label Text="{Binding Name}"
-                                                   FontSize="16"
-                                                   TextColor="#1A2C6C"
-                                                   FontAttributes="Bold"></Label>
+                                                               FontSize="16"
+                                                               TextColor="#1A2C6C"
+                                                               FontAttributes="Bold"></Label>
                                                         <Label Text="{Binding Type}"
-                                                   FontSize="14"
-                                                   FontAttributes="Bold"></Label>
+                                                               FontSize="14"
+                                                               FontAttributes="Bold"></Label>
                                                         <HorizontalStackLayout>
                                                             <Image Source="calender_icon.png"
-                                                       HeightRequest="15"></Image>
+                                                                   HeightRequest="15"></Image>
                                                             <Label Text="{Binding Date}"
-                                                   TextColor="DarkGray"
-                                                   FontSize="13">
+                                                                   TextColor="DarkGray"
+                                                                   FontSize="13">
                                                             </Label>
                                                         </HorizontalStackLayout>
                                                         <HorizontalStackLayout>
                                                             <Image Source="location_icon.png"
-                                                       HeightRequest="15"></Image>
+                                                                   HeightRequest="15"></Image>
                                                             <Label Text="{Binding Location}"
-                                                   TextColor="DarkGray"
-                                                   FontSize="13"></Label>
+                                                                   TextColor="DarkGray"
+                                                                   FontSize="13"></Label>
                                                         </HorizontalStackLayout>
                                                     </VerticalStackLayout>
                                                 </Grid>
                                                 <HorizontalStackLayout Grid.Column="2"
-                                                           VerticalOptions="Center"
-                                                           Margin="50,0,0,0">
+                                                                       VerticalOptions="Center"
+                                                                       Margin="50,0,0,0">
                                                     <Label Text="{Binding Price}"
-                                           HorizontalOptions="Start"
-                                           TextColor="#A782B9"
-                                           FontAttributes="Bold"
-                                           FontSize="18"></Label>
+                                                           HorizontalOptions="Start"
+                                                           TextColor="#A782B9"
+                                                           FontAttributes="Bold"
+                                                           FontSize="18"></Label>
                                                     <Label Text="$"
-                                               HorizontalOptions="Start"
-                                               TextColor="#A782B9"
-                                               FontAttributes="Bold"
-                                               FontSize="18">
-
+                                                           HorizontalOptions="Start"
+                                                           TextColor="#A782B9"
+                                                           FontAttributes="Bold"
+                                                           FontSize="18">
                                                     </Label>
                                                 </HorizontalStackLayout>
                                             </Grid>
@@ -138,15 +138,13 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </ScrollView>
-                    
                 </StackLayout>
-                
                 <ListView x:Name="locationsListView"
-                ItemsSource="{Binding Locations}"
-                  SelectedItem="{Binding SelectedLocation}"
-                  Grid.Row="1"
-                  RowHeight="150"
-                      IsVisible="{Binding IsShowingLocations, Converter={StaticResource BooleanToVisibilityConverter}}">
+                          ItemsSource="{Binding Locations}"
+                          SelectedItem="{Binding SelectedLocation}"
+                          Grid.Row="1"
+                          RowHeight="150"
+                          IsVisible="{Binding IsShowingLocations, Converter={StaticResource BooleanToVisibilityConverter}}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell Height="150">
@@ -170,87 +168,46 @@
                                             <Image Source="{Binding Image}"
                                                    Aspect="AspectFill"></Image>
                                         </Frame>
-                                       
-                                            <VerticalStackLayout Grid.Column="1">
+                                        <VerticalStackLayout Grid.Column="1">
                                             <Label Text="{Binding Name}"
-                                               FontSize="16"
-                                               TextColor="#1A2C6C"
-                                               FontAttributes="Bold"></Label>
+                                                   FontSize="16"
+                                                   TextColor="#1A2C6C"
+                                                   FontAttributes="Bold"></Label>
                                             <HorizontalStackLayout>
                                                 <Image Source="location_icon.png"
                                                        HeightRequest="15"></Image>
                                                 <Label Text="{Binding Address}"
-                                                   TextColor="DarkGray"
-                                                   FontSize="13"></Label>
+                                                       TextColor="DarkGray"
+                                                       FontSize="13"></Label>
                                             </HorizontalStackLayout>
                                             <HorizontalStackLayout>
                                                 <Image Source="user.png"
                                                        HeightRequest="15"></Image>
                                                 <Label Text="{Binding Owner}"
-                                                   TextColor="DarkGray"
-                                                   FontSize="13"></Label>
+                                                       TextColor="DarkGray"
+                                                       FontSize="13"></Label>
                                             </HorizontalStackLayout>
-                                            
                                         </VerticalStackLayout>
                                         <HorizontalStackLayout VerticalOptions="Center"
                                                                HorizontalOptions="Center"
-                                                   Grid.Column="2"
-                                                   Margin="10,0,0,0"
-                                                   IsVisible="{Binding IsRatingVisible}">
+                                                               Grid.Column="2"
+                                                               Margin="10,0,0,0"
+                                                               IsVisible="{Binding IsRatingVisible}">
                                             <Label TextColor="#FFDA1C"
-                                       FontSize="18"
-                                       FontAttributes="Bold"
-                                       Text="{Binding Rating, StringFormat='{0:F1}'}"></Label>
+                                                   FontSize="18"
+                                                   FontAttributes="Bold"
+                                                   Text="{Binding Rating, StringFormat='{0:F1}'}"></Label>
                                             <Image Source="star_icon.png"
-                                       HeightRequest="25"
-                                       Margin="0,-5,0,0"></Image>
+                                                   HeightRequest="25"
+                                                   Margin="0,-5,0,0"></Image>
                                         </HorizontalStackLayout>
-
                                     </Grid>
                                 </ContentView>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
             </StackLayout>
-            <!--<ImageButton Source="filter_icon.png"  
-                         Margin="0,0,20,0"
-                         HorizontalOptions="End"
-                         Command="{Binding ShowFiltersBtn}"/>-->
-
-            <!--<ActivityIndicator IsRunning="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" IsVisible="{Binding IsDataLoaded, Converter={StaticResource InvertedBooleanConverter}}" />
-        <Grid VerticalOptions="Center"
-              IsVisible="False"
-              Grid.Row="1"
-          HorizontalOptions="Center"
-          Margin="20,0,20,0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Image Source="no_events_image.png"
-               HeightRequest="150"
-               Grid.Row="1"></Image>
-            <Label Text="No events added yet"
-                   Grid.Row="2"
-               HorizontalOptions="Center"
-               FontAttributes="Bold"
-               FontSize="20"
-               Margin="0,20,0,0"></Label>
-            <Label Text="Add your first events and it will appear here as soon as your request is reviewed and accepted!"
-               FontSize="15"
-               Margin="0,20,0,0"
-               Grid.Row="3"
-               HorizontalOptions="Center"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"></Label>
-        </Grid>-->
-
         </Grid>
-        
     </Grid>
-
 </ContentPage>

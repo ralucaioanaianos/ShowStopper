@@ -79,10 +79,6 @@ namespace ShowStopper.ViewModels
 
         private async void TicketTappedAsync(object parameter)
         {
-            if (parameter is AppEvent selectedEvent)
-            {
-                await Application.Current.MainPage.DisplayAlert("Event Selected", $"You tapped on {selectedEvent.Name}", "OK");
-            }
         }
 
         private async void BackButtonTappedAsync(object parameter)

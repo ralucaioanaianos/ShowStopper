@@ -37,8 +37,7 @@ namespace ShowStopper.ViewModels
         }
 
         private async void PlusButtonTappedAsync(object parameter)
-        {
-        }
+        {}
 
         public EventsFromLocationPageViewModel(INavigation navigation, AppLocation location)
         {
@@ -72,7 +71,7 @@ namespace ShowStopper.ViewModels
         private async Task LoadEvents()
         {
             string email = FirebaseAuthenticationService.GetLoggedUserEmail();
-            List<AppEvent> list = await EventsService.getEventsByEmail(email);
+            List<AppEvent> list = await EventsService.GetEventsByEmail(email);
             ObservableCollection<AppEvent> collection = new ObservableCollection<AppEvent>(list);
             Events = collection;
             IsDataLoaded = true;

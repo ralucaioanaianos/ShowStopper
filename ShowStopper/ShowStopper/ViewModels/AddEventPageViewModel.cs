@@ -14,8 +14,6 @@ namespace ShowStopper.ViewModels
         public Command BackBtn { get; }
         public Command PlusBtn { get; }
         public DateTime TodayDate { get; set; }
-
-
         public string name;
         public string description;
         public string type;
@@ -25,14 +23,9 @@ namespace ShowStopper.ViewModels
         private FileResult photo;
         private int price;
         private int totalPlaces;
-
-
         public event PropertyChangedEventHandler PropertyChanged;
-
         public Command SaveBtn { get; }
         public Command SelectPhoto { get; }
-
-
         public string Name
         {
             get => name;
@@ -42,7 +35,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Name");
             }
         }
-
         public int Price
         {
             get => price;
@@ -52,7 +44,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Price");
             }
         }
-
         public int TotalPlaces
         {
             get => totalPlaces;
@@ -62,7 +53,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("TotalPlaces");
             }
         }
-
         public string Description
         {
             get => description;
@@ -72,7 +62,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Description");
             }
         }
-
         public string Type
         {
             get => type;
@@ -82,7 +71,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Type");
             }
         }
-
         public DateTime Date
         {
             get => date;
@@ -92,7 +80,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Date");
             }
         }
-
         public string Organizer
         {
             get => organizer;
@@ -102,7 +89,6 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Organizer");
             }
         }
-
         public string Location
         {
             get => location;
@@ -112,14 +98,7 @@ namespace ShowStopper.ViewModels
                 RaisePropertyChanged("Location");
             }
         }
-
-        private void RaisePropertyChanged(string v)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
-        }
-
         private Action _reviewSavedCallback;
-
 
         public AddEventPageViewModel(INavigation navigation, Action reviewSavedCallback)
         {
@@ -135,6 +114,11 @@ namespace ShowStopper.ViewModels
 
         }
 
+        private void RaisePropertyChanged(string v)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(v));
+        }
+
         private async void SelectPhotoTappedAsync(object sender)
         {
             try
@@ -143,7 +127,7 @@ namespace ShowStopper.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("error", ex.Message, "ok");
+                Console.WriteLine(ex.ToString());
             }
         }
 
@@ -161,7 +145,7 @@ namespace ShowStopper.ViewModels
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                Console.WriteLine($"{ex.Message}"); 
             }
         }
 
@@ -171,7 +155,6 @@ namespace ShowStopper.ViewModels
         }
 
         private async void PlusButtonTappedAsync(object parameter)
-        {
-        }
+        {}
     }
 }

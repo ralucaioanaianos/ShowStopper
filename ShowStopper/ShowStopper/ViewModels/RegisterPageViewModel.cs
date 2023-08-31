@@ -120,14 +120,12 @@ namespace ShowStopper.ViewModels
                 if (photo != null)
                 {
                     string photoUrl = await FirebaseStorageService.UploadPhotoToStorage(photo);
-                    //await FirebaseDatabaseService.SavePhotoToDatabase(photoUrl);
-                    //TODO: userType instead of "User"
                     if (companyName == null)
                     {
                         companyName = "null";
                     }
                     var newEmail = email.Replace('.', ',');
-                    await FirebaseDatabaseService.AddUserToDatabase(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName);
+                    await UserService.AddUserToDatabase(phoneNumber, firstName, lastName, newEmail, photoUrl, "User", companyName);
                 }
                 else
                 {

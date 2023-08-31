@@ -27,7 +27,7 @@ namespace ShowStopper.ViewModels
                 if (_srcImg != value)
                 {
                     _srcImg = value;
-                    OnPropertyChanged(nameof(SrcImg)); // Raise the PropertyChanged event
+                    OnPropertyChanged(nameof(SrcImg));
                 }
             }
         }
@@ -58,7 +58,7 @@ namespace ShowStopper.ViewModels
         }
 
         public Command EditProfileBtn { get; }
-        public ImageSource ProfileImageSource { get; set; } 
+        public ImageSource ProfileImageSource { get; set; }
 
         public ProfilePageViewModel(INavigation navigation)
         {
@@ -75,12 +75,10 @@ namespace ShowStopper.ViewModels
             MyTicketsBtn = new Command(MyTicketsBtnTappedAsync);
         }
 
-        
-
         private async void Initialize()
         {
             await GetUser();
-            OnPropertyChanged(nameof(Name)); // Notify the UI about the updated Name value
+            OnPropertyChanged(nameof(Name));
         }
 
         private async void BackButtonTappedAsync(object parameter)
@@ -100,8 +98,9 @@ namespace ShowStopper.ViewModels
         private async Task GetUser()
         {
             string currentEmail = FirebaseAuthenticationService.GetLoggedUserEmail();
-            _databaseUser = await FirebaseDatabaseService.GetUserByEmail(currentEmail);
-            if (_databaseUser.FirstName == null) {
+            _databaseUser = await UserService.GetUserByEmail(currentEmail);
+            if (_databaseUser.FirstName == null)
+            {
                 _databaseUser = new AppUser
                 {
                     FirstName = "nullfirstname",
@@ -135,7 +134,6 @@ namespace ShowStopper.ViewModels
         private async void FavoriteEventsBtnTappedAsync(object parameter)
         {
             await _navigation.PushAsync(new FavoriteEventsPage());
-            //await _navigation.PushAsync(new FavoriteLocationsPage());
         }
 
         private async void ResetPasswordBtnTappedAsync(object parameter)

@@ -27,21 +27,15 @@ namespace ShowStopper.Services
                 },           
         };
         
-        
         public static FirebaseAuthClient client = new FirebaseAuthClient(authConfig);
 
         public static async Task CreateUserFirebase(string email, string password)
         {
-            
-            var auth = await client.CreateUserWithEmailAndPasswordAsync(email, password);
-
-            // Send verification emai
-
+            await client.CreateUserWithEmailAndPasswordAsync(email, password);
         }
 
         public static string GetLoggedUserEmail()
         {
-            
             var userEmail = client.User.Info.Email;
             return userEmail;
         }
@@ -53,7 +47,6 @@ namespace ShowStopper.Services
             if (result == null || !result.UserExists)
             {
                 await navigation.PushAsync(new LoginPage("True"));
-
             }
             else
             {

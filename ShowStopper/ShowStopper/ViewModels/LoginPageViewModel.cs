@@ -73,20 +73,16 @@ namespace ShowStopper.ViewModels
             try
             {
                 User loggedUser = await FirebaseAuthenticationService.LoginUserFirebase(UserName, UserPassword, _navigation);
-                AppUser foundUser = await FirebaseDatabaseService.LookForUserInDatabase(loggedUser);
+                AppUser foundUser = await UserService.LookForUserInDatabase(loggedUser);
                    
                     if (foundUser != null) 
                     {
                         await _navigation.PushAsync(new TabbarPage());
                     }
-                    else
-                    {
-                        await Application.Current.MainPage.DisplayAlert("aa", "element not retrieed", "ok");
-                    }
             }
             catch (Exception ex)
             {
-                await Application.Current.MainPage.DisplayAlert("Alert", ex.Message, "OK");
+                Console.WriteLine(ex.ToString());
                 throw;
             }
         }

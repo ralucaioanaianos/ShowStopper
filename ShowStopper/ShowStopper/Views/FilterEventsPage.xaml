@@ -7,24 +7,22 @@
              NavigationPage.HasNavigationBar="False">
     <ContentPage.Content>
         <ScrollView VerticalOptions="FillAndExpand">
-
             <VerticalStackLayout>
                 <ImageButton Source="x_icon.png"
-                         HorizontalOptions="End"
-                         Margin="0,20,20,0"
-                         HeightRequest="30"
-                         InputTransparent="True"
-                         Command="{Binding ExitBtn}"></ImageButton>
+                             HorizontalOptions="End"
+                             Margin="0,20,20,0"
+                             HeightRequest="30"
+                             InputTransparent="True"
+                             Command="{Binding ExitBtn}"></ImageButton>
                 <Label Text="Sort and Filter"
-                   FontSize="30"
-                   Margin="20,0,0,0"
-                   FontAttributes="Bold"
-                   TextColor="#1A2C6C"></Label>
+                       FontSize="30"
+                       Margin="20,0,0,0"
+                       FontAttributes="Bold"
+                       TextColor="#1A2C6C"></Label>
                 <StackLayout >
                     <Label Text="Date Period"
                            Margin="20,20,0,0"
-                           FontSize="20"
-                           ></Label>
+                           FontSize="20"></Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -47,88 +45,32 @@
                 </StackLayout>
                 <StackLayout Margin="20,20,20,0">
                     <Label Text="Price range (in lei)"
-                               FontSize="20"></Label>
+                           FontSize="20"></Label>
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <Entry Grid.Column="0"
-                                   Placeholder="From"
-                                   Margin="0,0,0,0"
-                                   Keyboard="Numeric"
-                                   Text="{Binding FromPrice}"></Entry>
+                               Placeholder="From"
+                               Margin="0,0,0,0"
+                               Keyboard="Numeric"
+                               Text="{Binding FromPrice}"></Entry>
                         <Entry Grid.Column="1"
-                                   Placeholder="To"
-                                   Margin="0,0,0,0"
-                                   Keyboard="Numeric"
+                               Placeholder="To"
+                               Margin="0,0,0,0"
+                               Keyboard="Numeric"
                                Text="{Binding ToPrice}"></Entry>
                     </Grid>
                 </StackLayout>
-                
-
-                <!--<StackLayout Margin="20,20,20,0">
-                    <Label Text="Category"
-                               FontSize="20"></Label>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Music"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Adventure"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Sports"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Driving"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Entertainment"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Games"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Kids"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Learning"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Wellness and Spa"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                    <HorizontalStackLayout>
-                        <CheckBox></CheckBox>
-                        <Label Text="Food and Drinks"
-                                   FontSize="17"></Label>
-                    </HorizontalStackLayout>
-                </StackLayout>-->
                 <customControls:GradientFilledButton GradientColor1="#1A2C6C"
-                                                 GradientColor2="#A782B9"
-                                                 TextColor="White"
-                                                 BorderColor="Transparent"
-                                                 TapCommand="{Binding UpdateFilterEventsResults}"
-                                                 Text="Apply Filters"
-                                                 VerticalOptions="End"
-                                                 Margin="0,0,0,20">
+                                                     GradientColor2="#A782B9"
+                                                     TextColor="White"
+                                                     BorderColor="Transparent"
+                                                     TapCommand="{Binding UpdateFilterEventsResults}"
+                                                     Text="Apply Filters"
+                                                     VerticalOptions="End"
+                                                     Margin="0,0,0,20">
                 </customControls:GradientFilledButton>
             </VerticalStackLayout>
         </ScrollView>
