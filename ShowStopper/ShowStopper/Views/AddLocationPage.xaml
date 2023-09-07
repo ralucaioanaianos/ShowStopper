@@ -36,12 +36,12 @@
                            FontAttributes="Bold"
                            TextColor="DarkGray"></Label>
                 <Entry Text="{Binding Description}"></Entry>
-                <Label Text="Description:"
+                <Label Text="Owner:"
                            Margin="5,15,0,0"
                            FontAttributes="Bold"
                            TextColor="DarkGray"></Label>
                 <Entry Text="{Binding Owner}"></Entry>
-                <Label Text="Description:"
+                <Label Text="Address:"
                            Margin="5,15,0,0"
                            FontAttributes="Bold"
                            TextColor="DarkGray"></Label>

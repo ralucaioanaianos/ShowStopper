@@ -73,7 +73,6 @@ namespace ShowStopper.ViewModels
             List<Ticket> tickets = await UserService.GetTicketsForUser();
             ObservableCollection<Ticket> collection = new ObservableCollection<Ticket>(tickets);
             Tickets = collection;
-            await Application.Current.MainPage.DisplayAlert("loadev", Tickets.Count.ToString(), "ok");
             IsDataLoaded = true;
         }
 

@@ -117,10 +117,14 @@ namespace ShowStopper.ViewModels
         {
             decimal result = await PaymentService.StartPayment(Price);
             if (result != 0)
-                for (var i = 0; i < result;i++)
+            {
+                for (var i = 0; i < result; i++)
                 {
                     await UserService.AddEventToUser(AppEvent.Name, AppEvent.Image);
-                }     
+                }
+                await Application.Current.MainPage.DisplayAlert("We'll se you there!", "You are now officially attending " + " " + AppEvent.Name + "! All your tickets can be found in your profile section.", "Ok");
+            }
+                
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

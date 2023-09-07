@@ -77,8 +77,9 @@ namespace ShowStopper.ViewModels
                    
                     if (foundUser != null) 
                     {
-                        await _navigation.PushAsync(new TabbarPage());
-                    }
+
+                    await _navigation.PushAsync(new TabbarPage());
+                }
             }
             catch (Exception ex)
             {

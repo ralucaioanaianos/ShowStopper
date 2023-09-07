@@ -121,13 +121,20 @@ namespace ShowStopper.Services
 
         public static async Task<AppUser> LookForUserInDatabase(User loggedUser)
         {
-            var databaseClient = new FirebaseClient(databaseUrl);
-            var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
-            var replacedEmail = loggedUser.Info.Email.Replace('.', ',');
-            var foundElements = firebaseObjects
-                .Where(obj => obj.Object.Email == replacedEmail).ToList();
-            var foundUser = foundElements.FirstOrDefault();
-            return foundUser.Object;
+            try
+            {
+                var databaseClient = new FirebaseClient(databaseUrl);
+                var firebaseObjects = await databaseClient.Child("Users").OnceAsync<AppUser>();
+                var replacedEmail = loggedUser.Info.Email.Replace('.', ',');
+                var foundElements = firebaseObjects
+                    .Where(obj => obj.Object.Email == replacedEmail).ToList();
+                var foundUser = foundElements.FirstOrDefault();
+                return foundUser.Object;
+            } catch(Exception ex) {
+                Console.WriteLine(ex);
+                return null;
+            }
+           
         }
     }
 }
